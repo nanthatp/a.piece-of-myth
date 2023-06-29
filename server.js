@@ -15,5 +15,5 @@ const PORT = 8080;
 
 //run listen
 app.listen(PORT, () => {
-    console.log(`Server Running on ${PORT}`.bgCyan.white);
+    console.log(`Server Running on ${PORT}`);
 });
