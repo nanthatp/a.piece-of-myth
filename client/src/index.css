@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Caprasimo&family=Lora:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
 *{
   margin: 0;
   padding: 0;
@@ -8,4 +8,152 @@
 /* font-family: 'Caprasimo', cursive; */
 
 /* font-family: 'Caprasimo', cursive;
-font-family: 'Lora', serif; */
+font-family: 'Crimson Text', serif;
+font-family: 'Kanit', sans-serif;
+font-family: 'Lora', serif;
+font-family: 'PT Serif', serif; */
+
+/* navbar css */
+.navbar{
+  font-family: 'Poppins', sans-serif;
+  font-size: 21px;
+  line-height: 30px;
+  padding: 18px;
+  text-transform: uppercase;
+  box-shadow: 0 8px 6px -6px gray;
+  --webkit-box-shadow: 0 8px 6px gray;
+  border-bottom: 0.5px solid gray !important;
+  
+}
+
+/* ============== navbar =============== */
+
+.navbar-link {
+  font-weight: 400 !important;
+}
+
+.active{
+  border-bottom: 2px solid black;
+}
+
+.navbar-brand{
+  font-weight: 700;
+  font-family: 'roboto' ,sans-serif;
+  letter-spacing: 3px;
+}
+
+/* ============== Header =============== */
+
+.header {
+  color: white;
+  padding: 25px;
+  background: #73c088;
+}
+
+/* ============== Footer =============== */
+.footer{
+  color: white;
+  padding: 25px;
+  background: #73c088;
+}
+
+.footer a{
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+}
+
+.footer a:hover{
+  color: #ffefba;
+  border-bottom: 1px solid #ffefba;
+}
+
+/* ============== Page not found =============== */
+
+.pnf {
+  display: flex;
+  min-height: 65vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.pnf-title {
+  font-size: 100px;
+  font-weight: 700;
+}
+
+.pnf-heading {
+  font-weight: normal;
+}
+
+.pnf-btn {
+  color: black;
+  border: 1px solid black;
+  text-decoration: none;
+  padding: 10px;
+  margin-top: 10px;
+}
+.pnf-btn:hover {
+  background-color: black;
+  color: white;
+}
+
+/* ============== contact =============== */
+
+.contactus {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title-contact{
+  font-weight: normal;
+  line-height: 1.8;  
+  text-align: center;
+  background: #73c088;
+}
+
+/* ============== contact =============== */
+
+.aboutus {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+} 
+
+.title-aboutus{
+  font-weight: normal;
+  line-height: 1.8;  
+  text-align: center;
+  background: #73c088;
+}
+.aboutus-heading{
+  font-weight: normal;
+  line-height: 3;
+}
+
+.aboutus-text{
+  font-weight: normal;
+  text-indent: 30px; 
+}
+
+/* ============== contact =============== */
+
+.policy {
+  display: flex;
+  align-items: center;
+  line-height: 3;
+}
+
+.policy-text{
+  font-weight: normal;
+  text-indent: 30px; 
+  line-height: 2;
+}
