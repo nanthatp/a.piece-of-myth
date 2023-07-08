@@ -1,6 +1,6 @@
 import express from 'express';
 import { isAdmin, requireSignIn } from '../middlewares/authMiddleware.js';
-import { createSizeController, deleteSizeController, singleSizeController, sizeController, updateSizeController } from './../controllers/sizeController.js';
+import { createSizeController, deleteSizeController, singleSizeController, sizeController, updateSizeController } from '../controllers/sizeController.js';
 
 const router = express.Router()
 

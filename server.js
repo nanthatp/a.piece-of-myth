@@ -5,10 +5,11 @@ import morgan  from "morgan";
 import connectDB from "./config/db.js";
 import authRoute from "./routes/authRoute.js";
 import categoryRoute from "./routes/categoryRoutes.js";
-import artistRoute from "./routes/artistRoute.js";
-import memberRoute from "./routes/memberRoute.js";
-import sizeRoute from "./routes/sizeRoute.js";
-import sizepostcardRoute from "./routes/sizepostcardRoute.js"
+import artistRoute from "./routes/artistRoutes.js";
+import memberRoute from "./routes/memberRoutes.js";
+import sizeRoute from "./routes/sizeRoutes.js";
+import sizepostcardRoute from "./routes/sizepostcardRoutes.js"
+import productRoutes from "./routes/productRoutes.js"
 
 import cors from "cors";
 //configure env
