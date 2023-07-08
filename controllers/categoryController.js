@@ -17,7 +17,7 @@ export  const createCategoryController = async(req, res) => {
         res.status(201).send({
             success:true,
             message:'New Category Created',
-            category
+            category,
         });
     } catch (error) {
         console.log(error)
@@ -76,19 +76,24 @@ export  const categoryController = async(req,res) => {
 //single category
 export const singleCategoryController = async (req, res) => {
     try {
-        
+        const category = await categoryModel.findOne({ slug: req.params.slug });
+        res.status(200).send({
+            success: true,
+            message: "Get SIngle Category SUccessfully",
+            category,
+    });
     } catch (error) {
         console.log(error);
         res.status(500).send({
             success: false,
             error,
-            message: "Error while Getting Single Category",
+            message: "Error While getting Single Category",
         });
     }
 };
 
 //delete category
-export const deleteCategoryCOntroller = async (req, res) => {
+export const deleteCategoryController = async (req, res) => {
     try {
         const { id } = req.params;
         await categoryModel.findByIdAndDelete(id);
