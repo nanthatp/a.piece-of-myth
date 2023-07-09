@@ -33,6 +33,7 @@ app.use('/api/v1/artist', artistRoute);
 app.use('/api/v1/member', memberRoute);
 app.use('/api/v1/size', sizeRoute);
 app.use('/api/v1/sizepostcard' , sizepostcardRoute);
+app.use("/api/v1/product", productRoutes);
 
 //rest api
 app.get('/',(req,res) => {
