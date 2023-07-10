@@ -7,14 +7,14 @@ const Register= () => {
     const [name,setName] = useState("");
     const [email,setEmail] = useState("");
     const [phone,setPhone] = useState("");
-    const [password,setPassword] = useState("");
+    const [password,setPassword] = useState(""); 
     const navigate = useNavigate();
 
     //form function
     const handleSumit = async (e) => {
         e.preventDefault();
-        // console.log(name,email,phone,password);
-        //  toast.success("Register Successfully")
+        console.log(name,email,phone,password);
+        toast.success("Register Successfully")
         try {
             const res = await axios.post("/api/v1/auth/register", {
               name,
@@ -33,7 +33,7 @@ const Register= () => {
             toast.error("Something went wrong");
           }
     };
-    
+    console.log(process.env.REACT_APP_API);
   return (
     <Layout title = "Register - a.piece-of-myth">
         <div className="register">
