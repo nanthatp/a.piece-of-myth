@@ -1,10 +1,9 @@
 import mongoose from "mongoose";
 
 const sizeSchema = new mongoose.Schema({
-    size_name:{
+    name:{
         type:String,
         required:true,
-        unique:true,
     },
     slug: {
         type: String,

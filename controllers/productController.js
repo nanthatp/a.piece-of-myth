@@ -1,5 +1,6 @@
 import productModel from "../models/productModel.js";
 import fs from "fs";
+import slugify from "slugify";
 
 export const createProductController = async (req,res)  => {
     try {
@@ -26,15 +27,15 @@ export const createProductController = async (req,res)  => {
                 return res.status(500).send({error:'Size is required'})
             case !sizepostcard:
                 return res.status(500).send({error:'Size of postcard is required'})
-            case photo && photo.size > 1000000:
-                return res.status(500).send({error:'Photo is requiredand less than 1mb'})
+            case photo && photo.size > 150000000000:
+                return res.status(500).send({error:'Photo is requiredand less than 1.5mb'})
         }
-        const products = new productModel({...req.fields, slug:slugify(name)})
-        if(photo){
-            products.photo.data = fs.readFileSync(photo.path)
-            products.photo.contentType = photo.type
+        const products = new productModel({ ...req.fields, slug: slugify(name) });
+        if (photo) {
+            products.photo.data = fs.readFileSync(photo.path);
+            products.photo.contentType = photo.type;
         }
-        await products.save()
+        await products.save();
         res.status(201).send({
             success:true,
             message:'Product created successfully',
@@ -112,7 +113,7 @@ export const productPhotoController = async (req, res) => {
     }
 };
 
-//delete controller
+//delete productcontroller
 export const deleteProductController = async (req, res) => {
     try {
         await productModel.findByIdAndDelete(req.params.pid).select("-photo");
@@ -156,8 +157,8 @@ export const updateProductController = async (req, res) => {
                 return res.status(500).send({error:'Size is required'})
             case !sizepostcard:
                 return res.status(500).send({error:'Size of postcard is required'})
-            case photo && photo.size > 1000000:
-                return res.status(500).send({error:'Photo is requiredand less than 1mb'})
+            case photo && photo.size > 150000000000:
+                return res.status(500).send({error:'Photo is requiredand less than 1.5 mb'})
         }
         const products = await productModel.findByIdAndUpdate(
             req.params.pid,
