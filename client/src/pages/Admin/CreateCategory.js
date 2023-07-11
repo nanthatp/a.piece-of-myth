@@ -10,19 +10,19 @@ const CreateCategory = () => {
     //get all categories
     const getAllCategory = async () => {
         try {
-            const {data} = await axios.get('/api/v1/category/get-category')
-            if(data.success){
-                setCategories(data.category);
+            const { data } = await axios.get("/api/v1/category/get-category");
+            if (data?.success) {
+            setCategories(data?.category);
             }
         } catch (error) {
-            console.log(error)
-            toast.error('Something went wrong in getting category')
+            console.log(error);
+            toast.error("Something went wrong in getting catgeory");
         }
-    }
-
+    };
+    
     useEffect(() => {
         getAllCategory();
-    }, [])
+    }, []);
 
     return (
         <Layout title={"Dashboard - Create Category"}>
@@ -38,15 +38,23 @@ const CreateCategory = () => {
                                 <thead>
                                     <tr>
                                         <th scope="col">Name</th>
-                                        <th scope="col">Action</th>
+                                        <th scope="col">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        {categories.map((c )=> (
-                                            <td key={c._id}>{c.name}</td>
+                                    
+                                        {categories.map((c) => (
+                                            <>
+                                                <tr>
+                                                    <td key = {c._id}>{c.name}</td>
+                                                    <td>
+                                                        <button className='btn btn-primary'>Edit</button>
+                                                    </td>
+                                                </tr>
+                                            </>
                                         ))}
-                                    </tr>
+                            
+                                    
                                 </tbody>
                             </table>
                             }
