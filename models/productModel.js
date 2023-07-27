@@ -40,16 +40,6 @@ const productSchema = new mongoose.Schema({
         ref: "Member",
         required: true,
     },
-    size: {
-        type: mongoose.ObjectId,
-        ref: "Size",
-        required: true,
-    },
-    sizepostcard: {
-        type: mongoose.ObjectId,
-        ref: "SizePostcard",
-        required: true,
-    },
     shipping: {
         type: Boolean,
     },
