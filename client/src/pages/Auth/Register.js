@@ -36,11 +36,12 @@ const Register= () => {
     console.log(process.env.REACT_APP_API);
   return (
     <Layout title = "Register - a.piece-of-myth">
-        <div className="register">
-            
-                <h1>CREATE AN ACCOUNT</h1>
-                <form onSubmit={handleSumit}>
-            
+        <div className="form-container" style={{ minHeight: "90vh" }}>
+
+            <form onSubmit={handleSumit}>
+                <h3 className='title'>CREATE AN ACCOUNT</h3>
+                
+                
                 <div className="row">
                     <div className="col-md-6 mb-4">
                         <div className="mb-3">
@@ -107,12 +108,23 @@ const Register= () => {
                         />
                     </div>  
                     <div className="d-flex justify-content-center">
-                    <button 
-                        type="submit"
-                        className="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
-                    >
-                        Register
-                    </button>
+                        <button 
+                            type="submit"
+                            className="btn btn-primary"
+                        >
+                            Register
+                        </button>
+                    </div>
+
+                    <div className="d-flex justify-content-center">
+                        <button
+                            type="button"
+                            className="btn forgot-btn "
+                            onClick={() => {
+                            navigate("/login");
+                        }}>
+                            Go back
+                        </button>
                     </div>
                 </form>
             </div>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Layout from "./../../components/Layout/Layout";
 import axios from "axios";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import "../../styles/AuthStyles.css";
 import { useAuth } from "../../context/auth";
@@ -39,7 +39,7 @@ const Login = () => {
     }
   };
   return (
-    <Layout title="Register - Ecommer App">
+    <Layout title="login - a.piece-of-myth">
       <div className="form-container " style={{ minHeight: "90vh" }}>
         <form onSubmit={handleSubmit}>
           <h4 className="title">LOGIN FORM</h4>
@@ -67,21 +67,27 @@ const Login = () => {
               required
             />
           </div>
+          
           <div className="mb-3">
-            <button
-              type="button"
-              className="btn forgot-btn"
-              onClick={() => {
-                navigate("/forgot-password");
-              }}
-            >
-              Forgot Password
+            <button type="submit" className="btn btn-primary">
+              LOGIN
             </button>
           </div>
+          
+          <p style={{ color: "#393f81" }}>
+            Forgot your Password?{" "}
+            <Link to="/forgot-password" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
+              click here
+            </Link>
+          </p>
 
-          <button type="submit" className="btn btn-primary">
-            LOGIN
-          </button>
+          <p style={{ color: "#393f81" }}>
+            Don't have an account?{" "}
+            <Link to="/register" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
+              Register here
+            </Link>
+          </p>
+
         </form>
       </div>
     </Layout>

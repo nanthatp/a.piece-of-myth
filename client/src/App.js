@@ -16,6 +16,7 @@ import AdminDashboard from './pages/Admin/AdminDashboard';
 import CreateCategory from './pages/Admin/CreateCategory';
 import CreateProduct from './pages/Admin/CreateProduct';
 import Orders from './pages/User/Orders';
+import ForgotPassword from './pages/Auth/ForgetPassword';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
       <Route path='/policy' element={<Policy/>} />
       <Route path='*' element={<Pagenotfound/>} />
       <Route path="/login" element={<Login />} />
+      <Route path='/forgot-password' element={<ForgotPassword/>} />
     </Routes>
     </>
   );
