@@ -76,14 +76,14 @@ const Login = () => {
           
           <p style={{ color: "#393f81" }}>
             Forgot your Password?{" "}
-            <Link to="/forgot-password" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
+            <Link to="/forgot-password" className="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
               click here
             </Link>
           </p>
 
           <p style={{ color: "#393f81" }}>
             Don't have an account?{" "}
-            <Link to="/register" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
+            <Link to="/register" className="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
               Register here
             </Link>
           </p>
