@@ -10,14 +10,16 @@ const { Option } = Select;
 
 const CreateProduct = () => {
     const [categories, setCategories] = useState([]);
+    const [members, setMembers] = useState([]);
+    const [artists, setArtists] = useState([]);
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
     const [category, setCategory] = useState("");
     const [quantity, setQuantity] = useState("");
     const [photo, setPhoto] = useState("");
-    const [artist, setArtist] = useState([]);
-    const [member, setMember] = useState([]);
+    const [artist, setArtist] = useState("");
+    const [member, setMember] = useState("");
     const [shipping, setShipping] = useState("");
 
     //get all categories
@@ -38,7 +40,7 @@ const CreateProduct = () => {
         try {
             const { data } = await axios.get("/api/v1/artist/get-artist");
             if (data?.success) {
-            setArtist(data?.artist);
+            setArtists(data?.artist);
             }
         } catch (error) {
             console.log(error);
@@ -51,7 +53,7 @@ const CreateProduct = () => {
         try {
             const { data } = await axios.get("/api/v1/member/get-member");
             if (data?.success) {
-            setMember(data?.member);
+            setMembers(data?.member);
             }
         } catch (error) {
             console.log(error);
@@ -75,43 +77,7 @@ const CreateProduct = () => {
                 </div>
                 <div className="col-md-9">
                     <h1>Manage Product</h1>
-                    <div>
-                        <Select
-                            bordered={false}
-                            placeholder="Select a artist"
-                            size="medium"
-                            showSearch
-                            className="form-select mb-3"
-                            onChange={(value) => {
-                                setArtist(value);
-                            }}
-                        >
-                            {artist?.map((c) => (
-                                <Option key={c._id} value={c._id}>
-                                    {c.name}
-                                </Option>
-                            ))}
-                        </Select>
-                    </div>
-                    <div>
-                        <Select
-                            bordered={false}
-                            placeholder="Select a member"
-                            size="medium"
-                            showSearch
-                            className="form-select mb-3"
-                            onChange={(value) => {
-                                setMember(value);
-                            }}
-                        >
-                            {member?.map((c) => (
-                                <Option key={c._id} value={c._id}>
-                                    {c.name}
-                                </Option>
-                            ))}
-                        </Select>
-                    </div>
-                    <div classname="m-1 w-75">
+                    <div className="m-1 w-75">
                         <Select
                             bordered={false}
                             placeholder="Select a category"
@@ -128,6 +94,41 @@ const CreateProduct = () => {
                                 </Option>
                             ))}
                         </Select>
+
+                        <Select
+                            bordered={false}
+                            placeholder="Select a Arist"
+                            size="medium"
+                            showSearch
+                            className="form-select mb-3"
+                            onChange={(value) => {
+                                setArtist(value);
+                            }}
+                        >
+                            {artists?.map((c) => (
+                                <Option key={c._id} value={c._id}>
+                                    {c.name}
+                                </Option>
+                            ))}
+                        </Select>
+
+                        <Select
+                            bordered={false}
+                            placeholder="Select a Member"
+                            size="medium"
+                            showSearch
+                            className="form-select mb-3"
+                            onChange={(value) => {
+                                setMember(value);
+                            }}
+                        >
+                            {members?.map((c) => (
+                                <Option key={c._id} value={c._id}>
+                                    {c.name}
+                                </Option>
+                            ))}
+                        </Select>
+
                         <div className="mb-3">
                             <label className="btn btn-outline-secondary col-md-12">
                                 {photo ? photo.name : "Upload Photo"}
