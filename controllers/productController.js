@@ -23,10 +23,10 @@ export const createProductController = async (req,res)  => {
                 return res.status(500).send({error:'Artist is required'})
             case !member:
                 return res.status(500).send({error:'Member is required'})
-            case !size:
-                return res.status(500).send({error:'Size is required'})
-            case !sizepostcard:
-                return res.status(500).send({error:'Size of postcard is required'})
+            // case !size:
+            //     return res.status(500).send({error:'Size is required'})
+            // case !sizepostcard:
+            //     return res.status(500).send({error:'Size of postcard is required'})
             case photo && photo.size > 150000000000:
                 return res.status(500).send({error:'Photo is requiredand less than 1.5mb'})
         }
@@ -153,10 +153,10 @@ export const updateProductController = async (req, res) => {
                 return res.status(500).send({error:'Artist is required'})
             case !member:
                 return res.status(500).send({error:'Member is required'})
-            case !size:
-                return res.status(500).send({error:'Size is required'})
-            case !sizepostcard:
-                return res.status(500).send({error:'Size of postcard is required'})
+            // case !size:
+            //     return res.status(500).send({error:'Size is required'})
+            // case !sizepostcard:
+            //     return res.status(500).send({error:'Size of postcard is required'})
             case photo && photo.size > 150000000000:
                 return res.status(500).send({error:'Photo is requiredand less than 1.5 mb'})
         }

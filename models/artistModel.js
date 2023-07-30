@@ -10,6 +10,10 @@ const artistSchema = new mongoose.Schema({
         type: String,
         lowercase: true, 
     },   
+    member: {
+        type:Array,
+        require:true,
+    }
 
 });
 export default mongoose.model('Artist', artistSchema);
