@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Checkbox, Radio } from "antd";
+import { Button, Checkbox, Radio } from "antd";
 import { Prices } from "../components/Prices";
 import { useCart } from "../context/cart";
 import axios from "axios";
@@ -36,6 +36,7 @@ const HomePage = () => {
     getAllCategory();
     getTotal();
   }, []);
+
   //get products
   const getAllProducts = async () => {
     try {
@@ -49,7 +50,7 @@ const HomePage = () => {
     }
   };
 
-  //getTOtal COunt
+  //getTOtal Count
   const getTotal = async () => {
     try {
       const { data } = await axios.get("/api/v1/product/product-count");
@@ -63,6 +64,7 @@ const HomePage = () => {
     if (page === 1) return;
     loadMore();
   }, [page]);
+
   //load more
   const loadMore = async () => {
     try {
@@ -86,6 +88,7 @@ const HomePage = () => {
     }
     setChecked(all);
   };
+
   useEffect(() => {
     if (!checked.length || !radio.length) getAllProducts();
   }, [checked.length, radio.length]);
@@ -106,16 +109,51 @@ const HomePage = () => {
       console.log(error);
     }
   };
+
+  //video slider navigation
+  const btns = document.querySelectorAll(".nav-btn");
+  const slides = document.querySelectorAll(".video-slide");
+
+  var sliderNev =function(manual){
+    btns.forEach((btn) => {
+      btn.classList.remove("active");
+    });
+    slides.forEach((slide) => {
+      slide.classList.remove("active");
+    });
+
+    btns[manual].classList.add("active");
+    slides[manual].classList.add("active");
+  }
+
+  btns.forEach((btn, i) => {
+    btn.addEventListener("click", () =>{
+      sliderNev(i);
+    })
+  });
+
   return (
     <Layout title={"ALl Products - Best offers "}>
-      {/* banner image */}
-      <img
-        src="/images/banner.png"
-        className="banner-img"
-        alt="bannerimage"
-        width={"100%"}
-      />
-      {/* banner image */}
+      {/* banner  */}
+      <section className="banner">
+        <video className="video-slide" src= "/images/dreambanner.mp4" autoPlay muted loop ></video> 
+        <video className="video-slide" src= "/images/127banner.mp4" autoPlay muted loop ></video> 
+        <video className="video-slide" src= "/images/dreambanner.mp4" autoPlay muted loop ></video> 
+        <video className="video-slide" src= "/images/127banner.mp4" autoPlay muted loop ></video> 
+        <div className="content">
+          <h1>NCT DREAM</h1>
+          <a href="#">Pre-Order Now</a>
+        </div>
+        <div className="slider-navigation">
+          <div className="nav-btn active"></div>
+          <div className="nav-btn"></div>
+          <div className="nav-btn"></div>
+          <div className="nav-btn"></div>
+        </div>
+        
+      </section>
+
+      {/* banner  */}
       <div className="container-fluid row mt-3 home-page">
         <div className="col-md-3 filters">
           <h4 className="text-center">Filter By Category</h4>
