@@ -25,6 +25,7 @@ import ProductDetails from "./pages/ProductDetails";
 import Categories from "./pages/Categories";
 import CategoryProduct from "./pages/CategoryProduct";
 import CartPage from "./pages/CartPage";
+import CreateBaner from './pages/Admin/CreateBaner';
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
         <Route path="admin" element={<AdminDashboard />}/>
         <Route path="admin/create-category" element={<CreateCategory />} />
         <Route path="admin/create-product" element={<CreateProduct />} />
+        <Route path="admin/create-banner" element={<CreateBaner />} />
         <Route path="admin/product/:slug" element={<UpdateProduct />} />
         <Route path="admin/products" element={<Products />} />
 
