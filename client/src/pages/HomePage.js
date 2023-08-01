@@ -113,6 +113,7 @@ const HomePage = () => {
   //video slider navigation
   const btns = document.querySelectorAll(".nav-btn");
   const slides = document.querySelectorAll(".video-slide");
+  const contents = document.querySelectorAll(".content");
 
   var sliderNev =function(manual){
     btns.forEach((btn) => {
@@ -122,8 +123,13 @@ const HomePage = () => {
       slide.classList.remove("active");
     });
 
+    contents.forEach((content) => {
+      content.classList.remove("active");
+    });
+
     btns[manual].classList.add("active");
     slides[manual].classList.add("active");
+    contents[manual].classList.add("active");
   }
 
   btns.forEach((btn, i) => {
@@ -136,12 +142,24 @@ const HomePage = () => {
     <Layout title={"ALl Products - Best offers "}>
       {/* banner  */}
       <section className="banner">
-        <video className="video-slide" src= "/images/dreambanner.mp4" autoPlay muted loop ></video> 
+        <video className="video-slide active" src= "/images/dreambanner.mp4" autoPlay muted loop ></video> 
         <video className="video-slide" src= "/images/127banner.mp4" autoPlay muted loop ></video> 
         <video className="video-slide" src= "/images/dreambanner.mp4" autoPlay muted loop ></video> 
         <video className="video-slide" src= "/images/127banner.mp4" autoPlay muted loop ></video> 
+        <div className="content active">
+          <h1>NCT DREAM</h1>
+          <a href="#">Pre-Order Now</a>
+        </div>
+        <div className="content">
+          <h1>NCT 127</h1>
+          <a href="#">Pre-Order Now</a>
+        </div>
         <div className="content">
           <h1>NCT DREAM</h1>
+          <a href="#">Pre-Order Now</a>
+        </div>
+        <div className="content">
+          <h1>NCT 127</h1>
           <a href="#">Pre-Order Now</a>
         </div>
         <div className="slider-navigation">
@@ -150,10 +168,9 @@ const HomePage = () => {
           <div className="nav-btn"></div>
           <div className="nav-btn"></div>
         </div>
-        
       </section>
-
       {/* banner  */}
+
       <div className="container-fluid row mt-3 home-page">
         <div className="col-md-3 filters">
           <h4 className="text-center">Filter By Category</h4>
