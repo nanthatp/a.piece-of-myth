@@ -27,7 +27,7 @@ import CategoryProduct from "./pages/CategoryProduct";
 import CartPage from "./pages/CartPage";
 import CreateBaner from './pages/Admin/CreateBaner';
 import AdminOrders from "./pages/Admin/AdminOrders";
-import AdminOrders from "./pages/Admin/AdminOrders";
+
 
 function App() {
   return (
