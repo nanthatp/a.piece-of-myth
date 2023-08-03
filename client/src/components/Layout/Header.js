@@ -123,7 +123,7 @@ const Header = () => {
               <li className="nav-item">
               
                 <NavLink to = "/cart" className="nav-link" href="#">
-                  <Badge count={cart?.length} showZero offset={[10, -5]}>
+                  <Badge color="hsl(102, 53%, 61%)" count={cart?.length} showZero offset={[10, -5]}>
                   Cart
                   </Badge>
                 </NavLink>
