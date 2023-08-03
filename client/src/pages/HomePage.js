@@ -20,7 +20,7 @@ const HomePage = () => {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
 
-  //get all cat
+   //-------get all cat-------//
   const getAllCategory = async () => {
     try {
       const { data } = await axios.get("/api/v1/category/get-category");
@@ -37,7 +37,7 @@ const HomePage = () => {
     getTotal();
   }, []);
 
-  //get products
+   //-------get products-------//
   const getAllProducts = async () => {
     try {
       setLoading(true);
@@ -50,7 +50,7 @@ const HomePage = () => {
     }
   };
 
-  //getTOtal Count
+   //-------getTOtal Count-------//
   const getTotal = async () => {
     try {
       const { data } = await axios.get("/api/v1/product/product-count");
@@ -65,7 +65,7 @@ const HomePage = () => {
     loadMore();
   }, [page]);
 
-  //load more
+   //-------load more-------//
   const loadMore = async () => {
     try {
       setLoading(true);
@@ -78,7 +78,7 @@ const HomePage = () => {
     }
   };
 
-  // filter by cat
+   //-------filter by cat-------//
   const handleFilter = (value, id) => {
     let all = [...checked];
     if (value) {
@@ -97,7 +97,7 @@ const HomePage = () => {
     if (checked.length || radio.length) filterProduct();
   }, [checked, radio]);
 
-  //get filterd product
+  //-------get filterd product-------//
   const filterProduct = async () => {
     try {
       const { data } = await axios.post("/api/v1/product/product-filters", {
@@ -110,39 +110,68 @@ const HomePage = () => {
     }
   };
 
-  //video slider navigation
-  const btns = document.querySelectorAll(".nav-btn");
-  const slides = document.querySelectorAll(".video-slide");
-  const contents = document.querySelectorAll(".content");
+  //-------video slider navigation-------//
+  
+  // const contents = document.querySelectorAll(".content");
 
-  var sliderNev =function(manual){
-    btns.forEach((btn) => {
-      btn.classList.remove("active");
-    });
-    slides.forEach((slide) => {
-      slide.classList.remove("active");
-    });
+  // var sliderNev =function(manual){
 
-    contents.forEach((content) => {
-      content.classList.remove("active");
-    });
+  //   contents.forEach((content) => {
+  //     content.classList.remove("active");
+  //   });
 
-    btns[manual].classList.add("active");
-    slides[manual].classList.add("active");
-    contents[manual].classList.add("active");
-  }
+    
+  //   contents[manual].classList.add("active");
+  // }
 
-  btns.forEach((btn, i) => {
-    btn.addEventListener("click", () =>{
-      sliderNev(i);
-    })
-  });
+  
 
   return (
     <Layout title={"ALl Products - Best offers "}>
-      {/* banner  */}
       <section className="banner">
-        <video className="video-slide active" src= "/images/dreambanner.mp4" autoPlay muted loop ></video> 
+
+          <div className="carousel-inner"> 
+            <div className="carousel-item active">
+              <video 
+                autoPlay loop muted playsInline 
+                className="back-video" 
+                src="/images/dream.mp4"
+                type="video/mp4">           
+              </video>   
+              <div className="content">
+                <h1>NCT DREAM</h1>
+                <a href="#">Pre-Order Now</a>
+              </div> 
+            </div>
+            <div className="carousel-item">
+              <video 
+              autoPlay loop muted playsInline 
+              className="back-video" 
+              src="/images/127.mp4"
+              type="video/mp4">            
+              </video>
+              <div className="content">
+                <h1>NCT 127</h1>
+                <a href="#">Pre-Order Now</a>
+              </div>
+            </div>
+            <div className="carousel-item">
+              <video 
+                autoPlay loop muted playsInline 
+                className="back-video" 
+                src="/images/red.mp4"
+                type="video/mp4">
+              </video>  
+              <div className="content">
+                <h1>RED VELVET</h1>
+                <a href="#">Pre-Order Now</a>
+              </div>
+            </div>
+          </div>
+        
+    
+
+        {/* <video className="video-slide active" src= "/images/dreambanner.mp4" autoPlay muted loop ></video> 
         <video className="video-slide" src= "/images/127banner.mp4" autoPlay muted loop ></video> 
         <video className="video-slide" src= "/images/dreambanner.mp4" autoPlay muted loop ></video> 
         <video className="video-slide" src= "/images/127banner.mp4" autoPlay muted loop ></video> 
@@ -167,10 +196,11 @@ const HomePage = () => {
           <div className="nav-btn"></div>
           <div className="nav-btn"></div>
           <div className="nav-btn"></div>
-        </div>
+        </div> */}
       </section>
-      {/* banner  */}
-
+      <div className="col-md-9">
+        <h1 className="text-center">All Products</h1>
+      </div>
       <div className="container-fluid row mt-3 home-page">
         <div className="col-md-3 filters">
           <h4 className="text-center">Filter By Category</h4>

@@ -1,0 +1,52 @@
+.sticky-table-headers__sticky {
+    /* Background color */
+    background-color: #000;
+
+    /* Stick to the left */
+    left: 0;
+    position: sticky;
+
+    /* Displayed on top of other rows when scrolling */
+    z-index: 9999;
+}
+
+.layered-card {
+    position: relative;
+
+    /* Demo */
+    height: 10rem;
+    width: 10rem;
+}
+
+.layered-card::before {
+    background: #73C088;
+    content: '';
+
+    /* Position */
+    top: 0;
+    left: 0;
+    position: absolute;
+    transform: translate(1rem, 1rem);
+
+    /* Size */
+    height: 100vh;
+    width: 100vh;
+
+    /* Display under the main content */
+    z-index: 0;
+}
+
+.layered-card__content {
+    /* Position */
+    left: 0;
+    position: absolute;
+    top: 0;
+
+    /* Size */
+    height: 100vh;
+    width: 100vh;
+
+    z-index: 1;
+
+    background: #fff;
+}

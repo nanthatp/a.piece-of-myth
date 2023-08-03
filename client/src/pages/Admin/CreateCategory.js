@@ -5,6 +5,9 @@ import { toast } from 'react-hot-toast';
 import axios from 'axios';
 import CategoryForm from '../../components/Form/CategoryForm';
 import {Modal} from 'antd';
+import "../../styles/CreateCategory.css";
+
+
 
 const CreateCategory = () => {
     const [categories, setCategories] = useState([]);
@@ -91,73 +94,77 @@ const CreateCategory = () => {
 
     return (
         <Layout title={"Dashboard - Create Category"}>
-            <div className="container-fluid m-3 p-3 dashboard">
-                <div className="row">
-                    <div className="col-md-3">
-                        <AdminMenu />
-                    </div>
-                    <div className="col-md-9">
-                        <h1>Manage Category</h1>
-                        <div className='p-3 w-50'>
-                            <CategoryForm 
-                                handleSubmit={handleSubmit}
-                                value={name}
-                                setValue={setName} 
-                            />
-                        </div>
-                        <div>
-                            <table className="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    
-                                        {categories.map((c) => (
-                                            <>
-                                                <tr>
-                                                    <td key = {c._id}>{c.name}</td>
-                                                    <td>
-                                                        <button 
-                                                            className='btn btn-primary ms-2' 
-                                                            onClick={() => {
-                                                                setVisible(true);
-                                                                setUpdatedName(c.name);
-                                                                setSelected(c);
-                                                            }}
-                                                        >
-                                                            Edit
-                                                        </button>
-                                                        <button 
-                                                            className='btn btn-danger ms-2'
-                                                            onClick={() => {
-                                                                handleDelete(c._id);
-                                                            }}
-                                                        >
-                                                            Delete
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            </>
-                                        ))}
-                                </tbody>
-                            </table>
-                        </div>
-                        <Modal 
-                            onCancel={() => setVisible(false)}
-                            footer={null}
-                            visible={visible}
-                        > 
-                            <CategoryForm 
-                                value={updatedName}
-                                setValue={setUpdatedName}
-                                handleSubmit={handleUpdate}
-                            />
+            <div class="layered-card">
+                <div class="layered-card__content">
+                    {/* <div className="container">
+                        <div className="row">
+                            <div className="col-12">
+                                <AdminMenu />
+                            </div>
+                            <div className="col-center">
+                                <h1>Manage Category</h1>
+                                <div className='p-3 w-50'>
+                                    <CategoryForm 
+                                        handleSubmit={handleSubmit}
+                                        value={name}
+                                        setValue={setName} 
+                                    />
+                                </div>
+                                <div>
+                                    <table class="sticky-table-headers">
+                                        <thead>
+                                            <tr class="sticky-table-headers__sticky">
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                                {categories.map((c) => (
+                                                    <>
+                                                        <tr>
+                                                            <td key = {c._id}>{c.name}</td>
+                                                            <td>
+                                                                <button 
+                                                                    className='btn btn-primary ms-2' 
+                                                                    onClick={() => {
+                                                                        setVisible(true);
+                                                                        setUpdatedName(c.name);
+                                                                        setSelected(c);
+                                                                    }}
+                                                                >
+                                                                    Edit
+                                                                </button>
+                                                                <button 
+                                                                    className='btn btn-danger ms-2'
+                                                                    onClick={() => {
+                                                                        handleDelete(c._id);
+                                                                    }}
+                                                                >
+                                                                    Delete
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    </>
+                                                ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <Modal 
+                                    onCancel={() => setVisible(false)}
+                                    footer={null}
+                                    visible={visible}
+                                > 
+                                    <CategoryForm 
+                                        value={updatedName}
+                                        setValue={setUpdatedName}
+                                        handleSubmit={handleUpdate}
+                                    />
 
-                        </Modal>
-                    </div>
+                                </Modal>
+                            </div>
+                        </div>
+                    </div> */}
                 </div>
             </div>
         </Layout>
