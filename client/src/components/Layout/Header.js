@@ -9,9 +9,9 @@ import { Badge } from "antd";
 import { useCart } from "../../context/cart";
 
 const Header = () => {
+  const categories = useCategory();
   const [auth, setAuth] = useAuth();
   const [cart] = useCart();
-  const categories = useCategory();
   const handleLogout = () => {
     setAuth({
       ...auth,
