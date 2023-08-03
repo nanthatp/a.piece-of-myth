@@ -1,12 +1,10 @@
 import express from "express";
-import { getOrdersController, registerController, testController, updateProfileController } from '../controllers/authController.js'
+import {registerController, testController, updateProfileController } from '../controllers/authController.js'
 import { loginController } from "../controllers/authController.js";
 import { forgotPasswordController } from "../controllers/authController.js";
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
 import {
-    getOrdersController,
-    getAllOrdersController,
-    orderStatusController,
+    getAllOrdersController, getOrdersController, orderStatusController
 } from "../controllers/authController.js";
 //route object
 const router = express.Router();

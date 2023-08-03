@@ -129,14 +129,14 @@ const HomePage = () => {
   return (
     <Layout title={"ALl Products - Best offers "}>
       <section className="banner">
-
+      
           <div className="carousel-inner"> 
             <div className="carousel-item active">
               <video 
                 autoPlay loop muted playsInline 
                 className="back-video" 
                 src="/images/dream.mp4"
-                type="video/mp4">           
+                >           
               </video>   
               <div className="content">
                 <h1>NCT DREAM</h1>
@@ -148,7 +148,7 @@ const HomePage = () => {
               autoPlay loop muted playsInline 
               className="back-video" 
               src="/images/127.mp4"
-              type="video/mp4">            
+              >            
               </video>
               <div className="content">
                 <h1>NCT 127</h1>
@@ -160,7 +160,7 @@ const HomePage = () => {
                 autoPlay loop muted playsInline 
                 className="back-video" 
                 src="/images/red.mp4"
-                type="video/mp4">
+                >
               </video>  
               <div className="content">
                 <h1>RED VELVET</h1>
