@@ -26,11 +26,8 @@ import Categories from "./pages/Categories";
 import CategoryProduct from "./pages/CategoryProduct";
 import CartPage from "./pages/CartPage";
 import CreateBaner from './pages/Admin/CreateBaner';
-<<<<<<< HEAD
-// import AdminOrders from "./pages/Admin/AdminOrders";
-=======
 import AdminOrders from "./pages/Admin/AdminOrders";
->>>>>>> ae08cb5 (noey 90 per)
+import AdminOrders from "./pages/Admin/AdminOrders";
 
 function App() {
   return (
@@ -54,11 +51,8 @@ function App() {
         <Route path="admin/create-banner" element={<CreateBaner />} />
         <Route path="admin/product/:slug" element={<UpdateProduct />} />
         <Route path="admin/products" element={<Products />} />
-<<<<<<< HEAD
         <Route path="admin/orders" element={<Pagenotfound />} />
-=======
         <Route path="admin/orders" element={<AdminOrders />} />
->>>>>>> ae08cb5 (noey 90 per)
 
         
         
