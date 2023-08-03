@@ -2,10 +2,10 @@ import mongoose from "mongoose";
 
 const orderSchema = new mongoose.Schema(
   {
-    address:{
-        type: String,
-        require:true,
-    },
+    // address:{
+    //     type: String,
+    //     require:true,
+    // },
     products: [
       {
         type: mongoose.ObjectId,

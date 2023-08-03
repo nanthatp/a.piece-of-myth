@@ -31,6 +31,7 @@ app.use("/api/v1/product", productRoutes);
 app.use("/api/v1/artist", artistRoutes);
 app.use("/api/v1/member", memberRoutes);
 app.use("/api/v1/product", productRoutes);
+app.use("/api/v1/orders", authRoutes);
 
 
 

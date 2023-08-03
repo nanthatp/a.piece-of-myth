@@ -26,6 +26,7 @@ import Categories from "./pages/Categories";
 import CategoryProduct from "./pages/CategoryProduct";
 import CartPage from "./pages/CartPage";
 import CreateBaner from './pages/Admin/CreateBaner';
+// import AdminOrders from "./pages/Admin/AdminOrders";
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
         <Route path="admin/create-banner" element={<CreateBaner />} />
         <Route path="admin/product/:slug" element={<UpdateProduct />} />
         <Route path="admin/products" element={<Products />} />
+        <Route path="admin/orders" element={<Pagenotfound />} />
 
         
         
