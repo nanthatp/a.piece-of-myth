@@ -21,10 +21,10 @@ const AdminMenu = () => {
                         Create Product
                     </NavLink>
                     <NavLink
-                        to="/dashboard/admin/create-product"
+                        to="/dashboard/admin/create-banner"
                         className="nav-link"
                     >
-                        Create Product
+                        Create Banner
                     </NavLink>
                     <NavLink
                         to="/dashboard/admin/products"
@@ -54,6 +54,25 @@ const AdminMenu = () => {
                     Users
                 </NavLink> */}
             </div>
+
+            <div className="card text-center">
+                <div className="card-header">
+                    <ul className="nav nav-pills card-header-pills">
+                    <li className="nav-item">
+                        <a className="nav-link active" href="#">Active</a>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link" href="#">Link</a>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link disabled" aria-disabled="true">Disabled</a>
+                    </li>
+                    </ul>
+                </div>
+                
+            </div>
+
+
         
         </>
     );

@@ -105,7 +105,7 @@ const CreateProduct = () => {
                 <div className="col-md-3">
                     <AdminMenu />
                 </div>
-                <div className="col-md-9">
+                {/* <div className="col-md-9">
                     <h1>Manage Product</h1>
                     <div className="m-1 w-75">
                         <Select
@@ -240,7 +240,21 @@ const CreateProduct = () => {
                             </button>
                         </div>
                     </div>
+                </div> */}
+
+                <div className="uploadWrapper">
+                <form id="imageUploadForm" className="imageUploadForm">
+                    <span className="helpText" id="helpText">Upload an image</span>
+                    <input type="file" id="file" className="uploadButton" accept="image/*" />
+                    <div id="uploadedImg" className="uploadedImg">
+                    <span className="unveil" />
+                    </div>
+                    <span className="pickFile">
+                    <a href="#" className="pickFileButton">Pick file</a>
+                    </span>
+                </form>
                 </div>
+
             </div>
         </div>
     </Layout>
