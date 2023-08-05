@@ -21,6 +21,6 @@ const Categories = () => {
         </div>
         </Layout>
     );
-    };
+};
 
 export default Categories;

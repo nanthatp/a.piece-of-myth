@@ -96,7 +96,7 @@ const CreateCategory = () => {
         <Layout title={"Dashboard - Create Category"}>
             <div class="layered-card">
                 <div class="layered-card__content">
-                    {/* <div className="container">
+                    <div className="container">
                         <div className="row">
                             <div className="col-12">
                                 <AdminMenu />
@@ -164,7 +164,7 @@ const CreateCategory = () => {
                                 </Modal>
                             </div>
                         </div>
-                    </div> */}
+                    </div>
                 </div>
             </div>
         </Layout>

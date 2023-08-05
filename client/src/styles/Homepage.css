@@ -18,9 +18,9 @@
     /* Positioned at the top left corner */
     left: 0px;
     top: 0px;
-    position: absolute;   
+
     /* Take full size */
-    height: 85%;
+    height: 80%;
     width: 100%;
 
     /* Hide the scrollbar */
@@ -31,7 +31,7 @@
     object-fit: cover;
 
     /* Take full width */
-    height: 80%;
+    height: 85%;
     max-width: 100%;
 }
 
@@ -125,9 +125,9 @@ filters
     border-bottom: 1px solid rgba(128, 128, 128, 0.337);
 }
 
-.ant-checkbox-wrapper:first-of-type {
+/* .ant-checkbox-wrapper:first-of-type {
     margin-left: 8px;
-}
+} */
 
 .ant-checkbox-wrapper {
     margin: 2px;

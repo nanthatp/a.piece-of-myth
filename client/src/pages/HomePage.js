@@ -129,45 +129,59 @@ const HomePage = () => {
   return (
     <Layout title={"ALl Products - Best offers "}>
       <section className="banner">
-      
-          <div className="carousel-inner"> 
+     
+        <div id="carouselExampleControlsNoTouching" className="carousel slide" data-bs-touch="false">
+          <div className="carousel-inner">
             <div className="carousel-item active">
               <video 
-                autoPlay loop muted playsInline 
-                className="back-video" 
-                src="/images/dream.mp4"
-                >           
-              </video>   
-              <div className="content">
-                <h1>NCT DREAM</h1>
-                <a href="#">Pre-Order Now</a>
-              </div> 
-            </div>
-            <div className="carousel-item">
-              <video 
-              autoPlay loop muted playsInline 
-              className="back-video" 
-              src="/images/127.mp4"
-              >            
+                  autoPlay loop muted playsInline 
+                  className="back-video" 
+                  src="/images/127.mp4"
+                  >           
               </video>
               <div className="content">
                 <h1>NCT 127</h1>
                 <a href="#">Pre-Order Now</a>
-              </div>
+              </div>  
+
             </div>
             <div className="carousel-item">
               <video 
-                autoPlay loop muted playsInline 
-                className="back-video" 
-                src="/images/red.mp4"
-                >
-              </video>  
+                  autoPlay loop muted playsInline 
+                  className="back-video" 
+                  src="/images/dream.mp4"
+                  >           
+              </video>
+              <div className="content">
+                <h1>NCT DREAM</h1>
+                <a href="#">Pre-Order Now</a>
+              </div>    
+            </div>
+
+            <div className="carousel-item">
+              <video 
+                  autoPlay loop muted playsInline 
+                  className="back-video" 
+                  src="/images/red.mp4"
+                  >           
+              </video>
               <div className="content">
                 <h1>RED VELVET</h1>
                 <a href="#">Pre-Order Now</a>
-              </div>
+              </div>    
             </div>
           </div>
+          <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+            <span className="carousel-control-prev-icon" aria-hidden="true" />
+            <span className="visually-hidden">Previous</span>
+          </button>
+          <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+            <span className="carousel-control-next-icon" aria-hidden="true" />
+            <span className="visually-hidden">Next</span>
+          </button>
+        </div>
+
+
         
     
 

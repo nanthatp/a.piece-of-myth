@@ -1,6 +1,10 @@
 import productModel from "../models/productModel.js";
+import categoryModel from "../models/categoryModel.js";
+import orderModel from "../models/orderModel.js";
+
 import fs from "fs";
 import slugify from "slugify";
+import dotenv from "dotenv";
 
 export const createProductController = async (req,res)  => {
     try {
@@ -300,7 +304,7 @@ export const realtedProductController = async (req, res) => {
     }
 };
 
-// get prdocyst by catgory
+// get product by category
 export const productCategoryController = async (req, res) => {
     try {
     const category = await categoryModel.findOne({ slug: req.params.slug });
