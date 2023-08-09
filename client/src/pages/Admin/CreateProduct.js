@@ -100,14 +100,15 @@ const CreateProduct = () => {
 
     return (
     <Layout title={"Dashboard - Create Category"}>
-        <div className="container-fluid m-3 p-3 dashboard">
-            <div className="row">
-                <div className="col-md-3">
-                    <AdminMenu />
-                </div>
-                {/* <div className="col-md-9">
-                    <h1>Manage Product</h1>
-                    <div className="m-1 w-75">
+        <div className="row dashboard">
+            <div className="col-md-3">
+                <AdminMenu />
+            </div>
+            <div className="col-sm text-center">
+                <h1>Manage Product</h1>
+                <div className="container text-center">
+                    <div className="row justify-content-evenly">
+                    <div class="col-4">
                         <Select
                             bordered={false}
                             placeholder="Select a category"
@@ -159,30 +160,22 @@ const CreateProduct = () => {
                             ))}
                         </Select>
 
-                        <div className="mb-3">
-                            <label className="btn btn-outline-secondary col-md-12">
-                                {photo ? photo.name : "Upload Photo"}
-                                <input
-                                    type="file"
-                                    name="photo"
-                                    accept="image/*"
-                                    onChange={(e) => setPhoto(e.target.files[0])}
-                                    hidden
-                                />
-                            </label>
+                        <Select
+                                bordered={false}
+                                placeholder="Select Shipping "
+                                size="large"
+                                showSearch
+                                className="form-select mb-3"
+                                onChange={(value) => {
+                                    setShipping(value);
+                                }}
+                            >
+                                <Option value="0">No</Option>
+                                <Option value="1">Yes</Option>
+                            </Select>
                         </div>
-                        <div className="mb-3">
-                            {photo && (
-                                <div className="text-center">
-                                    <img
-                                        src={URL.createObjectURL(photo)}
-                                        alt="product_photo"
-                                        height={"200px"}
-                                        className="img img-responsive"
-                                    />
-                                </div>
-                            )}
-                        </div>
+
+                        <div class="col-4">
                         <div className="mb-3">
                             <input
                                 type="text"
@@ -234,30 +227,49 @@ const CreateProduct = () => {
                                 <Option value="1">Yes</Option>
                             </Select>
                         </div>
+                        </div>
+
+                        
+                        <div className="mb-3">
+                            <label className="btn btn-outline-secondary col-md-12">
+                                {photo ? photo.name : "Upload Photo"}
+                                <input
+                                    type="file"
+                                    name="photo"
+                                    accept="image/*"
+                                    onChange={(e) => setPhoto(e.target.files[0])}
+                                    hidden
+                                />
+                            </label>
+                        </div>
+                        <div className="mb-3">
+                            {photo && (
+                                <div className="text-center">
+                                    <img
+                                        src={URL.createObjectURL(photo)}
+                                        alt="product_photo"
+                                        height={"200px"}
+                                        className="img img-responsive"
+                                    />
+                                </div>
+                            )}
+                        </div>
+
+                        
                         <div className="mb-3">
                             <button className="btn btn-primary" onClick={handleCreate}>
                             CREATE PRODUCT
                             </button>
                         </div>
                     </div>
-                </div> */}
-
-                <div className="uploadWrapper">
-                <form id="imageUploadForm" className="imageUploadForm">
-                    <span className="helpText" id="helpText">Upload an image</span>
-                    <input type="file" id="file" className="uploadButton" accept="image/*" />
-                    <div id="uploadedImg" className="uploadedImg">
-                    <span className="unveil" />
-                    </div>
-                    <span className="pickFile">
-                    <a href="#" className="pickFileButton">Pick file</a>
-                    </span>
-                </form>
                 </div>
-
             </div>
+
         </div>
+        
     </Layout>
+
+
 );
 };
 

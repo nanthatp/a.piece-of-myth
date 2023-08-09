@@ -93,78 +93,68 @@ const CreateCategory = () => {
     };
 
     return (
-        <Layout title={"Dashboard - Create Category"}>
-            <div class="layered-card">
-                <div class="layered-card__content">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-12">
-                                <AdminMenu />
-                            </div>
-                            <div className="col-center">
-                                <h1>Manage Category</h1>
-                                <div className='p-3 w-50'>
-                                    <CategoryForm 
-                                        handleSubmit={handleSubmit}
-                                        value={name}
-                                        setValue={setName} 
-                                    />
-                                </div>
-                                <div>
-                                    <table class="sticky-table-headers">
-                                        <thead>
-                                            <tr class="sticky-table-headers__sticky">
-                                                <th scope="col">Name</th>
-                                                <th scope="col">Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            
-                                                {categories.map((c) => (
-                                                    <>
-                                                        <tr>
-                                                            <td key = {c._id}>{c.name}</td>
-                                                            <td>
-                                                                <button 
-                                                                    className='btn btn-primary ms-2' 
-                                                                    onClick={() => {
-                                                                        setVisible(true);
-                                                                        setUpdatedName(c.name);
-                                                                        setSelected(c);
-                                                                    }}
-                                                                >
-                                                                    Edit
-                                                                </button>
-                                                                <button 
-                                                                    className='btn btn-danger ms-2'
-                                                                    onClick={() => {
-                                                                        handleDelete(c._id);
-                                                                    }}
-                                                                >
-                                                                    Delete
-                                                                </button>
-                                                            </td>
-                                                        </tr>
-                                                    </>
-                                                ))}
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <Modal 
-                                    onCancel={() => setVisible(false)}
-                                    footer={null}
-                                    visible={visible}
-                                > 
-                                    <CategoryForm 
-                                        value={updatedName}
-                                        setValue={setUpdatedName}
-                                        handleSubmit={handleUpdate}
-                                    />
-
-                                </Modal>
-                            </div>
-                        </div>
+        <Layout title={"Dashboard - Create Category"}> 
+            <div className="row dashboard">
+                <div className="col-md-3">
+                    <AdminMenu />
+                </div>
+                <div className="col-sm text-center">
+                    <h1>Manage Category</h1>
+                    <div className=''>
+                        <CategoryForm 
+                            handleSubmit={handleSubmit}
+                            value={name}
+                            setValue={setName} 
+                        />
+                    </div> 
+                    <div>
+                        <table class="table">
+                        <tr>
+                            <th>Name</th>
+                            <th></th>
+                        </tr>
+                            <tbody>
+                                {categories.map((c) => (
+                                    <>
+                                        <tr>
+                                            <td key = {c._id}>{c.name}</td>
+                                            <td>
+                                                <button 
+                                                    className='btn-edit ms-2' 
+                                                    onClick={() => {
+                                                        setVisible(true);
+                                                        setUpdatedName(c.name);
+                                                        setSelected(c);
+                                                    }}
+                                                >
+                                                    Edit
+                                                </button>
+                                                <button 
+                                                    className='btn-delete ms-2'
+                                                    onClick={() => {
+                                                        handleDelete(c._id);
+                                                    }}
+                                                >
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </>
+                                ))}
+                            </tbody>
+                        </table>
                     </div>
+                    <Modal 
+                        onCancel={() => setVisible(false)}
+                        footer={null}
+                        visible={visible}
+                    > 
+                        <CategoryForm 
+                            value={updatedName}
+                            setValue={setUpdatedName}
+                            handleSubmit={handleUpdate}
+                    />
+                    </Modal>
                 </div>
             </div>
         </Layout>

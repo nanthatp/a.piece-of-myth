@@ -110,22 +110,6 @@ const HomePage = () => {
     }
   };
 
-  //-------video slider navigation-------//
-  
-  // const contents = document.querySelectorAll(".content");
-
-  // var sliderNev =function(manual){
-
-  //   contents.forEach((content) => {
-  //     content.classList.remove("active");
-  //   });
-
-    
-  //   contents[manual].classList.add("active");
-  // }
-
-  
-
   return (
     <Layout title={"ALl Products - Best offers "}>
       <div class="container">

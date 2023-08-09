@@ -51,7 +51,6 @@ function App() {
         <Route path="admin/create-banner" element={<CreateBaner />} />
         <Route path="admin/product/:slug" element={<UpdateProduct />} />
         <Route path="admin/products" element={<Products />} />
-        <Route path="admin/orders" element={<Pagenotfound />} />
         <Route path="admin/orders" element={<AdminOrders />} />
 
         

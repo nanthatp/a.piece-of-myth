@@ -55,7 +55,8 @@ font-family: 'PT Serif', serif; */
 .footer{
   color: white;
   padding: 25px;
-  background: #73c088;
+  background: #0DA574;
+  margin-top: 6px;
 }
 
 .footer a{

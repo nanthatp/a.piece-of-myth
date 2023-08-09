@@ -1,0 +1,42 @@
+.nav {
+    --bs-nav-link-padding-x: 1rem;
+    --bs-nav-link-padding-y: 0.5rem;
+    --bs-nav-link-font-weight: black;
+    --bs-nav-link-color: black;
+    --bs-nav-link-hover-color: black;
+    --bs-nav-link-disabled-color: black;
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    padding-right: 20%;
+}
+
+.item{
+    background:#FBD85D;
+    color: #fff;
+    padding: 15px 20px;
+    height: 150vh;
+    font-size: 1.1em;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 2px;
+    position:relative;
+    text-align: left;
+    line-height: 30px;
+}
+
+.nav-link{
+    color: #fff;
+    left: 0;
+}
+
+.nav-pills .nav-link.active{
+    background-color: black;
+}
+
+.nav-pills .active{
+    background-color: black;
+}
+

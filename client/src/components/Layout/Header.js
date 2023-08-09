@@ -1,6 +1,6 @@
 import React from 'react'
 import {NavLink, Link} from 'react-router-dom'
-import {BsBox2HeartFill} from 'react-icons/bs'
+import {BsFillCalendar2HeartFill} from 'react-icons/bs'
 import { useAuth } from '../../context/auth'
 import toast from "react-hot-toast";
 import SearchInput from "../Form/SearchInput";
@@ -30,7 +30,7 @@ const Header = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
             <Link to = "/" className="navbar-brand">
-              <BsBox2HeartFill /> a.piece of myth
+              <BsFillCalendar2HeartFill /> a.piece of myth
             </Link>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <SearchInput />

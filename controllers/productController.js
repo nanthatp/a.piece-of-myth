@@ -7,7 +7,6 @@ import slugify from "slugify";
 import dotenv from "dotenv";
 
 import braintree from "braintree";
-import dotenv from "dotenv";
 
 dotenv.config();
 
