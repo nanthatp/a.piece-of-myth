@@ -27,7 +27,7 @@ import CategoryProduct from "./pages/CategoryProduct";
 import CartPage from "./pages/CartPage";
 import CreateBaner from './pages/Admin/CreateBaner';
 import AdminOrders from "./pages/Admin/AdminOrders";
-
+import ResetPassword from './pages/Auth/ResetPassword';
 
 function App() {
   return (
@@ -63,6 +63,7 @@ function App() {
       <Route path='*' element={<Pagenotfound/>} />
       <Route path="/login" element={<Login />} />
       <Route path='/forgot-password' element={<ForgotPassword/>} />
+      <Route path="/user/reset/:id/:token" element={<ResetPassword />} />
     </Routes>
     </>
   );
