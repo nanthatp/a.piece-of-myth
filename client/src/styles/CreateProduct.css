@@ -1,9 +1,11 @@
-.container {
-    background-color: #F7FFE5;
+.create-product {
+    background-color: #083358;
     padding: 30px 40px;
     color: white;
-    height: 100%;
+    text-align: center;
+    height: 93%;
     margin-right: 100%;
+    
 }
 
 .textarea{

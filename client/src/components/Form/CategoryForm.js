@@ -6,7 +6,7 @@ const CategoryForm = ({ handleSubmit, value, setValue }) => {
     return (
         <>
         <form onSubmit={handleSubmit}>
-            <div className="container">
+            <div className="container categoryform">
                 <div className="row justify-content-center">
                 <h2>My Category</h2>
                     <div className="col-4">

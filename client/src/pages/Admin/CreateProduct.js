@@ -5,6 +5,7 @@ import { toast } from 'react-hot-toast';
 import axios from 'axios';
 import { Select } from 'antd';
 import { useNavigate } from "react-router-dom";
+import "../../styles/CreateProduct.css"
 
 const { Option } = Select;
 
@@ -106,7 +107,7 @@ const CreateProduct = () => {
             </div>
             <div className="col-sm text-center">
                 <h1>Manage Product</h1>
-                <div className="container text-center">
+                <div className="container text-center create-product">
                     <div className="row justify-content-evenly">
                     <div class="col-4">
                         <Select
