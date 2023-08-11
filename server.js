@@ -8,6 +8,7 @@ import categoryRoutes from "./routes/categoryRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import artistRoutes from "./routes/artistRoutes.js";
 import memberRoutes from "./routes/memberRoutes.js";
+import bannerRoutes from "./routes/bannerRoutes.js";
 import cors from "cors";
 
 //configure env
@@ -32,6 +33,7 @@ app.use("/api/v1/artist", artistRoutes);
 app.use("/api/v1/member", memberRoutes);
 app.use("/api/v1/product", productRoutes);
 app.use("/api/v1/orders", authRoutes);
+app.use("/api/v1/banner", bannerRoutes);
 
 
 

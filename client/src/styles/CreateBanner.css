@@ -3,8 +3,16 @@
     padding: 30px 40px;
     color: white;
     text-align: center;
-    height: 50%;
+    height: 45%;
     margin-right: 100%;
+}
+
+.new-banner{
+    background-color:#0DA574;
+    color: white;
+    text-align: center;
+    height: 10%;
+    padding: 30px 40px;
 }
 
 .btn-create-banner{
@@ -20,4 +28,66 @@
     border-radius: 0;
     font-weight: 600;
     margin-top: 5%;
+}
+
+.btn-upload-file{
+    padding: 5px 5px;
+    background: #FBD85D;
+    color: #000;
+    float: right;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 0;
+    font-weight: 600;
+    margin-top: 5%;
+}
+
+.btn-upload-file:hover{
+    padding: 5px 5px;
+    background: #0DA574;
+    color: #000;
+    float: right;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 0;
+    font-weight: 600;
+    margin-top: 5%;
+}
+/* .add-photo{
+    background-color: #000;
+    height: 100vh;
+} */
+
+.btn-update-banner{
+    padding: 5px 5px;
+    width: 20%;
+    background: #0DA574;
+    color: #fff;
+    float: right;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 0;
+    font-weight: 600;
+}
+.btn-delete-banner{
+    padding: 5px 5px;
+    width: 20%;
+    background: #CD1818;
+    color: #fff;
+    float: right;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 0;
+    font-weight: 600;
+}
+.textarea{
+    margin: 20px;
 }

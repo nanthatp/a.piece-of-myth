@@ -2,18 +2,17 @@ import React,{useEffect, useState} from 'react';
 import { NavLink } from "react-router-dom";
 import { toast } from 'react-hot-toast';
 import axios from 'axios';
-import "../../styles/AdminDashboard.css"
-import {BiSolidCartAdd} from 'react-icons/bi'
+import "../../styles/AdminDashboard.css";
+import {BiSolidCartAdd} from 'react-icons/bi';
 import {BiSolidCategoryAlt} from 'react-icons/bi';
-import {BsBox2HeartFill} from 'react-icons/bs'
-import {FaSign} from 'react-icons/fa'
-import {AiOutlineUnorderedList} from 'react-icons/ai'
+import {BsBox2HeartFill} from 'react-icons/bs';
+import {FaSign} from 'react-icons/fa';
+import {AiOutlineUnorderedList} from 'react-icons/ai';
+import{AiFillPicture} from 'react-icons/ai';
 
 
 
 const AdminMenu = () => {
-
-
 
     return (
         
@@ -50,6 +49,12 @@ const AdminMenu = () => {
                             className="nav-link"
                         >
                             <AiOutlineUnorderedList/> All Orders List
+                        </NavLink> 
+                        <NavLink
+                            to="/dashboard/admin/banners"
+                            className="nav-link"
+                        >
+                            <AiFillPicture/> All Banners List
                         </NavLink> 
                     </div>
                     

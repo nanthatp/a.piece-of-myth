@@ -4,18 +4,39 @@ import AdminMenu from '../../components/Layout/AdminMenu'
 import { toast } from 'react-hot-toast';
 import axios from 'axios';
 import { Select } from 'antd';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "../../styles/CreateBanner.css"
 
 const { Option } = Select;
 
 const CreateBanner = () => {
     const navigate = useNavigate();
-
+    const params = useParams();
     const [artists, setArtists] = useState([]);
     const [name, setName] = useState("");
     const [file, setFile] = useState("");
     const [artist, setArtist] = useState("");
+    const [id, setId] = useState("");
+
+    //get single banner
+    const getSingleBanner = async () => {
+    try {
+        const { data } = await axios.get(
+            `/api/v1/banner/get-banner/${params.slug}`
+        );
+        setName(data.banner.name);
+        setId(data.banner._id);
+        setArtist(data.banner.artist);
+        
+    }catch (error) {
+        console.log(error);
+    }
+    };
+    useEffect(() => {
+        getSingleBanner();
+        //eslint-disable-next-line
+    }, []);
+
     
     //get all artist
     const getAllArtist = async () => {
@@ -35,8 +56,8 @@ const CreateBanner = () => {
         getAllArtist();
     }, []);
 
-    //create banner function
-    const handleCreate = async (e) => {
+    //update banner function
+    const handleUpdate = async (e) => {
         e.preventDefault();
         try {
             const bannerData = new FormData();
@@ -44,13 +65,13 @@ const CreateBanner = () => {
             bannerData.append("file", file);
             bannerData.append("artist", artist);
             const { data } = axios.post(
-                "/api/v1/banners/create-banner",
+                `/api/v1/banner/update-banner/${id}`,
                 bannerData
             );
             if (data?.success) {
                 toast.error(data?.message);
             } else {
-                toast.success("Banner Created Successfully");
+                toast.success("Banner Updated Successfully");
                 navigate("/dashboard/admin/banners");
             }
         } catch (error) {
@@ -58,6 +79,23 @@ const CreateBanner = () => {
         toast.error("something went wrong");
         }
     };
+
+      //delete a banner
+    const handleDelete = async () => {
+        try {
+            let answer = window.prompt("Are You Sure want to delete this banner ? ");
+            if (!answer) return;
+            const { data } = await axios.delete(
+                `/api/v1/banner/delete-banner/${id}`
+            );
+            toast.success("Banner Deleted Successfully");
+            navigate("/dashboard/admin/banners");
+        } catch (error) {
+            console.log(error);
+            toast.error("Something went wrong");
+        }
+    };
+
 
     return (
     <Layout title={"Dashboard - Create Banner"}>
@@ -86,25 +124,26 @@ const CreateBanner = () => {
                                 />
                         </div>
                         <Select
-                                bordered={false}
-                                placeholder="Select a Artist"
-                                size="medium"
-                                showSearch
-                                className="form-select mb-3"
-                                onChange={(value) => {
-                                    setArtist(value);
-                                }}
-                            >
-                                {artists?.map((c) => (
-                                    <Option key={c._id} value={c._id}>
-                                        {c.name}
-                                    </Option>
-                                ))}
+                            bordered={false}
+                            placeholder="Select a Artist"
+                            size="medium"
+                            showSearch
+                            className="form-select mb-3"
+                            onChange={(value) => {
+                                setArtist(value);
+                            }}
+                            value={artist}
+                        >
+                            {artists?.map((c) => (
+                                <Option key={c._id} value={c._id}>
+                                    {c.name}
+                                </Option>
+                            ))}
                         </Select>
 
                         <div className="mb-3">
-                            <label className="btn-upload-file col-md-12">
-                                {file ? file.name : "Upload Files"}
+                        <label className="btn-upload-photo col-md-12">
+                                {file ? file.name : "Upload File"}
                                 <input
                                     type="file"
                                     name="file"
@@ -115,22 +154,36 @@ const CreateBanner = () => {
                             </label>
                         </div>
                         <div className="mb-3">
-                            {file && (
+                            {file ? (
                                 <div className="text-center">
                                     <file
                                         src={URL.createObjectURL(file)}
-                                        alt="File"
+                                        alt="banner_file"
                                         height={"200px"}
                                         className="img img-responsive"
-                                    /> 
-
+                                    />
+                                </div>
+                            
+                            ) : (
+                                <div className="text-center">
+                                    <file
+                                    src={`/api/v1/banners/banner-file/${id}`}
+                                    alt="banner_file"
+                                    height={"200px"}
+                                    className="img img-responsive"
+                                    />
                                 </div>
                             )}
                         </div>
                         </div>
                         <div className="mb-3">
-                            <button className="btn-create-banner" onClick={handleCreate}>
-                            CREATE BANNER
+                            <button className="btn-update-banner" onClick={handleUpdate}>
+                            UPDATE BANNER
+                            </button>
+                        </div>
+                        <div className="mb-3">
+                            <button className="btn-delete-banner" onClick={handleDelete}>
+                            DELETE BANNER
                             </button>
                         </div>
                     </div>

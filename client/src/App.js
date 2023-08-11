@@ -25,10 +25,11 @@ import ProductDetails from "./pages/ProductDetails";
 import Categories from "./pages/Categories";
 import CategoryProduct from "./pages/CategoryProduct";
 import CartPage from "./pages/CartPage";
-
+import Banners from "./pages/Admin/Banners";
 import AdminOrders from "./pages/Admin/AdminOrders";
 import ResetPassword from './pages/Auth/ResetPassword';
 import CreateBanner from './pages/Admin/CreateBanner';
+import UpdateBanner from './pages/Admin/UpdateBanner';
 
 function App() {
   return (
@@ -53,6 +54,8 @@ function App() {
         <Route path="admin/product/:slug" element={<UpdateProduct />} />
         <Route path="admin/products" element={<Products />} />
         <Route path="admin/orders" element={<AdminOrders />} />
+        <Route path="admin/banners" element={<Banners />} />
+        <Route path="admin/banner/:slug" element={<UpdateBanner />} />
 
         
         

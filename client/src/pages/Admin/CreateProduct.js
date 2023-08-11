@@ -5,8 +5,7 @@ import { toast } from 'react-hot-toast';
 import axios from 'axios';
 import { Select } from 'antd';
 import { useNavigate } from "react-router-dom";
-import "../../styles/CreateBanner.css"
-
+import "../../styles/CreateProduct.css"
 const { Option } = Select;
 
 const CreateProduct = () => {
