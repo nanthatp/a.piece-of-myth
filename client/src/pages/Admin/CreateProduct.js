@@ -5,7 +5,7 @@ import { toast } from 'react-hot-toast';
 import axios from 'axios';
 import { Select } from 'antd';
 import { useNavigate } from "react-router-dom";
-import "../../styles/CreateProduct.css"
+import "../../styles/CreateBanner.css"
 
 const { Option } = Select;
 
@@ -107,132 +107,17 @@ const CreateProduct = () => {
             </div>
             <div className="col-sm text-center">
                 <h1>Manage Product</h1>
-                <div className="container text-center create-product">
+                <div className="container product-form">
+                <div className="row justify-content-center new-product">
+                <h2>New Product</h2>
+                </div>
+                
+            </div>
+                <div className="container text-center  create-product">
                     <div className="row justify-content-evenly">
-                    <div class="col-4">
-                        <Select
-                            bordered={false}
-                            placeholder="Select a category"
-                            size="medium"
-                            showSearch
-                            className="form-select mb-3"
-                            onChange={(value) => {
-                                setCategory(value);
-                            }}
-                        >
-                            {categories?.map((c) => (
-                                <Option key={c._id} value={c._id}>
-                                    {c.name}
-                                </Option>
-                            ))}
-                        </Select>
-
-                        <Select
-                            bordered={false}
-                            placeholder="Select a Artist"
-                            size="medium"
-                            showSearch
-                            className="form-select mb-3"
-                            onChange={(value) => {
-                                setArtist(value);
-                            }}
-                        >
-                            {artists?.map((c) => (
-                                <Option key={c._id} value={c._id}>
-                                    {c.name}
-                                </Option>
-                            ))}
-                        </Select>
-
-                        <Select
-                            bordered={false}
-                            placeholder="Select a Member"
-                            size="medium"
-                            showSearch
-                            className="form-select mb-3"
-                            onChange={(value) => {
-                                setMember(value);
-                            }}
-                        >
-                            {members?.map((c) => (
-                                <Option key={c._id} value={c._id}>
-                                    {c.name}
-                                </Option>
-                            ))}
-                        </Select>
-
-                        <Select
-                                bordered={false}
-                                placeholder="Select Shipping "
-                                size="large"
-                                showSearch
-                                className="form-select mb-3"
-                                onChange={(value) => {
-                                    setShipping(value);
-                                }}
-                            >
-                                <Option value="0">No</Option>
-                                <Option value="1">Yes</Option>
-                            </Select>
-                        </div>
-
-                        <div class="col-4">
+                    <div class="col-4 add-photo">
                         <div className="mb-3">
-                            <input
-                                type="text"
-                                value={name}
-                                placeholder="write a name"
-                                className="form-control"
-                                onChange={(e) => setName(e.target.value)}
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <textarea
-                                type="text"
-                                value={description}
-                                placeholder="write a description"
-                                className="form-control"
-                                onChange={(e) => setDescription(e.target.value)}
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <input
-                                type="number"
-                                value={price}
-                                placeholder="write a Price"
-                                className="form-control"
-                                onChange={(e) => setPrice(e.target.value)}
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <input
-                                type="number"
-                                value={quantity}
-                                placeholder="write a quantity"
-                                className="form-control"
-                                onChange={(e) => setQuantity(e.target.value)}
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <Select
-                                bordered={false}
-                                placeholder="Select Shipping "
-                                size="large"
-                                showSearch
-                                className="form-select mb-3"
-                                onChange={(value) => {
-                                    setShipping(value);
-                                }}
-                            >
-                                <Option value="0">No</Option>
-                                <Option value="1">Yes</Option>
-                            </Select>
-                        </div>
-                        </div>
-
-                        
-                        <div className="mb-3">
-                            <label className="btn btn-outline-secondary col-md-12">
+                            <label className="btn-upload-photo col-md-12">
                                 {photo ? photo.name : "Upload Photo"}
                                 <input
                                     type="file"
@@ -255,10 +140,121 @@ const CreateProduct = () => {
                                 </div>
                             )}
                         </div>
+                        </div>
+                    <div class="col-4">
+                        <div className="mb-3">
+                                <textarea
+                                    type="text"
+                                    value={name}
+                                    placeholder="write a name"
+                                    className="form-control"
+                                    onChange={(e) => setName(e.target.value)}
+                                />
+                        </div>
+
+                        <div className="mb-3">
+                            <input
+                                type="number"
+                                value={price}
+                                placeholder="write a Price"
+                                className="form-control"
+                                onChange={(e) => setPrice(e.target.value)}
+                            />
+                        </div>
+
+                        <Select
+                            bordered={false}
+                            placeholder="Select a Artist"
+                            size="medium"
+                            showSearch
+                            className="form-select mb-3"
+                            onChange={(value) => {
+                                setArtist(value);
+                            }}
+                        >
+                            {artists?.map((c) => (
+                                <Option key={c._id} value={c._id}>
+                                    {c.name}
+                                </Option>
+                            ))}
+                        </Select>
+
+                        <Select
+                            bordered={false}
+                            placeholder="Select a Category"
+                            size="medium"
+                            showSearch
+                            className="form-select mb-3"
+                            onChange={(value) => {
+                                setCategory(value);
+                            }}
+                        >
+                            {categories?.map((c) => (
+                                <Option key={c._id} value={c._id}>
+                                    {c.name}
+                                </Option>
+                            ))}
+                        </Select>
+                        </div>
+
+                        <div class="col-4">
+                        <div className="mb-3">
+                            <textarea
+                                type="text"
+                                value={description}
+                                placeholder="write a description"
+                                className="form-control"
+                                onChange={(e) => setDescription(e.target.value)}
+                            />
+                        </div>
+                        
+                        <div className="mb-3">
+                            <input
+                                type="number"
+                                value={quantity}
+                                placeholder="write a quantity"
+                                className="form-control"
+                                onChange={(e) => setQuantity(e.target.value)}
+                            />
+                        </div>
+                        <Select
+                            bordered={false}
+                            placeholder="Select a Member"
+                            size="medium"
+                            showSearch
+                            className="form-select mb-3"
+                            onChange={(value) => {
+                                setMember(value);
+                            }}
+                        >
+                            {members?.map((c) => (
+                                <Option key={c._id} value={c._id}>
+                                    {c.name}
+                                </Option>
+                            ))}
+                        </Select>
+                        <div className="mb-3">
+                            <Select
+                                bordered={false}
+                                placeholder="Select Shipping "
+                                size="medium"
+                                showSearch
+                                className="form-select mb-3"
+                                onChange={(value) => {
+                                    setShipping(value);
+                                }}
+                            >
+                                <Option value="0">No</Option>
+                                <Option value="1">Yes</Option>
+                            </Select>
+                        </div>
+                        </div>
+
+                        
 
                         
                         <div className="mb-3">
-                            <button className="btn btn-primary" onClick={handleCreate}>
+                            <button className="btn-create-product" onClick={handleCreate}>
                             CREATE PRODUCT
                             </button>
                         </div>

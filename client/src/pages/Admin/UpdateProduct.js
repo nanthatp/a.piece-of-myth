@@ -146,70 +146,23 @@ const UpdateProduct = () => {
 
     return (
         <Layout title={"Dashboard - Update Category"}>
-        <div className="container-fluid m-3 p-3 dashboard">
-            <div className="row">
-                <div className="col-md-3">
-                    <AdminMenu />
+            <div className="row dashboard">
+            <div className="col-md-3">
+                <AdminMenu />
+            </div>
+            <div className="col-sm text-center">
+                <h1>Manage Product</h1>
+                <div className="container product-form">
+                <div className="row justify-content-center new-product">
+                <h2>New Product</h2>
                 </div>
-                <div className="col-md-9">
-                    <h1>Update Product</h1>
-                    <div className="m-1 w-75">
-                        <Select
-                            bordered={false}
-                            placeholder="Select a category"
-                            size="medium"
-                            showSearch
-                            className="form-select mb-3"
-                            onChange={(value) => {
-                                setCategory(value);
-                            }}
-                            value={category}
-                        >
-                            {categories?.map((c) => (
-                                <op key={c._id} value={c._id}>
-                                    {c.name}
-                                </op>
-                            ))}
-                        </Select>
-
-                        <Select
-                            bordered={false}
-                            placeholder="Select a Artist"
-                            size="medium"
-                            showSearch
-                            className="form-select mb-3"
-                            onChange={(value) => {
-                                setArtist(value);
-                            }}
-                            value={artist}
-                        >
-                            {artists?.map((c) => (
-                                <Option key={c._id} value={c._id}>
-                                    {c.name}
-                                </Option>
-                            ))}
-                        </Select>
-
-                        <Select
-                            bordered={false}
-                            placeholder="Select a Member"
-                            size="medium"
-                            showSearch
-                            className="form-select mb-3"
-                            onChange={(value) => {
-                                setMember(value);
-                            }}
-                            value={member}
-                        >
-                            {members?.map((c) => (
-                                <Option key={c._id} value={c._id}>
-                                    {c.name}
-                                </Option>
-                            ))}
-                        </Select>
-
+                
+            </div>
+                <div className="container text-center  create-product">
+                    <div className="row justify-content-evenly">
+                    <div class="col-4 add-photo">
                         <div className="mb-3">
-                            <label className="btn btn-outline-secondary col-md-12">
+                            <label className="btn-upload-photo col-md-12">
                                 {photo ? photo.name : "Upload Photo"}
                                 <input
                                     type="file"
@@ -242,24 +195,18 @@ const UpdateProduct = () => {
                                 </div>
                             )}
                         </div>
-                        <div className="mb-3">
-                            <input
-                                type="text"
-                                value={name}
-                                placeholder="write a name"
-                                className="form-control"
-                                onChange={(e) => setName(e.target.value)}
-                            />
                         </div>
+                    <div class="col-4">
                         <div className="mb-3">
-                            <textarea
-                                type="text"
-                                value={description}
-                                placeholder="write a description"
-                                className="form-control"
-                                onChange={(e) => setDescription(e.target.value)}
-                            />
+                                <textarea
+                                    type="text"
+                                    value={name}
+                                    placeholder="write a name"
+                                    className="form-control"
+                                    onChange={(e) => setName(e.target.value)}
+                                />
                         </div>
+
                         <div className="mb-3">
                             <input
                                 type="number"
@@ -269,6 +216,55 @@ const UpdateProduct = () => {
                                 onChange={(e) => setPrice(e.target.value)}
                             />
                         </div>
+
+                        <Select
+                            bordered={false}
+                            placeholder="Select a Artist"
+                            size="medium"
+                            showSearch
+                            className="form-select mb-3"
+                            onChange={(value) => {
+                                setArtist(value);
+                            }}
+                            value={artist}
+                        >
+                            {artists?.map((c) => (
+                                <Option key={c._id} value={c._id}>
+                                    {c.name}
+                                </Option>
+                            ))}
+                        </Select>
+
+                        <Select
+                            bordered={false}
+                            placeholder="Select a Category"
+                            size="medium"
+                            showSearch
+                            className="form-select mb-3"
+                            onChange={(value) => {
+                                setCategory(value);
+                            }}
+                            value={category}
+                        >
+                            {categories?.map((c) => (
+                                <op key={c._id} value={c._id}>
+                                    {c.name}
+                                </op>
+                            ))}
+                        </Select>
+                        </div>
+
+                        <div class="col-4">
+                        <div className="mb-3">
+                            <textarea
+                                type="text"
+                                value={description}
+                                placeholder="write a description"
+                                className="form-control"
+                                onChange={(e) => setDescription(e.target.value)}
+                            />
+                        </div>
+                        
                         <div className="mb-3">
                             <input
                                 type="number"
@@ -278,11 +274,28 @@ const UpdateProduct = () => {
                                 onChange={(e) => setQuantity(e.target.value)}
                             />
                         </div>
+                        <Select
+                            bordered={false}
+                            placeholder="Select a Member"
+                            size="medium"
+                            showSearch
+                            className="form-select mb-3"
+                            onChange={(value) => {
+                                setMember(value);
+                            }}
+                            value={member}
+                        >
+                            {members?.map((c) => (
+                                <Option key={c._id} value={c._id}>
+                                    {c.name}
+                                </Option>
+                            ))}
+                        </Select>
                         <div className="mb-3">
                             <Select
                                 bordered={false}
                                 placeholder="Select Shipping "
-                                size="large"
+                                size="medium"
                                 showSearch
                                 className="form-select mb-3"
                                 onChange={(value) => {
@@ -294,20 +307,24 @@ const UpdateProduct = () => {
                                 <Option value="1">Yes</Option>
                             </Select>
                         </div>
+                        </div>
+
                         <div className="mb-3">
-                            <button className="btn btn-primary" onClick={handleUpdate}>
+                            <button className="btn-update-product" onClick={handleUpdate}>
                             UPDATE PRODUCT
                             </button>
                         </div>
                         <div className="mb-3">
-                            <button className="btn btn-danger" onClick={handleDelete}>
+                            <button className="btn-delete-product" onClick={handleDelete}>
                             DELETE PRODUCT
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
+        
     </Layout>
     )
 }

@@ -1,0 +1,23 @@
+.create-banner {
+    background-color: #083358;
+    padding: 30px 40px;
+    color: white;
+    text-align: center;
+    height: 50%;
+    margin-right: 100%;
+}
+
+.btn-create-banner{
+    padding: 5px 5px;
+    width: 20%;
+    background: #FBD85D;
+    color: #000;
+    float: right;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 0;
+    font-weight: 600;
+    margin-top: 5%;
+}

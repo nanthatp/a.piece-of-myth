@@ -6,6 +6,7 @@ import Layout from "../../components/Layout/Layout";
 import { useAuth } from "../../context/auth";
 import moment from "moment";
 import { Select } from "antd";
+
 const { Option } = Select;
 
 const AdminOrders = () => {
@@ -54,8 +55,8 @@ const AdminOrders = () => {
                 return (
                 <div className="border shadow">
                     <table className="table">
-                    <thead>
-                        <tr>
+                    <thead >
+                        <tr className="order-table">
                         <th scope="col">#</th>
                         <th scope="col">Status</th>
                         <th scope="col">Buyer</th>
@@ -64,7 +65,7 @@ const AdminOrders = () => {
                         <th scope="col">Quantity</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="order-admin">
                         <tr>
                         <td>{i + 1}</td>
                         <td>
