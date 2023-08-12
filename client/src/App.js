@@ -30,6 +30,7 @@ import AdminOrders from "./pages/Admin/AdminOrders";
 import ResetPassword from './pages/Auth/ResetPassword';
 import CreateBanner from './pages/Admin/CreateBanner';
 import UpdateBanner from './pages/Admin/UpdateBanner';
+import CreatePreProduct from './pages/Admin/CreatePreProduct';
 
 function App() {
   return (
@@ -44,7 +45,8 @@ function App() {
       <Route path="/dashboard" element={<PrivateRoute />}>
         { <Route path="user" element={<Dashboard />} />}
         <Route path="user/orders" element={<Orders />} />
-        <Route path="user/profile" element={<Profile />} />    
+        <Route path="user/profile" element={<Profile />} />  
+        <Route path="user/preorder" element={<Pagenotfound />} />    
       </Route>
       <Route path="/dashboard" element={<AdminRoute />}>
         <Route path="admin" element={<AdminDashboard />}/>
@@ -56,6 +58,7 @@ function App() {
         <Route path="admin/orders" element={<AdminOrders />} />
         <Route path="admin/banners" element={<Banners />} />
         <Route path="admin/banner/:slug" element={<UpdateBanner />} />
+        <Route path="admin/create-preproduct" element={<CreatePreProduct />} />
 
         
         

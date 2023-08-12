@@ -33,6 +33,12 @@ const AdminMenu = () => {
                             <BiSolidCartAdd/> Create Product
                         </NavLink>
                         <NavLink
+                            to="/dashboard/admin/create-preproduct"
+                            className="nav-link"
+                        >
+                             Create Pre-order Product
+                        </NavLink>
+                        <NavLink
                             to="/dashboard/admin/create-banner"
                             className="nav-link"
                         >
