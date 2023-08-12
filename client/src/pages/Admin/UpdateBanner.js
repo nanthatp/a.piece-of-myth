@@ -62,9 +62,9 @@ const CreateBanner = () => {
         try {
             const bannerData = new FormData();
             bannerData.append("name", name);
-            bannerData.append("file", file);
+            file && bannerData.append("file", file);
             bannerData.append("artist", artist);
-            const { data } = axios.post(
+            const { data } = axios.put(
                 `/api/v1/banner/update-banner/${id}`,
                 bannerData
             );
@@ -167,7 +167,7 @@ const CreateBanner = () => {
                             ) : (
                                 <div className="text-center">
                                     <file
-                                    src={`/api/v1/banners/banner-file/${id}`}
+                                    src={`/api/v1/banner/banner-file/${id}`}
                                     alt="banner_file"
                                     height={"200px"}
                                     className="img img-responsive"

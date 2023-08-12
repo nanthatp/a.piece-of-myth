@@ -41,14 +41,15 @@ const CreateBanner = () => {
         try {
             const bannerData = new FormData();
             bannerData.append("name", name);
-            bannerData.append("file", file);
+            file && bannerData.append("file", file);
             bannerData.append("artist", artist);
             const { data } = axios.post(
-                "/api/v1/banners/create-banner",
+                "/api/v1/banner/create-banner",
                 bannerData
             );
             if (data?.success) {
                 toast.error(data?.message);
+                window.location.reload();
             } else {
                 toast.success("Banner Created Successfully");
                 navigate("/dashboard/admin/banners");
