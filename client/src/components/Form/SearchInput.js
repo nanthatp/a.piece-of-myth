@@ -2,6 +2,7 @@ import React from "react";
 import { useSearch } from "../../context/search";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import {BsSearchHeartFill} from 'react-icons/bs'
 const SearchInput = () => {
     const [values, setValues] = useSearch();
     const navigate = useNavigate();
@@ -20,23 +21,26 @@ const SearchInput = () => {
     };
     return (
         <div>
-        <form
-            className="d-flex search-form"
-            role="search"
-            onSubmit={handleSubmit}
-        >
-            <input
-            className="form-control me-2 center"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-            value={values.keyword}
-            onChange={(e) => setValues({ ...values, keyword: e.target.value })}
-            />
-            <button className="btn btn-outline-success" type="submit">
-            Search
-            </button>
-        </form>
+            <form
+                className="search-box"
+                role="search"
+                onSubmit={handleSubmit}
+            >
+                
+                <input
+                
+                    className="search-input"
+                    type="search"
+                    placeholder="Search "
+                    aria-label="Search"
+                    value={values.keyword}
+                    onChange={(e) => setValues({ ...values, keyword: e.target.value })}
+                    
+                />
+                <button className="btn-search" type="submit">
+                    Search
+                </button>
+            </form>
         </div>
     );
 };

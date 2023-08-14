@@ -27,12 +27,12 @@
     line-height: 30px;
 }
 
-.nav-link{
+.Menu{
     color: #fff;
     left: 0;
 }
 
-.nav-pills .nav-link.active{
+.nav-pills .Menu.active{
     background-color: black;
 }
 

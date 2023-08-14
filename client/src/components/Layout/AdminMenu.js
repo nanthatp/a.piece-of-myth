@@ -3,12 +3,15 @@ import { NavLink } from "react-router-dom";
 import { toast } from 'react-hot-toast';
 import axios from 'axios';
 import "../../styles/AdminDashboard.css";
-import {BiSolidCartAdd} from 'react-icons/bi';
+import {BsFillCartPlusFill} from 'react-icons/bs';
 import {BiSolidCategoryAlt} from 'react-icons/bi';
 import {BsBox2HeartFill} from 'react-icons/bs';
-import {FaSign} from 'react-icons/fa';
-import {AiOutlineUnorderedList} from 'react-icons/ai';
-import{AiFillPicture} from 'react-icons/ai';
+import {BsFillLaptopFill} from 'react-icons/bs';
+import{BsFillCollectionFill} from 'react-icons/bs';
+import{BsFillHddStackFill} from 'react-icons/bs';
+import{BsFillPostcardHeartFill} from 'react-icons/bs';
+import{BsFillBalloonHeartFill} from 'react-icons/bs';
+import{BsFillLayersFill} from 'react-icons/bs';
 
 
 
@@ -22,45 +25,57 @@ const AdminMenu = () => {
                     <div className="item">
                         <NavLink
                             to="/dashboard/admin/create-category"
-                            className="nav-link"
+                            className="nav-link Menu"
                         >
                             <BiSolidCategoryAlt/> Create Category
                         </NavLink>
                         <NavLink
                             to="/dashboard/admin/create-product"
-                            className="nav-link"
+                            className="nav-link Menu"
                         >
-                            <BiSolidCartAdd/> Create Product
+                            <BsFillCartPlusFill/> Create Product
+                        </NavLink>
+                        <NavLink
+                            to="/dashboard/admin/create-artist"
+                            className="nav-link Menu"
+                        >
+                            <BsFillPostcardHeartFill/> Create Artist
                         </NavLink>
                         <NavLink
                             to="/dashboard/admin/create-preproduct"
-                            className="nav-link"
+                            className="nav-link Menu"
                         >
-                             Create Pre-order Product
+                            <BsFillLayersFill/> Create Pre-Order 
                         </NavLink>
                         <NavLink
                             to="/dashboard/admin/create-banner"
-                            className="nav-link"
+                            className="nav-link Menu"
                         >
-                            <FaSign/> Create Banner
+                            <BsFillLaptopFill/> Create Banner
                         </NavLink>
                         <NavLink
                             to="/dashboard/admin/products"
-                            className="nav-link"
+                            className="nav-link Menu"
                         >
                             <BsBox2HeartFill /> All Products List
                         </NavLink>
                         <NavLink
                             to="/dashboard/admin/orders"
-                            className="nav-link"
+                            className="nav-link Menu"
                         >
-                            <AiOutlineUnorderedList/> All Orders List
+                            <BsFillHddStackFill/> All Orders List
                         </NavLink> 
                         <NavLink
                             to="/dashboard/admin/banners"
-                            className="nav-link"
+                            className="nav-link Menu"
                         >
-                            <AiFillPicture/> All Banners List
+                            <BsFillCollectionFill/> All Banners List
+                        </NavLink> 
+                        <NavLink
+                            to="/dashboard/admin/artists"
+                            className="nav-link Menu"
+                        >
+                            <BsFillBalloonHeartFill/> Artist List
                         </NavLink> 
                     </div>
                     

@@ -21,35 +21,56 @@ font-family: 'PT Serif', serif; */
   padding: 8px 8px;
   margin-bottom: 6px;
   text-transform:none;
-  box-shadow: 0 8px 6px -6px gray;
-  --webkit-box-shadow: 0 8px 6px gray;
-  border-bottom: 0.5px solid gray !important;
+  box-shadow: 0 8px 6px -6px #EEEDED;
+  --webkit-box-shadow: 0 8px 6px #FFD717;
+  border-bottom: 0.5px solid #EEEDED!important;
   
 }
 
 /* ============== navbar =============== */
 
 .navbar-link {
-  font-weight: 400 !important;
+  font-weight: 700 !important;
 }
 
 .active{
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid #FFD717;
 }
 
 .navbar-brand{
   font-weight: 700;
-  font-family: 'roboto' ,sans-serif;
+  font-family: 'Poppins', sans-serif;
   letter-spacing: 3px;
+  display: flex;
+  max-width: 1070px;
+  width: 100%;
+}
+
+.navbar-brand span{
+  color: #FFD717;
 }
 
 /* ============== Header =============== */
 
-.header {
-  color: white;
-  padding: 25px;
-  background: #73c088;
+.menu-nav{
+  display: flex;
+  align-items: center;
+  max-width: 1070px;
+  width: 100%;
+  justify-content:space-between;
+  font-family: 'Poppins', sans-serif;
 }
+
+.cart{
+  display: flex;
+  font-weight: 700;
+  align-items: center;
+  max-width: 1070px;
+  width: 100%;
+  justify-content:flex-end;
+  font-family: 'Poppins', sans-serif;
+}
+
 
 /* ============== Footer =============== */
 .footer{
@@ -174,4 +195,47 @@ font-family: 'PT Serif', serif; */
 .product-link {
   text-decoration: none !important;
   color: black !important;
+}
+
+/* ============== search =============== */
+.search-box{
+  background-color: #fff;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  margin-top: 12px;
+  margin-right: 200px;
+  margin-left: 200px;
+  padding: 0px 5px 0px 20px;
+  border-radius: 30px;
+}
+
+.search-box .search-input{
+  height: 30px;
+  border: none;
+  width: 100%;
+  padding: 0px 10px;
+  outline: none;
+}
+
+.search-box .btn-search{
+  width: 220px;
+  height: 30px;
+  border-radius: 30px;
+  background-color: #0DA574;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transform: all ease 0.3s;
+}
+
+.BsSearchHeartFill{
+  font-size: 1.3em;
+  margin: 0px 10px;
+}
+
+.search-box .btn-search:hover{
+  background-color: #FFD717;
+  color: #fff;
+  transform: all ease 0.3s;
 }

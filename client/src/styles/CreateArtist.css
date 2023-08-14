@@ -1,0 +1,93 @@
+.create-product {
+    background-color: #083358;
+    padding: 30px 40px;
+    color: white;
+    text-align: center;
+    height: 45%;
+    margin-right: 100%;
+}
+
+.new-product{
+    background-color:#0DA574;
+    color: white;
+    text-align: center;
+    height: 10%;
+    padding: 30px 40px;
+}
+
+.btn-create-product{
+    padding: 5px 5px;
+    width: 20%;
+    background: #FBD85D;
+    color: #000;
+    float: right;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 0;
+    font-weight: 600;
+    margin-top: 5%;
+}
+
+.btn-upload-photo{
+    padding: 5px 5px;
+    background: #FBD85D;
+    color: #000;
+    float: right;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 0;
+    font-weight: 600;
+    margin-top: 5%;
+}
+
+.btn-upload-photo:hover{
+    padding: 5px 5px;
+    background: #0DA574;
+    color: #000;
+    float: right;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 0;
+    font-weight: 600;
+    margin-top: 5%;
+}
+/* .add-photo{
+    background-color: #000;
+    height: 100vh;
+} */
+
+.btn-update-product{
+    padding: 5px 5px;
+    width: 20%;
+    background: #0DA574;
+    color: #fff;
+    float: right;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 0;
+    font-weight: 600;
+}
+.btn-delete-product{
+    padding: 5px 5px;
+    width: 20%;
+    background: #CD1818;
+    color: #fff;
+    float: right;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 0;
+    font-weight: 600;
+}
+.textarea{
+    margin: 20px;
+}

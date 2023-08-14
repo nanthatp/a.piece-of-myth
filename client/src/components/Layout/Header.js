@@ -1,12 +1,12 @@
 import React from 'react'
 import {NavLink, Link} from 'react-router-dom'
-import {BsFillCalendar2HeartFill} from 'react-icons/bs'
 import { useAuth } from '../../context/auth'
 import toast from "react-hot-toast";
 import SearchInput from "../Form/SearchInput";
 import useCategory from "../../hooks/useCategory";
 import { Badge } from "antd";
 import { useCart } from "../../context/cart";
+
 
 const Header = () => {
   const categories = useCategory();
@@ -28,13 +28,14 @@ const Header = () => {
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon" />
           </button>
-          <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
+          <div className="collapse navbar-collapse">
             <Link to = "/" className="navbar-brand">
-              <BsFillCalendar2HeartFill /> a.piece of myth
+                <span>Happiness</span> Club  
             </Link>
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-              <SearchInput />
+            <SearchInput/>
+            <ul className="navbar-nav ms-auto mb-2 mb-lg-0 menu-nav">
               <li className="nav-item">
+            
                 <NavLink 
                   to = "/" 
                   className="nav-link"
@@ -91,7 +92,7 @@ const Header = () => {
                       data-bs-toggle="dropdown"
                       style={{ border: "none" }}
                     >
-                      {auth?.user?.name}
+                      {auth?.user?.name} 
                     </NavLink>
                     <ul className="dropdown-menu">
                       <li>
@@ -117,16 +118,13 @@ const Header = () => {
                   </li>
                 </>
               )}
-              {/* <li className="nav-item">
-                <NavLink to = "/login" className="nav-link" href="#">Login</NavLink>
-              </li> */}
-              <li className="nav-item">
+              <li className="nav-item  cart">
               
-                <NavLink to = "/cart" className="nav-link" href="#">
-                  <Badge color="hsl(102, 53%, 61%)" count={cart?.length} showZero offset={[10, -5]}>
+              <NavLink to = "/cart" className="nav-link " href="#">
+                <Badge  color="#0DA574" count={cart?.length} showZero offset={[10, -5]}>
                   Cart
-                  </Badge>
-                </NavLink>
+                </Badge> 
+              </NavLink>
               
               </li>
             </ul>

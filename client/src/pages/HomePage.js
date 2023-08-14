@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Checkbox, Radio } from "antd";
+import {NavLink, Link} from 'react-router-dom'
 import { Prices } from "../components/Prices";
 import { useCart } from "../context/cart";
 import axios from "axios";
@@ -112,51 +113,54 @@ const HomePage = () => {
 
   return (
     <Layout title={"ALl Products - Best offers "}>
+      <section className="banner">
+        <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel">
+          <div className="carousel-inner">
+            <div className="carousel-item active">
+              <video 
+              autoPlay loop muted playsInline 
+              className="back-video" 
+              src="/images/127.mp4"
+              >           
+              </video>
+              <div className="content">
+                <h1>NCT 127</h1>
+                <a href="#">Pre-Order Now</a>
+              </div>  
+            </div>
+            <div className="carousel-item">
+              <video 
+              autoPlay loop muted playsInline 
+              className="back-video" 
+              src="/images/dream.mp4"
+              >           
+              </video>
+              <div className="content">
+                <h1>NCT DREAM</h1>
+                <a href="#">Pre-Order Now</a>
+              </div>    
+            </div>
+            <div className="carousel-item">
+              <video 
+              autoPlay loop muted playsInline 
+              className="back-video" 
+              src="/images/red.mp4"
+              >           
+              </video>
+              <div className="content">
+                <h1>RED VELVET</h1>
+                <a href="#">Pre-Order Now</a>
+              </div>    
+            </div>
+          </div>
+        </div>
+      </section>
+
       <div class="container">
         <div class="row">
-          <div class="column-66">
-            <section className="banner">
-              <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel">
-                <div className="carousel-inner">
-                  <div className="carousel-item active">
-                    <video 
-                    autoPlay loop muted playsInline 
-                    className="back-video" 
-                    src="/images/127.mp4"
-                    >           
-                    </video>
-                    <div className="content">
-                      <h1>NCT 127</h1>
-                      <a href="#">Pre-Order Now</a>
-                    </div>  
-                  </div>
-                  <div className="carousel-item">
-                    <video 
-                    autoPlay loop muted playsInline 
-                    className="back-video" 
-                    src="/images/dream.mp4"
-                    >           
-                    </video>
-                    <div className="content">
-                      <h1>NCT DREAM</h1>
-                      <a href="#">Pre-Order Now</a>
-                    </div>    
-                  </div>
-                  <div className="carousel-item">
-                    <video 
-                    autoPlay loop muted playsInline 
-                    className="back-video" 
-                    src="/images/red.mp4"
-                    >           
-                    </video>
-                    <div className="content">
-                      <h1>RED VELVET</h1>
-                      <a href="#">Pre-Order Now</a>
-                    </div>    
-                  </div>
-                </div>
-              </div>
-            </section>
+          <div class="column-66 Celeb">
+            <h1>Celeb for You</h1>
+            
           </div>
           <div class="column-33">
             ...
@@ -167,7 +171,25 @@ const HomePage = () => {
       <div class="container">
         <div class="row">
           <div class="column-33">
-            ...
+            <section className="category-list">
+              <div className="category-heading">
+                <h1>Category</h1>
+                <span>All</span>
+              </div>
+              <div className="category-container">
+              {categories?.map((c) => (
+                    
+                      <Link
+                        className="item-category"
+                        to={`/category/${c.slug}`}
+                      >
+                        {c.name}
+                      </Link>
+                    
+                  ))}
+              </div>
+            </section>
+            
           </div>
           <div class="column-66">
             ...

@@ -31,6 +31,8 @@ import ResetPassword from './pages/Auth/ResetPassword';
 import CreateBanner from './pages/Admin/CreateBanner';
 import UpdateBanner from './pages/Admin/UpdateBanner';
 import CreatePreProduct from './pages/Admin/CreatePreProduct';
+import CreateArtist from './pages/Admin/CreateArtist';
+import Artists from "./pages/Admin/Artists";
 
 function App() {
   return (
@@ -53,10 +55,12 @@ function App() {
         <Route path="admin/create-category" element={<CreateCategory />} />
         <Route path="admin/create-product" element={<CreateProduct />} />
         <Route path="admin/create-banner" element={<CreateBanner/>} />
+        <Route path="admin/create-artist" element={<CreateArtist/>} />
         <Route path="admin/product/:slug" element={<UpdateProduct />} />
         <Route path="admin/products" element={<Products />} />
         <Route path="admin/orders" element={<AdminOrders />} />
         <Route path="admin/banners" element={<Banners />} />
+        <Route path="admin/artists" element={<Artists />} />
         <Route path="admin/banner/:slug" element={<UpdateBanner />} />
         <Route path="admin/create-preproduct" element={<CreatePreProduct />} />
 

@@ -9,6 +9,10 @@ const artistSchema = new mongoose.Schema({
     slug: {
         type: String,
         lowercase: true, 
+    },
+    photo: {
+        data: Buffer,
+        contentType: String,
     },   
     member: {
         type:Array,

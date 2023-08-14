@@ -3,35 +3,24 @@
 } 
 
 .banner {
-    /* Used to position the video and content */
-    position: relative;
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    background: #000;
+    max-width: 1250px;
+    height: 550px;
+    border-radius: 30px;
+    background-color: beige;
+    margin: 10px auto;
 
 }
 
 .carousel-inner {
-    /* Positioned at the top left corner */
-    left: 0px;
-    top: 0px;
-
-    /* Take full size */
-    height: 80%;
-    width: 100%;
-
-    /* Hide the scrollbar */
-    overflow: hidden;
+    max-width: 1250px;
+    height: 550px;
+    border-radius: 30px;
+    background-color: beige;
+    margin: 10px auto;
 }
 
 .back-video {
     object-fit: cover;
-
-    /* Take full width */
-    height: 85%;
     max-width: 100%;
 }
 
@@ -149,4 +138,39 @@ filters
     color: green;
     font-weight: bold;
     font-size: 20px !important;
+}
+
+.Celeb h1{
+    font-size: 2rem;
+    font-weight: 700;
+    color: #001F3F;
+    letter-spacing: 0.5px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.category-list{
+    display: flex;
+    flex-direction: column;
+    max-width: 10000px;
+    margin: 50px auto;
+}
+
+.category-heading{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.category-heading h1{
+    font-size: 2rem;
+    font-weight: 700;
+    color: #001F3F;
+    letter-spacing: 0.5px;
+}
+
+.category-heading span{
+    font-weight: 400;
+    color: #001F3F;
+    letter-spacing: 1px;
 }
