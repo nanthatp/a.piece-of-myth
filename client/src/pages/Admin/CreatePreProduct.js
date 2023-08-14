@@ -87,7 +87,7 @@ export default function CreatePreProduct() {
                 toast.error(data?.message);
             } else {
                 toast.success("Product Created Successfully");
-                navigate("/dashboard/admin/preproducts");
+                navigate("/dashboard/admin/preproduct");
             }
         } catch (error) {
         console.log(error);

@@ -64,12 +64,12 @@ var gateway = new braintree.BraintreeGateway({
 //get all Pre-order product
 export const getPreProductController = async(req, res) => {
     try {
-        const preproduct = await preproductModel.find({}).select("-photo").limit(12).sort({createdAt:-1})
+        const preproducts = await preproductModel.find({}).select("-photo").limit(12).sort({createdAt:-1})
         res.status(200).send({
             success:true,
-            count_total : preproduct.length,
+            count_total : preproducts.length,
             message:'AllPreProduct',
-            preproduct,
+            preproducts,
         });
     } catch (error) {
         console.log(error)
