@@ -77,6 +77,12 @@ const AdminMenu = () => {
                         >
                             <BsFillBalloonHeartFill/> Artist List
                         </NavLink> 
+                        <NavLink
+                            to="/dashboard/admin/pre-product"
+                            className="nav-link Menu"
+                        >
+                            <BsFillBalloonHeartFill/> Pre-Product List
+                        </NavLink> 
                     </div>
                     
                 </div>

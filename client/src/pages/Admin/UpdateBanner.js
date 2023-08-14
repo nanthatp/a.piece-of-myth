@@ -18,6 +18,7 @@ const CreateBanner = () => {
     const [artist, setArtist] = useState("");
     const [id, setId] = useState("");
 
+
     //get single banner
     const getSingleBanner = async () => {
     try {
@@ -26,7 +27,7 @@ const CreateBanner = () => {
         );
         setName(data.banner.name);
         setId(data.banner._id);
-        setArtist(data.banner.artist);
+        setArtist(data.banner.artist._id);
         
     }catch (error) {
         console.log(error);
@@ -49,7 +50,7 @@ const CreateBanner = () => {
             console.log(error);
             toast.error("Something went wrong in getting artist");
         }
-    }; 
+    };
 
 
     useEffect(() => {

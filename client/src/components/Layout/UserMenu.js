@@ -1,28 +1,29 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import {BiUser, BiShoppingBag, BiSolidBasket} from 'react-icons/bi';
 const UserMenu = () => {
     return (
-        <div>
-        <div className="text-center dashboard-menu">
-            <div className="list-group">
+        <div className="text-center p-6">
+        <div className="nav nav-pills flex-column">
+            <div className="item">
             <h4>Dashboard</h4>
             <NavLink
                 to="/dashboard/user/profile"
-                className="list-group-item list-group-item-action"
+                className="nav-link"
             >
-                Profile
+                <BiUser/>Profile
             </NavLink>
             <NavLink
                 to="/dashboard/user/orders"
-                className="list-group-item list-group-item-action"
+                className="nav-link"
             >
-                Orders
+                <BiShoppingBag/>Orders
             </NavLink>
             <NavLink
                 to="/dashboard/user/preorder"
-                className="list-group-item list-group-item-action"
+                className="nav-link"
             >
-                Your Pre-Order Products
+                <BiSolidBasket/>Your Pre-Order Products
             </NavLink>
             </div>
         </div>

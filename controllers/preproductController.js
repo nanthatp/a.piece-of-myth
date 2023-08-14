@@ -67,7 +67,7 @@ export const getPreProductController = async(req, res) => {
         const preproduct = await preproductModel.find({}).select("-photo").limit(12).sort({createdAt:-1})
         res.status(200).send({
             success:true,
-            count_total : products.length,
+            count_total : preproduct.length,
             message:'AllPreProduct',
             preproduct,
         });
@@ -258,7 +258,7 @@ export const PreproductListController = async (req, res) => {
 export const searchPreProductController = async (req, res) => {
     try {
     const { keyword } = req.params;
-    const resutls = await productModel
+    const resutls = await preproductModel
         .find({
         $or: [
             { name: { $regex: keyword, $options: "i" } },
@@ -307,11 +307,11 @@ export const realtedPreProductController = async (req, res) => {
 export const PreproductCategoryController = async (req, res) => {
     try {
     const category = await categoryModel.findOne({ slug: req.params.slug });
-    const products = await preproductModel.find({ category }).populate("category");
+    const preproducts = await preproductModel.find({ category }).populate("category");
     res.status(200).send({
         success: true,
         category,
-        products,
+        preproducts,
     });
     } catch (error) {
     console.log(error);

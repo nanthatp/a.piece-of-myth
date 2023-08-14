@@ -126,7 +126,7 @@ const ForgotPassword = () => {
   };
 
   return (
-    <section class="vh-100" style={{ backgroundColor: "#9A616D" }}>
+    <section class="vh-100" >
       <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col col-xl-10">
@@ -134,7 +134,7 @@ const ForgotPassword = () => {
               <div class="row g-0">
                 <div class="col-md-6 col-lg-5 d-none d-md-block">
                   <img
-                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
+                    src="https://cdn.discordapp.com/attachments/417585852206809090/1140335973880832130/hghlk.jpg"
                     alt="login form"
                     class="img-fluid"
                     style={{ borderRadius: "1rem 0 0 1rem" }}
@@ -178,7 +178,7 @@ const ForgotPassword = () => {
 
                       <div class="pt-1 mb-4">
                         <button
-                          class="btn btn-dark btn-lg btn-block"
+                          class="btn btn-warning btn-lg btn-block"
                           type="submit"
                         >
                           Send Email

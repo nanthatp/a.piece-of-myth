@@ -8,7 +8,6 @@ const Register= () => {
     const [email,setEmail] = useState("");
     const [phone,setPhone] = useState("");
     const [password,setPassword] = useState(""); 
-    const [answer,setAnswer] = useState("");
     const navigate = useNavigate();
 
     //form function
@@ -21,8 +20,7 @@ const Register= () => {
               name,
               email,
               phone,
-              password,
-              answer
+              password
             });
             if (res && res.data.success) {
               toast.success(res.data && res.data.message);
@@ -109,20 +107,6 @@ const Register= () => {
                             required
                         />
                     </div>
-                    <div className="mb-3">
-                        <label htmlFor="exampleInputEmail1" className="form-label">
-                            Your Secret word
-                        </label>
-                        <input 
-                            type="text" 
-                            value={answer}
-                            onChange={(e) => setAnswer(e.target.value)}
-                            className="form-control" 
-                            id="exampleInputEmail1" 
-                            placeholder="Enter Your Answer"
-                            required
-                        />
-                    </div>  
                     <div className="d-flex justify-content-center">
                         <button 
                             type="submit"
