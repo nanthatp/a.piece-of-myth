@@ -174,3 +174,80 @@ filters
     color: #001F3F;
     letter-spacing: 1px;
 }
+
+.product-list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 0px;
+}
+
+.product-box{
+    width: 300px;
+    border: 1px solid #EEEDED;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-box img{
+    width: 90%;
+    height: 180px;
+    object-fit: contain;
+    object-position: center;
+    margin: auto;
+}
+
+.product-box .name-product{
+    color: #001F3F;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.product-box .product-quantity{
+    color: #949494;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.product-box .product-price{
+    color: #001F3F;
+    margin-top: 10px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    
+}
+.product-box .btn-add{
+    width: 100%;
+    height: 40px;
+    background-color: #ecf7ee;
+    color: #0DA574;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+}
+
+.product-box .btn-details{
+    width: 100%;
+    height: 40px;
+    background-color: beige;
+    color: #FFD717;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+}
+
+

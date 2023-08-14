@@ -94,7 +94,7 @@ const Header = () => {
                     >
                       {auth?.user?.name} 
                     </NavLink>
-                    <ul className="dropdown-menu">
+                    <ul className="dropdown-menu ">
                       <li>
                         <NavLink
                           to={`/dashboard/${

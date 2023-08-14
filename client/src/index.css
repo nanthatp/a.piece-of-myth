@@ -239,3 +239,15 @@ font-family: 'PT Serif', serif; */
   color: #fff;
   transform: all ease 0.3s;
 }
+
+.dropdown-item:hover{
+  background-color: #FFD717;
+  color: #fff;
+}
+
+.navbar-toggler{
+  background-color: #FFD717;
+  color: #fff;
+}
+
+
