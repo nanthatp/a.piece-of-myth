@@ -184,9 +184,6 @@ useEffect(() => {
             <h1>Celeb for You</h1>
             
           </div>
-          <div class="column-33">
-            ...
-          </div>
         </div>
       </div>
 
@@ -194,117 +191,173 @@ useEffect(() => {
         <div class="row">
           <div class="column-33">
             <section className="category-list">
-              <div className="category-heading">
+              <div className="home-heading">
                 <h1>Category</h1>
                 <span>All</span>
               </div>
               <div className="category-container">
-              <div className="container" style={{ marginTop: "100px" }}>
-            <div className="row container">
-            {categories.map((c) => (
-                <div className="col-md-4 mt-5 mb-3 gx-3 gy-3" key={c._id}>
-                <div className="card">
-                    <Link to={`/category/${c.slug}`} className="btn cat-btn">
-                    {c.name}
-                    </Link>
-                </div>
-                </div>
-            ))}
-            </div>
-        </div>
-              </div>
-            </section>
-            
-          </div>
-          <div class="column-66">
-            ...
-          </div>
-        </div>
-      </div>
-
-      <div class="container">
-        <div class="row">
-          <div class="column-33">
-            <section className="category-list">
-              <div className="category-heading">
-                <h1>Pre Order</h1>
-                <span>All</span>
-              </div>
-              <div className="category-container">
-          
-              </div>
-            </section>
-            
-          </div>
-          <div class="column-66">
-            ...
-          </div>
-        </div>
-      </div>
-
-      <div class="container">
-        <div class="row">
-          <div class="column-33">
-            <section className="product-list">
-              <div className="category-heading">
-                <h1>All Product</h1>
-                <span>All</span>
-              </div>
-              <div className="product-container">
-                <div className="d-flex flex-wrap">
-                  {products?.map((p) => (
-                    <div className="card m-2 product-box" key={p._id}>
-                      <img
-                        src={`/api/v1/product/product-photo/${p._id}`}
-                        className="card-img-top"
-                        alt={p.name}
-                      />
-                      <div className="card-body">
-                        <div className="card-name-price">
-                          <h5 className=" name-product">{p.name}</h5>
-                          <p className="card-text product-quantity">
-                            {p.quantity}
-                          </p>
-                          <h5 className="card-title product-price">
-                            {p.price.toLocaleString("US", {
-                              style: "currency",
-                              currency: "USD",
-                            })}
-                          </h5>
-                        </div>
-                        
-                        <div className="card-name-price">
-                        <button
-                            className="btn-add"
-                            onClick={() => {
-                              setCart([...cart, p]);
-                              localStorage.setItem(
-                                "cart",
-                                JSON.stringify([...cart, p])
-                              );
-                              toast.success("Item Added to cart");
-                            }}
-                          >
-                          <BsFillBagHeartFill/> Add tO Cart
-                          </button>
-                          <button
-                            className="btn-details"
-                            onClick={() => navigate(`/product/${p.slug}`)}
-                          >
-                            More Details
-                          </button>
-                          
+                <div className="container" >
+                  <div className="row container">
+                    {categories.map((c) => (
+                      <div className="col-md-2 mt-2 mb-4 gx-6 gy-6" key={c._id}>
+                        <div className="card-category">
+                          <Link to={`/category/${c.slug}`} className="btn cat-btn">
+                          {c.name}
+                          </Link>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               </div>
             </section>
-            
           </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
           <div class="column-66">
-            ...
+            <div className="product-heading">
+              <h1>Pre Order</h1>
+            </div>
+          </div>
+          <div class="column-33">
+            <section className="product-list">
+              <div id="carouselExampleInterval" className="carousel slide" data-bs-ride="carousel">
+                <div className="carousel-inner product-inner">
+                  <div className="product-container ">
+                    <div className="d-flex wrap " >
+                      {products?.map((p) => (
+                        <div className="carousel-item active card m-2 product-box"  key={p._id}>
+                            <img
+                              src={`/api/v1/product/product-photo/${p._id}`}
+                              className=" card-img-top"
+                              alt={p.name}
+                            />
+                            <div className="card-body">
+                              <div className="card-name-price">
+                                <h5 className=" name-product">{p.name}</h5>
+                                <p className="card-text product-quantity">
+                                  {p.quantity}
+                                </p>
+                                <h5 className="card-title product-price">
+                                  {p.price.toLocaleString("US", {
+                                    style: "currency",
+                                    currency: "USD",
+                                  })}
+                                </h5>
+                              </div>
+                              <div className="card-name-price">
+                                <button
+                                    className="btn-add"
+                                    onClick={() => {
+                                      setCart([...cart, p]);
+                                      localStorage.setItem(
+                                        "cart",
+                                        JSON.stringify([...cart, p])
+                                      );
+                                      toast.success("Item Added to cart");
+                                    }}
+                                  >
+                                  <BsFillBagHeartFill/> Add to Cart
+                                  </button>
+                                  <button
+                                    className="btn-details"
+                                    onClick={() => navigate(`/product/${p.slug}`)}
+                                  >
+                                    More Details
+                                  </button>
+                              </div>
+                            </div>
+                          </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                  <span className="carousel-control-prev-icon" aria-hidden="true" />
+                  <span className="visually-hidden">Previous</span>
+                </button>
+                <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                  <span className="carousel-control-next-icon" aria-hidden="true" />
+                  <span className="visually-hidden">Next</span>
+                </button>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="column-66">
+            <div className="product-heading">
+              <h1>All Product</h1>
+            </div>
+          </div>
+          <div class="column-33">
+            <section className="product-list">
+              <div id="carouselExampleInterval" className="carousel slide" data-bs-ride="carousel">
+                <div className="carousel-inner product-inner">
+                  <div className="product-container ">
+                    <div className=" d-flex wrap " >
+                      {products?.map((p) => (
+                        <div className="carousel-item active card m-2 product-box"  key={p._id}>
+                            <img
+                              src={`/api/v1/product/product-photo/${p._id}`}
+                              className=" card-img-top"
+                              alt={p.name}
+                            />
+                            <div className="card-body">
+                              <div className="card-name-price">
+                                <h5 className=" name-product">{p.name}</h5>
+                                <p className="card-text product-quantity">
+                                  {p.quantity}
+                                </p>
+                                <h5 className="card-title product-price">
+                                  {p.price.toLocaleString("US", {
+                                    style: "currency",
+                                    currency: "USD",
+                                  })}
+                                </h5>
+                              </div>
+                              <div className="card-name-price">
+                                <button
+                                    className="btn-add"
+                                    onClick={() => {
+                                      setCart([...cart, p]);
+                                      localStorage.setItem(
+                                        "cart",
+                                        JSON.stringify([...cart, p])
+                                      );
+                                      toast.success("Item Added to cart");
+                                    }}
+                                  >
+                                  <BsFillBagHeartFill/> Add to Cart
+                                  </button>
+                                  <button
+                                    className="btn-details"
+                                    onClick={() => navigate(`/product/${p.slug}`)}
+                                  >
+                                    More Details
+                                  </button>
+                              </div>
+                            </div>
+                          </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                  <span className="carousel-control-prev-icon" aria-hidden="true" />
+                  <span className="visually-hidden">Previous</span>
+                </button>
+                <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                  <span className="carousel-control-next-icon" aria-hidden="true" />
+                  <span className="visually-hidden">Next</span>
+                </button>
+              </div>
+            </section>
           </div>
         </div>
       </div>

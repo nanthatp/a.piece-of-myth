@@ -245,6 +245,12 @@ font-family: 'PT Serif', serif; */
   color: #fff;
 }
 
+.dropdown-item.active {
+  color: #fff;
+  text-decoration: none;
+  background-color: #FFD717;
+}
+
 .navbar-toggler{
   background-color: #FFD717;
   color: #fff;
