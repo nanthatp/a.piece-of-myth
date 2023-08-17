@@ -17,6 +17,7 @@ const HomePage = () => {
   const navigate = useNavigate();
   const [cart, setCart] = useCart();
   const [products, setProducts] = useState([]);
+  const [preproducts, setPreproducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState([]);
   const [checked, setChecked] = useState([]);
@@ -83,6 +84,19 @@ useEffect(() => {
     }
   };
 
+  //get all pre-order products
+  const getAllPreProducts = async () => {
+    try {
+      setLoading(true);
+      const { data } = await axios.get("/api/v1/preproduct/get-preproduct");
+      setLoading(false);
+      setPreproducts(data.preproducts);
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    }
+};
+
   useEffect(() => {
     if (page === 1) return;
     loadMore();
@@ -114,6 +128,10 @@ useEffect(() => {
 
   useEffect(() => {
     if (!checked.length || !radio.length) getAllProducts();
+  }, [checked.length, radio.length]);
+  
+  useEffect(() => {
+    if (!checked.length || !radio.length) getAllPreProducts();
   }, [checked.length, radio.length]);
 
   useEffect(() => {
@@ -227,10 +245,10 @@ useEffect(() => {
                 <div className="carousel-inner product-inner">
                   <div className="product-container ">
                     <div className="d-flex wrap " >
-                      {products?.map((p) => (
+                      {preproducts?.map((p) => (
                         <div className="carousel-item active card m-2 product-box"  key={p._id}>
                             <img
-                              src={`/api/v1/product/product-photo/${p._id}`}
+                              src={`/api/v1/preproduct/preproduct-photo/${p._id}`}
                               className=" card-img-top"
                               alt={p.name}
                             />
@@ -250,20 +268,20 @@ useEffect(() => {
                               <div className="card-name-price">
                                 <button
                                     className="btn-add"
-                                    onClick={() => {
-                                      setCart([...cart, p]);
-                                      localStorage.setItem(
-                                        "cart",
-                                        JSON.stringify([...cart, p])
-                                      );
-                                      toast.success("Item Added to cart");
-                                    }}
+                                    // onClick={() => {
+                                    //   setCart([...cart, p]);
+                                    //   localStorage.setItem(
+                                    //     "cart",
+                                    //     JSON.stringify([...cart, p])
+                                    //   );
+                                    //   toast.success("Item Added to cart");
+                                    // }}
                                   >
-                                  <BsFillBagHeartFill/> Add to Cart
+                                  <BsFillBagHeartFill/> Pre-Order Now
                                   </button>
                                   <button
                                     className="btn-details"
-                                    onClick={() => navigate(`/product/${p.slug}`)}
+                                    onClick={() => navigate(`/preproduct/${p.slug}`)}
                                   >
                                     More Details
                                   </button>

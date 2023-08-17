@@ -113,7 +113,7 @@ const UpdatePreProduct = () => {
                 toast.error(data?.message);
             } else {
                 toast.success("Pre-order Product Updated Successfully");
-                navigate("/dashboard/admin/preproducts");
+                navigate("/dashboard/admin/preproduct");
             }
         } catch (error) {
         console.log(error);

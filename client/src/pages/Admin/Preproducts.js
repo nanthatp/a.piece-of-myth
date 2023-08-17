@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const Preproducts = () => {
     const [preproducts, setPreproducts] = useState([]);
 
-    //getall products
+    //get all pre-order preproducts
     const getAllPreProducts = async () => {
         try {
         const { data } = await axios.get("/api/v1/preproduct/get-preproduct");
