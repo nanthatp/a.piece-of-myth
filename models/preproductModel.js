@@ -36,9 +36,6 @@ const preproductSchema = new mongoose.Schema({
         ref: "Member",
         required: true,
     },
-    shipping: {
-        type: Boolean,
-    },
 },{ timestamps: true }
 )
 export default mongoose.model("Preproduct",preproductSchema)

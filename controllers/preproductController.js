@@ -19,7 +19,7 @@ var gateway = new braintree.BraintreeGateway({
 
   export const createPreProductController = async (req,res)  => {
     try {
-        const {name, slug, description, price, category, artist, member, shipping} = req.fields;
+        const {name, slug, description, price, category, artist, member} = req.fields;
         const {photo} = req.files;
         
         //alidation

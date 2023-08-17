@@ -34,6 +34,7 @@ import CreatePreProduct from './pages/Admin/CreatePreProduct';
 import CreateArtist from './pages/Admin/CreateArtist';
 import Artists from "./pages/Admin/Artists";
 import Preproducts  from "./pages/Admin/Preproducts";
+import UpdatePreProduct from './pages/Admin/UpdatePreProduct';
 
 function App() {
   return (
@@ -58,6 +59,7 @@ function App() {
         <Route path="admin/create-banner" element={<CreateBanner/>} />
         <Route path="admin/create-artist" element={<CreateArtist/>} />
         <Route path="admin/product/:slug" element={<UpdateProduct />} />
+        <Route path="admin/preproduct/:slug" element={<UpdatePreProduct />} />
         <Route path="admin/products" element={<Products />} />
         <Route path="admin/orders" element={<AdminOrders />} />
         <Route path="admin/banners" element={<Banners />} />

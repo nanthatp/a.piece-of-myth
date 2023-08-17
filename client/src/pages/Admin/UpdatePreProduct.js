@@ -4,22 +4,48 @@ import AdminMenu from '../../components/Layout/AdminMenu'
 import { toast } from 'react-hot-toast';
 import axios from 'axios';
 import { Select } from 'antd';
-import { useNavigate } from "react-router-dom";
-import "../../styles/CreateProduct.css"
-const { Option } = Select;
+import { useNavigate, useParams } from "react-router-dom";
 
-export default function CreatePreProduct() {
+const { Option } = Select;
+const UpdatePreProduct = () => {
     const navigate = useNavigate();
+    const params = useParams();
     const [categories, setCategories] = useState([]);
     const [members, setMembers] = useState([]);
     const [artists, setArtists] = useState([]);
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
-    const [category, setCategory] = useState("");
+    const [category, setCategory] = useState("");  
     const [photo, setPhoto] = useState("");
     const [artist, setArtist] = useState("");
     const [member, setMember] = useState("");
+    const [id, setId] = useState("");
+
+    //get single product
+    const getSinglePreProduct = async () => {
+        try {
+            const { data } = await axios.get(
+                `/api/v1/preproduct/get-preproduct/${params.slug}`
+            );
+            setName(data.preproduct.name);
+            setId(data.preproduct._id);
+            setDescription(data.preproduct.description);
+            setPrice(data.preproduct.price);
+            setCategory(data.preproduct.category._id);
+            setArtist(data.preproduct.artist);
+            setMember(data.preproduct.member);
+            
+        }catch (error) {
+            console.log(error);
+        }
+    };
+    useEffect(() => {
+        getSinglePreProduct();
+        //eslint-disable-next-line
+    }, []);
+
+
 
     //get all categories
     const getAllCategory = async () => {
@@ -30,9 +56,9 @@ export default function CreatePreProduct() {
             }
         } catch (error) {
             console.log(error);
-            toast.error("Something went wrong in getting catgeory");
+            toast.error("Something went wrong in getting category");
         }
-    };
+    }; 
 
     //get all artist
     const getAllArtist = async () => {
@@ -60,14 +86,15 @@ export default function CreatePreProduct() {
         }
     }; 
 
+
     useEffect(() => {
         getAllCategory();
         getAllArtist();
         getAllMember();
     }, []);
 
-    //create product function
-    const handleCreate = async (e) => {
+    //update product function
+    const handleUpdate = async (e) => {
         e.preventDefault();
         try {
             const preproductData = new FormData();
@@ -75,18 +102,18 @@ export default function CreatePreProduct() {
             preproductData.append("description", description);
             preproductData.append("price", price);
             preproductData.append("category", category);
-            preproductData.append("photo", photo);
+            photo && preproductData.append("photo", photo);
             preproductData.append("artist", artist);
             preproductData.append("member", member);
-            const { data } = axios.post(
-                "/api/v1/preproduct/create-preproduct",
+            const { data } = axios.put(
+                `/api/v1/preproduct/update-preproduct/${id}`,
                 preproductData
             );
             if (data?.success) {
                 toast.error(data?.message);
             } else {
-                toast.success("Product Created Successfully");
-                navigate("/dashboard/admin/preproduct");
+                toast.success("Pre-order Product Updated Successfully");
+                navigate("/dashboard/admin/preproducts");
             }
         } catch (error) {
         console.log(error);
@@ -94,19 +121,36 @@ export default function CreatePreProduct() {
         }
     };
 
-  return (
-    <Layout title={"Dashboard - Create Preproduct"}>
-        <div className="row dashboard">
+    //delete a product
+    const handleDelete = async () => {
+        try {
+            let answer = window.prompt("Are You Sure want to delete this Pre-order product ? ");
+            if (!answer) return;
+            const { data } = await axios.delete(
+                `/api/v1/preproduct/delete-preproduct/${id}`
+            );
+            toast.success("Pre-Order Product Deleted Succfully");
+            navigate("/dashboard/admin/preproduct");
+        } catch (error) {
+            console.log(error);
+            toast.error("Something went wrong");
+        }
+    };
+
+    return (
+        <Layout title={"Dashboard - Update Category"}>
+            <div className="row dashboard">
             <div className="col-md-3">
                 <AdminMenu />
             </div>
             <div className="col-sm text-center">
-                <h1>Create Pre-Order Product</h1>
+                <h1>Manage Pre-Order Product</h1>
                 <div className="container product-form">
                 <div className="row justify-content-center new-product">
-                <h2>New Pre-order Product</h2>
+                <h2>New Pre-Order Product</h2>
                 </div>
-                </div>
+                
+            </div>
                 <div className="container text-center  create-product">
                     <div className="row justify-content-evenly">
                     <div class="col-4 add-photo">
@@ -123,13 +167,23 @@ export default function CreatePreProduct() {
                             </label>
                         </div>
                         <div className="mb-3">
-                            {photo && (
+                            {photo ? (
                                 <div className="text-center">
                                     <img
                                         src={URL.createObjectURL(photo)}
-                                        alt="product_photo"
+                                        alt="preproduct_photo"
                                         height={"200px"}
                                         className="img img-responsive"
+                                    />
+                                </div>
+                            
+                            ) : (
+                                <div className="text-center">
+                                    <img
+                                    src={`/api/v1/preproduct/preproduct-photo/${id}`}
+                                    alt="preproduct_photo"
+                                    height={"200px"}
+                                    className="img img-responsive"
                                     />
                                 </div>
                             )}
@@ -165,6 +219,7 @@ export default function CreatePreProduct() {
                             onChange={(value) => {
                                 setArtist(value);
                             }}
+                            value={artist}
                         >
                             {artists?.map((c) => (
                                 <Option key={c._id} value={c._id}>
@@ -182,11 +237,12 @@ export default function CreatePreProduct() {
                             onChange={(value) => {
                                 setCategory(value);
                             }}
+                            value={category}
                         >
                             {categories?.map((c) => (
-                                <Option key={c._id} value={c._id}>
+                                <op key={c._id} value={c._id}>
                                     {c.name}
-                                </Option>
+                                </op>
                             ))}
                         </Select>
                         </div>
@@ -201,6 +257,7 @@ export default function CreatePreProduct() {
                                 onChange={(e) => setDescription(e.target.value)}
                             />
                         </div>
+                        
                         <Select
                             bordered={false}
                             placeholder="Select a Member"
@@ -210,6 +267,7 @@ export default function CreatePreProduct() {
                             onChange={(value) => {
                                 setMember(value);
                             }}
+                            value={member}
                         >
                             {members?.map((c) => (
                                 <Option key={c._id} value={c._id}>
@@ -217,20 +275,27 @@ export default function CreatePreProduct() {
                                 </Option>
                             ))}
                         </Select>
+                        
                         </div>
 
-                        
-
-                        
                         <div className="mb-3">
-                            <button className="btn-create-product" onClick={handleCreate}>
-                            CREATE Pre-Order PRODUCT
+                            <button className="btn-update-product" onClick={handleUpdate}>
+                            UPDATE Pre-Order PRODUCT
+                            </button>
+                        </div>
+                        <div className="mb-3">
+                            <button className="btn-delete-product" onClick={handleDelete}>
+                            DELETE Pre-Oreder PRODUCT
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
+        
     </Layout>
-  )
+    )
 }
+
+export default UpdatePreProduct
