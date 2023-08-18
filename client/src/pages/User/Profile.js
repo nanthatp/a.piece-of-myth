@@ -11,15 +11,21 @@ const Profile = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [address, setAddress] = useState("");
+  const [province, setProvince] = useState("");
+  const [postalcode, setPostalcode] = useState("");
   const [phone, setPhone] = useState("");
 
   //get user data
   useEffect(() => {
-    const { email, name, phone, password } = auth?.user;
+    const { email, name, phone, password,address,province,postalcode } = auth?.user;
     setName(name);
     setPhone(phone);
     setEmail(email);
-    setPassword(password);
+    setAddress(address);
+    setProvince(province);
+    setPostalcode(postalcode);
+    // setPassword(password);
   }, [auth?.user]);
 
   // form function
@@ -29,8 +35,11 @@ const Profile = () => {
       const { data } = await axios.put("/api/v1/auth/profile", {
         name,
         email,
-        password,
+        // password,
         phone,
+        address,
+        province,
+        postalcode,
       });
       if (data?.errro) {
         toast.error(data?.error);
@@ -80,7 +89,7 @@ const Profile = () => {
                     disabled
                   />
                 </div>
-                <div className="mb-3">
+                {/* <div className="mb-3">
                   <input
                     type="password"
                     value={password}
@@ -88,6 +97,36 @@ const Profile = () => {
                     className="form-control"
                     id="exampleInputPassword1"
                     placeholder="Enter Your Password"
+                  />
+                </div> */}
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                    className="form-control"
+                    id="exampleInputEmail1"
+                    placeholder="Enter Your Address"
+                  />
+                </div>
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    value={province}
+                    onChange={(e) => setProvince(e.target.value)}
+                    className="form-control"
+                    id="exampleInputEmail1"
+                    placeholder="Province"
+                  />
+                </div>
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    value={postalcode}
+                    onChange={(e) => setPostalcode(e.target.value)}
+                    className="form-control"
+                    id="exampleInputEmail1"
+                    placeholder="Postal code"
                   />
                 </div>
                 <div className="mb-3">

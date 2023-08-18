@@ -19,6 +19,18 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:true,
     },
+    address: {
+        type:String,
+        default: null,
+    },
+    postalcode: {
+        type:String,
+        default: null,
+    },
+    province: {
+        type:String,
+        default: null,
+    },
     role:{
         type:Number,
         default:0

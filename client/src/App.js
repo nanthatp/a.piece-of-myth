@@ -35,6 +35,7 @@ import CreateArtist from './pages/Admin/CreateArtist';
 import Artists from "./pages/Admin/Artists";
 import Preproducts  from "./pages/Admin/Preproducts";
 import UpdatePreProduct from './pages/Admin/UpdatePreProduct';
+import UpdatePassword from './pages/User/UpdatePassword';
 
 function App() {
   return (
@@ -49,7 +50,8 @@ function App() {
       <Route path="/dashboard" element={<PrivateRoute />}>
         { <Route path="user" element={<Dashboard />} />}
         <Route path="user/orders" element={<Orders />} />
-        <Route path="user/profile" element={<Profile />} />  
+        <Route path="user/profile" element={<Profile />} />
+        <Route path="user/update-password" element={<Pagenotfound />} />  
         <Route path="user/preorder" element={<Pagenotfound />} />    
       </Route>
       <Route path="/dashboard" element={<AdminRoute />}>

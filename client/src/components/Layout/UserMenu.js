@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import {BiUser, BiShoppingBag, BiSolidBasket} from 'react-icons/bi';
+import {BiUser, BiShoppingBag, BiSolidBasket, BiShieldAlt2} from 'react-icons/bi';
 const UserMenu = () => {
     return (
         <div className="text-center p-6">
@@ -25,10 +25,15 @@ const UserMenu = () => {
             >
                 <BiSolidBasket/>Your Pre-Order Products
             </NavLink>
+            <NavLink
+                to="/dashboard/user/update-password"
+                className="nav-link"
+            >
+                <BiShieldAlt2/>Change Your Passsword
+            </NavLink>
             </div>
         </div>
         </div>
     );
 };
-
 export default UserMenu;
