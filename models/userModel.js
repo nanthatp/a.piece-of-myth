@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema({
     },
     address: {
         type:String,
-        default: null,
+        default: "Please Input Your Address",
     },
     postalcode: {
         type:String,
