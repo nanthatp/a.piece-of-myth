@@ -5,92 +5,37 @@ import { toast } from 'react-hot-toast';
 import axios from 'axios';
 import { Select } from 'antd';
 import { useNavigate } from "react-router-dom";
+import {BsCloudUploadFill} from "react-icons/bs";
 import "../../styles/CreateProduct.css"
 const { Option } = Select;
 
+
 const CreateProduct = () => {
     const navigate = useNavigate();
-    const [categories, setCategories] = useState([]);
-    const [members, setMembers] = useState([]);
-    const [artists, setArtists] = useState([]);
     const [name, setName] = useState("");
-    const [description, setDescription] = useState("");
-    const [price, setPrice] = useState("");
-    const [category, setCategory] = useState("");
-    const [quantity, setQuantity] = useState("");
     const [photo, setPhoto] = useState("");
-    const [artist, setArtist] = useState("");
     const [member, setMember] = useState("");
-    const [shipping, setShipping] = useState("");
-
-    //get all categories
-    const getAllCategory = async () => {
-        try {
-            const { data } = await axios.get("/api/v1/category/get-category");
-            if (data?.success) {
-            setCategories(data?.category);
-            }
-        } catch (error) {
-            console.log(error);
-            toast.error("Something went wrong in getting catgeory");
-        }
-    }; 
-
-    //get all artist
-    const getAllArtist = async () => {
-        try {
-            const { data } = await axios.get("/api/v1/artist/get-artist");
-            if (data?.success) {
-            setArtists(data?.artist);
-            }
-        } catch (error) {
-            console.log(error);
-            toast.error("Something went wrong in getting artist");
-        }
-    }; 
-
-    //get all member
-    const getAllMember = async () => {
-        try {
-            const { data } = await axios.get("/api/v1/member/get-member");
-            if (data?.success) {
-            setMembers(data?.member);
-            }
-        } catch (error) {
-            console.log(error);
-            toast.error("Something went wrong in getting member");
-        }
-    }; 
 
 
-    useEffect(() => {
-        getAllCategory();
-        getAllArtist();
-        getAllMember();
-    }, []);
 
-    //create product function
+
+    //create artist function
     const handleCreate = async (e) => {
         e.preventDefault();
         try {
-            const productData = new FormData();
-            productData.append("name", name);
-            productData.append("description", description);
-            productData.append("price", price);
-            productData.append("category", category);
-            productData.append("quantity", quantity);
-            productData.append("photo", photo);
-            productData.append("artist", artist);
-            productData.append("member", member);
+            const artistData = new FormData();
+            artistData.append("name", name);
+            artistData.append("photo", photo);
+            artistData.append("member", member);
             const { data } = axios.post(
-                "/api/v1/product/create-product",
-                productData
+                "/api/v1/artist/create-artist",
+                artistData
             );
             if (data?.success) {
                 toast.error(data?.message);
             } else {
-                toast.success("Product Created Successfully");
-                navigate("/dashboard/admin/products");
+                toast.success("Artist Created Successfully");
+                navigate("/dashboard/admin/artists");
             }
         } catch (error) {
         console.log(error);
@@ -117,6 +62,7 @@ const CreateProduct = () => {
                     <div class="col-4 add-photo">
                         <div className="mb-3">
                             <label className="btn-upload-photo col-md-12">
+                                <p><BsCloudUploadFill/></p>
                                 {photo ? photo.name : "Upload Loco"}
                                 <input
                                     type="file"
@@ -154,11 +100,16 @@ const CreateProduct = () => {
                         <div className="mb-3">
                             <textarea
                                 type="text"
-                                value={description}
-                                placeholder="write a description"
+                                value={member}
+                                placeholder="write a name member"
                                 className="form-control"
-                                onChange={(e) => setDescription(e.target.value)}
+                                onChange={(e) => setMember(e.target.value)}
                             />
+                            <button type="submit" className="btn-submit"
+                                onChange={(e) => setMember(e.target.value)}
+                            >
+                                Add 
+                            </button>
                         </div>
                     </div>
                     </div>

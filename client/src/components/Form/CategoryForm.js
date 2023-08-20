@@ -25,9 +25,6 @@ const CategoryForm = ({ handleSubmit, value, setValue }) => {
                     </div>
                 </div>
             </div>
-
-            
-            
         </form>
         </>
     );

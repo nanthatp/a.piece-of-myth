@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { Button, Checkbox, Radio } from "antd";
-import {NavLink, Link} from 'react-router-dom'
-import { Prices } from "../components/Prices";
+import {Link} from 'react-router-dom'
 import { useCart } from "../context/cart";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Layout from "./../components/Layout/Layout";
-import Categories from "../pages/Categories";
 import {BsFillBagHeartFill } from "react-icons/bs";
-import {BsFillHddStackFill } from "react-icons/bs";
 import "../styles/Homepage.css";
 
 const HomePage = () => {
@@ -20,6 +16,8 @@ const HomePage = () => {
   const [preproducts, setPreproducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState([]);
+  const [artists, setArtists] = useState([]);
+  const [artist, setArtist] = useState([]);
   const [checked, setChecked] = useState([]);
   const [radio, setRadio] = useState([]);
   const [total, setTotal] = useState(0);
@@ -198,9 +196,33 @@ useEffect(() => {
 
       <div class="container">
         <div class="row">
-          <div class="column-66 Celeb">
-            <h1>Celeb for You</h1>
-            
+        <div class="column-33">
+            <section className="category-list">
+              <div className="home-heading">
+                <h1>Caleb for You</h1>
+                <span>All</span>
+              </div>
+              <div className="category-container">
+                <div className="container" >
+                  <div className="row container">
+                  {artists?.map((p) => (
+                        <div className="card m-2 product-box"  key={p._id}>
+                          <img
+                            src={`/api/v1/artist/artist-photo/${p._id}`}
+                            className=" card-img-top "
+                            alt={p.name}
+                          />
+                          <div className="card-body">
+                            <div className="card-name-price">
+                              <strong className=" name-product">{p.name}</strong>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                  </div>
+                </div>
+              </div>
+            </section>
           </div>
         </div>
       </div>
@@ -234,15 +256,13 @@ useEffect(() => {
       </div>
       <div class="container">
         <div class="row">
-          <div class="column-66">
+          <div class="column-33">
             <div className="product-heading">
               <h1>Pre Order</h1>
             </div>
-          </div>
-          <div class="column-33">
             <section className="product-list">
               <div id="carouselExampleInterval" className="carousel slide" data-bs-ride="carousel">
-                <div className="carousel-inner product-inner">
+                <div className="carousel-inner ">
                   <div className="product-container ">
                     <div className="d-flex wrap " >
                       {preproducts?.map((p) => (
@@ -308,60 +328,58 @@ useEffect(() => {
 
       <div class="container">
         <div class="row">
-          <div class="column-66">
+          <div class="column-33">
             <div className="product-heading">
               <h1>All Product</h1>
             </div>
-          </div>
-          <div class="column-33">
             <section className="product-list">
               <div id="carouselExampleInterval" className="carousel slide" data-bs-ride="carousel">
-                <div className="carousel-inner product-inner">
+                <div className="carousel-inner">
                   <div className="product-container ">
-                    <div className=" d-flex wrap " >
+                    <div className=" carousel-item active d-flex wrap" >
                       {products?.map((p) => (
-                        <div className="carousel-item active card m-2 product-box"  key={p._id}>
-                            <img
-                              src={`/api/v1/product/product-photo/${p._id}`}
-                              className=" card-img-top"
-                              alt={p.name}
-                            />
-                            <div className="card-body">
-                              <div className="card-name-price">
-                                <h5 className=" name-product">{p.name}</h5>
-                                <p className="card-text product-quantity">
-                                  {p.quantity}
-                                </p>
-                                <h5 className="card-title product-price">
-                                  {p.price.toLocaleString("US", {
-                                    style: "currency",
-                                    currency: "USD",
-                                  })}
-                                </h5>
-                              </div>
-                              <div className="card-name-price">
+                        <div className="card m-2 product-box"  key={p._id}>
+                          <img
+                            src={`/api/v1/product/product-photo/${p._id}`}
+                            className=" card-img-top "
+                            alt={p.name}
+                          />
+                          <div className="card-body">
+                            <div className="card-name-price">
+                              <strong className=" name-product">{p.name}</strong>
+                              <p className="card-text product-quantity">
+                                {p.quantity}
+                              </p>
+                              <h6 className="card-title product-price">
+                                {p.price.toLocaleString("US", {
+                                  style: "currency",
+                                  currency: "USD",
+                                })}
+                              </h6>
+                            </div>
+                            <div className="card-name-price">
+                              <button
+                                  className="btn-add"
+                                  onClick={() => {
+                                    setCart([...cart, p]);
+                                    localStorage.setItem(
+                                      "cart",
+                                      JSON.stringify([...cart, p])
+                                    );
+                                    toast.success("Item Added to cart");
+                                  }}
+                                >
+                                <BsFillBagHeartFill/> Add to Cart
+                                </button>
                                 <button
-                                    className="btn-add"
-                                    onClick={() => {
-                                      setCart([...cart, p]);
-                                      localStorage.setItem(
-                                        "cart",
-                                        JSON.stringify([...cart, p])
-                                      );
-                                      toast.success("Item Added to cart");
-                                    }}
-                                  >
-                                  <BsFillBagHeartFill/> Add to Cart
-                                  </button>
-                                  <button
-                                    className="btn-details"
-                                    onClick={() => navigate(`/product/${p.slug}`)}
-                                  >
-                                    More Details
-                                  </button>
-                              </div>
+                                  className="btn-details"
+                                  onClick={() => navigate(`/product/${p.slug}`)}
+                                >
+                                  More Details
+                                </button>
                             </div>
                           </div>
+                        </div>
                       ))}
                     </div>
                   </div>

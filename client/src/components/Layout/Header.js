@@ -4,12 +4,14 @@ import { useAuth } from '../../context/auth'
 import toast from "react-hot-toast";
 import SearchInput from "../Form/SearchInput";
 import useCategory from "../../hooks/useCategory";
+import useArtist from '../../hooks/useArtist';
 import { Badge } from "antd";
 import { useCart } from "../../context/cart";
 
 
 const Header = () => {
   const categories = useCategory();
+  const artists = useArtist();
   const [auth, setAuth] = useAuth();
   const [cart] = useCart();
   const handleLogout = () => {
@@ -62,6 +64,32 @@ const Header = () => {
                       <Link
                         className="dropdown-item"
                         to={`/category/${c.slug}`}
+                      >
+                        {c.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+              <li className="nav-item dropdown">
+                <Link
+                  className="nav-link dropdown-toggle"
+                  to={"/artists"}
+                  data-bs-toggle="dropdown"
+                >
+                  Artists
+                </Link>
+                <ul className="dropdown-menu">
+                  <li>
+                    <Link className="dropdown-item" to={"/artists"}>
+                      All Artists
+                    </Link>
+                  </li>
+                  {artists?.map((c) => (
+                    <li>
+                      <Link
+                        className="dropdown-item"
+                        to={`/artist/${c.slug}`}
                       >
                         {c.name}
                       </Link>

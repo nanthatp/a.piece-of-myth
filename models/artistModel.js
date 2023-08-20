@@ -15,7 +15,7 @@ const artistSchema = new mongoose.Schema({
         contentType: String,
     },   
     member: {
-        type:Array,
+        type:[String],
         require:true,
     }
 

@@ -6,14 +6,14 @@ import toast from 'react-hot-toast';
 import { Link } from "react-router-dom";
 
 
-const Products = () => {
-    const [products, setProducts] = useState([]);
+const Artist = () => {
+    const [artists, setArtist] = useState([]);
 
-    //getall products
-    const getAllProducts = async () => {
+    //get all artists
+    const getAllArtist = async () => {
         try {
-        const { data } = await axios.get("/api/v1/product/get-product");
-        setProducts(data.products);
+        const { data } = await axios.get("/api/v1/artist/get-artist");
+        setArtist(data.artists);
         } catch (error) {
         console.log(error);
         toast.error("Something Went Wrong");
@@ -21,7 +21,7 @@ const Products = () => {
     };
 
     useEffect(() => {
-        getAllProducts();
+        getAllArtist();
     }, []);
 
     return (
@@ -31,17 +31,17 @@ const Products = () => {
                     <AdminMenu />
                 </div>
                     <div className="col-md-9 ">
-                        <h1 className="text-center">All Products List</h1>
+                        <h1 className="text-center">All Artist</h1>
                         <div className="d-flex flex-wrap">
-                            {products?.map((p) => (
+                            {artists?.map((p) => (
                                 <Link
                                     key={p._id}
-                                    to={`/dashboard/admin/product/${p.slug}`}
-                                    className="product-link"
+                                    to={`/dashboard/admin/artist/${p.slug}`}
+                                    className="artist-link"
                                 >
                                     <div className="card m-2" style={{ width: "18rem" }}>
                                         <img
-                                            src={`/api/v1/product/product-photo/${p._id}`}
+                                            src={`/api/v1/artist/artist-photo/${p._id}`}
                                             className="card-img-top"
                                             alt={p.name}
                                         />
@@ -60,4 +60,4 @@ const Products = () => {
 };
     
 
-export default Products
+export default Artist

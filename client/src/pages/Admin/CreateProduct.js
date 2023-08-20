@@ -32,7 +32,7 @@ const CreateProduct = () => {
             }
         } catch (error) {
             console.log(error);
-            toast.error("Something went wrong in getting catgeory");
+            toast.error("Something went wrong in getting category");
         }
     }; 
 
@@ -226,13 +226,13 @@ const CreateProduct = () => {
                                 setMember(value);
                             }}
                         >
-                            {members?.map((c) => (
+                            {artist.member?.map((c) => (
                                 <Option key={c._id} value={c._id}>
                                     {c.name}
                                 </Option>
                             ))}
                         </Select>
-                        <div className="mb-3">
+                        {/* <div className="mb-3">
                             <Select
                                 bordered={false}
                                 placeholder="Select Shipping "
@@ -246,7 +246,7 @@ const CreateProduct = () => {
                                 <Option value="0">No</Option>
                                 <Option value="1">Yes</Option>
                             </Select>
-                        </div>
+                        </div> */}
                         </div>
 
                         

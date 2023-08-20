@@ -533,3 +533,179 @@
         //             </div>
         //         </div>
         //     </div>
+
+//=========================================== product =========
+{/* <section className="product-list">
+<div id="carouselExampleInterval" className="carousel slide" data-bs-ride="carousel">
+  <div className="carousel-inner product-inner">
+    <div className="product-container ">
+      <div className=" d-flex wrap " >
+        {products?.map((p) => (
+          <div className="carousel-item active card m-2 product-box"  key={p._id}>
+              <img
+                src={`/api/v1/product/product-photo/${p._id}`}
+                className=" card-img-top"
+                alt={p.name}
+              />
+              <div className="card-body">
+                <div className="card-name-price">
+                  <h5 className=" name-product">{p.name}</h5>
+                  <p className="card-text product-quantity">
+                    {p.quantity}
+                  </p>
+                  <h5 className="card-title product-price">
+                    {p.price.toLocaleString("US", {
+                      style: "currency",
+                      currency: "USD",
+                    })}
+                  </h5>
+                </div>
+                <div className="card-name-price">
+                  <button
+                      className="btn-add"
+                      onClick={() => {
+                        setCart([...cart, p]);
+                        localStorage.setItem(
+                          "cart",
+                          JSON.stringify([...cart, p])
+                        );
+                        toast.success("Item Added to cart");
+                      }}
+                    >
+                    <BsFillBagHeartFill/> Add to Cart
+                    </button>
+                    <button
+                      className="btn-details"
+                      onClick={() => navigate(`/product/${p.slug}`)}
+                    >
+                      More Details
+                    </button>
+                </div>
+              </div>
+            </div>
+        ))}
+      </div>
+    </div>
+  </div>
+  <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+    <span className="carousel-control-prev-icon" aria-hidden="true" />
+    <span className="visually-hidden">Previous</span>
+  </button>
+  <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+    <span className="carousel-control-next-icon" aria-hidden="true" />
+    <span className="visually-hidden">Next</span>
+  </button>
+</div>
+</section>
+
+
+.product-list{
+    margin: 80px;
+}
+
+
+
+.product-container{
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr;
+    grid-gap: 30px;
+    margin: 40px 0px;
+
+}
+
+.product-box{
+    width:300px;
+    border: 1px solid #EEEDED;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    
+}
+
+.product-heading h1{
+    font-size: 2rem;
+    font-weight: 700;
+    color: #001F3F;
+    letter-spacing: 0.5px;
+}
+
+.product-inner{
+    max-width: 1250px;
+    height: 550px;
+    border-radius: 30px;
+    background-color: #ecf7ee;
+    margin: 10px aut
+}
+
+.product-box img{
+    width: 90%;
+    height: 180px;
+    object-fit: contain;
+    object-position: center;
+    margin: auto;
+}
+
+.product-box .name-product{
+    color: #001F3F;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.product-box .product-quantity{
+    color: #949494;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.product-box .product-price{
+    color: #001F3F;
+    margin-top: 10px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    
+}
+.product-box .btn-add{
+    width: 100%;
+    height: 40px;
+    background-color: #ecf7ee;
+    color: #0DA574;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+}
+
+.product-box .btn-add:hover{
+    background-color: #0DA574;
+    color: #fff;
+    transition: all ease 0.3s;
+}
+
+.product-box .btn-details{
+    width: 100%;
+    height: 40px;
+    background-color: beige;
+    color: #FFD717;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+}
+
+.product-box .btn-details:hover{
+    background-color: #FFD717;
+    color: #fff;
+    transition: all ease 0.3s;
+} */}

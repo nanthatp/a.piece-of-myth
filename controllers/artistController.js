@@ -1,30 +1,118 @@
 import artistModel from "../models/artistModel.js";
 import slugify from "slugify";
+import fs from "fs";
 
-export  const createArtistController = async(req, res) => {
+export const createArtistController = async (req,res)  => {
     try {
-        const {name} = req.body
-        if(!name) {
-            return res.status(401).send({message:'Artist is required'});
+        const {name, slug, member, } = req.fields;
+        const {photo} = req.files;
+        
+        //alidation
+        switch(true){
+            case !name:
+                return res.status(500).send({error:'Name is required'})
+            case !member:
+                return res.status(500).send({error:'Member is required'})
+            case photo && photo.size > 150000000000:
+                return res.status(500).send({error:'Photo is required and less than 1.5mb'})
         }
-        const existingArtist = await artistModel.findOne({name})
-        if(existingArtist) {
-            return res.status(200).send({
-                success:true,
-                message:'Artist Already Exists'});
+        const artists = new artistModel({ ...req.fields, slug: slugify(name) });
+        if (photo) {
+            artists.photo.data = fs.readFileSync(photo.path);
+            artists.photo.contentType = photo.type;
         }
-        const artist = await new artistModel({name, slug:slugify(name)}).save()
+        await artists.save();
         res.status(201).send({
             success:true,
-            message:'New Artist Created',
-            artist,
+            message:'Artist created successfully',
+            artists,
         });
+
     } catch (error) {
         console.log(error)
         res.status(500).send({
             success:false,
             error,
-            message:'Error in Artist'
+            message:'Error in  creating artist'
+        });
+    }
+};
+
+//get all artist
+export const getArtistController = async(req, res) => {
+    try {
+        const artists = await artistModel.find({}).select("-photo").limit(12).sort({createdAt:-1})
+        res.status(200).send({
+            success:true,
+            count_total : artists.length,
+            message:'AllArtist',
+            artists,
+        });
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({
+            success:false,
+            message:'Error in getting artist',
+            error: error.message
+        });
+    }
+};
+
+//get single artist
+export const getSingleArtistController = async (req, res) => {
+    try {
+        const artist = await artistModel
+            .findOne({ slug: req.params.slug })
+            .select("-photo")
+            // .populate("category");
+        res.status(200).send({
+            success: true,
+            message: "Single artist Fetched",
+            artist,
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            message: "Eror while getitng single artist",
+            error,
+        });
+    }
+};
+
+// get photo
+export const artistPhotoController = async (req, res) => {
+    try {
+        const artist = await artistModel.findById(req.params.pid).select("photo");
+        if (artist.photo.data) {
+            res.set("Content-type", artist.photo.contentType);
+            return res.status(200).send(artist.photo.data);
+
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            message: "Erorr while getting photo",
+            error,
+        });
+    }
+};
+
+//delete artist 
+export const deleteArtistController = async (req, res) => {
+    try {
+        await artistModel.findByIdAndDelete(req.params.pid).select("-photo");
+        res.status(200).send({
+            success: true,
+            message: "Artist Deleted successfully",
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            message: "Error while deleting Artist",
+            error,
         });
     }
 };
@@ -32,80 +120,40 @@ export  const createArtistController = async(req, res) => {
 //update artist
 export const updateArtistController = async (req, res) => {
     try {
-        const { name } = req.body;
-        const { id } = req.params;
-        const artist = await artistModel.findByIdAndUpdate(
-            id,
-            { name, slug: slugify(name) },
+        const {name, slug, member} = req.fields;
+        const {photo} = req.files;
+        
+        //alidation
+        switch(true){
+            case !name:
+                return res.status(500).send({error:'Name is required'})
+            case !member:
+                return res.status(500).send({error:'Member is required'})
+            case photo && photo.size > 150000000000:
+                return res.status(500).send({error:'Photo is required and less than 1.5 mb'})
+        }
+        const artists = await artistModel.findByIdAndUpdate(
+            req.params.pid,
+            { ...req.fields, slug: slugify(name) },
             { new: true }
         );
-        res.status(200).send({
-            success: true,
-            message: "Artist Updated Successfully",
-            artist,
-        });
-    } catch (error) {
-        console.log(error);
-        res.status(500).send({
-            success: false,
-            error,
-            message: "Error while updating artist",
-        });
-    }
-};
-
-//get all artists
-export  const artistController = async(req,res) => {
-    try {
-        const artist = await artistModel.find({})
-        res.status(200).send({
+        if(photo){
+            artists.photo.data = fs.readFileSync(photo.path)
+            artists.photo.contentType = photo.type
+        }
+        await artists.save()
+        res.status(201).send({
             success:true,
-            message:'All Artists List',
-            artist,
-        })
+            message:'artist Updated Successfully',
+            artists,
+        });
+
     } catch (error) {
         console.log(error)
         res.status(500).send({
             success:false,
             error,
-            message:'Error while getting all artists'
-        })
-    }
-};
-
-//single artist
-export const singleArtistController = async (req, res) => {
-    try {
-        const artist = await artistModel.findOne({ slug: req.params.slug });
-        res.status(200).send({
-            success: true,
-            message: "Get SIngle Artist SUccessfully",
-            artist,
-    });
-    } catch (error) {
-        console.log(error);
-        res.status(500).send({
-            success: false,
-            error,
-            message: "Error While getting Single Artist",
-        });
-    }
-};
-//delete artist
-export const deleteArtistController = async (req, res) => {
-    try {
-        const { id } = req.params;
-        await artistModel.findByIdAndDelete(id);
-        res.status(200).send({
-            success: true,
-            message: "Artist Deleted Successfully",
-        });
-    } catch (error) {
-        console.log(error);
-        res.status(500).send({
-            success: false,
-            message: "error while deleting artist",
-            error,
+            message:'Error in Update artist'
         });
     }
 };

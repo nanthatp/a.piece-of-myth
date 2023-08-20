@@ -39,13 +39,17 @@ const Banners = () => {
                                     to={`/dashboard/admin/banner/${p.slug}`}
                                     className="banner-link"
                                 >
-                                    <div className="card m-2" style={{ width: "100cm" }}>
-                                        <file
-                                            src={`/api/v1/banner/banner-file/${p._id}`}
-                                            className="card-img-top"
-                                            alt={p.name}
-                                        />
-                                    </div>
+                                
+                                    <img
+                                        autoPlay loop muted playsInline 
+                                        className="back-video" 
+                                        src={`/api/v1/banner/banner-file/${p._id}`}
+                                        alt={p.name}
+                                    >           
+                                    </img>
+
+
+                                    
                             </Link>
                         ))}
                     </div>
