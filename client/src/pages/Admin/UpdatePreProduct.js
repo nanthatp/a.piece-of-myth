@@ -65,7 +65,7 @@ const UpdatePreProduct = () => {
         try {
             const { data } = await axios.get("/api/v1/artist/get-artist");
             if (data?.success) {
-            setArtists(data?.artist);
+            setArtists(data?.artists);
             }
         } catch (error) {
             console.log(error);
@@ -153,7 +153,7 @@ const UpdatePreProduct = () => {
             </div>
                 <div className="container text-center  create-product">
                     <div className="row justify-content-evenly">
-                    <div class="col-4 add-photo">
+                    <div className="col-4 add-photo">
                         <div className="mb-3">
                             <label className="btn-upload-photo col-md-12">
                                 {photo ? photo.name : "Upload Photo"}
@@ -189,7 +189,7 @@ const UpdatePreProduct = () => {
                             )}
                         </div>
                         </div>
-                    <div class="col-4">
+                    <div className="col-4">
                         <div className="mb-3">
                                 <textarea
                                     type="text"
@@ -247,7 +247,7 @@ const UpdatePreProduct = () => {
                         </Select>
                         </div>
 
-                        <div class="col-4">
+                        <div className="col-4">
                         <div className="mb-3">
                             <textarea
                                 type="text"

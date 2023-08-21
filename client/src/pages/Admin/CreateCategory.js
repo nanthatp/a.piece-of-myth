@@ -110,7 +110,7 @@ const CreateCategory = () => {
                         />
                     </div> 
                     <div>
-                        <table class="table">
+                        <table className="table">
                         <tr>
                             <th>Name</th>
                             <th></th>

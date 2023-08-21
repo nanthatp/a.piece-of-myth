@@ -18,7 +18,7 @@ const CategoryForm = ({ handleSubmit, value, setValue }) => {
                             onChange={(e) => setValue(e.target.value)}
                         />
                     </div>
-                    <div class="col-4">
+                    <div className="col-4">
                         <button type="submit" className="btn-submit">
                             Add 
                         </button>

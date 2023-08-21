@@ -59,7 +59,7 @@ const CreateProduct = () => {
             </div>
                 <div className="container text-center  create-product">
                     <div className="row justify-content-evenly">
-                    <div class="col-4 add-photo">
+                    <div className="col-4 add-photo">
                         <div className="mb-3">
                             <label className="btn-upload-photo col-md-12">
                                 <p><BsCloudUploadFill/></p>
@@ -86,7 +86,7 @@ const CreateProduct = () => {
                             )}
                         </div>
                         </div>
-                    <div class="col-4">
+                    <div className="col-4">
                         <div className="mb-3">
                                 <textarea
                                     type="text"

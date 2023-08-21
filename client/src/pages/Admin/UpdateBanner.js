@@ -27,7 +27,7 @@ const CreateBanner = () => {
         );
         setName(data.banner.name);
         setId(data.banner._id);
-        setArtist(data.banner.artist._id);
+        setArtist(data.banner.artists._id);
         
     }catch (error) {
         console.log(error);
@@ -44,7 +44,7 @@ const CreateBanner = () => {
         try {
             const { data } = await axios.get("/api/v1/artist/get-artist");
             if (data?.success) {
-            setArtists(data?.artist);
+            setArtists(data?.artists);
             }
         } catch (error) {
             console.log(error);
@@ -114,7 +114,7 @@ const CreateBanner = () => {
             </div>
                 <div className="container text-center  create-banner">
                     <div className="row justify-content-evenly">
-                    <div class="col-6 add-file">
+                    <div className="col-6 add-file">
                         <div className="mb-3">
                                 <textarea
                                     type="text"

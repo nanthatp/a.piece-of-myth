@@ -22,7 +22,7 @@ const CreateBanner = () => {
         try {
             const { data } = await axios.get("/api/v1/artist/get-artist");
             if (data?.success) {
-            setArtists(data?.artist);
+            setArtists(data?.artists);
             }
         } catch (error) {
             console.log(error);
@@ -76,7 +76,7 @@ const CreateBanner = () => {
             </div>
                 <div className="container text-center  create-banner">
                     <div className="row justify-content-evenly">
-                    <div class="col-6 add-file">
+                    <div className="col-6 add-file">
                         <div className="mb-3">
                                 <textarea
                                     type="text"

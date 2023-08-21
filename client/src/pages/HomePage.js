@@ -194,9 +194,9 @@ useEffect(() => {
         </div>
       </section>
 
-      <div class="container">
-        <div class="row">
-        <div class="column-33">
+      <div className="container">
+        <div className="row">
+        <div className="column-33">
             <section className="category-list">
               <div className="home-heading">
                 <h1>Caleb for You</h1>
@@ -227,9 +227,9 @@ useEffect(() => {
         </div>
       </div>
 
-      <div class="container">
-        <div class="row">
-          <div class="column-33">
+      <div className="container">
+        <div className="row">
+          <div className="column-33">
             <section className="category-list">
               <div className="home-heading">
                 <h1>Category</h1>
@@ -254,9 +254,9 @@ useEffect(() => {
           </div>
         </div>
       </div>
-      <div class="container">
-        <div class="row">
-          <div class="column-33">
+      <div className="container">
+        <div className="row">
+          <div className="column-33">
             <div className="product-heading">
               <h1>Pre Order</h1>
             </div>
@@ -326,9 +326,9 @@ useEffect(() => {
         </div>
       </div>
 
-      <div class="container">
-        <div class="row">
-          <div class="column-33">
+      <div className="container">
+        <div className="row">
+          <div className="column-33">
             <div className="product-heading">
               <h1>All Product</h1>
             </div>
