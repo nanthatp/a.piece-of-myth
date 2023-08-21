@@ -18,83 +18,70 @@ import{BsFillLayersFill} from 'react-icons/bs';
 const AdminMenu = () => {
 
     return (
-        
-        <>
-            <div className="text-center p-6">
-                <div className="nav nav-pills flex-column">
-                    <div className="item">
-                        <NavLink
-                            to="/dashboard/admin/create-category"
-                            className="nav-link Menu"
-                        >
-                            <BiSolidCategoryAlt/> Create Category
-                        </NavLink>
-                        <NavLink
-                            to="/dashboard/admin/create-product"
-                            className="nav-link Menu"
-                        >
-                            <BsFillCartPlusFill/> Create Product
-                        </NavLink>
-                        <NavLink
-                            to="/dashboard/admin/create-artist"
-                            className="nav-link Menu"
-                        >
-                            <BsFillPostcardHeartFill/> Create Artist
-                        </NavLink>
-                        <NavLink
-                            to="/dashboard/admin/create-preproduct"
-                            className="nav-link Menu"
-                        >
-                            <BsFillLayersFill/> Create Pre-Order 
-                        </NavLink>
-                        <NavLink
-                            to="/dashboard/admin/create-banner"
-                            className="nav-link Menu"
-                        >
-                            <BsFillLaptopFill/> Create Banner
-                        </NavLink>
-                        <NavLink
-                            to="/dashboard/admin/products"
-                            className="nav-link Menu"
-                        >
-                            <BsBox2HeartFill /> All Products List
-                        </NavLink>
-                        <NavLink
-                            to="/dashboard/admin/orders"
-                            className="nav-link Menu"
-                        >
-                            <BsFillHddStackFill/> All Orders List
-                        </NavLink> 
-                        <NavLink
-                            to="/dashboard/admin/banners"
-                            className="nav-link Menu"
-                        >
-                            <BsFillCollectionFill/> All Banners List
-                        </NavLink> 
-                        <NavLink
-                            to="/dashboard/admin/artists"
-                            className="nav-link Menu"
-                        >
-                            <BsFillBalloonHeartFill/> Artist List
-                        </NavLink> 
-                        <NavLink
-                            to="/dashboard/admin/preproduct"
-                            className="nav-link Menu"
-                        >
-                            <BsFillBalloonHeartFill/> Pre-Product List
-                        </NavLink> 
-                    </div>
-                    
-                </div>
-                
+        <div className="nav nav-pills flex-column">
+            <div className="fixed top-0 left-0 w-40 h-screen item">
+                <NavLink
+                    to="/dashboard/admin/create-category"
+                    className="nav-link Menu"
+                >
+                    <BiSolidCategoryAlt/> Create Category
+                </NavLink>
+                <NavLink
+                    to="/dashboard/admin/create-product"
+                    className="nav-link Menu"
+                >
+                    <BsFillCartPlusFill/> Create Product
+                </NavLink>
+                <NavLink
+                    to="/dashboard/admin/create-artist"
+                    className="nav-link Menu"
+                >
+                    <BsFillPostcardHeartFill/> Create Artist
+                </NavLink>
+                <NavLink
+                    to="/dashboard/admin/create-preproduct"
+                    className="nav-link Menu"
+                >
+                    <BsFillLayersFill/> Create Pre-Order 
+                </NavLink>
+                <NavLink
+                    to="/dashboard/admin/create-banner"
+                    className="nav-link Menu"
+                >
+                    <BsFillLaptopFill/> Create Banner
+                </NavLink>
+                <NavLink
+                    to="/dashboard/admin/products"
+                    className="nav-link Menu"
+                >
+                    <BsBox2HeartFill /> All Products List
+                </NavLink>
+                <NavLink
+                    to="/dashboard/admin/orders"
+                    className="nav-link Menu"
+                >
+                    <BsFillHddStackFill/> All Orders List
+                </NavLink> 
+                <NavLink
+                    to="/dashboard/admin/banners"
+                    className="nav-link Menu"
+                >
+                    <BsFillCollectionFill/> All Banners List
+                </NavLink> 
+                <NavLink
+                    to="/dashboard/admin/artists"
+                    className="nav-link Menu"
+                >
+                    <BsFillBalloonHeartFill/> Artist List
+                </NavLink> 
+                <NavLink
+                    to="/dashboard/admin/preproduct"
+                    className="nav-link Menu"
+                >
+                    <BsFillBalloonHeartFill/> Pre-Product List
+                </NavLink> 
             </div>
-
-            
-
-            
-
-        
-        </>
+        </div>
     );
 };
 

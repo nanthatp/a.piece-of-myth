@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import Layout from "./../components/Layout/Layout";
 import {BsFillBagHeartFill } from "react-icons/bs";
 import "../styles/Homepage.css";
+// import BannerForm from "../components/Form/BannerForm";
 
 const HomePage = () => {
   const params = useParams();
@@ -22,8 +23,40 @@ const HomePage = () => {
   const [radio, setRadio] = useState([]);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
+  const [banner, setBanner] = useState([]);
+  const [banners, setBanners] = useState([]);
   const [loading, setLoading] = useState(false);
 
+
+   //-------get all banner-------//
+const getAllBanner = async () => {
+    try {
+    const { data } = await axios.get("/api/v1/banner/get-banner");
+    if (data?.success) {
+        setBanners(data?.banners);
+    }
+    } catch (error) {
+    console.log(error);
+    }
+};
+
+//-------get single banner-------//
+const getSingleBanner = async () => {
+    try{
+    const { data } = await axios.get(
+        `/api/v1/banner/get-banner/${params.slug}`
+    );
+    setBanner(data?.banner);
+
+    } catch(error) {
+    console.log(error);
+    }
+};
+
+useEffect(() => {
+    getAllBanner();
+    getSingleBanner();
+}, []);
    //-------get all cat-------//
   const getAllCategory = async () => {
     try {
@@ -154,45 +187,33 @@ useEffect(() => {
       <section className="banner">
         <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel">
           <div className="carousel-inner">
+          {banners?.map((b) => (
             <div className="carousel-item active">
-              <video 
-              autoPlay loop muted playsInline 
-              className="back-video" 
-              src="/images/127.mp4"
-              >           
-              </video>
-              <div className="content">
-                <h1>NCT 127</h1>
-                <a href="#">Pre-Order Now</a>
-              </div>  
-            </div>
-            <div className="carousel-item">
-              <video 
-              autoPlay loop muted playsInline 
-              className="back-video" 
-              src="/images/dream.mp4"
-              >           
-              </video>
-              <div className="content">
-                <h1>NCT DREAM</h1>
-                <a href="#">Pre-Order Now</a>
-              </div>    
-            </div>
-            <div className="carousel-item">
-              <video 
-              autoPlay loop muted playsInline 
-              className="back-video" 
-              src="/images/red.mp4"
-              >           
-              </video>
-              <div className="content">
-                <h1>RED VELVET</h1>
-                <a href="#">Pre-Order Now</a>
-              </div>    
-            </div>
+              
+                  <video
+                  autoPlay loop muted playsInline 
+                  className="back-video" 
+                  src={`/api/v1/banner/banner-photo/${b._id}`}          
+                  />
+
+                  <div className="content">
+                  <h1>{b.name}</h1>
+                  <Link
+                        // to={`/cat-products/${cat.name}`}
+                        className="a"
+                    >
+                        Pre-Order Now
+                    </Link>
+                  </div>  
+                  </div>
+              ))}
+              
+            
           </div>
         </div>
       </section>
+
+    
 
       <div className="container">
         <div className="row">
@@ -333,14 +354,17 @@ useEffect(() => {
               <h1>All Product</h1>
             </div>
             <section className="product-list">
-              <div id="carouselExampleInterval" className="carousel slide" data-bs-ride="carousel">
-                <div className="carousel-inner">
+            <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel">
+              <div className="carousel-inner">
+              
                   <div className="product-container ">
-                    <div className=" carousel-item active d-flex wrap" >
+                  
+                    <div className=" d-flex wrap " >
                       {products?.map((p) => (
-                        <div className="card m-2 product-box"  key={p._id}>
+                        
+                        <div className="card m-2 product-box carousel-item active"  key={p._id}>
                           <img
-                            src={`/api/v1/product/product-photo/${p._id}`}
+                            src={`/api/v1/product/product-photo/${p._id}`} 
                             className=" card-img-top "
                             alt={p.name}
                           />
@@ -380,9 +404,11 @@ useEffect(() => {
                             </div>
                           </div>
                         </div>
+                        
                       ))}
+                      </div>
                     </div>
-                  </div>
+                  
                 </div>
                 <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
                   <span className="carousel-control-prev-icon" aria-hidden="true" />
