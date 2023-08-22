@@ -1,85 +1,87 @@
-import React, { useState, useEffect} from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/react";
+import { Virtual } from "swiper";
 import { Link } from "react-router-dom";
-import axios from "axios";
-import Spinner from "../Spinner";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { useAllCategoriesQuery } from "../../store/services/categoryService";
+import Skeleton from "../skeleton/Skeleton";
+import Thumbnail from "../skeleton/Thumbnail";
 
-const BannerForm = () => {
-    const params = useParams();
-    const navigate = useNavigate();
-    const [banner, setBanner] = useState([]);
-    const [banners, setBanners] = useState([]);
-    console.log(banner, setBanner);
 
-     //-------get all banner-------//
-    const getAllBanner = async () => {
-        try {
-        const { data } = await axios.get("/api/v1/banner/get-banner");
-        if (data?.success) {
-            setBanners(data?.banners);
-        }
-        } catch (error) {
-        console.log(error);
-        }
-    };
-
-    //-------get single banner-------//
-    const getSingleBanner = async () => {
-        try{
-        const { data } = await axios.get(
-            `/api/v1/banner/get-banner/${params.slug}`
-        );
-        setBanner(data?.banner);
-
-        } catch(error) {
-        console.log(error);
-        }
-    };
-
-    useEffect(() => {
-        getAllBanner();
-        getSingleBanner();
-    }, []);
-
-    return (
-        <Swiper
-        pagination={{
-            dynamicBullets: true,
-        }}
-        modules={[Pagination]}
-        className="mySwiper"
-        >
-        {banners?.map((b) => (
-            <SwiperSlide className="slide" key={banner._id}>
-                <div className={`slide-img`}>
-                <video 
-                    autoPlay loop muted playsInline 
-                    src={`/api/v1/banner/banner-photo/${b._id}`}
-                    className="back-video"
-                    alt=""
-                />
-                </div>
-                <div className="my-container h-[70vh] flex flex-col items-center justify-center">
-                    <h1 className="content">
-                        {b.name}
-                    </h1>
-                    <div className="mt-10">
-                    <Link
-                        // to={`/cat-products/${cat.name}`}
-                        className="a"
-                    >
-                        Pre-Order Now
-                    </Link>
-                    </div>
-                </div>
-                
-            </SwiperSlide>
+const Categories = () => {
+    const { data, isFetching } = useAllCategoriesQuery();
+    let i = 1;
+    return isFetching ? (
+        <div className="flex flex-wrap -mx-4 mb-10">
+        {[1, 2, 3, 4, 5, 6].map((item) => (
+            <div
+            className="w-6/12 sm:w-4/12 md:w-3/12 lg:w-[20%] xl:w-2/12 p-4"
+            key={item}
+            >
+            <Skeleton>
+                <Thumbnail height="150px" />
+            </Skeleton>
+            </div>
         ))}
-            
+        </div>
+    ) : (
+        data?.categories.length > 0 && (
+        <Swiper
+            modules={[Virtual]}
+            spaceBetween={20}
+            slidesPerView={3}
+            virtual
+            className="w-full h-[150px] mb-10"
+            breakpoints={{
+            0: {
+                slidesPerView: 2,
+            },
+            640: {
+                slidesPerView: 3,
+            },
+            768: {
+                slidesPerView: 4,
+            },
+            1080: {
+                slidesPerView: 5,
+            },
+            1280: {
+                slidesPerView: 6,
+            },
+            }}
+        >
+            {data.categories.map((category, index) => {
+            if (i >= 5) {
+                i = 1;
+            } else {
+                i++;
+            }
+            return (
+                <SwiperSlide
+                className="w-full overflow-hidden  rounded-lg relative"
+                key={index}
+                virtualIndex={index}
+                >
+                <div className="w-full h-[150px] rounded-lg overflow-hidden">
+                    <img
+                    src={`./images/slider/${i}.jpg`}
+                    className="w-full h-full object-cover"
+                    alt=""
+                    />
+                </div>
+                <div className="absolute inset-0 w-full h-full bg-black/50 flex items-center justify-center p-4">
+                    <Link
+                    to={`/cat-products/${category.name}`}
+                    className="text-white text-base font-medium capitalize"
+                    >
+                    {category.name}
+                    </Link>
+                </div>
+                </SwiperSlide>
+            );
+            })}
         </Swiper>
+        )
     );
+    return <div>Categories</div>;
 };
 
-export default BannerForm
+export default Categories;

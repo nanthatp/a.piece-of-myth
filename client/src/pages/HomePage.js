@@ -182,6 +182,21 @@ useEffect(() => {
     }
   };
 
+  //get all artists
+  const getAllArtist = async () => {
+    try {
+      const { data } = await axios.get("/api/v1/artist/get-artist");
+        setArtist(data.artists);
+      } catch (error) {
+        console.log(error);
+        toast.error("Something Went Wrong");
+      }
+  };
+
+  useEffect(() => {
+      getAllArtist();
+  }, []);
+
   return (
     <Layout title={"All Products - Best offers "}>
       <section className="banner">
@@ -199,11 +214,11 @@ useEffect(() => {
                   <div className="content">
                   <h1>{b.name}</h1>
                   <Link
-                        // to={`/cat-products/${cat.name}`}
-                        className="a"
-                    >
-                        Pre-Order Now
-                    </Link>
+                    // to={`/cat-products/${cat.name}`}
+                    className="a"
+                  >
+                    Pre-Order Now
+                  </Link>
                   </div>  
                   </div>
               ))}
@@ -212,9 +227,7 @@ useEffect(() => {
           </div>
         </div>
       </section>
-
-    
-
+      
       <div className="container">
         <div className="row">
         <div className="column-33">
@@ -223,26 +236,16 @@ useEffect(() => {
                 <h1>Caleb for You</h1>
                 <span>All</span>
               </div>
-              <div className="category-container">
-                <div className="container" >
-                  <div className="row container">
-                  {artists?.map((p) => (
-                        <div className="card m-2 product-box"  key={p._id}>
-                          <img
-                            src={`/api/v1/artist/artist-photo/${p._id}`}
-                            className=" card-img-top "
-                            alt={p.name}
-                          />
-                          <div className="card-body">
-                            <div className="card-name-price">
-                              <strong className=" name-product">{p.name}</strong>
-                            </div>
-                          </div>
+              {artist.map((c) => (
+                      <div className="col-md-2 mt-2 mb-4 gx-6 gy-6" key={c._id}>
+                        <div className="card-category">
+                          <Link to={`/artist/${c.slug}`} className="btn cat-btn">
+                          {c.name}
+                          </Link>
                         </div>
-                      ))}
-                  </div>
-                </div>
-              </div>
+                      </div>
+                    ))}
+          
             </section>
           </div>
         </div>
@@ -309,22 +312,9 @@ useEffect(() => {
                               <div className="card-name-price">
                                 <button
                                     className="btn-add"
-                                    // onClick={() => {
-                                    //   setCart([...cart, p]);
-                                    //   localStorage.setItem(
-                                    //     "cart",
-                                    //     JSON.stringify([...cart, p])
-                                    //   );
-                                    //   toast.success("Item Added to cart");
-                                    // }}
-                                  >
-                                  <BsFillBagHeartFill/> Pre-Order Now
-                                  </button>
-                                  <button
-                                    className="btn-details"
                                     onClick={() => navigate(`/preproduct/${p.slug}`)}
                                   >
-                                    More Details
+                                  <BsFillBagHeartFill/> Pre-Order Now
                                   </button>
                               </div>
                             </div>
@@ -356,13 +346,11 @@ useEffect(() => {
             <section className="product-list">
             <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel">
               <div className="carousel-inner">
-              
-                  <div className="product-container ">
-                  
+              <div className="product-container ">
                     <div className=" d-flex wrap " >
                       {products?.map((p) => (
-                        
-                        <div className="card m-2 product-box carousel-item active"  key={p._id}>
+                        <div className="carousel-item active">
+                        <div className="card m-2 product-box"  key={p._id}>
                           <img
                             src={`/api/v1/product/product-photo/${p._id}`} 
                             className=" card-img-top "
@@ -404,21 +392,14 @@ useEffect(() => {
                             </div>
                           </div>
                         </div>
-                        
+                        </div>
                       ))}
-                      </div>
                     </div>
-                  
-                </div>
-                <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-                  <span className="carousel-control-prev-icon" aria-hidden="true" />
-                  <span className="visually-hidden">Previous</span>
-                </button>
-                <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-                  <span className="carousel-control-next-icon" aria-hidden="true" />
-                  <span className="visually-hidden">Next</span>
-                </button>
+                  </div>
               </div>
+            </div>
+            
+              
             </section>
           </div>
         </div>
