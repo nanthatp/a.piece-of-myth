@@ -26,6 +26,7 @@ import Categories from "./pages/Categories";
 import CategoryProduct from "./pages/CategoryProduct";
 import CartPage from "./pages/CartPage";
 import Banners from "./pages/Admin/Banners";
+import ShowAllProduct from "./pages/ShowAllProduct";
 import AdminOrders from "./pages/Admin/AdminOrders";
 import ResetPassword from './pages/Auth/ResetPassword';
 import CreateBanner from './pages/Admin/CreateBanner';
@@ -38,6 +39,8 @@ import UpdatePreProduct from './pages/Admin/UpdatePreProduct';
 import UpdatePassword from './pages/User/UpdatePassword';
 import PreorderCartPage from './pages/PreorderCartPage';
 import PreOrderPayment from './pages/PreOrderPayment';
+import ShowAllPre from './pages/ShowAllPre';
+
 
 function App() {
   return (
@@ -47,6 +50,8 @@ function App() {
       <Route path="/product/:slug" element={<ProductDetails />} />
       <Route path="/preproduct/:slug" element={<PreorderCartPage />} />     
       <Route path="/categories" element={<Categories />} />
+      <Route path="/ShowAllProduct" element={<ShowAllProduct />} />
+      <Route path="/ShowAllPre" element={<ShowAllPre />} />
       <Route path="/cart" element={<CartPage />} />
       <Route path="/category/:slug" element={<CategoryProduct />} />
       <Route path="/search" element={<Search />} />

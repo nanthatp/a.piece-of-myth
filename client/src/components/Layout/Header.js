@@ -150,6 +150,7 @@ const Header = () => {
               
               <NavLink to = "/cart" className="nav-link " href="#">
                 <Badge  color="#0DA574" count={cart?.length} showZero offset={[10, -5]}>
+                  
                   Cart
                 </Badge> 
               </NavLink>

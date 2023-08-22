@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {Link} from 'react-router-dom'
 import { useCart } from "../context/cart";
+import { NavLink } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Layout from "./../components/Layout/Layout";
 import {BsFillBagHeartFill } from "react-icons/bs";
 import "../styles/Homepage.css";
 // import BannerForm from "../components/Form/BannerForm";
+import Products from './Admin/Products';
 
 const HomePage = () => {
   const params = useParams();
@@ -86,7 +88,7 @@ useEffect(() => {
   if (params?.slug) getSingleCategory();
 }, [params?.slug]);
 
-  //-------getTOtal Count-------//
+  //-------getTotal Count-------//
   const getTotal = async () => {
     try {
       const { data } = await axios.get("/api/v1/product/product-count");
@@ -170,6 +172,7 @@ useEffect(() => {
   }, [checked, radio]);
 
   //-------get filterd product-------//
+  
   const filterProduct = async () => {
     try {
       const { data } = await axios.post("/api/v1/product/product-filters", {
@@ -194,8 +197,27 @@ useEffect(() => {
   };
 
   useEffect(() => {
-      getAllArtist();
+    getAllArtist();
   }, []);
+
+  //-------get single cat-------//
+  const getSingleArtist = async () => {
+    try{
+      const { data } = await axios.get(
+        `/api/v1/artist/get-artist/${params.slug}`
+      );
+      setArtists(data?.artists);
+
+    } catch(error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (params?.slug) getSingleArtist();
+  }, [params?.slug]);
+
+ 
 
   return (
     <Layout title={"All Products - Best offers "}>
@@ -236,16 +258,37 @@ useEffect(() => {
                 <h1>Caleb for You</h1>
                 <span>All</span>
               </div>
-              {artist.map((c) => (
-                      <div className="col-md-2 mt-2 mb-4 gx-6 gy-6" key={c._id}>
-                        <div className="card-category">
+              <div className="category-container">
+                <div className="container artist-container" >
+                  <div className="row container">
+                  {artist.map((c) => (
+                    <div className="col-md-2 mt-2 mb-4 gx-6 gy-6" key={c._id}>
+                    <div className="card-text">
+                      <img 
+                        src={`/api/v1/artist/artist-photo/${c._id}`} 
+                        className="card-artist-img" alt={c.name} />
+                      <div className="1-overlay">
                           <Link to={`/artist/${c.slug}`} className="btn cat-btn">
-                          {c.name}
+                            {c.name}
                           </Link>
-                        </div>
                       </div>
-                    ))}
-          
+                    </div>
+                    </div>
+                  ))}
+
+
+
+
+                    {/* {artist.map((c) => (
+                      <div className="col-md-2 mt-2 mb-4 gx-6 gy-6" key={c._id}>
+                        <Link to={`/artist/${c.slug}`} className="btn cat-btn">
+                          {c.name}
+                        </Link>
+                      </div> 
+                    ))} */}
+                  </div>
+                </div>
+              </div>
             </section>
           </div>
         </div>
@@ -266,7 +309,7 @@ useEffect(() => {
                       <div className="col-md-2 mt-2 mb-4 gx-6 gy-6" key={c._id}>
                         <div className="card-category">
                           <Link to={`/category/${c.slug}`} className="btn cat-btn">
-                          {c.name}
+                            {c.name}
                           </Link>
                         </div>
                       </div>
@@ -278,19 +321,25 @@ useEffect(() => {
           </div>
         </div>
       </div>
+
       <div className="container">
         <div className="row">
           <div className="column-33">
-            <div className="product-heading">
-              <h1>Pre Order</h1>
-            </div>
-            <section className="product-list">
-              <div id="carouselExampleInterval" className="carousel slide" data-bs-ride="carousel">
-                <div className="carousel-inner ">
+            <section className="pre-list">
+              <div className="product-heading">
+                <h1>Pre Order</h1>
+                <Link
+                  className="show-pre-link"
+                  to="/ShowAllPre"
+                >
+                  <h6>Shop More Pre-Order Product</h6>
+                </Link>
+              </div>
+                <div className="carousel-inner pre-inner">
                   <div className="product-container ">
-                    <div className="d-flex wrap " >
+                    <div className="d-flex" >
                       {preproducts?.map((p) => (
-                        <div className="carousel-item active card m-2 product-box"  key={p._id}>
+                        <div className="card m-2 product-box"  key={p._id}>
                             <img
                               src={`/api/v1/preproduct/preproduct-photo/${p._id}`}
                               className=" card-img-top"
@@ -323,15 +372,6 @@ useEffect(() => {
                     </div>
                   </div>
                 </div>
-                <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-                  <span className="carousel-control-prev-icon" aria-hidden="true" />
-                  <span className="visually-hidden">Previous</span>
-                </button>
-                <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-                  <span className="carousel-control-next-icon" aria-hidden="true" />
-                  <span className="visually-hidden">Next</span>
-                </button>
-              </div>
             </section>
           </div>
         </div>
@@ -340,66 +380,67 @@ useEffect(() => {
       <div className="container">
         <div className="row">
           <div className="column-33">
-            <div className="product-heading">
-              <h1>All Product</h1>
-            </div>
             <section className="product-list">
-            <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel">
-              <div className="carousel-inner">
-              <div className="product-container ">
-                    <div className=" d-flex wrap " >
-                      {products?.map((p) => (
-                        <div className="carousel-item active">
-                        <div className="card m-2 product-box"  key={p._id}>
-                          <img
-                            src={`/api/v1/product/product-photo/${p._id}`} 
-                            className=" card-img-top "
-                            alt={p.name}
-                          />
-                          <div className="card-body">
-                            <div className="card-name-price">
-                              <strong className=" name-product">{p.name}</strong>
-                              <p className="card-text product-quantity">
-                                {p.quantity}
-                              </p>
-                              <h6 className="card-title product-price">
-                                {p.price.toLocaleString("US", {
-                                  style: "currency",
-                                  currency: "USD",
-                                })}
-                              </h6>
-                            </div>
-                            <div className="card-name-price">
+              <div className="product-heading">
+                <h1>All Product</h1>
+                <Link
+                  className="show-product-link"
+                  to="/ShowAllProduct"
+                >
+                  <h6>Shop More Product</h6>
+                </Link>
+              </div>
+              <div className="carousel-inner product-inner">
+                <div className="product-container ">
+                  <div className="d-flex" >
+                    {products?.map((p) => (
+                      <div className="card m-2 product-box "  key={p._id}>
+                        <img
+                          src={`/api/v1/product/product-photo/${p._id}`} 
+                          className=" card-img-top "
+                          alt={p.name}
+                        />
+                        <div className="card-body">
+                          <div className="card-name-price">
+                            <strong className=" name-product">{p.name}</strong>
+                            <p className="card-text product-quantity">
+                              {p.quantity} sold
+                            </p>
+                            <h6 className="card-title product-price">
+                              {p.price.toLocaleString("US", {
+                                style: "currency",
+                                currency: "USD",
+                              })}
+                            </h6>
+                          </div>
+                          <div className="card-name-price">
+                            <button
+                                className="btn-add"
+                                onClick={() => {
+                                  setCart([...cart, p]);
+                                  localStorage.setItem(
+                                    "cart",
+                                    JSON.stringify([...cart, p])
+                                  );
+                                  toast.success("Item Added to cart");
+                                }}
+                              >
+                              <BsFillBagHeartFill/> Add to Cart
+                              </button>
                               <button
-                                  className="btn-add"
-                                  onClick={() => {
-                                    setCart([...cart, p]);
-                                    localStorage.setItem(
-                                      "cart",
-                                      JSON.stringify([...cart, p])
-                                    );
-                                    toast.success("Item Added to cart");
-                                  }}
-                                >
-                                <BsFillBagHeartFill/> Add to Cart
-                                </button>
-                                <button
-                                  className="btn-details"
-                                  onClick={() => navigate(`/product/${p.slug}`)}
-                                >
-                                  More Details
-                                </button>
-                            </div>
+                                className="btn-details"
+                                onClick={() => navigate(`/product/${p.slug}`)}
+                              >
+                                More Details
+                              </button>
                           </div>
                         </div>
-                        </div>
-                      ))}
-                    </div>
+                      </div>
+                    
+                    ))}
                   </div>
+                </div>
               </div>
-            </div>
-            
-              
             </section>
           </div>
         </div>
@@ -407,10 +448,5 @@ useEffect(() => {
     </Layout>
   );
 };
-
-
-
-
-    
 
 export default HomePage;
