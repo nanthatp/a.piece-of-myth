@@ -36,6 +36,8 @@ import Artists from "./pages/Admin/Artists";
 import Preproducts  from "./pages/Admin/Preproducts";
 import UpdatePreProduct from './pages/Admin/UpdatePreProduct';
 import UpdatePassword from './pages/User/UpdatePassword';
+import PreorderCartPage from './pages/PreorderCartPage';
+import PreOrderPayment from './pages/PreOrderPayment';
 
 function App() {
   return (
@@ -43,6 +45,7 @@ function App() {
     <Routes>
       <Route path='/' element={<HomePage/>} />
       <Route path="/product/:slug" element={<ProductDetails />} />
+      <Route path="/preproduct/:slug" element={<PreorderCartPage />} />     
       <Route path="/categories" element={<Categories />} />
       <Route path="/cart" element={<CartPage />} />
       <Route path="/category/:slug" element={<CategoryProduct />} />

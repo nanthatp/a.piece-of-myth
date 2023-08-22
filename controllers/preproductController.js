@@ -6,6 +6,7 @@ import slugify from "slugify";
 import dotenv from "dotenv";
 
 import braintree from "braintree";
+import preorderModel from "../models/preorder.Model.js";
 
 dotenv.config();
 
@@ -19,7 +20,7 @@ var gateway = new braintree.BraintreeGateway({
 
   export const createPreProductController = async (req,res)  => {
     try {
-        const {name, slug, description, price, category, artist, member} = req.fields;
+        const {name, slug, description, price, category, artist, member,until} = req.fields;
         const {photo} = req.files;
         
         //alidation
@@ -36,6 +37,8 @@ var gateway = new braintree.BraintreeGateway({
                 return res.status(500).send({error:'Artist is required'})
             case !member:
                 return res.status(500).send({error:'Member is required'})
+            case !until:
+                return res.status(500).send({error:'Until time is required'})
             case photo && photo.size > 150000000000:
                 return res.status(500).send({error:'Photo is requiredand less than 1.5mb'})
         }
@@ -143,7 +146,7 @@ export const deletePreProductController = async (req, res) => {
 //update Pre-order product
 export const updatePreProductController = async (req, res) => {
     try {
-        const {name, slug, description, price, category, artist, member, shipping} = req.fields;
+        const {name, slug, description, price, category, artist, member, shipping, until} = req.fields;
         const {photo} = req.files;
         
         //alidation
@@ -160,6 +163,8 @@ export const updatePreProductController = async (req, res) => {
                 return res.status(500).send({error:'Artist is required'})
             case !member:
                 return res.status(500).send({error:'Member is required'})
+            case !until:
+                return res.status(500).send({error:'Until is required'})
             case photo && photo.size > 150000000000:
                 return res.status(500).send({error:'Photo is requiredand less than 1.5 mb'})
         }
@@ -254,7 +259,7 @@ export const PreproductListController = async (req, res) => {
     }
 };
 
-// search product
+// search pre-order product
 export const searchPreProductController = async (req, res) => {
     try {
     const { keyword } = req.params;
@@ -323,4 +328,54 @@ export const PreproductCategoryController = async (req, res) => {
     }
 };
 
-//ค่อยมาใส่ Payment controller
+//payment gateway api
+//token
+export const braintreeTokenForPreOrederController = async (req, res) => {
+    try {
+      gateway.clientToken.generate({}, function (err, response) {
+        if (err) {
+          res.status(500).send(err);
+        } else {
+          res.send(response);
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
+  //payment
+  export const brainTreePaymentForPreOrederController = async (req, res) => {
+    try {
+        console.log("test",req.body);
+      const { nonce, preorderItem } = req.body;
+      let total = preorderItem.price * preorderItem.quantity;
+      let newTransaction = gateway.transaction.sale(
+        {
+          amount: total,
+          paymentMethodNonce: nonce,
+          options: {
+            submitForSettlement: true,
+          },
+        },
+        async function (error, result) {
+          if (result) {
+            console.log("result = ",result);
+            console.log("result2 = ",preorderItem);
+            const preorder = new preorderModel({
+              preproduct: preorderItem,
+              payment: result,
+              quantity: preorderItem.quantity,
+              buyer: req.user._id,
+            });
+            await preorder.save();
+            res.json({ ok: true });
+          } else {
+            res.status(500).send(error);
+          }
+        }
+      );
+    } catch (error) {
+    //   console.log(error);
+    }
+  };

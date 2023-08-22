@@ -361,13 +361,16 @@ export const braintreeTokenController = async (req, res) => {
             submitForSettlement: true,
           },
         },
-        function (error, result) {
+        async function (error, result) {
           if (result) {
+            console.log("result = ",result);
+            console.log("result = ",cart);
             const order = new orderModel({
               products: cart,
               payment: result,
               buyer: req.user._id,
-            }).save();
+            });
+            await order.save();
             res.json({ ok: true });
           } else {
             res.status(500).send(error);

@@ -5,8 +5,14 @@ import { toast } from 'react-hot-toast';
 import axios from 'axios';
 import { Select } from 'antd';
 import { useNavigate } from "react-router-dom";
-import "../../styles/CreateProduct.css"
+// import "../../styles/CreateProduct.css"
+// import Datetime from 'react-datetime';
+// import "react-datetime/css/react-datetime.css";
+// import moment from 'moment';
+// import 'moment/locale/fr';
+// import DateTimePicker from 'react-datetime-picker';
 const { Option } = Select;
+
 
 export default function CreatePreProduct() {
     const navigate = useNavigate();
@@ -14,6 +20,7 @@ export default function CreatePreProduct() {
     const [members, setMembers] = useState([]);
     const [artists, setArtists] = useState([]);
     const [name, setName] = useState("");
+    const [until, setUntil ] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
     const [category, setCategory] = useState("");
@@ -74,6 +81,7 @@ export default function CreatePreProduct() {
             preproductData.append("name", name);
             preproductData.append("description", description);
             preproductData.append("price", price);
+            // preproductData.append("until", until);
             preproductData.append("category", category);
             preproductData.append("photo", photo);
             preproductData.append("artist", artist);
@@ -93,7 +101,8 @@ export default function CreatePreProduct() {
         toast.error("something went wrong");
         }
     };
-
+        // const [value, setValue] = useState(new Date());
+        
   return (
     <Layout title={"Dashboard - Create Preproduct"}>
         <div className="row dashboard">
@@ -190,6 +199,14 @@ export default function CreatePreProduct() {
                             ))}
                         </Select>
                         </div>
+                        {/* <div className='p-5'> <DateTimePicker onChange={setValue} value={value} /></div> */}
+
+                        {/* <div>
+                            <input {...props} />
+                                <button onClick={openCalendar}>open calendar</button>
+                                <button onClick={closeCalendar}>close calendar</button>
+                                <button onClick={clear}>clear</button>
+                        </div> */}
 
                         <div className="col-4">
                         <div className="mb-3">
