@@ -38,9 +38,9 @@ import Preproducts  from "./pages/Admin/Preproducts";
 import UpdatePreProduct from './pages/Admin/UpdatePreProduct';
 import UpdatePassword from './pages/User/UpdatePassword';
 import PreorderCartPage from './pages/PreorderCartPage';
-import PreOrderPayment from './pages/PreOrderPayment';
 import ShowAllPre from './pages/ShowAllPre';
-
+import Preorder from './pages/User/Preorder';
+import AdminPreorder from './pages/Admin/AdminPreorder';
 
 function App() {
   return (
@@ -58,9 +58,9 @@ function App() {
       <Route path="/dashboard" element={<PrivateRoute />}>
         { <Route path="user" element={<Dashboard />} />}
         <Route path="user/orders" element={<Orders />} />
+        <Route path="user/preorders" element={<Preorder />} />
         <Route path="user/profile" element={<Profile />} />
-        <Route path="user/update-password" element={<Pagenotfound />} />  
-        <Route path="user/preorder" element={<Pagenotfound />} />    
+        <Route path="user/update-password" element={<UpdatePassword />} />    
       </Route>
       <Route path="/dashboard" element={<AdminRoute />}>
         <Route path="admin" element={<AdminDashboard />}/>
@@ -77,6 +77,7 @@ function App() {
         <Route path="admin/banner/:slug" element={<UpdateBanner />} />
         <Route path="admin/create-preproduct" element={<CreatePreProduct />} />
         <Route path="admin/preproduct" element={<Preproducts />} />
+        <Route path="admin/preorder" element={<AdminPreorder />} />
         
         
       </Route>

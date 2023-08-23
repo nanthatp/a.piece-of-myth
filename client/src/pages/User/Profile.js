@@ -10,7 +10,7 @@ const Profile = () => {
   //state
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  // const [password, setPassword] = useState("");
   const [address, setAddress] = useState("");
   const [province, setProvince] = useState("");
   const [postalcode, setPostalcode] = useState("");

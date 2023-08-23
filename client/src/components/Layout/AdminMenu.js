@@ -80,6 +80,12 @@ const AdminMenu = () => {
                 >
                     <BsFillBalloonHeartFill/> Pre-Product List
                 </NavLink> 
+                <NavLink
+                    to="/dashboard/admin/preorder"
+                    className="nav-link Menu"
+                >
+                    Pre-Order List
+                </NavLink>
             </div>
         </div>
     );

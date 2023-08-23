@@ -256,4 +256,21 @@ font-family: 'PT Serif', serif; */
   color: #fff;
 }
 
+/*---------------time-------------*/
+.ant-picker-dropdown .ant-picker-cell .ant-picker-cell-inner {
+  position: relative;
+  z-index: 2;
+  background-color: white;
+  display: inline-block;
+  min-width: 24px;
+  height: 24px;
+  line-height: 24px;
+  border-radius: 4px;
+  transition: background 0.2s,border 0.2s;
+}
+
+.ant-picker-content .m{
+  background-color: white;
+}
+
 

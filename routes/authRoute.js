@@ -7,7 +7,11 @@ import {registerController,
     loginController, 
     getAllOrdersController, 
     getOrdersController, 
-    orderStatusController } from '../controllers/authController.js'
+    orderStatusController, 
+    getPreorderController,
+    getAllPreOrdersByIdController,
+    preorderStatusController,
+    getAllPreOrdersController} from '../controllers/authController.js'
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
 //route object
 const router = express.Router();
@@ -49,6 +53,24 @@ router.put(
     isAdmin,
     orderStatusController
 );
+
+//get pre-order
+router.get("/preorders", requireSignIn, getPreorderController)
+
+//get all pre-order by id
+router.get("/preorder-preproduct/:slug",isAdmin,getAllPreOrdersByIdController)
+
+//all Pre-orders
+router.get("/all-preorders", requireSignIn, isAdmin, getAllPreOrdersController);
+
+// Pre-order status update
+router.put(
+    "/preorder-status/:preorderId",
+    requireSignIn,
+    isAdmin,
+    preorderStatusController
+);
+
 
 // Forget Password
 

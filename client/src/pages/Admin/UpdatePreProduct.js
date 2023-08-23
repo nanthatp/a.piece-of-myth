@@ -3,8 +3,9 @@ import Layout from '../../components/Layout/Layout'
 import AdminMenu from '../../components/Layout/AdminMenu'
 import { toast } from 'react-hot-toast';
 import axios from 'axios';
-import { Select } from 'antd';
+import { DatePicker, Select, TimePicker } from 'antd';
 import { useNavigate, useParams } from "react-router-dom";
+import moment from 'moment';
 
 const { Option } = Select;
 const UpdatePreProduct = () => {
@@ -21,6 +22,9 @@ const UpdatePreProduct = () => {
     const [artist, setArtist] = useState("");
     const [member, setMember] = useState("");
     const [id, setId] = useState("");
+    const [date, setDate] = useState();
+    const [timing, setTimings] = useState();
+    const [isAvailable,setIsAvailable] = useState();
 
     //get single product
     const getSinglePreProduct = async () => {
@@ -275,9 +279,13 @@ const UpdatePreProduct = () => {
                                 </Option>
                             ))}
                         </Select>
-                        
+                        <div className="d-flex flex-column">
+                            <DatePicker format= 'YYYY-MM-DD ' onChange={(value) => setDate(moment(value).format('YYYY-MM-DD'))}/>
+                            <TimePicker.RangePicker format= 'HH:mm' onChange={(values) => setTimings([
+                                moment(values[0]).format('HH:mm')])}/>
                         </div>
-
+                        </div>
+                        
                         <div className="mb-3">
                             <button className="btn-update-product" onClick={handleUpdate}>
                             UPDATE Pre-Order PRODUCT

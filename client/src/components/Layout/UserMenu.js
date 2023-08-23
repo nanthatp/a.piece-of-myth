@@ -20,7 +20,7 @@ const UserMenu = () => {
                 <BiShoppingBag/>Orders
             </NavLink>
             <NavLink
-                to="/dashboard/user/preorder"
+                to="/dashboard/user/preorders"
                 className="nav-link"
             >
                 <BiSolidBasket/>Your Pre-Order Products

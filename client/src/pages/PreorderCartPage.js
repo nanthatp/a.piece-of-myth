@@ -48,7 +48,7 @@ function PreorderCartPage() {
       setLoading(false);
       localStorage.removeItem("preorderItem");
       setPreCart([]);
-      navigate("/dashboard/user/orders");
+      navigate("/dashboard/user/preorders");
       toast.success("Payment Completed Successfully ");
     } catch (error) {
       console.log(error);
@@ -202,7 +202,7 @@ useEffect(() => {
                       onClick={handlePayment}
                       disabled={loading || !instance }
                     >
-                      {loading ? "Processing ...." : "PRE-ORDER"}
+                      <BsFillBagHeartFill/>{loading ? "Processing ...." : "PRE-ORDER"}
                     </button>
                   </>
                 )}

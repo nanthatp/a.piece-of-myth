@@ -5,6 +5,8 @@ import jwt from "jsonwebtoken";
 import bcryptjs from "bcryptjs";
 import nodemailer from "nodemailer";
 import JWT from "jsonwebtoken";
+import preorderModel from "../models/preorder.Model.js";
+import preproductModel from "../models/preproductModel.js";
 
 
 export const registerController = async (req, res) => {
@@ -261,6 +263,85 @@ export const orderStatusController = async (req, res) => {
     res.status(500).send({
       success: false,
       message: "Error While Updateing Order",
+      error,
+    });
+  }
+};
+
+//pre-orders
+export const getPreorderController = async (req,res) => {
+  try {
+    const preorders = await preorderModel
+      .find({ buyer: req.user._id})
+      .populate("preproduct", "-photo")
+      .populate("buyer", "name");
+    res.json(preorders);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error While Getting pre-order",
+      error,
+    });
+  }
+};
+
+//get all Pre-order by preproduct preproductid
+export const getAllPreOrdersByIdController = async (req, res) => {
+  try {
+    const preproduct = await preproductModel.findOne({ preproduct: req.params.slug });
+    const preorder = await preorderModel.find({ preproduct }).populate("preproduct");
+    res.status(200).send({
+      success: true,
+      preproduct,
+      preorder,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      error,
+      message: "Error While Getting Pre-order Products by preProduct id",
+    })
+  }
+};
+
+
+//Pre-orders
+export const getAllPreOrdersController = async (req, res) => {
+  try {
+    const preorders = await preorderModel
+      .find({})
+      .populate("preproduct", "-photo")
+      .populate("buyer", "name")
+      .sort({ createdAt: "-1" });
+    res.json(preorders);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error WHile Geting Pre-Orders",
+      error,
+    });
+  }
+};
+
+//Pre-order status
+export const preorderStatusController = async (req, res) => {
+  try {
+    const { preorderId } = req.params;
+    const { status } = req.body;
+    const preorders = await preorderModel.findByIdAndUpdate(
+      preorderId,
+      { status },
+      { new: true }
+    );
+    res.json(preorders);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error While Updateing Pre-Order",
       error,
     });
   }

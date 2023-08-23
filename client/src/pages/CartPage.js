@@ -8,6 +8,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import "../styles/CartStyles.css";
 import DropIn from "braintree-web-drop-in-react";
+import {BsFillBagHeartFill } from "react-icons/bs";
 
 const CartPage = () => {
     const [auth, setAuth] = useAuth();
@@ -185,11 +186,11 @@ const CartPage = () => {
                     />
 
                     <button
-                      className="btn btn-primary"
+                      className="btn-add-detail"
                       onClick={handlePayment}
                       disabled={loading || !instance }
                     >
-                      {loading ? "Processing ...." : "Make Payment"}
+                      <BsFillBagHeartFill/>{loading ? "Processing ...." : "Make Payment"}
                     </button>
                   </>
                 )}
