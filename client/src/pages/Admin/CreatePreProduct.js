@@ -3,24 +3,18 @@ import Layout from '../../components/Layout/Layout'
 import AdminMenu from '../../components/Layout/AdminMenu'
 import { toast } from 'react-hot-toast';
 import axios from 'axios';
-import { Select } from 'antd';
+import { DatePicker, TimePicker,Select } from 'antd';
 import { useNavigate } from "react-router-dom";
-// import "../../styles/CreateProduct.css"
-// import Datetime from 'react-datetime';
-// import "react-datetime/css/react-datetime.css";
-// import moment from 'moment';
-// import 'moment/locale/fr';
-// import DateTimePicker from 'react-datetime-picker';
+import moment from 'moment';
+
 const { Option } = Select;
-
-
 export default function CreatePreProduct() {
     const navigate = useNavigate();
     const [categories, setCategories] = useState([]);
     const [members, setMembers] = useState([]);
     const [artists, setArtists] = useState([]);
     const [name, setName] = useState("");
-    const [until, setUntil ] = useState("");
+    const [until, setUntil ] = useState();
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
     const [category, setCategory] = useState("");
@@ -81,7 +75,7 @@ export default function CreatePreProduct() {
             preproductData.append("name", name);
             preproductData.append("description", description);
             preproductData.append("price", price);
-            // preproductData.append("until", until);
+            preproductData.append("until", until);
             preproductData.append("category", category);
             preproductData.append("photo", photo);
             preproductData.append("artist", artist);
@@ -234,6 +228,12 @@ export default function CreatePreProduct() {
                                 </Option>
                             ))}
                         </Select>
+                        <div className="d-flex flex-column">
+                            <DatePicker format= 'YYYY-MM-DD ' className='m-2'
+                            onChange={(values) => setUntil(moment(values))}/>
+                            <TimePicker className='m-2' format= 'HH:mm' onChange={(values) => setUntil(
+                                moment(values))}/>
+                        </div>
                         </div>
 
                         

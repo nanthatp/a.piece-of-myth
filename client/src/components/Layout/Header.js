@@ -7,6 +7,8 @@ import useCategory from "../../hooks/useCategory";
 import useArtist from '../../hooks/useArtist';
 import { Badge } from "antd";
 import { useCart } from "../../context/cart";
+import { BsCart4 } from "react-icons/bs";
+
 
 
 const Header = () => {
@@ -147,14 +149,11 @@ const Header = () => {
                 </>
               )}
               <li className="nav-item  cart">
-              
-              <NavLink to = "/cart" className="nav-link " href="#">
-                <Badge  color="#0DA574" count={cart?.length} showZero offset={[10, -5]}>
-                  
-                  Cart
-                </Badge> 
-              </NavLink>
-              
+                  <NavLink to = "/cart" className="nav-link " href="#">
+                  <Badge  color="#0DA574" count={cart?.length} showZero offset={[10, -5]}>
+                        cart
+                  </Badge> 
+                </NavLink>
               </li>
             </ul>
           </div>

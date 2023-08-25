@@ -22,6 +22,7 @@ const UpdatePreProduct = () => {
     const [artist, setArtist] = useState("");
     const [member, setMember] = useState("");
     const [id, setId] = useState("");
+    const [until ,setUntil] = useState();
     const [date, setDate] = useState();
     const [timing, setTimings] = useState();
     const [isAvailable,setIsAvailable] = useState();
@@ -38,6 +39,7 @@ const UpdatePreProduct = () => {
             setPrice(data.preproduct.price);
             setCategory(data.preproduct.category._id);
             setArtist(data.preproduct.artist);
+            setUntil(data.preproduct.until);
             setMember(data.preproduct.member);
             
         }catch (error) {
@@ -109,6 +111,7 @@ const UpdatePreProduct = () => {
             photo && preproductData.append("photo", photo);
             preproductData.append("artist", artist);
             preproductData.append("member", member);
+            preproductData.append("until", until);
             const { data } = axios.put(
                 `/api/v1/preproduct/update-preproduct/${id}`,
                 preproductData
@@ -258,7 +261,7 @@ const UpdatePreProduct = () => {
                                 value={description}
                                 placeholder="write a description"
                                 className="form-control"
-                                onChange={(e) => setDescription(e.target.value)}
+                                onChange={(e) => setDescription(e)}
                             />
                         </div>
                         
@@ -280,12 +283,13 @@ const UpdatePreProduct = () => {
                             ))}
                         </Select>
                         <div className="d-flex flex-column">
-                            <DatePicker format= 'YYYY-MM-DD ' onChange={(value) => setDate(moment(value).format('YYYY-MM-DD'))}/>
-                            <TimePicker.RangePicker format= 'HH:mm' onChange={(values) => setTimings([
-                                moment(values[0]).format('HH:mm')])}/>
+                            <DatePicker format= 'YYYY-MM-DD ' className='m-2'
+                            onChange={(values) => setUntil(moment(values))}/>
+                            <TimePicker className='m-2' format= 'HH:mm' onChange={(values) => setUntil(
+                                moment(values))}/>
+                            <label>CurrentDateTime: {moment(until).format('YYYY-MM-DD hh:mm')}</label>
                         </div>
                         </div>
-                        
                         <div className="mb-3">
                             <button className="btn-update-product" onClick={handleUpdate}>
                             UPDATE Pre-Order PRODUCT

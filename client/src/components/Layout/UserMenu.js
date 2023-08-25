@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import {BiUser, BiShoppingBag, BiSolidBasket, BiShieldAlt2} from 'react-icons/bi';
+import { BsFillPersonFill, BsShieldLockFill, BsBagHeart, BsBagHeartFill } from "react-icons/bs";
 const UserMenu = () => {
     return (
         <div className="text-center p-6">
@@ -11,25 +11,25 @@ const UserMenu = () => {
                 to="/dashboard/user/profile"
                 className="nav-link"
             >
-                <BiUser/>Profile
+                <BsFillPersonFill/> Profile
             </NavLink>
             <NavLink
                 to="/dashboard/user/orders"
                 className="nav-link"
             >
-                <BiShoppingBag/>Orders
+                <BsBagHeart/> Orders
             </NavLink>
             <NavLink
                 to="/dashboard/user/preorders"
                 className="nav-link"
             >
-                <BiSolidBasket/>Your Pre-Order Products
+                <BsBagHeartFill/> Your Pre-Order
             </NavLink>
             <NavLink
                 to="/dashboard/user/update-password"
                 className="nav-link"
             >
-                <BiShieldAlt2/>Change Your Passsword
+                <BsShieldLockFill/> Change Passsword
             </NavLink>
             </div>
         </div>
