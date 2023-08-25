@@ -35,7 +35,6 @@ const UpdateProduct = () => {
             setId(data.product._id);
             setDescription(data.product.description);
             setPrice(data.product.price);
-            setPrice(data.product.price);
             setCategory(data.product.category._id);
             setQuantity(data.product.quantity);
             setShipping(data.product.shipping);
@@ -66,7 +65,7 @@ const UpdateProduct = () => {
         }
     }; 
 
-    //get all artist
+      //get all artist
     const getAllArtist = async () => {
         try {
             const { data } = await axios.get("/api/v1/artist/get-artist");
@@ -77,7 +76,7 @@ const UpdateProduct = () => {
             console.log(error);
             toast.error("Something went wrong in getting artist");
         }
-    }; 
+    };
 
     //get all member
     const getAllMember = async () => {
@@ -195,7 +194,7 @@ const UpdateProduct = () => {
                                 </div>
                             )}
                         </div>
-                        </div>
+                    </div>
                     <div className="col-4">
                         <div className="mb-3">
                                 <textarea

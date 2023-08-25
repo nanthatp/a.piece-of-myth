@@ -7,7 +7,7 @@ table {
 }
 
   /* Style table headers and table data */
-th, td {
+.table-cat-th, .table-cat-td {
     text-align: center;
     padding: 16px;
     background-color: #000;

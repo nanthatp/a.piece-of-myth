@@ -64,17 +64,16 @@ export const getSingleArtistController = async (req, res) => {
         const artist = await artistModel
             .findOne({ slug: req.params.slug })
             .select("-photo")
-            // .populate("category");
         res.status(200).send({
             success: true,
-            message: "Single artist Fetched",
+            message: "Single Artist Fetched",
             artist,
         });
     } catch (error) {
         console.log(error);
         res.status(500).send({
             success: false,
-            message: "Eror while getitng single artist",
+            message: "Error while getting Single Artist",
             error,
         });
     }
@@ -93,7 +92,7 @@ export const artistPhotoController = async (req, res) => {
         console.log(error);
         res.status(500).send({
             success: false,
-            message: "Erorr while getting photo",
+            message: "Error while getting photo",
             error,
         });
     }
@@ -120,7 +119,7 @@ export const deleteArtistController = async (req, res) => {
 //update artist
 export const updateArtistController = async (req, res) => {
     try {
-        const {name, slug, member} = req.fields;
+        const {name, slug, member, } = req.fields;
         const {photo} = req.files;
         
         //alidation
@@ -130,21 +129,22 @@ export const updateArtistController = async (req, res) => {
             case !member:
                 return res.status(500).send({error:'Member is required'})
             case photo && photo.size > 150000000000:
-                return res.status(500).send({error:'Photo is required and less than 1.5 mb'})
+                return res.status(500).send({error:'Photo is required and less than 1.5mb'})
         }
         const artists = await artistModel.findByIdAndUpdate(
             req.params.pid,
             { ...req.fields, slug: slugify(name) },
             { new: true }
         );
-        if(photo){
-            artists.photo.data = fs.readFileSync(photo.path)
-            artists.photo.contentType = photo.type
+
+        if (photo) {
+            artists.photo.data = fs.readFileSync(photo.path);
+            artists.photo.contentType = photo.type;
         }
-        await artists.save()
+        await artists.save();
         res.status(201).send({
             success:true,
-            message:'artist Updated Successfully',
+            message:'Artist Update successfully',
             artists,
         });
 
@@ -153,7 +153,7 @@ export const updateArtistController = async (req, res) => {
         res.status(500).send({
             success:false,
             error,
-            message:'Error in Update artist'
+            message:'Error in  Update Artist'
         });
     }
 };

@@ -8,10 +8,13 @@ import {BiSolidCategoryAlt} from 'react-icons/bi';
 import {BsBox2HeartFill} from 'react-icons/bs';
 import {BsFillLaptopFill} from 'react-icons/bs';
 import{BsFillCollectionFill} from 'react-icons/bs';
-import{BsFillHddStackFill} from 'react-icons/bs';
+import{BsListStars} from 'react-icons/bs';
 import{BsFillPostcardHeartFill} from 'react-icons/bs';
 import{BsFillBalloonHeartFill} from 'react-icons/bs';
 import{BsFillLayersFill} from 'react-icons/bs';
+import{BsFillHeartFill} from 'react-icons/bs';
+import{BsBalloonFill} from 'react-icons/bs';
+import{BsListUl} from 'react-icons/bs';
 
 
 
@@ -60,8 +63,14 @@ const AdminMenu = () => {
                     to="/dashboard/admin/orders"
                     className="nav-link Menu"
                 >
-                    <BsFillHddStackFill/> All Orders List
+                    <BsListStars/> All Orders List
                 </NavLink> 
+                <NavLink
+                    to="/dashboard/admin/preorder"
+                    className="nav-link Menu"
+                >
+                    <BsListUl/> Pre-Order List
+                </NavLink>
                 <NavLink
                     to="/dashboard/admin/banners"
                     className="nav-link Menu"
@@ -78,14 +87,8 @@ const AdminMenu = () => {
                     to="/dashboard/admin/preproduct"
                     className="nav-link Menu"
                 >
-                    <BsFillBalloonHeartFill/> Pre-Product List
+                    <BsBalloonFill/> Pre-Product List
                 </NavLink> 
-                <NavLink
-                    to="/dashboard/admin/preorder"
-                    className="nav-link Menu"
-                >
-                    Pre-Order List
-                </NavLink>
             </div>
         </div>
     );

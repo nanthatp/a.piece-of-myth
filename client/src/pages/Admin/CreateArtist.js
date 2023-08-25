@@ -97,7 +97,7 @@ const CreateProduct = () => {
                                 />
                         </div>
 
-                        <div className="mb-3">
+                        {/* <div className="mb-3">
                             <textarea
                                 type="text"
                                 value={member}
@@ -105,12 +105,7 @@ const CreateProduct = () => {
                                 className="form-control"
                                 onChange={(e) => setMember(e.target.value)}
                             />
-                            <button type="submit" className="btn-submit"
-                                onChange={(e) => setMember(e.target.value)}
-                            >
-                                Add 
-                            </button>
-                        </div>
+                        </div> */}
                     </div>
                     </div>
                     <div className="mb-3">

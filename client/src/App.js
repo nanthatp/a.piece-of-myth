@@ -31,6 +31,7 @@ import AdminOrders from "./pages/Admin/AdminOrders";
 import ResetPassword from './pages/Auth/ResetPassword';
 import CreateBanner from './pages/Admin/CreateBanner';
 import UpdateBanner from './pages/Admin/UpdateBanner';
+import UpdateArtist from './pages/Admin/UpdateArtist';
 import CreatePreProduct from './pages/Admin/CreatePreProduct';
 import CreateArtist from './pages/Admin/CreateArtist';
 import Artists from "./pages/Admin/Artists";
@@ -41,6 +42,7 @@ import PreorderCartPage from './pages/PreorderCartPage';
 import ShowAllPre from './pages/ShowAllPre';
 import Preorder from './pages/User/Preorder';
 import AdminPreorder from './pages/Admin/AdminPreorder';
+
 
 function App() {
   return (
@@ -75,6 +77,7 @@ function App() {
         <Route path="admin/banners" element={<Banners />} />
         <Route path="admin/artists" element={<Artists />} />
         <Route path="admin/banner/:slug" element={<UpdateBanner />} />
+        <Route path="admin/artist/:slug" element={<UpdateArtist />} />
         <Route path="admin/create-preproduct" element={<CreatePreProduct />} />
         <Route path="admin/preproduct" element={<Preproducts />} />
         <Route path="admin/preorder" element={<AdminPreorder />} />

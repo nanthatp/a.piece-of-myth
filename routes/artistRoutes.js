@@ -30,7 +30,7 @@ router.put(
 router.get('/get-artist', getArtistController)
 
 //single artist
-router.get("/single-artist/:slug", getSingleArtistController);
+router.get("/get-artist/:slug", getSingleArtistController);
 
 //delete artist
 router.delete(

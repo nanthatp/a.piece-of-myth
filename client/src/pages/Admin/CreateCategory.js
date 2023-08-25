@@ -112,15 +112,15 @@ const CreateCategory = () => {
                     <div>
                         <table className="table">
                         <tr>
-                            <th>Name</th>
-                            <th></th>
+                            <th className='table-cat-th'>Name</th>
+                            <th className='table-cat-th'></th>
                         </tr>
                             <tbody>
                                 {categories.map((c) => (
                                     <>
                                         <tr>
                                             <td key = {c._id}>{c.name}</td>
-                                            <td>
+                                            <td className='table-cat-td'>
                                                 <button 
                                                     className='btn-edit ms-2' 
                                                     onClick={() => {

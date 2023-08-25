@@ -32,27 +32,21 @@ const Banners = () => {
                 </div>
                     <div className="col-md-9 ">
                         <h1 className="text-center">All Banners List</h1>
-                        <div className="d-flex flex-wrap">
+                        
                             {banners?.map((p) => (
                                 <Link
                                     key={p._id}
                                     to={`/dashboard/admin/banner/${p.slug}`}
                                     className="banner-link"
                                 >
-                                
-                                    <img
-                                        autoPlay loop muted playsInline 
-                                        className="back-video" 
-                                        src={`/api/v1/banner/banner-file/${p._id}`}
-                                        alt={p.name}
-                                    >           
-                                    </img>
-
-
-                                    
-                            </Link>
-                        ))}
-                    </div>
+                                <video
+                                    width="320" height="240" autoPlay loop muted playsInline 
+                                    className="back-video" 
+                                    src={`/api/v1/banner/banner-photo/${p._id}`}       
+                                />
+                                </Link>
+                            ))}
+                    
                 </div>
             </div>
         </Layout>

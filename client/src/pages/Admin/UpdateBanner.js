@@ -27,7 +27,7 @@ const CreateBanner = () => {
         );
         setName(data.banner.name);
         setId(data.banner._id);
-        setArtist(data.banner.artists._id);
+        setArtist(data.banner.artist._id);
         
     }catch (error) {
         console.log(error);
@@ -39,7 +39,7 @@ const CreateBanner = () => {
     }, []);
 
     
-    //get all artist
+     //get all artist
     const getAllArtist = async () => {
         try {
             const { data } = await axios.get("/api/v1/artist/get-artist");
@@ -141,7 +141,6 @@ const CreateBanner = () => {
                                 </Option>
                             ))}
                         </Select>
-
                         <div className="mb-3">
                         <label className="btn-upload-photo col-md-12">
                                 {file ? file.name : "Upload File"}
