@@ -102,7 +102,7 @@ export const artistPhotoController = async (req, res) => {
 export const deleteArtistController = async (req, res) => {
     try {
         await artistModel.findByIdAndDelete(req.params.pid).select("-photo");
-        res.status(200).send({
+            res.status(200).send({
             success: true,
             message: "Artist Deleted successfully",
         });

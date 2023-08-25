@@ -19,7 +19,7 @@ router.post(
 
 //update artist 
 router.put(
-    "/update-artist/:id",
+    "/update-artist/:pid",
     requireSignIn,
     isAdmin,
     formidable(),
@@ -34,7 +34,7 @@ router.get("/get-artist/:slug", getSingleArtistController);
 
 //delete artist
 router.delete(
-    "/delete-artist/:id",
+    "/delete-artist/:pid",
     requireSignIn,
     isAdmin,
     deleteArtistController
