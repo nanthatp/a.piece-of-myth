@@ -5,6 +5,7 @@ import morgan from "morgan";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoute.js";
 import categoryRoutes from "./routes/categoryRoutes.js";
+import collectionRotes from "./routes/collectionRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import artistRoutes from "./routes/artistRoutes.js";
 import memberRoutes from "./routes/memberRoutes.js";
@@ -29,6 +30,7 @@ app.use(morgan("dev"));
 //routes
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/category", categoryRoutes);
+app.use("/api/v1/collection", collectionRotes);
 app.use("/api/v1/product", productRoutes);
 app.use("/api/v1/artist", artistRoutes);
 app.use("/api/v1/member", memberRoutes);

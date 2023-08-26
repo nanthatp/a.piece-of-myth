@@ -12,7 +12,7 @@ import{BsListStars} from 'react-icons/bs';
 import{BsFillPostcardHeartFill} from 'react-icons/bs';
 import{BsFillBalloonHeartFill} from 'react-icons/bs';
 import{BsFillLayersFill} from 'react-icons/bs';
-import{BsFillHeartFill} from 'react-icons/bs';
+import{BsCollectionPlayFill} from 'react-icons/bs';
 import{BsBalloonFill} from 'react-icons/bs';
 import{BsListUl} from 'react-icons/bs';
 
@@ -28,6 +28,12 @@ const AdminMenu = () => {
                     className="nav-link Menu"
                 >
                     <BiSolidCategoryAlt/> Create Category
+                </NavLink>
+                <NavLink
+                    to="/dashboard/admin/create-collection"
+                    className="nav-link Menu"
+                >
+                    <BsFillCollectionFill/> Create Collection
                 </NavLink>
                 <NavLink
                     to="/dashboard/admin/create-product"
@@ -75,7 +81,7 @@ const AdminMenu = () => {
                     to="/dashboard/admin/banners"
                     className="nav-link Menu"
                 >
-                    <BsFillCollectionFill/> All Banners List
+                    <BsCollectionPlayFill/> All Banners List
                 </NavLink> 
                 <NavLink
                     to="/dashboard/admin/artists"

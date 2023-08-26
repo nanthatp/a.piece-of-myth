@@ -14,6 +14,7 @@ import AdminRoute from './components/Routes/AdminRoute';
 import Dashboard from './pages/User/Dashboard';
 import AdminDashboard from './pages/Admin/AdminDashboard';
 import CreateCategory from './pages/Admin/CreateCategory';
+import CreateCollection from './pages/Admin/CreateCollection';
 import CreateProduct from './pages/Admin/CreateProduct';
 import Products from "./pages/Admin/Products";
 import UpdateProduct from "./pages/Admin/UpdateProduct";
@@ -67,6 +68,7 @@ function App() {
       <Route path="/dashboard" element={<AdminRoute />}>
         <Route path="admin" element={<AdminDashboard />}/>
         <Route path="admin/create-category" element={<CreateCategory />} />
+        <Route path="admin/create-collection" element={<CreateCollection />} />
         <Route path="admin/create-product" element={<CreateProduct />} />
         <Route path="admin/create-banner" element={<CreateBanner/>} />
         <Route path="admin/create-artist" element={<CreateArtist/>} />
