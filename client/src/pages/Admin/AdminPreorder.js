@@ -82,7 +82,7 @@ function AdminPreorder() {
                             </Select>
                         </td>
                         <td>{o?.buyer?.name}</td>
-                        <td>{moment(o?.createAt).format('YYYY-MM-DD hh:mm:ss')}</td>
+                        <td>{moment(o?.createdAt).format('YYYY-MM-DD hh:mm:ss')}</td>
                         <td>{o?.payment.success ? "Success" : "Failed"}</td>
                         <td>{o?.quantity}</td>
                         </tr>

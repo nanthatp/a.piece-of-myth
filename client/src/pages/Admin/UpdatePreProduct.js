@@ -6,14 +6,16 @@ import axios from 'axios';
 import { DatePicker, Select, TimePicker } from 'antd';
 import { useNavigate, useParams } from "react-router-dom";
 import moment from 'moment';
-
+// const date = New Date()
 const { Option } = Select;
 const UpdatePreProduct = () => {
     const navigate = useNavigate();
+    // const d = moment(new Date().format('YYYY-MM-DD hh:mm'));
     const params = useParams();
     const [categories, setCategories] = useState([]);
     const [members, setMembers] = useState([]);
     const [artists, setArtists] = useState([]);
+    const [collectiongroups, setCollectiongroups] = useState([]);
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
@@ -21,8 +23,10 @@ const UpdatePreProduct = () => {
     const [photo, setPhoto] = useState("");
     const [artist, setArtist] = useState("");
     const [member, setMember] = useState("");
+    const [collectiongroup, setCollectiongroup] = useState("");
+    // const [preproduct, setPreproduct] = useState("");
     const [id, setId] = useState("");
-    const [until ,setUntil] = useState();
+    const [until ,setUntil] = useState("");
     const [date, setDate] = useState();
     const [timing, setTimings] = useState();
     const [isAvailable,setIsAvailable] = useState();
@@ -41,6 +45,7 @@ const UpdatePreProduct = () => {
             setArtist(data.preproduct.artist);
             setUntil(data.preproduct.until);
             setMember(data.preproduct.member);
+            setCollectiongroup(data.preproduct.collectiongroup);
             
         }catch (error) {
             console.log(error);
@@ -48,9 +53,24 @@ const UpdatePreProduct = () => {
     };
     useEffect(() => {
         getSinglePreProduct();
+        
         //eslint-disable-next-line
     }, []);
 
+
+
+    //get all collection
+    const getCollectiongroup = async () => {
+        try {
+            const { data } = await axios.get("/api/v1/collectiongroup/get-collectiongroup");
+            if (data?.success) {
+                setCollectiongroups(data?.collectiongroup);
+                }
+        }catch(error){
+            console.log(error);
+            toast.error("Something went wrong in getting collecton groups");
+        }
+    }
 
 
     //get all categories
@@ -97,6 +117,7 @@ const UpdatePreProduct = () => {
         getAllCategory();
         getAllArtist();
         getAllMember();
+        getCollectiongroup();
     }, []);
 
     //update product function
@@ -112,6 +133,7 @@ const UpdatePreProduct = () => {
             preproductData.append("artist", artist);
             preproductData.append("member", member);
             preproductData.append("until", until);
+            preproductData.append("collectiongroup", collectiongroup);
             const { data } = axios.put(
                 `/api/v1/preproduct/update-preproduct/${id}`,
                 preproductData
@@ -252,6 +274,24 @@ const UpdatePreProduct = () => {
                                 </op>
                             ))}
                         </Select>
+
+                        <Select
+                            bordered={false}
+                            placeholder="Select a Collection"
+                            size="medium"
+                            showSearch
+                            className="form-select mb-3"
+                            onChange={(value) => {
+                                setCollectiongroup(value);
+                            }}
+                            value={collectiongroup}
+                        >
+                            {collectiongroups?.map((c) => (
+                                <op key={c._id} value={c._id}>
+                                    {c.name}
+                                </op>
+                            ))}
+                        </Select>
                         </div>
 
                         <div className="col-4">
@@ -284,10 +324,17 @@ const UpdatePreProduct = () => {
                         </Select>
                         <div className="d-flex flex-column">
                             <DatePicker format= 'YYYY-MM-DD ' className='m-2'
-                            onChange={(values) => setUntil(moment(values))}/>
+                            onChange={(values) => setUntil(moment(values))}> 
+                            {/* {preproduct?.map((c) => (
+                                <Option key={c._id} value={c._id}>
+                                    {c.until}
+                                </Option>
+                            ))} */}
+                                {moment(until).format('YYYY-MM-DD')}
+                            </DatePicker>
                             <TimePicker className='m-2' format= 'HH:mm' onChange={(values) => setUntil(
                                 moment(values))}/>
-                            <label>CurrentDateTime: {moment(until).format('YYYY-MM-DD hh:mm')}</label>
+                            {/* <label>CurrentDateTime: {moment(until).format('YYYY-MM-DD hh:mm')}</label> */}
                         </div>
                         </div>
                         <div className="mb-3">

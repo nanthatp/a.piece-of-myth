@@ -36,10 +36,16 @@ const preproductSchema = new mongoose.Schema({
         ref: "Member",
         required: true,
     },
+    collectiongroup: {
+        type: mongoose.ObjectId,
+        ref: "Collection",
+        required: true,
+    },
     until: {
         type: Date,
         require: true,
     },
+    
 },{ timestamps: true }
 )
 export default mongoose.model("Preproduct",preproductSchema)

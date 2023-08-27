@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const collectionSchema = new mongoose.Schema({
+const collectiongroupSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -13,4 +13,4 @@ const collectionSchema = new mongoose.Schema({
     
 });
 
-export default mongoose.model('Collection', collectionSchema);
+export default mongoose.model('Collectiongroup', collectiongroupSchema);

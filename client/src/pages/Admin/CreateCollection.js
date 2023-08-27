@@ -9,7 +9,7 @@ import "../../styles/CreateCategory.css";
 
 const CreateCollection = () => {
 
-    const [collections, setCollections] = useState([]);
+    const [collectiongroups, setCollectiongroups] = useState([]);
     const [name, setName] = useState("");
     const [visible, setVisible] = useState(false)
     const [selected, setSelected] = useState(null);
@@ -19,7 +19,7 @@ const CreateCollection = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-        const { data } = await axios.post("/api/v1/collection/create-collection", {
+        const { data } = await axios.post("/api/v1/collectiongroup/create-collectiongroup", {
             name,
         });
 
@@ -36,12 +36,12 @@ const CreateCollection = () => {
         }
     };
 
-    //get all Collections
+    //get all Collections group
     const getAllCollection = async () => {
         try {
-            const { data } = await axios.get("/api/v1/collection/get-collection");
+            const { data } = await axios.get("/api/v1/collectiongroup/get-collectiongroup");
             if (data?.success) {
-            setCollections(data?.collection);
+            setCollectiongroups(data?.collectiongroup);
             }
         } catch (error) {
             console.log(error);
@@ -53,12 +53,12 @@ const CreateCollection = () => {
         getAllCollection();
     }, []);
 
-    //update collection
+    //update collection group
     const handleUpdate = async (e) => {
         e.preventDefault();
         try {
         const { data } = await axios.put(
-            `/api/v1/collection/update-collection/${selected._id}`,
+            `/api/v1/collectiongroup/update-collectiongroup/${selected._id}`,
             { name: updatedName }
         );
         if (data?.success) {
@@ -79,10 +79,10 @@ const CreateCollection = () => {
     const handleDelete = async (pId) => {
         try {
         const { data } = await axios.delete(
-            `/api/v1/collection/delete-collection/${pId}`
+            `/api/v1/collectiongroup/delete-collectiongroup/${pId}`
         );
         if (data.success) {
-            toast.success(`collection is deleted`);
+            toast.success(`collection group is deleted`);
 
             getAllCollection();
         } else {
@@ -115,7 +115,7 @@ const CreateCollection = () => {
                             <th className='table-cat-th'></th>
                         </tr>
                             <tbody>
-                                {collections.map((c) => (
+                                {collectiongroups.map((c) => (
                                     <>
                                         <tr>
                                             <td key = {c._id}>{c.name}</td>

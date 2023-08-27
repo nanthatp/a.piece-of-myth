@@ -13,6 +13,7 @@ export default function CreatePreProduct() {
     const [categories, setCategories] = useState([]);
     const [members, setMembers] = useState([]);
     const [artists, setArtists] = useState([]);
+    const [collectiongroups, setCollectiongroups] = useState([]);
     const [name, setName] = useState("");
     const [until, setUntil ] = useState();
     const [description, setDescription] = useState("");
@@ -21,6 +22,7 @@ export default function CreatePreProduct() {
     const [photo, setPhoto] = useState("");
     const [artist, setArtist] = useState("");
     const [member, setMember] = useState("");
+    const [collectiongroup, setCollectiongroup] = useState("");
 
     //get all categories
     const getAllCategory = async () => {
@@ -34,6 +36,19 @@ export default function CreatePreProduct() {
             toast.error("Something went wrong in getting catgeory");
         }
     };
+
+    //get all collection group
+    const getCollectiongroup = async () => {
+        try {
+            const { data } = await axios.get("/api/v1/collectiongroup/get-collectiongroup");
+            if (data?.success) {
+                setCollectiongroups(data?.collectiongroup);
+                }
+        }catch(error){
+            console.log(error);
+            toast.error("Something went wrong in getting collection groups");
+        }
+    }
 
     //get all artist
     const getAllArtist = async () => {
@@ -63,6 +78,7 @@ export default function CreatePreProduct() {
 
     useEffect(() => {
         getAllCategory();
+        getCollectiongroup();
         getAllArtist();
         getAllMember();
     }, []);
@@ -80,6 +96,7 @@ export default function CreatePreProduct() {
             preproductData.append("photo", photo);
             preproductData.append("artist", artist);
             preproductData.append("member", member);
+            preproductData.append("collectiongroup", collectiongroup);
             const { data } = axios.post(
                 "/api/v1/preproduct/create-preproduct",
                 preproductData
@@ -87,7 +104,7 @@ export default function CreatePreProduct() {
             if (data?.success) {
                 toast.error(data?.message);
             } else {
-                toast.success("Product Created Successfully");
+                toast.success("Pre-order Product Created Successfully");
                 navigate("/dashboard/admin/preproduct");
             }
         } catch (error) {
@@ -187,6 +204,23 @@ export default function CreatePreProduct() {
                             }}
                         >
                             {categories?.map((c) => (
+                                <Option key={c._id} value={c._id}>
+                                    {c.name}
+                                </Option>
+                            ))}
+                        </Select>
+                        
+                        <Select
+                            bordered={false}
+                            placeholder="Select a Collection group"
+                            size="medium"
+                            showSearch
+                            className="form-select mb-3"
+                            onChange={(value) => {
+                                setCollectiongroup(value);
+                            }}
+                        >
+                            {collectiongroups?.map((c) => (
                                 <Option key={c._id} value={c._id}>
                                     {c.name}
                                 </Option>

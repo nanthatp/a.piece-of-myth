@@ -1,40 +1,40 @@
 import express from 'express';
 import { isAdmin, requireSignIn } from '../middlewares/authMiddleware.js';
-import {  updateCollectionController, singleCollectionController, deleteCollectionController, collectionController, createCollectionController } from '../controllers/collectionController.js';
+import {  updateCollectiongroupController, singleCollectiongroupController, deleteCollectiongroupController, collectiongroupController, createCollectiongroupController } from '../controllers/collectionController.js';
 
 const router = express.Router()
 
 
 //routes
 
-//create collection
+//create collection group
 router.post(
-    "/create-collection",
+    "/create-collectiongroup",
     requireSignIn,
     isAdmin,
-    createCollectionController
+    createCollectiongroupController
 );
 
-//update collection 
+//update collection group
 router.put(
-    "/update-collection/:id",
+    "/update-collectiongroup/:id",
     requireSignIn,
     isAdmin,
-    updateCollectionController
+    updateCollectiongroupController
 );
 
-//getAll collection
-router.get('/get-collection', collectionController)
+//getAll collection group
+router.get('/get-collectiongroup', collectiongroupController)
 
-//single collection
-router.get("/single-collection/:slug", singleCollectionController);
+//single collection group
+router.get("/single-collectiongroup/:slug", singleCollectiongroupController);
 
-//delete collection
+//delete collection group
 router.delete(
-    "/delete-collection/:id",
+    "/delete-collectiongroup/:id",
     requireSignIn,
     isAdmin,
-    deleteCollectionController
+    deleteCollectiongroupController
 );
 
 

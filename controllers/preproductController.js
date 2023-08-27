@@ -1,4 +1,5 @@
 import categoryModel from "../models/categoryModel.js";
+import collectionModel from "../models/collectiongroupModel.js";
 import preproductModel from "../models/preproductModel.js";
 
 import fs from "fs";
@@ -20,7 +21,7 @@ var gateway = new braintree.BraintreeGateway({
 
   export const createPreProductController = async (req,res)  => {
     try {
-        const {name, slug, description, price, category, artist, member,until} = req.fields;
+        const {name, slug, description, price, category, artist, member,until,collectiongroup} = req.fields;
         const {photo} = req.files;
         
         //alidation
@@ -39,6 +40,8 @@ var gateway = new braintree.BraintreeGateway({
                 return res.status(500).send({error:'Member is required'})
             case !until:
                 return res.status(500).send({error:'Until time is required'})
+            case !collectiongroup:
+                return res.status(500).send({error:'collectiongroup time is required'})
             case photo && photo.size > 150000000000:
                 return res.status(500).send({error:'Photo is requiredand less than 1.5mb'})
         }
@@ -146,7 +149,7 @@ export const deletePreProductController = async (req, res) => {
 //update Pre-order product
 export const updatePreProductController = async (req, res) => {
     try {
-        const {name, slug, description, price, category, artist, member, shipping, until} = req.fields;
+        const {name, slug, description, price, category, artist, member, shipping, until,collectiongroup} = req.fields;
         const {photo} = req.files;
         
         //alidation
@@ -165,6 +168,8 @@ export const updatePreProductController = async (req, res) => {
                 return res.status(500).send({error:'Member is required'})
             case !until:
                 return res.status(500).send({error:'Until is required'})
+            case !collectiongroup:
+                return res.status(500).send({error:'Collection is required'})
             case photo && photo.size > 150000000000:
                 return res.status(500).send({error:'Photo is requiredand less than 1.5 mb'})
         }
@@ -286,7 +291,7 @@ export const searchPreProductController = async (req, res) => {
 export const realtedPreProductController = async (req, res) => {
     try {
     const { pid, cid } = req.params;
-    const preproducts = await preproductModel
+    const preproduct = await preproductModel
         .find({
         category: cid,
         _id: { $ne: pid },
@@ -296,7 +301,7 @@ export const realtedPreProductController = async (req, res) => {
         .populate("category");
     res.status(200).send({
         success: true,
-        preproducts,
+        preproduct,
     });
     } catch (error) {
     console.log(error);

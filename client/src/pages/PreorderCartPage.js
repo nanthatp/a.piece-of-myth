@@ -20,7 +20,7 @@ function PreorderCartPage() {
     const [instance, setInstance] = useState("");
     const [loading, setLoading] = useState(false);
     const [preproduct, setPreproduct] = useState({});
-    const [relatedProducts, setRelatedProducts] = useState([]);
+    const [relatedPreproducts, setRelatedPreroducts] = useState([]);
     const navigate = useNavigate();
 
      //get payment gateway token
@@ -82,6 +82,30 @@ useEffect(() => {
 useEffect(() => {
     if (params?.slug) getPreProduct();
 }, [params?.slug]);
+
+//getProduct
+const getPreproduct = async () => {
+  try {
+  const { data } = await axios.get(
+      `/api/v1/preproduct/get-preproduct/${params.slug}`
+  );
+  setPreproduct(data?.product);
+  getSimilarPreproduct(data?.product._id, data?.product.category._id);
+  } catch (error) {
+  console.log(error);
+  }
+};
+//get similar product
+const getSimilarPreproduct = async (pid, cid) => {
+  try {
+  const { data } = await axios.get(
+      `/api/v1/preproduct/related-preproduct/${pid}/${cid}`
+  );
+  setRelatedPreroducts(data?.preproduct);
+  } catch (error) {
+  console.log(error);
+  }
+};
   return (
     <Layout>
     <div className="row container product-details">
@@ -215,7 +239,50 @@ useEffect(() => {
                 
             
             
+        <div className="row container similar-products">
+            <h4>More Pre-Order Products</h4>
+            {relatedPreproducts.length < 1 && (
+            <p className="text-center">No Similar Products found</p>
+            )}
+            <section className="product-list">
+            <div className="product-container ">
+            <div className="d-flex wrap">
+            {relatedPreproducts?.map((p) => (
+                <div className="card m-2 product-box" key={p._id}>
+                <img
+                    src={`/api/v1/preproduct/preproduct-photo/${p._id}`}
+                    className="card-img-top"
+                    alt={p.name}
+                />
+                <div className="card-body">
+                    <div className="card-name-price">
+                    <h5 className=" name-product">{p.name}</h5>
+                    <p className="card-text product-quantity">
+                        {p.quantity} sold
+                    </p>
+                    <h5 className="card-title product-price">
+                        {p.price.toLocaleString("US", {
+                        style: "currency",
+                        currency: "USD",
+                        })}
+                    </h5>
+                    </div>
+                    <div className="card-name-price">
+                    <button
+                        className="btn-add"
+                        onClick={() => navigate(`/preproduct/${p.slug}`)}
+                        >
+                        <BsFillBagHeartFill/> Pre-Order Now
+                        </button>
+                    </div>
+                </div>
+                </div>
+            ))}
+            </div>
+            </div>
+            </section>
             
+        </div>    
         
         </Layout>
   )
