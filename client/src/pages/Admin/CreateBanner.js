@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Layout from '../../components/Layout/Layout'
+import LayoutAdmin from "./../../components/Layout/LayoutAdmin";
 import AdminMenu from '../../components/Layout/AdminMenu'
 import { toast } from 'react-hot-toast';
 import axios from 'axios';
@@ -13,8 +13,10 @@ const CreateBanner = () => {
     const navigate = useNavigate();
 
     const [artists, setArtists] = useState([]);
+    const [collectiongroups, setCollectiongroups] = useState([]);
     const [name, setName] = useState("");
     const [file, setFile] = useState("");
+    const [collectiongroup, setCollectiongroup] = useState("");
     const [artist, setArtist] = useState("");
     
     //get all artist
@@ -30,9 +32,24 @@ const CreateBanner = () => {
         }
     }; 
 
+    
+    //get all collection group
+    const getCollectiongroup = async () => {
+        try {
+            const { data } = await axios.get("/api/v1/collectiongroup/get-collectiongroup");
+            if (data?.success) {
+                setCollectiongroups(data?.collectiongroup);
+                }
+        }catch(error){
+            console.log(error);
+            toast.error("Something went wrong in getting collection groups");
+        }
+    }
+
 
     useEffect(() => {
         getAllArtist();
+        getCollectiongroup();
     }, []);
 
     //create banner function
@@ -43,6 +60,7 @@ const CreateBanner = () => {
             bannerData.append("name", name);
             file && bannerData.append("file", file);
             bannerData.append("artist", artist);
+            bannerData.append("collectiongroup", collectiongroup);
             const { data } = axios.post(
                 "/api/v1/banner/create-banner",
                 bannerData
@@ -61,7 +79,7 @@ const CreateBanner = () => {
     };
 
     return (
-    <Layout title={"Dashboard - Create Banner"}>
+    <LayoutAdmin title={"Dashboard - Create Banner"}>
         <div className="row dashboard">
             <div className="col-md-3">
                 <AdminMenu />
@@ -103,6 +121,23 @@ const CreateBanner = () => {
                                 ))}
                         </Select>
 
+                        <Select
+                            bordered={false}
+                            placeholder="Select a Collection group"
+                            size="medium"
+                            showSearch
+                            className="form-select mb-3"
+                            onChange={(value) => {
+                                setCollectiongroup(value);
+                            }}
+                        >
+                            {collectiongroups?.map((c) => (
+                                <Option key={c._id} value={c._id}>
+                                    {c.name}
+                                </Option>
+                            ))}
+                        </Select>
+
                         <div className="mb-3">
                             <label className="btn-upload-file col-md-12">
                                 {file ? file.name : "Upload Files"}
@@ -140,7 +175,7 @@ const CreateBanner = () => {
 
         </div>
         
-    </Layout>
+    </LayoutAdmin>
 
 
 );

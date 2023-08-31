@@ -1,11 +1,11 @@
 import React from "react";
 import AdminMenu from "../../components/Layout/AdminMenu";
-import Layout from "./../../components/Layout/Layout";
+import LayoutAdmin from "./../../components/Layout/LayoutAdmin";
 import { useAuth } from "../../context/auth";
 const AdminDashboard = () => {
     const [auth] = useAuth();
     return (
-        <Layout>
+        <LayoutAdmin>
             <div className="row dashboard">
                 <div className="col-md-3">
                     <AdminMenu />
@@ -19,7 +19,7 @@ const AdminDashboard = () => {
                 </div>
             </div>
         
-        </Layout>
+        </LayoutAdmin>
     );
     };
 

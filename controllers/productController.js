@@ -1,5 +1,6 @@
 import productModel from "../models/productModel.js";
 import categoryModel from "../models/categoryModel.js";
+import collectiongroupModel from "../models/collectiongroupModel.js";
 import orderModel from "../models/orderModel.js";
 
 import fs from "fs";
@@ -21,7 +22,7 @@ var gateway = new braintree.BraintreeGateway({
 
 export const createProductController = async (req,res)  => {
     try {
-        const {name, slug, description, price, category,  quantity, artist, member, shipping} = req.fields;
+        const {name, slug, description, price, category,  collectiongroup, quantity, artist, member, shipping} = req.fields;
         const {photo} = req.files;
         
         //alidation
@@ -34,12 +35,14 @@ export const createProductController = async (req,res)  => {
                 return res.status(500).send({error:'Price is required'})
             case !category:
                 return res.status(500).send({error:'Category is required'})
+            case !collectiongroup:
+                return res.status(500).send({error:'Collection Group is required'})
             case !quantity:
                 return res.status(500).send({error:'Quantity is required'})
             case !artist:
                 return res.status(500).send({error:'Artist is required'})
-            case !member:
-                return res.status(500).send({error:'Member is required'})
+            // case !member:
+            //     return res.status(500).send({error:'Member is required'})
             case photo && photo.size > 150000000000:
                 return res.status(500).send({error:'Photo is requiredand less than 1.5mb'})
         }
@@ -147,7 +150,7 @@ export const deleteProductController = async (req, res) => {
 //update product
 export const updateProductController = async (req, res) => {
     try {
-        const {name, slug, description, price, category,  quantity, artist, member, shipping} = req.fields;
+        const {name, slug, description, price, category,  collectiongroup, quantity, artist, member, shipping} = req.fields;
         const {photo} = req.files;
         
         //alidation
@@ -160,12 +163,14 @@ export const updateProductController = async (req, res) => {
                 return res.status(500).send({error:'Price is required'})
             case !category:
                 return res.status(500).send({error:'Category is required'})
+            case !collectiongroup:
+                return res.status(500).send({error:'Collection Group is required'})
             case !quantity:
                 return res.status(500).send({error:'Quantity is required'})
             case !artist:
                 return res.status(500).send({error:'Artist is required'})
-            case !member:
-                return res.status(500).send({error:'Member is required'})
+            // case !member:
+            //     return res.status(500).send({error:'Member is required'})
             case photo && photo.size > 150000000000:
                 return res.status(500).send({error:'Photo is requiredand less than 1.5 mb'})
         }

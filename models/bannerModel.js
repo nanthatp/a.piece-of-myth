@@ -19,6 +19,11 @@ const bannerSchema = new mongoose.Schema({
         ref: "Artist",
         required: true,
     },
+    collectiongroup: {
+        type: mongoose.ObjectId,
+        ref: "Collection",
+        required: true,
+    },
 },{ timestamps: true }
 );
 

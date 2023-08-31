@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Layout from '../../components/Layout/Layout'
+import LayoutAdmin from "./../../components/Layout/LayoutAdmin";
 import AdminMenu from '../../components/Layout/AdminMenu'
 import { toast } from 'react-hot-toast';
 import axios from 'axios';
@@ -13,9 +13,11 @@ const CreateBanner = () => {
     const navigate = useNavigate();
     const params = useParams();
     const [artists, setArtists] = useState([]);
+    const [collectiongroups, setCollectiongroups] = useState([]);
     const [name, setName] = useState("");
     const [file, setFile] = useState("");
     const [artist, setArtist] = useState("");
+    const [collectiongroup, setCollectiongroup] = useState("");
     const [id, setId] = useState("");
 
 
@@ -28,6 +30,7 @@ const CreateBanner = () => {
         setName(data.banner.name);
         setId(data.banner._id);
         setArtist(data.banner.artist._id);
+        setCollectiongroup(data.banner.collectiongroup);
         
     }catch (error) {
         console.log(error);
@@ -52,9 +55,23 @@ const CreateBanner = () => {
         }
     };
 
+    //get all collection
+    const getCollectiongroup = async () => {
+        try {
+            const { data } = await axios.get("/api/v1/collectiongroup/get-collectiongroup");
+            if (data?.success) {
+                setCollectiongroups(data?.collectiongroup);
+                }
+        }catch(error){
+            console.log(error);
+            toast.error("Something went wrong in getting collecton groups");
+        }
+    };
+
 
     useEffect(() => {
         getAllArtist();
+        getCollectiongroup();
     }, []);
 
     //update banner function
@@ -65,6 +82,7 @@ const CreateBanner = () => {
             bannerData.append("name", name);
             file && bannerData.append("file", file);
             bannerData.append("artist", artist);
+            bannerData.append("collectiongroup", collectiongroup);
             const { data } = axios.put(
                 `/api/v1/banner/update-banner/${id}`,
                 bannerData
@@ -99,7 +117,7 @@ const CreateBanner = () => {
 
 
     return (
-    <Layout title={"Dashboard - Create Banner"}>
+    <LayoutAdmin title={"Dashboard - Create Banner"}>
         <div className="row dashboard">
             <div className="col-md-3">
                 <AdminMenu />
@@ -141,6 +159,25 @@ const CreateBanner = () => {
                                 </Option>
                             ))}
                         </Select>
+
+                        <Select
+                            bordered={false}
+                            placeholder="Select a Collection"
+                            size="medium"
+                            showSearch
+                            className="form-select mb-3"
+                            onChange={(value) => {
+                                setCollectiongroup(value);
+                            }}
+                            value={collectiongroup}
+                        >
+                            {collectiongroups?.map((c) => (
+                                <op key={c._id} value={c._id}>
+                                    {c.name}
+                                </op>
+                            ))}
+                        </Select>
+
                         <div className="mb-3">
                         <label className="btn-upload-photo col-md-12">
                                 {file ? file.name : "Upload File"}
@@ -192,7 +229,7 @@ const CreateBanner = () => {
 
         </div>
         
-    </Layout>
+    </LayoutAdmin>
 
 
 );

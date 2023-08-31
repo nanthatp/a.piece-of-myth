@@ -35,9 +35,14 @@ const productSchema = new mongoose.Schema({
         ref: "Artist",
         required: true,
     },
-    member: {
+    // member: {
+    //     type: mongoose.ObjectId,
+    //     ref: "Member",
+    //     required: true,
+    // },
+    collectiongroup: {
         type: mongoose.ObjectId,
-        ref: "Member",
+        ref: "Collection",
         required: true,
     },
     shipping: {

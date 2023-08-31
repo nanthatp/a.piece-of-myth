@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Layout from '../../components/Layout/Layout'
+import LayoutAdmin from "./../../components/Layout/LayoutAdmin";
 import AdminMenu from '../../components/Layout/AdminMenu'
 import { toast } from 'react-hot-toast';
 import axios from 'axios';
@@ -115,7 +115,7 @@ export default function CreatePreProduct() {
         // const [value, setValue] = useState(new Date());
         
   return (
-    <Layout title={"Dashboard - Create Preproduct"}>
+    <LayoutAdmin title={"Dashboard - Create Preproduct"}>
         <div className="row dashboard">
             <div className="col-md-3">
                 <AdminMenu />
@@ -282,6 +282,6 @@ export default function CreatePreProduct() {
                 </div>
             </div>
         </div>
-    </Layout>
+    </LayoutAdmin>
   )
 }

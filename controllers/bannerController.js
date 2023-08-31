@@ -1,11 +1,12 @@
 import bannerModel from "../models/bannerModel.js";
 import artistModel from "../models/artistModel.js";
+import collectiongroupModel from "../models/collectiongroupModel.js";
 import slugify from "slugify";
 import fs from "fs";
 
 export const createBannerController = async (req,res)  => {
     try {
-        const {name, slug, artist} = req.fields;
+        const {name, slug, artist, collectiongroup} = req.fields;
         const {file} = req.files;
         
         //alidation
@@ -14,6 +15,8 @@ export const createBannerController = async (req,res)  => {
                 return res.status(500).send({error:'Name is required'})
             case !artist:
                 return res.status(500).send({error:'Artist is required'})
+            case !collectiongroup:
+                return res.status(500).send({error:'Collection Group is required'})
             case !file:
                 return res.status(500).send({error:'File is required'})
         }
@@ -65,7 +68,7 @@ export const getSingleBannerController = async (req, res) => {
         const banner = await bannerModel
             .findOne({ slug: req.params.slug })
             .select("-file")
-            .populate("artist");
+            .populate("artist")
         res.status(200).send({
             success: true,
             message: "Single Banner Fetched",
@@ -121,7 +124,7 @@ export const deleteBannerController = async (req, res) => {
 //update banner
 export const updateBannerController = async (req, res) => {
     try {
-        const {name, slug,  artist} = req.fields;
+        const {name, slug,  artist, collectiongroup} = req.fields;
         const {file} = req.files;
         
         //alidation
@@ -130,6 +133,8 @@ export const updateBannerController = async (req, res) => {
                 return res.status(500).send({error:'Name is required'})
             case !artist:
                 return res.status(500).send({error:'Artist is required'})
+            case !collectiongroup:
+                return res.status(500).send({error:'Collection Group is required'})
             case file :
                 return res.status(500).send({error:'File is required'})
         }

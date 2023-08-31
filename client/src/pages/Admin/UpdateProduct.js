@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Layout from '../../components/Layout/Layout'
+import LayoutAdmin from "./../../components/Layout/LayoutAdmin";
 import AdminMenu from '../../components/Layout/AdminMenu'
 import { toast } from 'react-hot-toast';
 import axios from 'axios';
@@ -12,16 +12,18 @@ const UpdateProduct = () => {
     const navigate = useNavigate();
     const params = useParams();
     const [categories, setCategories] = useState([]);
-    const [members, setMembers] = useState([]);
+    const [collectiongroups, setCollectiongroups] = useState([]);
+    // const [members, setMembers] = useState([]);
     const [artists, setArtists] = useState([]);
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
     const [category, setCategory] = useState("");
+    const [collectiongroup, setCollectiongroup] = useState("");
     const [quantity, setQuantity] = useState("");
     const [photo, setPhoto] = useState("");
     const [artist, setArtist] = useState("");
-    const [member, setMember] = useState("");
+    // const [member, setMember] = useState("");
     const [shipping, setShipping] = useState("");
     const [id, setId] = useState("");
 
@@ -36,10 +38,11 @@ const UpdateProduct = () => {
             setDescription(data.product.description);
             setPrice(data.product.price);
             setCategory(data.product.category._id);
+            setCollectiongroup(data.product.collectiongroup);
             setQuantity(data.product.quantity);
             setShipping(data.product.shipping);
             setArtist(data.product.artist);
-            setMember(data.product.member);
+            // setMember(data.product.member);
             
         }catch (error) {
             console.log(error);
@@ -65,6 +68,20 @@ const UpdateProduct = () => {
         }
     }; 
 
+    //get all collection
+    const getCollectiongroup = async () => {
+        try {
+            const { data } = await axios.get("/api/v1/collectiongroup/get-collectiongroup");
+            if (data?.success) {
+                setCollectiongroups(data?.collectiongroup);
+                }
+        }catch(error){
+            console.log(error);
+            toast.error("Something went wrong in getting collecton groups");
+        }
+    };
+
+
       //get all artist
     const getAllArtist = async () => {
         try {
@@ -79,23 +96,24 @@ const UpdateProduct = () => {
     };
 
     //get all member
-    const getAllMember = async () => {
-        try {
-            const { data } = await axios.get("/api/v1/member/get-member");
-            if (data?.success) {
-            setMembers(data?.member);
-            }
-        } catch (error) {
-            console.log(error);
-            toast.error("Something went wrong in getting member");
-        }
-    }; 
+    // const getAllMember = async () => {
+    //     try {
+    //         const { data } = await axios.get("/api/v1/member/get-member");
+    //         if (data?.success) {
+    //         setMembers(data?.member);
+    //         }
+    //     } catch (error) {
+    //         console.log(error);
+    //         toast.error("Something went wrong in getting member");
+    //     }
+    // }; 
 
 
     useEffect(() => {
         getAllCategory();
+        getCollectiongroup();
         getAllArtist();
-        getAllMember();
+        // getAllMember();
     }, []);
 
     //update product function
@@ -107,10 +125,11 @@ const UpdateProduct = () => {
             productData.append("description", description);
             productData.append("price", price);
             productData.append("category", category);
+            productData.append("collectiongroup", collectiongroup);
             productData.append("quantity", quantity);
             photo && productData.append("photo", photo);
             productData.append("artist", artist);
-            productData.append("member", member);
+            // productData.append("member", member);
             const { data } = axios.put(
                 `/api/v1/product/update-product/${id}`,
                 productData
@@ -144,7 +163,7 @@ const UpdateProduct = () => {
     };
 
     return (
-        <Layout title={"Dashboard - Update Category"}>
+        <LayoutAdmin title={"Dashboard - Update Category"}>
             <div className="row dashboard">
             <div className="col-md-3">
                 <AdminMenu />
@@ -273,7 +292,7 @@ const UpdateProduct = () => {
                                 onChange={(e) => setQuantity(e.target.value)}
                             />
                         </div>
-                        <Select
+                        {/* <Select
                             bordered={false}
                             placeholder="Select a Member"
                             size="medium"
@@ -289,8 +308,26 @@ const UpdateProduct = () => {
                                     {c.name}
                                 </Option>
                             ))}
+                        </Select> */}
+
+                        <Select
+                            bordered={false}
+                            placeholder="Select a Collection"
+                            size="medium"
+                            showSearch
+                            className="form-select mb-3"
+                            onChange={(value) => {
+                                setCollectiongroup(value);
+                            }}
+                            value={collectiongroup}
+                        >
+                            {collectiongroups?.map((c) => (
+                                <op key={c._id} value={c._id}>
+                                    {c.name}
+                                </op>
+                            ))}
                         </Select>
-                        <div className="mb-3">
+                        {/* <div className="mb-3">
                             <Select
                                 bordered={false}
                                 placeholder="Select Shipping "
@@ -305,7 +342,7 @@ const UpdateProduct = () => {
                                 <Option value="0">No</Option>
                                 <Option value="1">Yes</Option>
                             </Select>
-                        </div>
+                        </div> */}
                         </div>
 
                         <div className="mb-3">
@@ -324,7 +361,7 @@ const UpdateProduct = () => {
 
         </div>
         
-    </Layout>
+    </LayoutAdmin>
     )
 }
 

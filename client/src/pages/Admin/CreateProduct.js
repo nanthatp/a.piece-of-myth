@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Layout from '../../components/Layout/Layout'
+import LayoutAdmin from "./../../components/Layout/LayoutAdmin";
 import AdminMenu from '../../components/Layout/AdminMenu'
 import { toast } from 'react-hot-toast';
 import axios from 'axios';
@@ -11,16 +11,18 @@ const { Option } = Select;
 const CreateProduct = () => {
     const navigate = useNavigate();
     const [categories, setCategories] = useState([]);
-    const [members, setMembers] = useState([]);
+    // const [members, setMembers] = useState([]);
     const [artists, setArtists] = useState([]);
+    const [collectiongroups, setCollectiongroups] = useState([]);
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
     const [category, setCategory] = useState("");
+    const [collectiongroup, setCollectiongroup] = useState("");
     const [quantity, setQuantity] = useState("");
     const [photo, setPhoto] = useState("");
     const [artist, setArtist] = useState("");
-    const [member, setMember] = useState("");
+    // const [member, setMember] = useState("");
     const [shipping, setShipping] = useState("");
 
     //get all categories
@@ -36,6 +38,19 @@ const CreateProduct = () => {
         }
     }; 
 
+    //get all collection group
+    const getCollectiongroup = async () => {
+    try {
+        const { data } = await axios.get("/api/v1/collectiongroup/get-collectiongroup");
+        if (data?.success) {
+            setCollectiongroups(data?.collectiongroup);
+            }
+    }catch(error){
+        console.log(error);
+        toast.error("Something went wrong in getting collection groups");
+    }
+    }
+
     //get all artist
     const getAllArtist = async () => {
         try {
@@ -50,23 +65,24 @@ const CreateProduct = () => {
     }; 
 
     //get all member
-    const getAllMember = async () => {
-        try {
-            const { data } = await axios.get("/api/v1/member/get-member");
-            if (data?.success) {
-            setMembers(data?.member);
-            }
-        } catch (error) {
-            console.log(error);
-            toast.error("Something went wrong in getting member");
-        }
-    }; 
+    // const getAllMember = async () => {
+    //     try {
+    //         const { data } = await axios.get("/api/v1/member/get-member");
+    //         if (data?.success) {
+    //         setMembers(data?.member);
+    //         }
+    //     } catch (error) {
+    //         console.log(error);
+    //         toast.error("Something went wrong in getting member");
+    //     }
+    // }; 
 
 
     useEffect(() => {
         getAllCategory();
+        getCollectiongroup();
         getAllArtist();
-        getAllMember();
+        // getAllMember();
     }, []);
 
     //create product function
@@ -78,10 +94,11 @@ const CreateProduct = () => {
             productData.append("description", description);
             productData.append("price", price);
             productData.append("category", category);
+            productData.append("collectiongroup", collectiongroup);
             productData.append("quantity", quantity);
             productData.append("photo", photo);
             productData.append("artist", artist);
-            productData.append("member", member);
+            // productData.append("member", member);
             const { data } = axios.post(
                 "/api/v1/product/create-product",
                 productData
@@ -99,7 +116,7 @@ const CreateProduct = () => {
     };
 
     return (
-    <Layout title={"Dashboard - Create Category"}>
+    <LayoutAdmin title={"Dashboard - Create Category"}>
         <div className="row dashboard">
             <div className="col-md-3">
                 <AdminMenu />
@@ -216,7 +233,7 @@ const CreateProduct = () => {
                                 onChange={(e) => setQuantity(e.target.value)}
                             />
                         </div>
-                        <Select
+                        {/* <Select
                             bordered={false}
                             placeholder="Select a Member"
                             size="medium"
@@ -231,7 +248,25 @@ const CreateProduct = () => {
                                     {c.name}
                                 </Option>
                             ))}
+                        </Select> */}
+
+                        <Select
+                            bordered={false}
+                            placeholder="Select a Collection group"
+                            size="medium"
+                            showSearch
+                            className="form-select mb-3"
+                            onChange={(value) => {
+                                setCollectiongroup(value);
+                            }}
+                        >
+                            {collectiongroups?.map((c) => (
+                                <Option key={c._id} value={c._id}>
+                                    {c.name}
+                                </Option>
+                            ))}
                         </Select>
+
                         {/* <div className="mb-3">
                             <Select
                                 bordered={false}
@@ -263,7 +298,7 @@ const CreateProduct = () => {
 
         </div>
         
-    </Layout>
+    </LayoutAdmin>
 
 
 );
