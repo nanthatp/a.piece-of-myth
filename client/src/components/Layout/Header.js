@@ -76,24 +76,24 @@ const Header = () => {
               <li className="nav-item dropdown">
                 <Link
                   className="nav-link dropdown-toggle"
-                  to={"/artists"}
+                  to={"/allArtists"}
                   data-bs-toggle="dropdown"
                 >
                   Artists
                 </Link>
                 <ul className="dropdown-menu">
                   <li>
-                    <Link className="dropdown-item" to={"/artists"}>
+                    <Link className="dropdown-item" to={"/allArtists"}>
                       All Artists
                     </Link>
                   </li>
-                  {artists?.map((c) => (
+                  {artists?.map((a) => (
                     <li>
                       <Link
                         className="dropdown-item"
-                        to={`/artist/${c.slug}`}
+                        to={`/artist/${a.slug}`}
                       >
-                        {c.name}
+                        {a.name}
                       </Link>
                     </li>
                   ))}

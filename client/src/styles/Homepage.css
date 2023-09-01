@@ -388,6 +388,11 @@ filters
     border-radius: 20px;
 }
 
+.cat-btn{
+    font-size: 15px;
+    font-weight: 700;
+}
+
 /* ======= Category Section ====== */
 
 /* ======= Artist Section ====== */
@@ -431,5 +436,16 @@ left: 50%;
 transform: translate(-50%, -50%);
 text-align: center;
 }
+
+.name-artist-btn{
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.name-artist-btn:hover{
+    color: #FFD717;
+
+}
+
 
 /* ======= Artist Section ====== */

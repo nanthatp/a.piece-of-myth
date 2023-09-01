@@ -8,7 +8,7 @@ export default function useArtist() {
     const getArtists = async () => {
         try {
         const { data } = await axios.get("/api/v1/artist/get-artist");
-        setArtists(data?.artist);
+        setArtists(data?.artists);
         } catch (error) {
         console.log(error);
         }
@@ -17,5 +17,6 @@ export default function useArtist() {
     useEffect(() => {
         getArtists();
     }, []);
+
     return artists;
 }

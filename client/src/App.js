@@ -24,7 +24,10 @@ import Profile from './pages/User/Profile';
 import Search from "./pages/Search";
 import ProductDetails from "./pages/ProductDetails";
 import Categories from "./pages/Categories";
+import AllArtists from './pages/AllArtists';
 import CategoryProduct from "./pages/CategoryProduct";
+import CollectionProduct from "./pages/CollectionProduct";
+import ArtistProduct from "./pages/ArtistProduct";
 import CartPage from "./pages/CartPage";
 import Banners from "./pages/Admin/Banners";
 import ShowAllProduct from "./pages/ShowAllProduct";
@@ -53,10 +56,13 @@ function App() {
       <Route path="/product/:slug" element={<ProductDetails />} />
       <Route path="/preproduct/:slug" element={<PreorderCartPage />} />     
       <Route path="/categories" element={<Categories />} />
+      <Route path="/allArtists" element={<AllArtists />} />
       <Route path="/ShowAllProduct" element={<ShowAllProduct />} />
       <Route path="/ShowAllPre" element={<ShowAllPre />} />
       <Route path="/cart" element={<CartPage />} />
       <Route path="/category/:slug" element={<CategoryProduct />} />
+      <Route path="/collection/:slug" element={<CollectionProduct />} />
+      <Route path="/artist/:slug" element={<ArtistProduct />} />
       <Route path="/search" element={<Search />} />
       <Route path="/dashboard" element={<PrivateRoute />}>
         { <Route path="user" element={<Dashboard />} />}

@@ -268,7 +268,7 @@ useEffect(() => {
                         src={`/api/v1/artist/artist-photo/${c._id}`} 
                         className="card-artist-img" alt={c.name} />
                       <div className="1-overlay">
-                          <Link to={`/artist/${c.slug}`} className="btn cat-btn">
+                          <Link to={`/artist/${c.slug}`} className="btn name-artist-btn">
                             {c.name}
                           </Link>
                       </div>

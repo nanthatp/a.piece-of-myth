@@ -1,5 +1,6 @@
 import productModel from "../models/productModel.js";
 import categoryModel from "../models/categoryModel.js";
+import artistModel from "../models/artistModel.js";
 import collectiongroupModel from "../models/collectiongroupModel.js";
 import orderModel from "../models/orderModel.js";
 
@@ -322,6 +323,46 @@ export const productCategoryController = async (req, res) => {
     res.status(200).send({
         success: true,
         category,
+        products,
+    });
+    } catch (error) {
+    console.log(error);
+    res.status(400).send({
+        success: false,
+        error,
+        message: "Error While Getting products",
+    });
+    }
+};
+
+// get product by collection
+export const productCollectionController = async (req, res) => {
+    try {
+    const collectiongroup = await collectiongroupModel.findOne({ slug: req.params.slug });
+    const products = await productModel.find({ collectiongroup }).populate("collectiongroup");
+    res.status(200).send({
+        success: true,
+        collectiongroup,
+        products,
+    });
+    } catch (error) {
+    console.log(error);
+    res.status(400).send({
+        success: false,
+        error,
+        message: "Error While Getting products",
+    });
+    }
+};
+
+// get product by artist
+export const productArtistController = async (req, res) => {
+    try {
+    const artist = await artistModel.findOne({ slug: req.params.slug });
+    const products = await productModel.find({ artist }).populate("artist");
+    res.status(200).send({
+        success: true,
+        artist,
         products,
     });
     } catch (error) {
