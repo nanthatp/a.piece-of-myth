@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import AdminMenu from "../../components/Layout/AdminMenu";
-import LayoutAdmin from "./../../components/Layout/LayoutAdmin";import { useAuth } from "../../context/auth";
+import LayoutAdmin from "./../../components/Layout/LayoutAdmin";
+
+import { useAuth } from "../../context/auth";
 import moment from "moment";
 import { Select } from "antd";
-
+import Pagination from "../../components/Pagination";
 const { Option } = Select;
 
 const AdminOrders = () => {
@@ -42,8 +44,16 @@ const AdminOrders = () => {
         console.log(error);
         }
     };
+
+    // ======= Pagination ======//
+    
+
+
+
+    // ======= Pagination ======//
     return (
-        <LayoutAdmin title={"All Orders Data"}>
+        <>
+            <LayoutAdmin title={"All Orders Data"}>
         <div className="row dashboard">
             <div className="col-md-3">
             <AdminMenu />
@@ -95,8 +105,6 @@ const AdminOrders = () => {
                             src={`/api/v1/product/product-photo/${p._id}`}
                             className="card-img-top"
                             alt={p.name}
-                            // width="100px"
-                            // height={"100px"}
                             />
                         </div>
                         <div className="col-md-8">
@@ -111,8 +119,12 @@ const AdminOrders = () => {
                 );
             })}
             </div>
+
         </div>
         </LayoutAdmin>
+        <Pagination/>
+        </>
+        
     );
 };
 
