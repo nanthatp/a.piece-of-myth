@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 import AdminMenu from "../../components/Layout/AdminMenu";
-import LayoutAdmin from "./../../components/Layout/LayoutAdmin";import { useAuth } from "../../context/auth";
+import Layout from "../../components/Layout/Layout";
+import { useAuth } from "../../context/auth";
 import moment from "moment";
 import { Select } from "antd";
 
 const { Option } = Select;
 
 function AdminPreorder() {
+    const params = useParams();
     const [status, setStatus] = useState([
         "Not Process",
         "Processing",
@@ -18,10 +21,11 @@ function AdminPreorder() {
     ]);
     const [changeStatus, setCHangeStatus] = useState("");
     const [preorders, setPreorders] = useState([]);
+    const [ preorder, setPreorder ] = useState("");
     const [auth, setAuth] = useAuth();
     const getPreOrders = async () => {
         try {
-        const { data } = await axios.get("/api/v1/auth/all-preorders");
+        const { data } = await axios.get(`/api/v1/auth/preorder-preproduct/${params.preproduct}`);
         setPreorders(data);
         } catch (error) {
         console.log(error);
@@ -43,7 +47,7 @@ function AdminPreorder() {
         }
     };
     return (
-        <LayoutAdmin title={"All Orders Data"}>
+        <Layout title={"All Orders Data"}>
         <div className="row dashboard">
             <div className="col-md-3">
             <AdminMenu />
@@ -112,7 +116,7 @@ function AdminPreorder() {
             })}
             </div>
         </div>
-        </LayoutAdmin>
+        </Layout>
     );
 }
 

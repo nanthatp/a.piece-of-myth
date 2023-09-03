@@ -287,15 +287,29 @@ export const getPreorderController = async (req,res) => {
 };
 
 //get all Pre-order by preproduct preproductid
-export const getAllPreOrdersByIdController = async (req, res) => {
+export const getAllPreOrdersByPreProductIdController = async (req, res) => {
   try {
-    const preproduct = await preproductModel.findOne({ preproduct: req.params.slug });
-    const preorder = await preorderModel.find({ preproduct }).populate("preproduct");
-    res.status(200).send({
-      success: true,
-      preproduct,
-      preorder,
-    });
+    // const preproduct = await preproductModel.findOne({ preproduct: req.params.slug });
+    // const preorder = await preorderModel.findById( req.params.preproduct )
+    // .populate("products", "-photo")
+    // .populate("buyer", "name")
+    // .sort({ createdAt: "-1" });
+    // res.json(preorder);
+    // res.status(200).send({
+    //   success: true,
+    //   preorder,
+    // });
+    // const preorders = await preorderModel
+    //   .find({ preproduct: req.params.preproduct})
+    //   .populate("preproduct", "-photo")
+    //   .populate("buyer", "name");
+    // res.json(preorders);
+    const preorders = await preorderModel
+      .find({ preproduct: req.params.preproduct })
+      .populate("preproduct", "-photo")
+      .populate("buyer", "name")
+      .sort({ createdAt: "-1" });
+    res.json(preorders);
   } catch (error) {
     console.log(error);
     res.status(400).send({

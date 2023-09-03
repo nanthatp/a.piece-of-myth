@@ -6,7 +6,8 @@ import { useAuth } from '../../context/auth'
 import moment from 'moment'
 
 function Preorder() {
-    const [ preorders, setPreorder ] = useState([]);
+    const [ preorder, setPreorder ] = useState([]);
+    const [ preorders, setPreorders ] = useState("");
     const [ auth, setAuth ] = useAuth();
 
     const getPreorder = async () => {
@@ -29,7 +30,7 @@ function Preorder() {
           </div>
           <div className="col-md-9">
             <h1 className="text-center">Your Pre-Orders</h1>
-            {preorders?.map((o, i) => {
+            {preorder?.map((o, i) => {
               return (
                 <div className="border shadow">
                   <table className="table">
@@ -48,7 +49,7 @@ function Preorder() {
                         <td>{i + 1}</td>
                         <td>{o?.status}</td>
                         <td>{o?.buyer?.name}</td>
-                        <td>{moment(o?.createAt).format('YYYY-MM-DD hh:mm:ss')}</td>
+                        <td>{moment(o?.createdAt).format('YYYY-MM-DD hh:mm:ss')}</td>
                         <td>{o?.payment.success ? "Success" : "Failed"}</td>
                         <td>{o?.quantity}</td>
                       </tr>

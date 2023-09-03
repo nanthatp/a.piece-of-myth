@@ -5,7 +5,7 @@ const preorderSchema = new mongoose.Schema({
         {
             type: mongoose.ObjectId,
             ref: "Preproduct",
-        }
+        },
     ],
     payment: {},
     buyer: {

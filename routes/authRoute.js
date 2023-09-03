@@ -9,7 +9,7 @@ import {registerController,
     getOrdersController, 
     orderStatusController, 
     getPreorderController,
-    getAllPreOrdersByIdController,
+    getAllPreOrdersByPreProductIdController,
     preorderStatusController,
     getAllPreOrdersController} from '../controllers/authController.js'
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
@@ -57,8 +57,9 @@ router.put(
 //get pre-order
 router.get("/preorders", requireSignIn, getPreorderController)
 
-//get all pre-order by id
-router.get("/preorder-preproduct/:slug",isAdmin,getAllPreOrdersByIdController)
+//get all pre-order by Preproduct id
+router.get("/preorder-preproduct/:preproduct", requireSignIn,isAdmin,getAllPreOrdersByPreProductIdController)
+
 
 //all Pre-orders
 router.get("/all-preorders", requireSignIn, isAdmin, getAllPreOrdersController);
