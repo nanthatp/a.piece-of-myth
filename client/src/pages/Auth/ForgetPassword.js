@@ -130,7 +130,7 @@ const ForgotPassword = () => {
       <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col col-xl-10">
-            <div className="card" style={{ borderRadius: "1rem" }}>
+            <div className="card2" style={{ borderRadius: "1rem", marginTop: "80px" }}>
               <div className="row g-0">
                 <div className="col-md-6 col-lg-5 d-none d-md-block">
                   <img
@@ -148,22 +148,22 @@ const ForgotPassword = () => {
                           className="fas fa-cubes fa-2x me-3"
                           style={{ color: " #ff6219" }}
                         ></i>
-                        <span className="h1 fw-bold mb-0">Forget Password?</span>
+                        <h4 >Forget Password?</h4>
                       </div>
 
-                      <h5
+                      {/* <h5
                         className="fw-normal mb-3 pb-3"
                         style={{ letterSpacing: "1px" }}
                       >
                         Type Your Email Here
-                      </h5>
+                      </h5> */}
 
-                      <h4
+                      <h5
                         className="fw-normal mb-3 pb-3"
-                        style={{ letterSpacing: "1px" }}
+                        // style={{ letterSpacing: "1px" }}
                       >
                         We will send Password Set-up Link to your Email Address. plz Check Inbox.
-                      </h4>
+                      </h5>
 
                       <div className="form-outline mb-4">
                         <input

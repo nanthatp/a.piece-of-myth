@@ -40,8 +40,22 @@ const Login = () => {
   };
   return (
     <Layout title="login - a.piece-of-myth">
-      <div className="form-container " style={{ minHeight: "90vh" }}>
-        <form onSubmit={handleSubmit}>
+      <div className="container py-5 h-100">
+      <div className="row d-flex justify-content-center align-items-center h-100">
+      <div className="col col-xl-10">
+      <div className="card2" style={{ borderRadius: "1rem" , marginTop: "80px" }}>
+      <div className="row g-0">
+      <div className="col-md-6 col-lg-5 d-none d-md-block">
+                  <img
+                    src="https://cdn.discordapp.com/attachments/417585852206809090/1140335973880832130/hghlk.jpg"
+                    alt="login form"
+                    className="img-fluid"
+                    style={{ borderRadius: "1rem 0 0 1rem" }}
+                  />
+                </div>
+        <div className="col-md-6 col-lg-7 d-flex align-items-center">
+        <div className="card-body p-4 p-lg-5 text-black">
+        <form onSubmit={handleSubmit} >
           <h4 className="title">LOGIN FORM</h4>
 
           <div className="mb-3">
@@ -69,7 +83,7 @@ const Login = () => {
           </div>
           
           <div className="mb-3">
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-warning btn-lg btn-block">
               LOGIN
             </button>
           </div>
@@ -89,6 +103,12 @@ const Login = () => {
           </p>
 
         </form>
+        </div>
+        </div>
+      </div>
+      </div>
+      </div>
+      </div>
       </div>
     </Layout>
   );

@@ -63,8 +63,11 @@ const Profile = () => {
           <div className="col-md-3">
             <UserMenu />
           </div>
-          <div className="col-md-8">
-            <div className="form-container" style={{ marginTop: "-40px" }}>
+          <div className="col-sm text-center">
+          <div className="col col-xl-10">
+          <div className="card2" style={{ borderRadius: "1rem" , marginTop: "60px" }}>
+          <div className="row g-0">
+            <div className="card-body p-4 p-lg-5 text-black">
               <form onSubmit={handleSubmit}>
                 <h4 className="title">USER PROFILE</h4>
                 <div className="mb-3">
@@ -140,11 +143,14 @@ const Profile = () => {
                   />
                 </div>
 
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" className="btn btn-warning btn-lg btn-block">
                   UPDATE
                 </button>
               </form>
             </div>
+            </div>
+            </div>
+          </div>
           </div>
         </div>
       </div>

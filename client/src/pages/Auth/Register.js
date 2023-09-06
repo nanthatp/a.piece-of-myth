@@ -36,18 +36,31 @@ const Register= () => {
     console.log(process.env.REACT_APP_API);
   return (
     <Layout title = "Register - a.piece-of-myth">
-        <div className="form-container" style={{ minHeight: "90vh" }}>
-
+        <div className="container py-5 h-100">
+      <div className="row d-flex justify-content-center align-items-center h-100">
+      <div className="col col-xl-10">
+      <div className="card2" style={{ borderRadius: "1rem" , marginTop: "80px" }}>
+      <div className="row g-0">
+      <div className="col-md-6 col-lg-5 d-none d-md-block">
+                  <img
+                    src="https://cdn.discordapp.com/attachments/417585852206809090/1140335973880832130/hghlk.jpg"
+                    alt="login form"
+                    className="img-fluid"
+                    style={{ borderRadius: "1rem 0 0 1rem" }}
+                  />
+                </div>
+        <div className="col-md-6 col-lg-7 d-flex align-items-center">
+        <div className="card-body p-4 p-lg-5 text-black">
             <form onSubmit={handleSumit}>
-                <h3 className='title'>CREATE AN ACCOUNT</h3>
+                <h4 className='title'>CREATE AN ACCOUNT</h4>
                 
                 
                 <div className="row">
                     <div className="col-md-6 mb-4">
                         <div className="mb-3">
-                            <label className="form-label" htmlFor="firstName">
+                            {/* <label className="form-label" htmlFor="firstName">
                                 Name
-                            </label>
+                            </label> */}
                             <input 
                                 type="text" 
                                 value={name}
@@ -62,9 +75,9 @@ const Register= () => {
                     </div>
                     <div className="col-md-6 mb-4">
                         <div className="mb-3">
-                            <label className="form-label" htmlFor="email">
+                            {/* <label className="form-label" htmlFor="email">
                                 Email
-                            </label>
+                            </label> */}
                             <input 
                                 type="email" 
                                 value={email}
@@ -80,9 +93,9 @@ const Register= () => {
                 </div>
 
                     <div className="mb-3">
-                        <label htmlFor="exampleInputEmail1" className="form-label">
+                        {/* <label htmlFor="exampleInputEmail1" className="form-label">
                             phone number
-                        </label>
+                        </label> */}
                         <input 
                             type="text" 
                             value={phone}
@@ -94,9 +107,9 @@ const Register= () => {
                         />
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="exampleInputEmail1" className="form-label">
+                        {/* <label htmlFor="exampleInputEmail1" className="form-label">
                             Password
-                        </label>
+                        </label> */}
                         <input 
                             type="password" 
                             value={password}
@@ -107,16 +120,18 @@ const Register= () => {
                             required
                         />
                     </div>
-                    <div className="d-flex justify-content-center">
+                    <div className="mb-3">
+                    <div className="d-flex justify-content">
                         <button 
                             type="submit"
-                            className="btn btn-primary"
+                            className="btn btn-warning btn-lg btn-block"
                         >
                             Register
                         </button>
                     </div>
-
-                    <div className="d-flex justify-content-center">
+                    </div>
+                    {/* <div className="mb-3">
+                    <div className="d-flex justify-content" >
                         <button
                             type="button"
                             className="btn forgot-btn "
@@ -125,8 +140,15 @@ const Register= () => {
                         }}>
                             Go back
                         </button>
-                    </div>
+                        </div>
+                    </div> */}
                 </form>
+                </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
             </div>
         
     </Layout>

@@ -224,7 +224,12 @@ const getSimilarPreproduct = async (pid, cid) => {
                     <button
                       className="btn-add-detail"
                       onClick={handlePayment}
-                      disabled={loading || !instance }
+                      disabled={loading   
+                        ||!instance 
+                        || !auth?.user?.address 
+                        ||!auth?.user?.postalcode 
+                        || !auth?.user?.province 
+                        || auth?.user?.role === 1}
                     >
                       <BsFillBagHeartFill/>{loading ? "Processing ...." : "PRE-ORDER"}
                     </button>
