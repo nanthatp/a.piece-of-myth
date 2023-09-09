@@ -24,9 +24,9 @@ const UpdatePreProduct = () => {
     const [artist, setArtist] = useState("");
     const [member, setMember] = useState("");
     const [collectiongroup, setCollectiongroup] = useState("");
-    // const [preproduct, setPreproduct] = useState("");
+    const [preproduct, setPreproduct] = useState("");
     const [id, setId] = useState("");
-    const [until ,setUntil] = useState("");
+    const [until , setUntil] = useState("");
     const [date, setDate] = useState();
     const [timing, setTimings] = useState();
     const [isAvailable,setIsAvailable] = useState();
@@ -149,6 +149,31 @@ const UpdatePreProduct = () => {
         toast.error("something went wrong");
         }
     };
+
+    function handleSubmitDate (date){
+        let convertDate = moment(new Date(date));
+        let convertTime = moment(new Date(until)) || moment(new Date());
+        console.log(`Date...`, convertDate);
+        console.log(`Until...`, convertTime);
+        convertDate.set({
+            "hour":   convertTime.get('hour'),
+            "minute": convertTime.get('minute')
+        });
+        setUntil(convertDate);
+    }
+
+    function handleSubmitTime (time){
+        let convertDate = moment(new Date(until)) || moment(new Date());
+        let convertTime = moment(new Date(time));
+        console.log(`Date...`, convertDate);
+        console.log(`Until...`, convertTime);
+        convertTime.set({
+            "year":   convertDate.get('year'),
+            "month":   convertDate.get('month'),
+            "date":   convertDate.get('date'),
+        });
+        setUntil(convertTime);
+    }
 
     //delete a product
     const handleDelete = async () => {
@@ -323,8 +348,11 @@ const UpdatePreProduct = () => {
                             ))}
                         </Select>
                         <div className="d-flex flex-column">
+                        <TimePicker className='m-2' format= 'HH:mm' 
+                            onChange={(values) => {console.log("testTime",values); 
+                            handleSubmitTime(values)}}/>
                             <DatePicker format= 'YYYY-MM-DD ' className='m-2'
-                            onChange={(values) => setUntil(moment(values))}> 
+                            onChange={(values) => {handleSubmitDate(values)}}> 
                             {/* {preproduct?.map((c) => (
                                 <Option key={c._id} value={c._id}>
                                     {c.until}
@@ -332,9 +360,7 @@ const UpdatePreProduct = () => {
                             ))} */}
                                 {moment(until).format('YYYY-MM-DD')}
                             </DatePicker>
-                            <TimePicker className='m-2' format= 'HH:mm' onChange={(values) => setUntil(
-                                moment(values))}/>
-                            {/* <label>CurrentDateTime: {moment(until).format('YYYY-MM-DD hh:mm')}</label> */}
+                            <label>TestTime: {moment(until).locale('th').format('YYYY-MM-DD hh:mm')}</label>
                         </div>
                         </div>
                         <div className="mb-3">

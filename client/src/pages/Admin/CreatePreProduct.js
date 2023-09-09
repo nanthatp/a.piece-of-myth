@@ -113,6 +113,31 @@ export default function CreatePreProduct() {
         }
     };
         // const [value, setValue] = useState(new Date());
+
+        function handleSubmitDate (date){
+            let convertDate = moment(new Date(date));
+            let convertTime = moment(new Date(until)) || moment(new Date());
+            console.log(`Date...`, convertDate);
+            console.log(`Until...`, convertTime);
+            convertDate.set({
+                "hour":   convertTime.get('hour'),
+                "minute": convertTime.get('minute')
+            });
+            setUntil(convertDate);
+        }
+    
+        function handleSubmitTime (time){
+            let convertDate = moment(new Date(until)) || moment(new Date());
+            let convertTime = moment(new Date(time));
+            console.log(`Date...`, convertDate);
+            console.log(`Until...`, convertTime);
+            convertTime.set({
+                "year":   convertDate.get('year'),
+                "month":   convertDate.get('month'),
+                "date":   convertDate.get('date'),
+            });
+            setUntil(convertTime);
+        }
         
   return (
     <LayoutAdmin title={"Dashboard - Create Preproduct"}>
@@ -263,10 +288,19 @@ export default function CreatePreProduct() {
                             ))}
                         </Select>
                         <div className="d-flex flex-column">
-                            <DatePicker format= 'YYYY-MM-DD ' className='m-2'
-                            onChange={(values) => setUntil(moment(values))}/>
-                            <TimePicker className='m-2' format= 'HH:mm' onChange={(values) => setUntil(
-                                moment(values))}/>
+                        <TimePicker className='m-2' format= 'HH:mm' 
+                            onChange={(values) => {console.log("testTime",values); 
+                            handleSubmitTime(values)}}/>
+                        <DatePicker format= 'YYYY-MM-DD ' className='m-2'
+                            onChange={(values) => {handleSubmitDate(values)}}> 
+                            {/* {preproduct?.map((c) => (
+                                <Option key={c._id} value={c._id}>
+                                    {c.until}
+                                </Option>
+                            ))} */}
+                                {moment(until).format('YYYY-MM-DD')}
+                            </DatePicker>
+                            
                         </div>
                         </div>
 
