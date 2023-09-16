@@ -13,10 +13,12 @@ const CategoryProduct = () => {
     const navigate = useNavigate();
     const [cart, setCart] = useCart();
     const [products, setProducts] = useState([]);
+    const [preproducts, setPreproducts] = useState([]);
     const [category, setCategory] = useState([]);
 
     useEffect(() => {
         if (params?.slug) getPrductsByCat();
+        if (params?.slug) getPreProductsByCat();
     }, [params?.slug]);
     const getPrductsByCat = async () => {
         try {
@@ -30,14 +32,27 @@ const CategoryProduct = () => {
         }
     };
 
+    const getPreProductsByCat = async () => {
+        try {
+        const { data } = await axios.get(
+            `/api/v1/preproduct/preproduct-category/${params.slug}`
+        );
+        setPreproducts(data?.preproducts);
+        setCategory(data?.category);
+        } catch (error) {
+        console.log(error);
+        }
+    };
+
     return (
         <Layout>
         <div className="container mt-3 category">
             <h4 className="text-center">Category - {category?.name}</h4>
-            <h6 className="text-center">{products?.length} result found </h6>
+            <h6 className="text-center">{products?.length + preproducts?.length} result found </h6>
             <div className="row">
             <div className="col-md-9 offset-1">
                 <div className="d-flex flex-wrap">
+                
                 {products?.map((p) => (
                     <div className="carousel-item active card m-2 product-box"  key={p._id}>
                         <img
@@ -78,6 +93,36 @@ const CategoryProduct = () => {
                                 >
                                     More Details
                                 </button>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+                </div>
+                <div className="d-flex flex-wrap">
+                {preproducts?.map((p) => (
+                    <div className="carousel-item active card m-2 product-box"  key={p._id}>
+                        <img
+                        src={`/api/v1/preproduct/preproduct-photo/${p._id}`}
+                        className=" card-img-top"
+                        alt={p.name}
+                        />
+                        <div className="card-body">
+                            <div className="card-name-price">
+                                <h5 className=" name-product">{p.name}</h5>
+                                <h5 className="card-title product-price">
+                                {p.price.toLocaleString("US", {
+                                    style: "currency",
+                                    currency: "USD",
+                                })}
+                                </h5>
+                            </div>
+                            <div className="card-name-price">
+                            <button
+                                    className="btn-add"
+                                    onClick={() => navigate(`/preproduct/${p.slug}`)}
+                                  >
+                                  <BsFillBagHeartFill/> Pre-Order Now
+                                  </button>
                             </div>
                         </div>
                     </div>

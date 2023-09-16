@@ -11,7 +11,9 @@ import { createPreProductController,
         braintreeTokenForPreOrederController,
         brainTreePaymentForPreOrederController,
         searchPreProductController,
-        realtedPreProductController} from "../controllers/preproductController.js";
+        realtedPreProductController,
+        preproductCategoryController,
+        preproductArtistController} from "../controllers/preproductController.js";
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
 import formidable from "express-formidable";
 
@@ -61,6 +63,12 @@ router.get("/search/:keyword", searchPreProductController);
 
 //-------similar product-------//
 router.get("/related-preproduct/:pid/:cid", realtedPreProductController);
+
+//-------category wise product-------//
+router.get("/preproduct-category/:slug", preproductCategoryController);
+
+//-------artist wise product-------//
+router.get("/preproduct-artist/:slug", preproductArtistController);
 
 // payments routes
 //token

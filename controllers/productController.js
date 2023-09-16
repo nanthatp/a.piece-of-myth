@@ -417,6 +417,17 @@ export const braintreeTokenController = async (req, res) => {
               buyer: req.user._id,
             });
             await order.save();
+
+            //decrease product amount
+            for(let item in cart){
+                console.log("item = ",cart[item]);
+                let products = await productModel.findOne({ _id : cart[item]._id});
+                if ( products ){
+                    products.quantity = products.quantity-1;
+                    await products.save();
+                }
+            }
+
             res.json({ ok: true });
           } else {
             res.status(500).send(error);

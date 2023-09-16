@@ -404,7 +404,7 @@ useEffect(() => {
                           <div className="card-name-price">
                             <strong className=" name-product">{p.name}</strong>
                             <p className="card-text product-quantity">
-                              {p.quantity} sold
+                              {p.quantity} remain
                             </p>
                             <h6 className="card-title product-price">
                               {p.price.toLocaleString("US", {

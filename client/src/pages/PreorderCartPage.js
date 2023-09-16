@@ -81,6 +81,7 @@ useEffect(() => {
 //initalp details
 useEffect(() => {
     if (params?.slug) getPreProduct();
+    if (params?.slug) getPreproduct();
 }, [params?.slug]);
 
 //getProduct
@@ -89,8 +90,8 @@ const getPreproduct = async () => {
   const { data } = await axios.get(
       `/api/v1/preproduct/get-preproduct/${params.slug}`
   );
-  setPreproduct(data?.product);
-  getSimilarPreproduct(data?.product._id, data?.product.category._id);
+  setPreproduct(data?.preproduct);
+  getSimilarPreproduct(data?.preproduct._id, data?.preproduct.category._id);
   } catch (error) {
   console.log(error);
   }
@@ -101,7 +102,7 @@ const getSimilarPreproduct = async (pid, cid) => {
   const { data } = await axios.get(
       `/api/v1/preproduct/related-preproduct/${pid}/${cid}`
   );
-  setRelatedPreroducts(data?.preproduct);
+  setRelatedPreroducts(data?.preproducts);
   } catch (error) {
   console.log(error);
   }

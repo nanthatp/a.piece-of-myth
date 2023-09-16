@@ -1,6 +1,7 @@
 import categoryModel from "../models/categoryModel.js";
 import collectionModel from "../models/collectiongroupModel.js";
 import preproductModel from "../models/preproductModel.js";
+import artistModel from "../models/artistModel.js";
 
 import fs from "fs";
 import slugify from "slugify";
@@ -281,7 +282,7 @@ export const searchPreProductController = async (req, res) => {
     console.log(error);
     res.status(400).send({
         success: false,
-        message: "Error In Search Product API",
+        message: "Error In Search Pre-order Product API",
         error,
     });
     }
@@ -291,7 +292,7 @@ export const searchPreProductController = async (req, res) => {
 export const realtedPreProductController = async (req, res) => {
     try {
     const { pid, cid } = req.params;
-    const preproduct = await preproductModel
+    const preproducts = await preproductModel
         .find({
         category: cid,
         _id: { $ne: pid },
@@ -301,7 +302,7 @@ export const realtedPreProductController = async (req, res) => {
         .populate("category");
     res.status(200).send({
         success: true,
-        preproduct,
+        preproducts,
     });
     } catch (error) {
     console.log(error);
@@ -329,6 +330,46 @@ export const PreproductCategoryController = async (req, res) => {
         success: false,
         error,
         message: "Error While Getting Pre-order products",
+    });
+    }
+};
+
+// get pre-order product by category
+export const preproductCategoryController = async (req, res) => {
+    try {
+    const category = await categoryModel.findOne({ slug: req.params.slug });
+    const preproducts = await preproductModel.find({ category }).populate("category");
+    res.status(200).send({
+        success: true,
+        category,
+        preproducts,
+    });
+    } catch (error) {
+    console.log(error);
+    res.status(400).send({
+        success: false,
+        error,
+        message: "Error While Getting pre-order products",
+    });
+    }
+};
+
+// get pre-order product by artist
+export const preproductArtistController = async (req, res) => {
+    try {
+    const artist = await artistModel.findOne({ slug: req.params.slug });
+    const preproducts = await preproductModel.find({ artist }).populate("artist");
+    res.status(200).send({
+        success: true,
+        artist,
+        preproducts,
+    });
+    } catch (error) {
+    console.log(error);
+    res.status(400).send({
+        success: false,
+        error,
+        message: "Error While Getting pre-order products",
     });
     }
 };
