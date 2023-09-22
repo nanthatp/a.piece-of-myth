@@ -47,6 +47,7 @@ import ShowAllPre from './pages/ShowAllPre';
 import Preorder from './pages/User/Preorder';
 import AdminPreorder from './pages/Admin/AdminPreorder';
 import AdminPreorderManage from './pages/Admin/AdminPreorderManage';
+import ShowCollection from './pages/ShowCollection';
 
 
 function App() {
@@ -60,6 +61,7 @@ function App() {
       <Route path="/allArtists" element={<AllArtists />} />
       <Route path="/ShowAllProduct" element={<ShowAllProduct />} />
       <Route path="/ShowAllPre" element={<ShowAllPre />} />
+      <Route path="/ShowCollection/:slug" element={<ShowCollection />} />
       <Route path="/cart" element={<CartPage />} />
       <Route path="/category/:slug" element={<CategoryProduct />} />
       <Route path="/collection/:slug" element={<CollectionProduct />} />

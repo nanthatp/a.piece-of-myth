@@ -4,7 +4,8 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import { toast } from 'react-hot-toast';
 import { useCart } from "../context/cart";
-import {BsFillBagHeartFill } from "react-icons/bs";
+import { useAuth } from "../context/auth";
+import { BsFillBagHeartFill } from "react-icons/bs";
 import "../styles/ProductDetailsStyles.css";
 import "../styles/Homepage.css";
 
@@ -14,6 +15,7 @@ const ProductDetails = () => {
     const [cart, setCart] = useCart();
     const [product, setProduct] = useState({});
     const [relatedProducts, setRelatedProducts] = useState([]);
+    const [auth, setAuth] = useAuth();
 
     //initalp details
     useEffect(() => {
@@ -42,6 +44,13 @@ const ProductDetails = () => {
         console.log(error);
         }
     };
+    let wordQuantity = "";
+    let outOfStock = product.quantity;
+        if (outOfStock<1) {
+            wordQuantity = "out of stock";
+        } else {
+            wordQuantity = product.quantity;
+        }
     return (
         <Layout>
             <div className="row container product-details">
@@ -50,7 +59,7 @@ const ProductDetails = () => {
                         src={`/api/v1/product/product-photo/${product._id}`}
                         className="card-img-top"
                         alt={product.name}
-                        
+                        width="320" height="480"
                     />
                 </div>
                 <div className="col-md-6 product-details-info">
@@ -65,7 +74,7 @@ const ProductDetails = () => {
                         currency: "USD",
                         })}
                     </h6>
-                    <h6>Sold : {product.quantity}</h6>
+                    <h6>quantity : {wordQuantity } </h6>
                     <h6>Category : {product?.category?.name}</h6>
                     <button
                         className="btn-add-detail"
@@ -103,7 +112,7 @@ const ProductDetails = () => {
                     <div className="card-name-price">
                     <h5 className=" name-product">{p.name}</h5>
                     <p className="card-text product-quantity">
-                        {p.quantity} sold
+                        quantity: {p.quantity}
                     </p>
                     <h5 className="card-title product-price">
                         {p.price.toLocaleString("US", {
@@ -115,13 +124,27 @@ const ProductDetails = () => {
                     <div className="card-name-price">
                     <button
                         className="btn-add"
+                        disabled={wordQuantity === "out of stock"
+                        || auth?.user?.role === 1}
                         onClick={() => {
-                            setCart([...cart, p]);
-                            localStorage.setItem(
-                            "cart",
-                            JSON.stringify([...cart, p])
-                            );
-                            toast.success("Item Added to cart");
+                            if (product.quantity === 0) {
+                                console.log("ไม่ขาย!!!")
+                                 
+                            } else {
+                                setCart([...cart, p]);
+                                localStorage.setItem(
+                                "cart",
+                                JSON.stringify([...cart, p])
+                                );
+                                toast.success("Item Added to cart");
+                                
+                            }
+                            // setCart([...cart, p]);
+                            // localStorage.setItem(
+                            // "cart",
+                            // JSON.stringify([...cart, p])
+                            // );
+                            // toast.success("Item Added to cart");
                         }}
                         >
                         <BsFillBagHeartFill/> Add to Cart

@@ -374,6 +374,26 @@ export const preproductArtistController = async (req, res) => {
     }
 };
 
+// get Pre-Order product by collection
+export const preProductCollectionController = async (req, res) => {
+    try {
+    const collectiongroup = await collectionModel.findOne({ slug: req.params.slug });
+    const preproducts = await preproductModel.find({ collectiongroup }).populate("collectiongroup");
+    res.status(200).send({
+        success: true,
+        collectiongroup,
+        preproducts,
+    });
+    } catch (error) {
+    console.log(error);
+    res.status(400).send({
+        success: false,
+        error,
+        message: "Error While Getting products",
+    });
+    }
+};
+
 //payment gateway api
 //token
 export const braintreeTokenForPreOrederController = async (req, res) => {

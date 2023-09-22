@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 import "../styles/CartStyles.css";
 import DropIn from "braintree-web-drop-in-react";
 import {BsFillBagHeartFill } from "react-icons/bs";
+import moment from 'moment';
 
 
 function PreorderCartPage() {
@@ -21,6 +22,7 @@ function PreorderCartPage() {
     const [loading, setLoading] = useState(false);
     const [preproduct, setPreproduct] = useState({});
     const [relatedPreproducts, setRelatedPreroducts] = useState([]);
+    const [until , setUntil] = useState("");
     const navigate = useNavigate();
 
      //get payment gateway token
@@ -107,6 +109,23 @@ const getSimilarPreproduct = async (pid, cid) => {
   console.log(error);
   }
 };
+//get single product
+const getSinglePreProduct = async () => {
+  try {
+      const { data } = await axios.get(
+          `/api/v1/preproduct/get-preproduct/${params.slug}`
+      );
+      setUntil(data.preproduct.until);
+      
+  }catch (error) {
+      console.log(error);
+  }
+};
+useEffect(() => {
+  getSinglePreProduct();
+  
+  //eslint-disable-next-line
+}, []);
   return (
     <Layout>
     <div className="row container product-details">
@@ -122,6 +141,7 @@ const getSimilarPreproduct = async (pid, cid) => {
                     <h1 className="text-center">Pre-order </h1>
                     <h2 className="text-center">{preproduct.name}</h2>
                     <hr />
+                    <h3>Time Limit : {moment(until).locale('th').format('YYYY-MM-DD hh:mm')}</h3>
                     <h6>Description : {preproduct.description}</h6>
                     <h6>
                         Price :
@@ -263,9 +283,6 @@ const getSimilarPreproduct = async (pid, cid) => {
                 <div className="card-body">
                     <div className="card-name-price">
                     <h5 className=" name-product">{p.name}</h5>
-                    <p className="card-text product-quantity">
-                        {p.quantity} sold
-                    </p>
                     <h5 className="card-title product-price">
                         {p.price.toLocaleString("US", {
                         style: "currency",
