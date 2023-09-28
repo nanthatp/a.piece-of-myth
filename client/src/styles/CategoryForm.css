@@ -1,8 +1,8 @@
 /* Style the header */
 .categoryform {
-    background-color: #083358;
+    background-color: #ecf7ee;
     padding: 30px 40px;
-    color: white;
+    color:  #0DA574;
     text-align: center;
     height: 100%;
     margin-right: 100%;
@@ -17,7 +17,20 @@
     text-align: center;
     font-size: 16px;
     cursor: pointer;
+    border: none;
+    outline: none;
     transition: 0.3s;
     border-radius: 0;
     font-weight: 600;
+    border-radius: 20px;
+    font-weight: 600;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+}
+
+.btn-submit:hover{
+    background-color: #0DA574;
+    color: #fff;
+    transform: all ease 0.3s;
 }

@@ -1,0 +1,69 @@
+.title-register{
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    line-height: 50px;
+}
+
+.btn-register{
+    padding: 5px 5px;
+    width: 20%;
+    background: #FBD85D;
+    color: #000;
+    float: right;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 0;
+    font-weight: 600;
+    margin-top: 1%;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    position:absolute;
+}
+
+.btn-register:hover{
+    background-color: #0DA574;
+    color: #fff;
+    transform: all ease 0.3s;
+}
+
+.btn-log{
+    padding: 5px 5px;
+    width: 20%;
+    background: #FBD85D;
+    color: #000;
+    float: right;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 0;
+    font-weight: 600;
+    margin-top: 9%;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    position:absolute;
+}
+
+.btn-log:hover{
+    background-color: #0DA574;
+    color: #fff;
+    transform: all ease 0.3s;
+}
+
+.btn-forgot{
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    margin-top: 1%; /* ให้คำนึงถึงการระบุค่า margin-top แบบเดียวกับ .btn-register */
+    font-size: 12px;
+    font-weight: 500;
+}
+
+
+.chang-password{
+    width: 500px;
+}
+

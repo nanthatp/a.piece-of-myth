@@ -56,7 +56,7 @@ const Login = () => {
         <div className="col-md-6 col-lg-7 d-flex align-items-center">
         <div className="card-body p-4 p-lg-5 text-black">
         <form onSubmit={handleSubmit} >
-          <h4 className="title">LOGIN FORM</h4>
+          <h4 className="title-register">LOGIN</h4>
 
           <div className="mb-3">
             <input
@@ -83,21 +83,21 @@ const Login = () => {
           </div>
           
           <div className="mb-3">
-            <button type="submit" className="btn btn-warning btn-lg btn-block">
+            <button type="submit" className="btn-log">
               LOGIN
             </button>
           </div>
           
-          <p style={{ color: "#393f81" }}>
+          <p className="btn-forgot" style={{ color: "#393f81" }}>
             Forgot your Password?{" "}
-            <Link to="/forgot-password" className="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
+            <Link to="/forgot-password" className="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover btn-forgot">
               click here
             </Link>
           </p>
 
-          <p style={{ color: "#393f81" }}>
+          <p className="btn-forgot" style={{ color: "#393f81" }}>
             Don't have an account?{" "}
-            <Link to="/register" className="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
+            <Link to="/register" className="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover btn-forgot">
               Register here
             </Link>
           </p>

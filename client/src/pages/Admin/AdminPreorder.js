@@ -7,6 +7,7 @@ import Layout from "../../components/Layout/Layout";
 import { useAuth } from "../../context/auth";
 import moment from "moment";
 import { Select } from "antd";
+import LayoutAdmin from "./../../components/Layout/LayoutAdmin";
 
 const { Option } = Select;
 
@@ -47,7 +48,7 @@ function AdminPreorder() {
         }
     };
     return (
-        <Layout title={"All Orders Data"}>
+        <LayoutAdmin title={"All Orders Data"}>
         <div className="row dashboard">
             <div className="col-md-3">
             <AdminMenu />
@@ -116,7 +117,7 @@ function AdminPreorder() {
             })}
             </div>
         </div>
-        </Layout>
+        </LayoutAdmin>
     );
 }
 

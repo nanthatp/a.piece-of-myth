@@ -179,12 +179,12 @@ const CreateBanner = () => {
                         </Select>
 
                         <div className="mb-3">
-                        <label className="btn-upload-photo col-md-12">
-                                {file ? file.name : "Upload File"}
+                            <label className="btn-upload-photo col-md-12">
+                                {file ? file.name : "Upload Banner"}
                                 <input
                                     type="file"
                                     name="file"
-                                    accept="Video*/ || image*/"
+                                    accept="Video*/"
                                     onChange={(e) => setFile(e.target.files[0])}
                                     hidden
                                 />
@@ -193,21 +193,20 @@ const CreateBanner = () => {
                         <div className="mb-3">
                             {file ? (
                                 <div className="text-center">
-                                    <file
+                                    <video
                                         src={URL.createObjectURL(file)}
-                                        alt="banner_file"
-                                        height={"200px"}
-                                        className="img img-responsive"
+                                        alt="File"
+                                        width="420" height="240" autoPlay loop muted playsInline 
+                                        className="back-video"
                                     />
                                 </div>
-                            
                             ) : (
                                 <div className="text-center">
-                                    <file
-                                    src={`/api/v1/banner/banner-file/${id}`}
-                                    alt="banner_file"
-                                    height={"200px"}
-                                    className="img img-responsive"
+                                    <video
+                                        src={`/api/v1/banner/banner-photo/${id}`}
+                                        alt="File"
+                                        width="420" height="240" autoPlay loop muted playsInline 
+                                        className="back-video"
                                     />
                                 </div>
                             )}

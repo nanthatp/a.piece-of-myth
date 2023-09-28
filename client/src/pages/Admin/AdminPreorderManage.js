@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useParams, useNavigate } from "react-router-dom";
 import AdminMenu from '../../components/Layout/AdminMenu';
-import Layout from '../../components/Layout/Layout';
+import LayoutAdmin from "./../../components/Layout/LayoutAdmin";
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { Link } from "react-router-dom";
@@ -32,7 +32,7 @@ useEffect(() => {
 }, []);
 
   return (
-    <Layout title={"All Orders Data"}>
+    <LayoutAdmin title={"All Orders Data"}>
         <div className="row dashboard">
             <div className="col-md-3">
             <AdminMenu />
@@ -46,7 +46,7 @@ useEffect(() => {
                     <thead >
                         <tr className="order-table">
                         <th scope="col">#</th>
-                        <th scope="col">Pre-order Product</th>
+                        <th scope="col">Pre-Order Product</th>
                         {/* <th scope="col">date</th> */}
                         {/* <th scope="col">Quantity</th> */}
                         <th scope="col">   </th>
@@ -72,10 +72,10 @@ useEffect(() => {
                         {/* <td>{moment(o?.createdAt).format('YYYY-MM-DD hh:mm:ss')}</td> */}
                         {/* <td>{o?.quantity}</td> */}
                         <td><button
-                            className="btn-add-detail"
+                            className="btn-add-Pre-Order-List"
                             onClick={() => navigate(`/dashboard/admin/preorder/${o._id}`)}
                             >
-                             pre-order list
+                             Pre-Order List
                         </button></td>
                         </tr>
                     </tbody> 
@@ -105,7 +105,7 @@ useEffect(() => {
             })}
             </div>
         </div>
-        </Layout>
+        </LayoutAdmin>
   )
 }
 

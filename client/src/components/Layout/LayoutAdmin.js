@@ -1,5 +1,6 @@
 import React from 'react'
 import  HeaderAdmin from './HeaderAdmin'
+import AdminMenu from './AdminMenu';
 import Footer from './Footer'
 import {Helmet} from "react-helmet";
 import { ToastContainer } from 'react-toastify';
@@ -15,14 +16,17 @@ const Layout = ({children,title,description,keywords,author}) => {
             <meta name="author" content={author}/>
             <title>{title}</title>
             </Helmet>
-            <HeaderAdmin/>
+            
             <main style={{minHeight:'130vh'}}>
             <ToastContainer />
             {children}
             </main>
-            <Footer />
         </div>
     )
+
+    
+
+
 }
 
 Layout.defaultProps = {

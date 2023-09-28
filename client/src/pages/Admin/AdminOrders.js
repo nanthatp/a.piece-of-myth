@@ -58,7 +58,7 @@ const AdminOrders = () => {
             <div className="col-md-3">
             <AdminMenu />
             </div>
-            <div className="col-md-9">
+            <div className="col py-3">
             <h1 className="text-center">All Orders</h1>
             {orders?.map((o, i) => {
                 return (

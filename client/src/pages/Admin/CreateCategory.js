@@ -6,6 +6,9 @@ import axios from 'axios';
 import CategoryForm from '../../components/Form/CategoryForm';
 import {Modal} from 'antd';
 import "../../styles/CreateCategory.css";
+import{BsFillPencilFill} from 'react-icons/bs';
+import{BsFillTrashFill} from 'react-icons/bs';
+
 
 
 
@@ -129,7 +132,7 @@ const CreateCategory = () => {
                                                         setSelected(c);
                                                     }}
                                                 >
-                                                    Edit
+                                                    <BsFillPencilFill/>
                                                 </button>
                                                 <button 
                                                     className='btn-delete ms-2'
@@ -137,7 +140,7 @@ const CreateCategory = () => {
                                                         handleDelete(c._id);
                                                     }}
                                                 >
-                                                    Delete
+                                                    <BsFillTrashFill/>
                                                 </button>
                                             </td>
                                         </tr>

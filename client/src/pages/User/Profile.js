@@ -58,19 +58,16 @@ const Profile = () => {
   };
   return (
     <Layout title={"Your Profile"}>
-      <div className="container-fluid m-3 p-3 dashboard">
+      <div className="container profile-user" style={{ width: "21cm", height: "29.7cm", padding: "2cm" }}>
         <div className="row">
-          <div className="col-md-3">
-            <UserMenu />
-          </div>
           <div className="col-sm text-center">
-          <div className="col col-xl-10">
-          <div className="card2" style={{ borderRadius: "1rem" , marginTop: "60px" }}>
-          <div className="row g-0">
-            <div className="card-body p-4 p-lg-5 text-black">
-              <form onSubmit={handleSubmit}>
-                <h4 className="title">USER PROFILE</h4>
-                <div className="mb-3">
+            <div className="col col-xl-10">
+              <div className="card2" style={{ borderRadius: "1rem" }}>
+                <div className="row g-0">
+                  <div className="card-body p-4 p-lg-5 text-black">
+                    <form onSubmit={handleSubmit}>
+                      <h4 className="title">USER PROFILE</h4>
+                      <div className="mb-3">
                   <input
                     type="text"
                     value={name}
@@ -146,16 +143,18 @@ const Profile = () => {
                 <button type="submit" className="btn btn-warning btn-lg btn-block">
                   UPDATE
                 </button>
-              </form>
+                    </form>
+                  </div>
+                </div>
+              </div>
             </div>
-            </div>
-            </div>
-          </div>
           </div>
         </div>
       </div>
     </Layout>
   );
+  
+  
 };
 
 export default Profile;

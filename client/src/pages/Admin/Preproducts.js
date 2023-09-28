@@ -45,8 +45,8 @@ const Preproducts = () => {
                                             alt={p.name}
                                         />
                                     <div className="card-body">
-                                        <h5 className="card-title">{p.name}</h5>
-                                        <p className="card-text">{p.description}</p>
+                                        <h5 className="card-title-pro">{p.name}</h5>
+                                        
                                     </div>
                                 </div>
                             </Link>

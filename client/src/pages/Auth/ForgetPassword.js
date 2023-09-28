@@ -148,7 +148,7 @@ const ForgotPassword = () => {
                           className="fas fa-cubes fa-2x me-3"
                           style={{ color: " #ff6219" }}
                         ></i>
-                        <h4 >Forget Password?</h4>
+                        <h4 className="title-register">Forget Password?</h4>
                       </div>
 
                       {/* <h5
@@ -157,13 +157,6 @@ const ForgotPassword = () => {
                       >
                         Type Your Email Here
                       </h5> */}
-
-                      <h5
-                        className="fw-normal mb-3 pb-3"
-                        // style={{ letterSpacing: "1px" }}
-                      >
-                        We will send Password Set-up Link to your Email Address. plz Check Inbox.
-                      </h5>
 
                       <div className="form-outline mb-4">
                         <input
@@ -176,9 +169,16 @@ const ForgotPassword = () => {
                         />
                       </div>
 
+                      <h5
+                        className="btn-forgot fw-normal mb-3 pb-3"
+                        // style={{ letterSpacing: "1px" }}
+                      >
+                        We will send password set-up link to your email address.  Please check your inbox.
+                      </h5>
+
                       <div className="pt-1 mb-4">
                         <button
-                          className="btn btn-warning btn-lg btn-block"
+                          className="btn-register"
                           type="submit"
                         >
                           Send Email

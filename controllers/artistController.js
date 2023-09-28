@@ -4,15 +4,15 @@ import fs from "fs";
 
 export const createArtistController = async (req,res)  => {
     try {
-        const {name, slug, member, } = req.fields;
+        const {name, slug,  } = req.fields;
         const {photo} = req.files;
         
         //alidation
         switch(true){
             case !name:
                 return res.status(500).send({error:'Name is required'})
-            case !member:
-                return res.status(500).send({error:'Member is required'})
+            // case !member:
+            //     return res.status(500).send({error:'Member is required'})
             case photo && photo.size > 150000000000:
                 return res.status(500).send({error:'Photo is required and less than 1.5mb'})
         }
@@ -119,15 +119,15 @@ export const deleteArtistController = async (req, res) => {
 //update artist
 export const updateArtistController = async (req, res) => {
     try {
-        const {name, slug, member, } = req.fields;
+        const {name, slug } = req.fields;
         const {photo} = req.files;
         
         //alidation
         switch(true){
             case !name:
                 return res.status(500).send({error:'Name is required'})
-            case !member:
-                return res.status(500).send({error:'Member is required'})
+            // case !member:
+            //     return res.status(500).send({error:'Member is required'})
             case photo && photo.size > 150000000000:
                 return res.status(500).send({error:'Photo is required and less than 1.5mb'})
         }

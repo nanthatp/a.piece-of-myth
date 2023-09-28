@@ -40,42 +40,83 @@ const UpdatePassword = () => {
   };
   return (
     <Layout title={"Your Profile"}>
-      <div className="container-fluid m-3 p-3 dashboard">
-        <div className="row">
-          <div className="col-md-3">
-            <UserMenu />
-          </div>
-          <div className="col-sm text-center">
-          <div className="col col-xl-10">
-            <div className="card2" style={{ borderRadius: "1rem" , marginTop: "150px" }}>
-            <div className="row g-0">
-            <div className="card-body p-4 p-lg-5 text-black">
-              <form onSubmit={handleSubmit}>
-                <h4 className="title">Change Your Password</h4>
-                <div className="mb-3">
-                  <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="form-control"
-                    id="exampleInputPassword1"
-                    placeholder="Enter Your Password"
-                  />
+      {/* <div className="container py-5 h-100 password-user "style={{ width: "21cm", height: "29.7cm", padding: "2cm" }} >
+        <div className="row d-flex justify-content-center align-items-center h-100">
+          <div className="col col-xl-10 text-center">
+            <div className="col chang-password">
+              <div className="card2" style={{ borderRadius: "1rem", marginTop: "150px" }}>
+                <div className="row g-0">
+                  <div className="card-body  text-black">
+                    <form onSubmit={handleSubmit}>
+                      <h4 className="title">Change Your Password</h4>
+                      <div className="mb-3">
+                        <input
+                          type="password"
+                          value={password}
+                          onChange={(e) => setPassword(e.target.value)}
+                          className="form-control"
+                          id="exampleInputPassword1"
+                          placeholder="Enter Your Password"
+                        />
+                      </div>
+  
+                      <button type="submit" className="btn btn-warning btn-lg btn-block">
+                        UPDATE Your Password
+                      </button>
+                    </form>
+                  </div>
                 </div>
-
-                <button type="submit" className="btn btn-warning btn-lg btn-block">
-                  UPDATE Your Password
-                </button>
-              </form>
-            </div>
-            </div>
-            </div>
+              </div>
             </div>
           </div>
         </div>
+      </div> */}
+
+<div className="container py-5 h-100">
+      <div className="row d-flex justify-content-center align-items-center h-100">
+      <div className="col col-xl-10">
+      <div className="card2" style={{ borderRadius: "1rem" , marginTop: "80px" }}>
+      <div className="row g-0">
+      <div className="col-md-6 col-lg-5 d-none d-md-block">
+                  <img
+                    src="https://cdn.discordapp.com/attachments/417585852206809090/1140335973880832130/hghlk.jpg"
+                    alt="login form"
+                    className="img-fluid"
+                    style={{ borderRadius: "1rem 0 0 1rem" }}
+                  />
+                </div>
+        <div className="col-md-6 col-lg-7 d-flex align-items-center">
+        <div className="card-body p-4 p-lg-5 text-black">
+        <form onSubmit={handleSubmit} >
+          <h4 className="title-register">Change Password</h4>
+
+          <div className="mb-3">
+                        <input
+                          type="password"
+                          value={password}
+                          onChange={(e) => setPassword(e.target.value)}
+                          className="form-control"
+                          id="exampleInputPassword1"
+                          placeholder="Enter Your Password"
+                        />
+                      </div>
+  
+                      <button type="submit" className="btn-register">
+                        Change Password
+                      </button>
+        </form>
+        </div>
+        </div>
       </div>
+      </div>
+      </div>
+      </div>
+      </div>
+
+
     </Layout>
   );
+  
 };
 
 export default UpdatePassword;

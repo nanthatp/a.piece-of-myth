@@ -13,28 +13,42 @@
     padding-right: 20%;
 }
 
+.nav.nav-pills.flex-column {
+    height: 100vh; /* 100vh หมายถึง 100% ของความสูงของ viewport */
+    width: 100%; /* 100% ของความกว้างของ viewport */
+    
+}
+
 .item{
     background:#FBD85D;
     color: #fff;
     padding: 15px 20px;
-    height: 150vh;
-    width: 38vh;
+    height:auto;
+    width: 40vh;
     font-size: 1em;
     font-weight: 600;
     text-decoration: none;
     border-radius: 2px;
-    position:relative;
+    /* position:relative; */
     text-align: left;
     line-height: 30px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    overflow-y: auto; /* เพิ่ม scrollbar หากเนื้อหาเกินขอบเขตของ div */
+
+
 }
 
 .Menu{
     color: #fff;
     left: 0;
+    font-weight: 500;
 }
 
 .nav-pills .Menu.active{
-    background-color: black;
+    background-color: #000;
 }
 
 .nav-pills .active{

@@ -46,7 +46,7 @@ const Products = () => {
                                             alt={p.name}
                                         />
                                     <div className="card-body">
-                                        <h5 className="card-title">{p.name}</h5>
+                                        <h5 className="card-title-pro">{p.name}</h5>
                                     </div>
                                 </div>
                             </Link>

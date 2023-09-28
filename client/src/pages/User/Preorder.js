@@ -23,11 +23,8 @@ function Preorder() {
     }, [auth?.token]);
   return (
     <Layout title={"Your Orders"}>
-      <div className="container-flui p-3 m-3 dashboard">
+      <div className="container pre-user ">
         <div className="row">
-          <div className="col-md-3">
-            <UserMenu />
-          </div>
           <div className="col-md-9">
             <h1 className="text-center">Your Pre-Orders</h1>
             {preorder?.map((o, i) => {

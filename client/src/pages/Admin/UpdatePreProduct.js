@@ -365,12 +365,12 @@ const UpdatePreProduct = () => {
                         </div>
                         <div className="mb-3">
                             <button className="btn-update-product" onClick={handleUpdate}>
-                            UPDATE Pre-Order PRODUCT
+                            UPDATE PRE-ORDER PRODUCT
                             </button>
                         </div>
                         <div className="mb-3">
                             <button className="btn-delete-product" onClick={handleDelete}>
-                            DELETE Pre-Oreder PRODUCT
+                            DELETE PRE-ORDER PRODUCT
                             </button>
                         </div>
                     </div>

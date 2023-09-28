@@ -309,7 +309,7 @@ export default function CreatePreProduct() {
                         
                         <div className="mb-3">
                             <button className="btn-create-product" onClick={handleCreate}>
-                            CREATE Pre-Order PRODUCT
+                            CREATE PRE-ORDER PRODUCT
                             </button>
                         </div>
                     </div>

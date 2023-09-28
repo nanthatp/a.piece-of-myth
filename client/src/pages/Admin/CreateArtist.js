@@ -62,7 +62,7 @@ const CreateProduct = () => {
                     <div className="col-4 add-photo">
                         <div className="mb-3">
                             <label className="btn-upload-photo col-md-12">
-                                <p><BsCloudUploadFill/></p>
+                                
                                 {photo ? photo.name : "Upload Loco"}
                                 <input
                                     type="file"

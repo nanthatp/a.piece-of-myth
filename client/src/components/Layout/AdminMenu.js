@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from 'react';
-import { NavLink } from "react-router-dom";
+import {NavLink, Link} from 'react-router-dom'
 import { toast } from 'react-hot-toast';
 import axios from 'axios';
 import "../../styles/AdminDashboard.css";
@@ -15,14 +15,21 @@ import{BsFillLayersFill} from 'react-icons/bs';
 import{BsCollectionPlayFill} from 'react-icons/bs';
 import{BsBalloonFill} from 'react-icons/bs';
 import{BsListUl} from 'react-icons/bs';
+import{BsFillHouseHeartFill} from 'react-icons/bs';
 
 
 
 const AdminMenu = () => {
 
     return (
-        <div className="nav nav-pills flex-column">
-            <div className="fixed top-0 left-0 w-40 h-screen item">
+        <div className="nav nav-pills flex-column position-relative">
+            <div className="fixed top-0 left-0 item">
+                <NavLink
+                    to="/"
+                    className="nav-link Menu"
+                >
+                    <BsFillHouseHeartFill/> Home
+                </NavLink>
                 <NavLink
                     to="/dashboard/admin/create-category"
                     className="nav-link Menu"
@@ -95,8 +102,10 @@ const AdminMenu = () => {
                 >
                     <BsBalloonFill/> Pre-Product List
                 </NavLink> 
+              
+                
             </div>
-        </div>
+        </div>       
     );
 };
 
