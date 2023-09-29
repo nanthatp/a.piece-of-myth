@@ -228,14 +228,15 @@ const ShowAllProduct = () => {
                                 <div className="card-name-price">
                                     <button
                                         className="btn-add"
-                                        onClick={() => {
-                                            setCart([...cart, p]);
-                                            localStorage.setItem(
-                                                "cart",
-                                                JSON.stringify([...cart, p])
-                                            );
-                                            toast.success("Item Added to cart");
-                                        }}
+                                        disabled={p.quantity <1 }
+                                            onClick={() => {
+                                                setCart([...cart, p]);
+                                                localStorage.setItem(
+                                                    "cart",
+                                                    JSON.stringify([...cart, p])
+                                                );
+                                                toast.success("Item Added to cart");
+                                            }}
                                     >
                                         <BsFillBagHeartFill/> Add to Cart
                                     </button>

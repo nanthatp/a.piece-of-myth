@@ -400,6 +400,26 @@ export const braintreeTokenController = async (req, res) => {
       cart.map((i) => {
         total += i.price;
       });
+      let category = [];
+      for (let index = 0; index < cart.length; index++) {
+        const item = cart[index];
+        if( !category[item._id] ){
+            category[item._id] = {
+                amount : 1,
+                remain : cart[index].quantity,
+                name : cart[index].name,
+            }
+        }else{
+            category[item._id].amount++
+        }
+      }
+      console.log("category =",category)
+      for(let key in category){
+        let item = category[key]
+        if(item.remain-item.amount<0){
+            res.status(500).send(item.name+" out of stock");
+        }
+      } 
       let newTransaction = gateway.transaction.sale(
         {
           amount: total,
@@ -439,7 +459,5 @@ export const braintreeTokenController = async (req, res) => {
       console.log(error);
     }
   };
-
-
 
 

@@ -78,7 +78,10 @@ const ProductDetails = () => {
                     <h6>Category : {product?.category?.name}</h6>
                     <button
                         className="btn-add-detail"
+                        disabled={product.quantity < 0 || auth?.user?.role === 1}
                         onClick={() => {
+                            console.log("cart =",cart)
+                            console.log("product = ",product)
                             setCart([...cart, product]);
                             localStorage.setItem(
                                 "cart",
@@ -112,7 +115,7 @@ const ProductDetails = () => {
                     <div className="card-name-price">
                     <h5 className=" name-product">{p.name}</h5>
                     <p className="card-text product-quantity">
-                        quantity: {p.quantity}
+                        {p.quantity} remain
                     </p>
                     <h5 className="card-title product-price">
                         {p.price.toLocaleString("US", {
@@ -124,27 +127,16 @@ const ProductDetails = () => {
                     <div className="card-name-price">
                     <button
                         className="btn-add"
-                        disabled={wordQuantity === "out of stock"
-                        || auth?.user?.role === 1}
+                        disabled={p.quantity < 0 || auth?.user?.role === 1}
                         onClick={() => {
-                            if (product.quantity === 0) {
-                                console.log("ไม่ขาย!!!")
-                                 
-                            } else {
-                                setCart([...cart, p]);
-                                localStorage.setItem(
+                            console.log("cart =",cart)
+                            console.log("product = ",product)
+                            setCart([...cart, product]);
+                            localStorage.setItem(
                                 "cart",
-                                JSON.stringify([...cart, p])
-                                );
-                                toast.success("Item Added to cart");
-                                
-                            }
-                            // setCart([...cart, p]);
-                            // localStorage.setItem(
-                            // "cart",
-                            // JSON.stringify([...cart, p])
-                            // );
-                            // toast.success("Item Added to cart");
+                                JSON.stringify([...cart, product])
+                            );
+                            toast.success("Item Added to cart");
                         }}
                         >
                         <BsFillBagHeartFill/> Add to Cart

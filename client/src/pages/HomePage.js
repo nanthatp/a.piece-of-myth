@@ -10,6 +10,8 @@ import {BsFillBagHeartFill } from "react-icons/bs";
 import "../styles/Homepage.css";
 // import BannerForm from "../components/Form/BannerForm";
 import Products from './Admin/Products';
+import moment from "moment";
+import { useAuth } from "../context/auth";
 
 const HomePage = () => {
   const params = useParams();
@@ -28,7 +30,9 @@ const HomePage = () => {
   const [banner, setBanner] = useState([]);
   const [banners, setBanners] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const [auth, setAuth] = useAuth();
+  const [until , setUntil] = useState("");
+  const [instance, setInstance] = useState("");
 
    //-------get all banner-------//
 const getAllBanner = async () => {
@@ -213,8 +217,33 @@ useEffect(() => {
     }
   };
 
+  // function disableButton (){
+  //   let currentDate = new Date()
+  //   let endDate = new Date(until)
+  //   console.log("currentDate = ", currentDate)
+  //   console.log("endDate = ", endDate-currentDate)
+  //   if (endDate - currentDate < 0){
+  //     return true
+  //   }
+  //   return false;
+  // }
+
+  //get single product
+const getSinglePreProduct = async () => {
+  try {
+      const { data } = await axios.get(
+          `/api/v1/preproduct/get-preproduct/${params.slug}`
+      );
+      setUntil(data.preproduct.until);
+      
+  }catch (error) {
+      console.log(error);
+  }
+};
+
   useEffect(() => {
     if (params?.slug) getSingleArtist();
+    if (params?.slug) getSinglePreProduct();
   }, [params?.slug]);
 
  
@@ -349,9 +378,9 @@ useEffect(() => {
                             <div className="card-body">
                               <div className="card-name-price">
                                 <h5 className=" name-product">{p.name}</h5>
-                                <p className="card-text product-quantity">
-                                  {p.quantity}
-                                </p>
+                                {/* <p className="card-text product-quantity">
+                                  time limit: {moment(until).locale('th').format('YYYY-MM-DD hh:mm')}
+                                </p> */}
                                 <h5 className="card-title product-price">
                                   {p.price.toLocaleString("US", {
                                     style: "currency",
@@ -361,6 +390,9 @@ useEffect(() => {
                               </div>
                               <div className="card-name-price">
                                 <button
+                                    // disabled={ 
+                                    //   // ||disableButton ()
+                                    // }
                                     className="btn-add"
                                     onClick={() => navigate(`/preproduct/${p.slug}`)}
                                   >
@@ -417,6 +449,7 @@ useEffect(() => {
                           <div className="card-name-price">
                             <button
                                 className="btn-add"
+                                disabled={p.quantity <1 }
                                 onClick={() => {
                                   setCart([...cart, p]);
                                   localStorage.setItem(

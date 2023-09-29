@@ -121,6 +121,18 @@ const getSinglePreProduct = async () => {
       console.log(error);
   }
 };
+
+function disableButton (){
+  let currentDate = new Date()
+  let endDate = new Date(until)
+  console.log("currentDate = ", currentDate)
+  console.log("endDate = ", endDate-currentDate)
+  if (endDate - currentDate < 0){
+    return true
+  }
+  return false;
+}
+
 useEffect(() => {
   getSinglePreProduct();
   
@@ -250,7 +262,8 @@ useEffect(() => {
                         || !auth?.user?.address 
                         ||!auth?.user?.postalcode 
                         || !auth?.user?.province 
-                        || auth?.user?.role === 1}
+                        || auth?.user?.role === 1
+                        ||disableButton ()}
                     >
                       <BsFillBagHeartFill/>{loading ? "Processing ...." : "PRE-ORDER"}
                     </button>

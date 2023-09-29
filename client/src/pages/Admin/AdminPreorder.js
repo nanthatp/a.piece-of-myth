@@ -8,6 +8,8 @@ import { useAuth } from "../../context/auth";
 import moment from "moment";
 import { Select } from "antd";
 import LayoutAdmin from "./../../components/Layout/LayoutAdmin";
+import {commonrequest} from "../../Services/ApiCall";
+import {BASE_URL} from "../../Services/helper";
 
 const { Option } = Select;
 
@@ -47,6 +49,21 @@ function AdminPreorder() {
             console.log(error);
         }
     };
+
+    const exporttocsvfunc = async()=>{
+        console.log("params =",params)
+        return await commonrequest("GET",`${BASE_URL}/api/v1/preproduct/preorder-export/${params.preproduct}`,"");
+    }
+
+     // export Preorder
+    const exportPreorder = async()=>{
+    const response = await exporttocsvfunc();
+    if(response.status === 200){
+      window.open(response.data.downloadUrl,"blank")
+    }else{
+      toast.error("error !")
+    }
+  }
     return (
         <LayoutAdmin title={"All Orders Data"}>
         <div className="row dashboard">
@@ -55,6 +72,11 @@ function AdminPreorder() {
             </div>
             <div className="col-md-9">
             <h1 className="text-center">All Pre-Orders</h1>
+            <div className="col-md-3">
+                <button className="btn-add-detail" onClick={exportPreorder}>
+                    export to CSV
+                </button>
+            </div>
             {preorders?.map((o, i) => {
                 return (
                 <div className="border shadow">

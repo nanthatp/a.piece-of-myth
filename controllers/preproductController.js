@@ -4,6 +4,7 @@ import preproductModel from "../models/preproductModel.js";
 import artistModel from "../models/artistModel.js";
 
 import fs from "fs";
+import csv from "fast-csv";
 import slugify from "slugify";
 import dotenv from "dotenv";
 
@@ -391,6 +392,55 @@ export const preProductCollectionController = async (req, res) => {
         error,
         message: "Error While Getting products",
     });
+    }
+};
+
+export const preorderExport = async (req, res) => {
+    try {
+        const preorderdata = await preorderModel.find({ preproduct: req.params.preproduct })
+        .populate("buyer", ["name", "address", "postalcode", "province", "province", "phone", "email"])
+        .populate("preproduct", ["name", "price"]);
+        
+
+        const csvStream = csv.format({ headers: true });
+
+        if (!fs.existsSync("Desktop/")) {
+            if (!fs.existsSync("Desktop")) {
+                fs.mkdirSync("Desktop/");
+            }
+            if (!fs.existsSync("Desktop")) {
+                fs.mkdirSync("./Desktop/");
+            }
+        }
+        console.log("req.params=" ,req.params )
+        const writablestream = fs.createWriteStream(
+            `Desktop/preorders_${req.params.preproduct}.csv`
+        );
+
+        csvStream.pipe(writablestream);
+
+        writablestream.on("finish", function () {
+            res.json({
+                downloadUrl: "http://localhost:3000/preorders.csv",
+            });
+        });
+        if (preorderdata.length > 0) {
+            preorderdata.map((preorders) => {
+                csvStream.write({
+                    id: preorders.id ? preorders.id : "-",
+                    preproduct: preorders.preproduct ? preorders.preproduct : "-",
+                    buyer: preorders.buyer ? preorders.buyer  : "-",
+                    quantity: preorders.quantity ? preorders.quantity : "-",
+                    status: preorders.status ? preorders.status : "-",
+                    DateCreated: preorders.createdAt ? preorders.createdAt : "-",
+                })
+            })
+        }
+        csvStream.end();
+        writablestream.end();
+
+    } catch (error) {
+        res.status(401).json(error)
     }
 };
 

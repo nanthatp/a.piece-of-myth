@@ -337,6 +337,12 @@ filters
     transition: all ease 0.3s;
 }
 
+.product-box .btn-add:disabled{
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+  }
+  
 .product-box .btn-details{
     width: 100%;
     height: 40px;

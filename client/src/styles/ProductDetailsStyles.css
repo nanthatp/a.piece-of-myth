@@ -33,6 +33,13 @@
     transition: all ease 0.3s;
     border-radius: 20px;
 }
+
+.btn-add-detail:disabled{
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+  }  
+  
 /* .similar-products .card {
     background-color: rgba(128, 128, 128, 0.097);
     width: 18rem;
