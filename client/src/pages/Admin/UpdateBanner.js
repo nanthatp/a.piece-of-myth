@@ -92,6 +92,7 @@ const CreateBanner = () => {
             } else {
                 toast.success("Banner Updated Successfully");
                 navigate("/dashboard/admin/banners");
+                window.location.reload();
             }
         } catch (error) {
         console.log(error);

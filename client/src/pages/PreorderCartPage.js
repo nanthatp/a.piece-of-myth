@@ -146,6 +146,7 @@ useEffect(() => {
                         src={`/api/v1/preproduct/preproduct-photo/${preproduct._id}`}
                         className="card-img-top"
                         alt={preproduct.name}
+                        width="320" height="480"
                         
                     />
                 </div>
@@ -164,37 +165,40 @@ useEffect(() => {
                     </h6>
                     {/* <h6>Sold : {preproduct.quantity}</h6> */}
                     <h6>Category : {preproduct?.category?.name}</h6>
-                    
+                    <div className="col-md-6 mb-4">
                     <div className="mb-3">
-                            <h6>Quantity : </h6>
-                            <input
-                                type="number"
-                                value={quantity}
-                                placeholder="write a Quantity"
-                                className="form-control"
-                                onChange={(e) => {
-                                  setQuantity(e.target.value)
-                                  localStorage.setItem(
-                                    "preorderItem",
-                                    JSON.stringify({
-                                      ...preproduct,
-                                      quantity: e.target.value
-                                    })
-                                );
-                                }}
-                            />
-                        </div>
+                      <h6>Quantity : </h6>
+                      <input
+                          type="number"
+                          value={quantity}
+                          placeholder="Quantity"
+                          className="form-control"
+                          onChange={(e) => {
+                            setQuantity(e.target.value)
+                            localStorage.setItem(
+                              "preorderItem",
+                              JSON.stringify({
+                                ...preproduct,
+                                quantity: e.target.value
+                              })
+                          );
+                          }}
+                      />
 
                         <div>
-                          Total: {quantity*preproduct.price}
+                          Total:${quantity*preproduct.price} 
                         </div>
-                    
-                        {auth?.user?.address ? (
+                    </div>
+                    </div>
+
+                    <div className="col-md-6 mb-4">
+                         
+                    {auth?.user?.address ? (
                     <>
                     <div className="mb-3">
                         <h6>Current Address : {auth?.user?.address} {auth?.user?.province} {auth?.user?.postalcode}</h6>
                         <button
-                        className="btn btn-outline-warning"
+                        className="btn-pre"
                         onClick={() => navigate("/dashboard/user/profile")}
                         >
                         Update Address
@@ -219,11 +223,13 @@ useEffect(() => {
                             })
                         }
                         >
-                        Plase Login to checkout
+                        Please Login to checkout
                         </button>
                     )}
                     </div>
                 )}
+                    </div>
+                 
 
                     {/* <button
                         className="btn-add-detail"
@@ -239,7 +245,9 @@ useEffect(() => {
                         > 
                             <BsFillBagHeartFill/>PRE-ORDER
                     </button> */}
-                    <div className="mt-2">
+
+                <div className="col-md-6 mb-4">
+                <div className="mt-3">
                 {!clientToken || !auth?.token ? (
                   <div>test</div>
                 ) : (
@@ -271,6 +279,7 @@ useEffect(() => {
                 )}
               </div>
                 </div>
+                </div>
             </div>
         <hr />
 
@@ -283,7 +292,7 @@ useEffect(() => {
             {relatedPreproducts.length < 1 && (
             <p className="text-center">No Similar Products found</p>
             )}
-            <section className="product-list">
+            <section className="product-list-detail">
             <div className="product-container ">
             <div className="d-flex wrap">
             {relatedPreproducts?.map((p) => (
@@ -292,6 +301,7 @@ useEffect(() => {
                     src={`/api/v1/preproduct/preproduct-photo/${p._id}`}
                     className="card-img-top"
                     alt={p.name}
+                    width="320" height="480"
                 />
                 <div className="card-body">
                     <div className="card-name-price">

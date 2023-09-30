@@ -52,6 +52,7 @@ const UpdateArtist = () => {
             } else {
                 toast.success("Artist Updated Successfully");
                 navigate("/dashboard/admin/artists");
+                window.location.reload();
             }
         } catch (error) {
         console.log(error);

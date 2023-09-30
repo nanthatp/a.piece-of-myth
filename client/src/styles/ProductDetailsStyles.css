@@ -40,40 +40,55 @@
     color: #666666;
   }  
   
-/* .similar-products .card {
-    background-color: rgba(128, 128, 128, 0.097);
-    width: 18rem;
-}
 
-.similar-products .card-name-price {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.similar-products .card-price {
-    color: green;
-    font-weight: bold;
-}
-.similar-products button {
+.btn-pre{
+    padding: 5px 5px;
+    width: 20%;
+    background: #FBD85D;
+    color: #000;
+    float: right;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
     border-radius: 0;
-    width: 100%;
-    border-top-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    font-size: 14px;
-    font-weight: bold;
+    font-weight: 600;
+    margin-bottom: 25px;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    position:absolute;
 }
 
-.similar-products .card-text {
-    color: rgb(90, 89, 89);
+.btn-pre:hover{
+    background-color: #0DA574;
+    color: #fff;
+    transform: all ease 0.3s;
 }
 
-.similar-products .card img:hover {
-    transform: scale(0.9);
-}   
+.choose-a-way-to-pay{
+    margin-top: 25px;
+}
 
-.similar-products .card-img-top {
-    height: 300px !important;
-} */
+.btn-csv{
+    width: 80%;
+    padding: 5px 5px;
+    background: #FBD85D;
+    color: #000;
+    font-weight: 600;
+    justify-content: center;
+    align-items: center;
+    margin-left: 750px;
+    margin-bottom: 20px;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+}
+
+.btn-csv:hover{
+    background-color: #0DA574;
+    color: #fff;
+    transform: all ease 0.3s;
+}
 
 

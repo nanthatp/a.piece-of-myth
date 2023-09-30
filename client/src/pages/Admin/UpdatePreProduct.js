@@ -143,6 +143,7 @@ const UpdatePreProduct = () => {
             } else {
                 toast.success("Pre-order Product Updated Successfully");
                 navigate("/dashboard/admin/preproduct");
+                window.location.reload();
             }
         } catch (error) {
         console.log(error);
@@ -302,19 +303,19 @@ const UpdatePreProduct = () => {
 
                         <Select
                             bordered={false}
-                            placeholder="Select a Collection"
+                            placeholder="Select a Member"
                             size="medium"
                             showSearch
                             className="form-select mb-3"
                             onChange={(value) => {
-                                setCollectiongroup(value);
+                                setMember(value);
                             }}
-                            value={collectiongroup}
+                            value={member}
                         >
-                            {collectiongroups?.map((c) => (
-                                <op key={c._id} value={c._id}>
+                            {members?.map((c) => (
+                                <Option key={c._id} value={c._id}>
                                     {c.name}
-                                </op>
+                                </Option>
                             ))}
                         </Select>
                         </div>
@@ -332,19 +333,19 @@ const UpdatePreProduct = () => {
                         
                         <Select
                             bordered={false}
-                            placeholder="Select a Member"
+                            placeholder="Select a Collection"
                             size="medium"
                             showSearch
                             className="form-select mb-3"
                             onChange={(value) => {
-                                setMember(value);
+                                setCollectiongroup(value);
                             }}
-                            value={member}
+                            value={collectiongroup}
                         >
-                            {members?.map((c) => (
-                                <Option key={c._id} value={c._id}>
+                            {collectiongroups?.map((c) => (
+                                <op key={c._id} value={c._id}>
                                     {c.name}
-                                </Option>
+                                </op>
                             ))}
                         </Select>
                         <div className="d-flex flex-column">
@@ -360,7 +361,7 @@ const UpdatePreProduct = () => {
                             ))} */}
                                 {moment(until).format('YYYY-MM-DD')}
                             </DatePicker>
-                            <label>TestTime: {moment(until).locale('th').format('YYYY-MM-DD hh:mm')}</label>
+                            <label className='test-time'>Time: {moment(until).locale('th').format('YYYY-MM-DD hh:mm')}</label>
                         </div>
                         </div>
                         <div className="mb-3">

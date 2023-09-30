@@ -2,6 +2,9 @@ import React from "react";
 import AdminMenu from "../../components/Layout/AdminMenu";
 import LayoutAdmin from "./../../components/Layout/LayoutAdmin";
 import { useAuth } from "../../context/auth";
+import {BsFillEmojiHeartEyesFill } from "react-icons/bs";
+import {BsFillEnvelopeOpenHeartFill } from "react-icons/bs";
+import {BsFillTelephoneFill } from "react-icons/bs";
 const AdminDashboard = () => {
     const [auth] = useAuth();
     return (
@@ -10,12 +13,42 @@ const AdminDashboard = () => {
                 <div className="col-md-3">
                     <AdminMenu />
                 </div>
-                <div className="col-md-9">
-                    <div className="card w-75 p-3">
-                    <h3> Admin Name : {auth?.user?.name}</h3>
-                    <h3> Admin Email : {auth?.user?.email}</h3>
-                    <h3> Admin Contact : {auth?.user?.phone}</h3>
+                <div className="col-sm text-center dashboard-ad">
+                    <div className="container dashboard-form">
+                        <div className="row justify-content-center dashboard-text">
+                        {!auth?.user
+                            ? "Hello Guest"
+                            : `Hello  ${auth?.token && auth?.user?.name}`} !
+                        </div>
                     </div>
+
+                    <div className="col-md-8 dashboard-card">
+                        <div className="card">
+                            <div className="card-body text-start"> {/* ใช้ text-start เพื่อจัดเรียงข้อความทางด้านซ้าย */}
+                                <div className="mb-3 text-center card-heard">
+                                    Admin Information
+                                </div>
+                                <div className="mb-3 card-information">
+                                    <span> <BsFillEmojiHeartEyesFill/> </span>Name: {auth?.user?.name}
+                                </div>
+
+                                <div className="mb-3 card-information">
+                                    <span> <BsFillEnvelopeOpenHeartFill/> </span>Email: {auth?.user?.email}
+                                </div>
+                                <div className="mb-3 card-information">
+                                    <span> <BsFillTelephoneFill/> </span>Contact: {auth?.user?.phone}
+                                </div>
+                            
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
                 </div>
             </div>
         

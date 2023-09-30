@@ -27,3 +27,34 @@
     text-align: center;
     /* margin-top: -140px !important; */
 }
+
+.hello-auth{
+    background-color: #ecf7ee;
+}
+
+.pay{
+    margin-top: 80px;
+    margin-left: 80px;
+    position: relative;
+}
+
+.btn-cart{
+    width: 80%;
+    padding: 5px 5px;
+    background: #FBD85D;
+    color: #000;
+    font-weight: 600;
+    justify-content: center;
+    align-items: center;
+    margin-left: 45px;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+   
+}
+
+.btn-cart:hover{
+    background-color: #0DA574;
+    color: #fff;
+    transform: all ease 0.3s;
+}

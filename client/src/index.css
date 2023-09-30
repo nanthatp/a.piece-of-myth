@@ -75,12 +75,50 @@ font-family: 'PT Serif', serif; */
 /* ============== Footer =============== */
 .footer{
   color: white;
-  padding: 25px;
+
   background: #0DA574;
   margin-top: 6px;
 }
 
-.footer a{
+.footer-brand {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.footer-brand span{
+  font-size: 22px;
+  font-weight: 700;
+  color: #FFD717;
+}
+
+.footer-brand p{
+  font-size: 16px;
+  font-weight: 400;
+  margin-top: 10px;
+}
+
+.footer-contact h5{
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.footer-contact span{
+  font-size: 22px;
+  font-weight: 700;
+  margin-top: 20px;
+  color: #FFD717;
+}
+
+.all-right {
+  padding-left: 0px;
+}
+
+.all-right h4{
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* .footer a{
   text-decoration: none;
   color: white;
   padding: 10px;
@@ -89,7 +127,7 @@ font-family: 'PT Serif', serif; */
 .footer a:hover{
   color: #ffefba;
   border-bottom: 1px solid #ffefba;
-}
+} */
 
 /* ============== Page not found =============== */
 

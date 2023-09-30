@@ -3,8 +3,9 @@
     padding: 30px 40px;
     color: white;
     text-align: center;
-    height: 70%;
+    height: 80%;
     margin-right: 100%;
+    box-shadow: 0 12px 6px -6px #EEEDED;
 }
 
 .new-product{
@@ -150,6 +151,11 @@
 
 .card-title-pro:hover{
     color: #FBD85D;
+}
+
+.test-time{
+    color: #000;
+    font-weight: 500;
 }
 
 

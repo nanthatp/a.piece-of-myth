@@ -36,6 +36,7 @@ const CreateProduct = () => {
             } else {
                 toast.success("Artist Created Successfully");
                 navigate("/dashboard/admin/artists");
+                window.location.reload();
             }
         } catch (error) {
         console.log(error);

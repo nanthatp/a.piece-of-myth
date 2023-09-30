@@ -67,10 +67,10 @@ const CreateBanner = () => {
             );
             if (data?.success) {
                 toast.error(data?.message);
-                window.location.reload();
             } else {
                 toast.success("Banner Created Successfully");
                 navigate("/dashboard/admin/banners");
+                window.location.reload();
             }
         } catch (error) {
         console.log(error);

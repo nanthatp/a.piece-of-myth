@@ -115,7 +115,7 @@ const CartPage = () => {
                     </div>
                     <div className="col-md-4">
                         <p>{p.name}</p>
-                        <p>{p.description.substring(0, 30)}</p>
+                        {/* <p>{p.description.substring(0, 30)}</p> */}
                         <p>Price : {p.price}</p>
                     </div>
                     <div className="col-md-4 cart-remove-btn">
@@ -129,7 +129,7 @@ const CartPage = () => {
                     </div>
                 ))}
                 </div>
-                <div className="col-md-5 cart-summary ">
+                <div className="col-md-4 mb-4 cart-summary ">
                 <h2>Cart Summary</h2>
                 <p>Total | Checkout | Payment</p>
                 <hr />
@@ -140,10 +140,10 @@ const CartPage = () => {
                         <h4>Current Address</h4>
                         <h5>{auth?.user?.address} {auth?.user?.province} {auth?.user?.postalcode}</h5>
                         <button
-                        className="btn btn-outline-warning"
+                        className="btn-cart"
                         onClick={() => navigate("/dashboard/user/profile")}
                         >
-                        Update Address
+                          Update Address
                         </button>
                     </div>
                     </>
@@ -165,12 +165,14 @@ const CartPage = () => {
                             })
                         }
                         >
-                        Plase Login to checkout
+                        Please Login to checkout
                         </button>
                     )}
                     </div>
                 )}
-                <div className="mt-2">
+
+                <div className="col-md-8 mb-4 pay">
+                <div className="mt-3">
                 {!clientToken || !auth?.token || !cart?.length ? (
                   ""
                 ) : (
@@ -200,6 +202,7 @@ const CartPage = () => {
                   </>
                 )}
               </div>
+                </div>
                 </div>
             </div>
             </div>

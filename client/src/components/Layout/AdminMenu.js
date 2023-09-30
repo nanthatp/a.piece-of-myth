@@ -24,6 +24,9 @@ const AdminMenu = () => {
     return (
         <div className="nav nav-pills flex-column position-relative">
             <div className="fixed top-0 left-0 item">
+                <Link to = "/dashboard/admin" className="navbar-brand">
+                    <span></span> Dashboard Admin
+                </Link>
                 <NavLink
                     to="/"
                     className="nav-link Menu"

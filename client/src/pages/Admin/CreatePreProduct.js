@@ -106,6 +106,7 @@ export default function CreatePreProduct() {
             } else {
                 toast.success("Pre-order Product Created Successfully");
                 navigate("/dashboard/admin/preproduct");
+                window.location.reload();
             }
         } catch (error) {
         console.log(error);
@@ -237,15 +238,15 @@ export default function CreatePreProduct() {
                         
                         <Select
                             bordered={false}
-                            placeholder="Select a Collection group"
+                            placeholder="Select a Member"
                             size="medium"
                             showSearch
                             className="form-select mb-3"
                             onChange={(value) => {
-                                setCollectiongroup(value);
+                                setMember(value);
                             }}
                         >
-                            {collectiongroups?.map((c) => (
+                            {members?.map((c) => (
                                 <Option key={c._id} value={c._id}>
                                     {c.name}
                                 </Option>
@@ -273,15 +274,15 @@ export default function CreatePreProduct() {
                         </div>
                         <Select
                             bordered={false}
-                            placeholder="Select a Member"
+                            placeholder="Select a Collection group"
                             size="medium"
                             showSearch
                             className="form-select mb-3"
                             onChange={(value) => {
-                                setMember(value);
+                                setCollectiongroup(value);
                             }}
                         >
-                            {members?.map((c) => (
+                            {collectiongroups?.map((c) => (
                                 <Option key={c._id} value={c._id}>
                                     {c.name}
                                 </Option>

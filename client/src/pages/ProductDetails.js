@@ -101,7 +101,7 @@ const ProductDetails = () => {
             {relatedProducts.length < 1 && (
             <p className="text-center">No Similar Products found</p>
             )}
-            <section className="product-list">
+            <section className="product-list-detail">
             <div className="product-container ">
             <div className="d-flex wrap">
             {relatedProducts?.map((p) => (
@@ -110,6 +110,7 @@ const ProductDetails = () => {
                     src={`/api/v1/product/product-photo/${p._id}`}
                     className="card-img-top"
                     alt={p.name}
+                    width="320" height="480"
                 />
                 <div className="card-body">
                     <div className="card-name-price">

@@ -73,7 +73,7 @@ function AdminPreorder() {
             <div className="col-md-9">
             <h1 className="text-center">All Pre-Orders</h1>
             <div className="col-md-3">
-                <button className="btn-add-detail" onClick={exportPreorder}>
+                <button className="btn-csv" onClick={exportPreorder}>
                     export to CSV
                 </button>
             </div>
@@ -128,7 +128,7 @@ function AdminPreorder() {
                         </div>
                         <div className="col-md-8">
                             <p>{p.name}</p>
-                            <p>{p.description.substring(0, 30)}</p>
+                            {/* <p>{p.description.substring(0, 30)}</p> */}
                             <p>Price : {p.price}</p>
                         </div>
                         </div>

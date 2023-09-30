@@ -109,6 +109,7 @@ const CreateProduct = () => {
             } else {
                 toast.success("Product Created Successfully");
                 navigate("/dashboard/admin/products");
+                window.location.reload();
             }
         } catch (error) {
         console.log(error);
@@ -128,8 +129,7 @@ const CreateProduct = () => {
                 <div className="row justify-content-center new-product">
                 <h2>New Product</h2>
                 </div>
-                
-            </div>
+                </div>
                 <div className="container text-center  create-product">
                     <div className="row justify-content-evenly">
                     <div className="col-4 add-photo">
