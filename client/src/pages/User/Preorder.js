@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import UserMenu from '../../components/Layout/UserMenu'
-import Layout from '../../components/Layout/Layout'
+import LayoutAdmin from "./../../components/Layout/LayoutAdmin";
 import axios from 'axios'
 import { useAuth } from '../../context/auth'
 import moment from 'moment'
@@ -21,13 +21,16 @@ function Preorder() {
     useEffect(() => {
         if (auth?.token) getPreorder();
     }, [auth?.token]);
-  return (
-    <Layout title={"Your Orders"}>
-      <div className="container pre-user ">
-        <div className="row">
-          <div className="col-md-9">
-            <h1 className="text-center">Your Pre-Orders</h1>
-            {preorder?.map((o, i) => {
+    return (
+      <>
+      <LayoutAdmin title={"My Orders"}>
+      <div className="row dashboard">
+          <div className="col-md-3">
+          <UserMenu />
+          </div>
+          <div className="col py-3">
+          <h1 className="text-center">All Orders</h1>
+          {preorder?.map((o, i) => {
               return (
                 <div className="border shadow">
                   <table className="table">
@@ -76,9 +79,11 @@ function Preorder() {
               );
             })}
           </div>
-        </div>
+  
       </div>
-    </Layout>
+      </LayoutAdmin>
+      </>
+      
   );
 };
 

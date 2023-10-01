@@ -135,49 +135,13 @@ const Header = () => {
                       </li> */}
 
                       <li>
-                        <NavLink
-                            to="/dashboard/user/profile"
-                            className="dropdown-item"
-                        >
-                          My Profile
-                        </NavLink>
-                      </li>
-
-                      <li>
-                      <NavLink
-                          to="/dashboard/user/orders"
-                          className="dropdown-item"
-                      >
-                        My Orders
-                      </NavLink>
-                      </li>
-
-                      <li>
-                      <NavLink
-                          to="/dashboard/user/preorders"
-                          className="dropdown-item"
-                      >
-                        My Pre-Order
-                      </NavLink>
-                      </li>
-
-                      <li>
-                      <NavLink
-                          to="/dashboard/user/update-password"
-                          className="dropdown-item"
-                      >
-                        Password
-                      </NavLink>
-                      </li>
-
-                      <li>
                             <NavLink
                             to={`/dashboard/${
                                 auth?.user?.role === 1 ? "admin" : "user"
                             }`}
                             className="dropdown-item"
                             >
-                            Dashboard
+                            My Profile
                             </NavLink>
                         </li>
 

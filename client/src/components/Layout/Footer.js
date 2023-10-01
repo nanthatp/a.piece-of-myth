@@ -38,7 +38,7 @@ const Footer = () => {
           {/*Grid column*/}
           {/*Grid column*/}
           <div className="col-md-6 mb-md-0 mb-3 footer-contact">
-            <h5 className="text-uppercase mb-0">CONTACT US</h5>
+            <h5 className="text mb-0">Contact Us</h5>
             <ul className="list-unstyled">
               <li>
                 <span> <BsFillHouseHeartFill/> </span> 555 Muang, Nakhon Ratchasima 30000

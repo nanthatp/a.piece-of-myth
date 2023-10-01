@@ -5,6 +5,8 @@ import { useAuth } from "../../context/auth";
 import {BsFillEmojiHeartEyesFill } from "react-icons/bs";
 import {BsFillEnvelopeOpenHeartFill } from "react-icons/bs";
 import {BsFillTelephoneFill } from "react-icons/bs";
+import {BsFillShieldLockFill } from "react-icons/bs";
+
 const AdminDashboard = () => {
     const [auth] = useAuth();
     return (
@@ -26,7 +28,7 @@ const AdminDashboard = () => {
                         <div className="card">
                             <div className="card-body text-start"> {/* ใช้ text-start เพื่อจัดเรียงข้อความทางด้านซ้าย */}
                                 <div className="mb-3 text-center card-heard">
-                                    Admin Information
+                                    {auth?.user?.name} information
                                 </div>
                                 <div className="mb-3 card-information">
                                     <span> <BsFillEmojiHeartEyesFill/> </span>Name: {auth?.user?.name}
@@ -37,6 +39,11 @@ const AdminDashboard = () => {
                                 </div>
                                 <div className="mb-3 card-information">
                                     <span> <BsFillTelephoneFill/> </span>Contact: {auth?.user?.phone}
+                                </div>
+
+                                <div className="mb-3 card-information d-flex align-items-center">
+                                    <span> <BsFillShieldLockFill/> </span> Password: ******* 
+                                    
                                 </div>
                             
                             </div>

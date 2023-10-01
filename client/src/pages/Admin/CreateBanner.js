@@ -70,7 +70,7 @@ const CreateBanner = () => {
             } else {
                 toast.success("Banner Created Successfully");
                 navigate("/dashboard/admin/banners");
-                window.location.reload();
+                
             }
         } catch (error) {
         console.log(error);

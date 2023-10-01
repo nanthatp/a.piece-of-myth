@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import UserMenu from "../../components/Layout/UserMenu";
-import Layout from "./../../components/Layout/Layout";
+import LayoutAdmin from "./../../components/Layout/LayoutAdmin";
 import axios from "axios";
 import { useAuth } from "../../context/auth";
 import moment from "moment";
@@ -21,12 +21,15 @@ const Orders = () => {
     if (auth?.token) getOrders();
   }, [auth?.token]);
   return (
-    <Layout title={"Your Orders"}>
-      <div className="container order-user">
-        <div className="row">
-          <div className="col-md-9">
-            <h1 className="text-center">All Orders</h1>
-            {orders?.map((o, i) => {
+    <>
+    <LayoutAdmin title={"My Orders"}>
+    <div className="row dashboard">
+        <div className="col-md-3">
+        <UserMenu />
+        </div>
+        <div className="col py-3">
+        <h1 className="text-center">All Orders</h1>
+        {orders?.map((o, i) => {
               return (
                 <div className="border shadow">
                   <table className="table">
@@ -74,11 +77,13 @@ const Orders = () => {
                 </div>
               );
             })}
-          </div>
         </div>
-      </div>
-    </Layout>
-  );
+
+    </div>
+    </LayoutAdmin>
+    </>
+    
+);
   
 };
 

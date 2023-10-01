@@ -8,7 +8,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import "../styles/CartStyles.css";
 import DropIn from "braintree-web-drop-in-react";
-import {BsFillBagHeartFill } from "react-icons/bs";
+import {BsFillCreditCardFill } from "react-icons/bs";
 
 const CartPage = () => {
     const [auth, setAuth] = useAuth();
@@ -91,7 +91,7 @@ const CartPage = () => {
                     : `Hello  ${auth?.token && auth?.user?.name}`}
                 <p className="text-center">
                     {cart?.length
-                    ? `You Have ${cart.length} items in your cart ${
+                    ? `You have ${cart.length} items in your cart ${
                         auth?.token ? "" : "please login to checkout !"
                         }`
                     : " Your Cart Is Empty"}
@@ -151,21 +151,21 @@ const CartPage = () => {
                     <div className="mb-3">
                     {auth?.token ? (
                         <button
-                        className="btn btn-outline-warning"
+                        className="btn-cart"
                         onClick={() => navigate("/dashboard/user/profile")}
                         >
                         Update Address
                         </button>
                     ) : (
                         <button
-                        className="btn btn-outline-warning"
+                        className="btn-cart"
                         onClick={() =>
                             navigate("/login", {
                             state: "/cart",
                             })
                         }
                         >
-                        Please Login to checkout
+                        Please Login to Checkout
                         </button>
                     )}
                     </div>
@@ -188,7 +188,7 @@ const CartPage = () => {
                     />
 
                     <button
-                      className="btn-add-detail"
+                      className="btn-add-payment"
                       onClick={handlePayment}
                       disabled={loading   
                         ||!instance 
@@ -197,7 +197,7 @@ const CartPage = () => {
                         || !auth?.user?.province 
                         || auth?.user?.role === 1}
                     >
-                      <BsFillBagHeartFill/>{loading ? "Processing ...." : "Make Payment"} 
+                    {loading ? "Processing ...." : "Make Payment"} 
                     </button>
                   </>
                 )}
