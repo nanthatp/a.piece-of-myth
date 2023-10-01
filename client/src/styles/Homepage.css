@@ -382,10 +382,10 @@ filters
 }
 
 .card-category:hover{
-    width: 100%;
+    width: 40px;
     height: 40px;
     background-color: #FFD717;
-    color: #fff;
+    color: #000;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -397,6 +397,40 @@ filters
 
 .cat-btn{
     font-size: 15px;
+    font-weight: 700;
+}
+
+.card-category-all{
+    width: 80%;
+    height: 80px;
+    background-color: #ecf7ee;
+    color: #0DA574;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 70px;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+}
+
+.card-category-all:hover{
+    width: 80%;
+    height: 80px;
+    background-color: #FFD717;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+}
+
+.cat-btn-all{
+    font-size: 18px;
     font-weight: 700;
 }
 
@@ -423,6 +457,15 @@ filters
     padding: 20px;
     text-align: center;
 }
+
+.card-artist-img-all {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    margin-top: 30px;
+}
+
 
 /* .overlay :hover{
     opacity: 1;
@@ -451,7 +494,6 @@ text-align: center;
 
 .name-artist-btn:hover{
     color: #FFD717;
-
 }
 
 

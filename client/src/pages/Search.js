@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useCart } from "../context/cart";
 import {BsFillBagHeartFill } from "react-icons/bs";
-import "../styles/Homepage.css";
+import "../styles/Search.css";
 
 const Search = () => {
     const [values, setValues] = useSearch();
@@ -32,8 +32,8 @@ const Search = () => {
                         className=" card-img-top"
                         alt={p.name}
                     />
-                    <div className="card-body">
-                    <div className="card-name-price">
+                    <div className="card-body-search">
+                    <div className="card-name-price-search">
                     <h5 className=" name-product">{p.name}</h5>
                     <p className="card-text product-quantity">
                         {p.quantity} sold
@@ -45,7 +45,7 @@ const Search = () => {
                         })}
                     </h5>
                     </div>
-                    <div className="card-name-price">
+                    <div className="card-name-price-search">
                     <button
                         className="btn-add"
                         onClick={() => {

@@ -3,8 +3,12 @@ import UserMenu from "../../components/Layout/UserMenu";
 import Layout from "./../../components/Layout/Layout";
 import { useAuth } from "../../context/auth";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+
 import axios from "axios";
 const UpdatePassword = () => {
+
+  const navigate = useNavigate();
   //context
   const [auth, setAuth] = useAuth();
   //state
@@ -32,6 +36,7 @@ const UpdatePassword = () => {
         ls.user = data.updatedUser;
         localStorage.setItem("auth", JSON.stringify(ls));
         toast.success("Profile Updated Successfully");
+        navigate("/dashboard/user");
       }
     } catch (error) {
       console.log(error);

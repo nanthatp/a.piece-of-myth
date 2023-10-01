@@ -97,9 +97,8 @@ const CategoryProduct = () => {
                         </div>
                     </div>
                 ))}
-                </div>
-                <div className="d-flex flex-wrap">
-                {preproducts?.map((p) => (
+
+{preproducts?.map((p) => (
                     <div className="carousel-item active card m-2 product-box"  key={p._id}>
                         <img
                         src={`/api/v1/preproduct/preproduct-photo/${p._id}`}

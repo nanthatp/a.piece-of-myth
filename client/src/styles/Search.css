@@ -1,0 +1,55 @@
+.card-body-search {
+    display: flex;
+    flex-direction: column;
+    text-align: left; /* จัดแนวชิดซ้ายในแนวนอน */
+
+}
+
+.card-name-price-search {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* ชิดขอบด้านบนในแนวนอน */
+    align-items: flex-start; /* ชิดขอบด้านบนในแนวตั้ง */
+}
+
+.name-product-search,
+.product-quantity-search,
+.product-price-search {
+    margin: 0; /* ลบ margin ทั้งหมด เพื่อไม่ให้มีช่องว่าง */
+}
+
+.name-product-search {
+    margin-top: 100px; /* ระยะห่างด้านบน 10px (ปรับตามที่คุณต้องการ) */
+}
+
+.product-box img{
+    width: 90%;
+    height: 180px;
+    object-fit: contain;
+    object-position: center;
+    margin: auto;
+}
+
+.product-box .name-product-search {
+    color: #001F3F;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.product-box .product-quantity-search {
+    color: #949494;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.product-box .product-price-search {
+    color: #001F3F;
+    margin-top: 10px;
+    font-size: 0.6 rem;
+    font-weight: 500;
+    
+}
+

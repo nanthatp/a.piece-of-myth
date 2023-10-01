@@ -4,15 +4,18 @@ import { useAuth } from '../../context/auth'
 import toast from "react-hot-toast";
 import SearchInput from "../Form/SearchInput";
 import useCategory from "../../hooks/useCategory";
+import useCollection from "../../hooks/useCategory";
 import useArtist from '../../hooks/useArtist';
 import { Badge } from "antd";
 import { useCart } from "../../context/cart";
-import { BsCart4 } from "react-icons/bs";
+import { BsBagHeart } from "react-icons/bs";
+import { BsBell } from "react-icons/bs";
 
 
 
 const Header = () => {
   const categories = useCategory();
+  const collections = useCollection();
   const artists = useArtist();
   const [auth, setAuth] = useAuth();
   const [cart] = useCart();
@@ -47,6 +50,7 @@ const Header = () => {
                     Home
                 </NavLink>
               </li>
+
               <li className="nav-item dropdown">
                 <Link
                   className="nav-link dropdown-toggle"
@@ -73,6 +77,34 @@ const Header = () => {
                   ))}
                 </ul>
               </li>
+
+              {/* <li className="nav-item dropdown">
+                <Link
+                  className="nav-link dropdown-toggle"
+                  to={"/collections"}
+                  data-bs-toggle="dropdown"
+                >
+                  Collection
+                </Link>
+                <ul className="dropdown-menu">
+                  <li>
+                    <Link className="dropdown-item" to={"/collections"}>
+                      All Collections
+                    </Link>
+                  </li>
+                  {collections?.map((c) => (
+                    <li>
+                      <Link
+                        className="dropdown-item"
+                        to={`/collection/${c.slug}`}
+                      >
+                        {c.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </li> */}
+
               <li className="nav-item dropdown">
                 <Link
                   className="nav-link dropdown-toggle"
@@ -99,6 +131,7 @@ const Header = () => {
                   ))}
                 </ul>
               </li>
+
               {!auth?.user ? (
                 <>
                   <li className="nav-item">
@@ -158,13 +191,23 @@ const Header = () => {
                   </li>
                 </>
               )}
+
               <li className="nav-item  cart">
-                  <NavLink to = "/cart" className="nav-link " href="#">
-                  <Badge  color="#0DA574" count={cart?.length} showZero offset={[10, -5]}>
-                        cart
-                  </Badge> 
+                <NavLink to="/cart" className="nav-link-cart" href="#">
+                  <Badge color="#0DA574" count={cart?.length} showZero offset={[10, -5]}>
+                    <BsBell style={{ fontSize: '20px' }} /> {/* เพิ่มคุณสมบัติ font-size */}
+                  </Badge>
                 </NavLink>
               </li>
+
+              <li className="nav-item  cart">
+                <NavLink to="/cart" className="nav-link-cart" href="#">
+                  <Badge color="#0DA574" count={cart?.length} showZero offset={[10, -5]}>
+                    <BsBagHeart style={{ fontSize: '20px' }} /> {/* เพิ่มคุณสมบัติ font-size */}
+                  </Badge>
+                </NavLink>
+              </li>
+
             </ul>
           </div>
         </div>

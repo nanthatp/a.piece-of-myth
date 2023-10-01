@@ -9,6 +9,7 @@ function Preorder() {
     const [ preorder, setPreorder ] = useState([]);
     const [ preorders, setPreorders ] = useState("");
     const [ auth, setAuth ] = useAuth();
+    
 
     const getPreorder = async () => {
         try{
@@ -63,8 +64,8 @@ function Preorder() {
                             src={`/api/v1/preproduct/preproduct-photo/${p._id}`}
                             className="card-img-top"
                             alt={p.name}
-                            width="100px"
-                            height={"100px"}
+                            // width="100px"
+                            // height={"100px"}
                           />
                         </div>
                         <div className="col-md-8">

@@ -41,20 +41,20 @@ const ShowAllPre = () => {
                                 className=" card-img-top"
                                 alt={p.name}
                             />
-                            <div className="card-body">
-                            <div className="card-name-price">
-                            <h5 className=" name-product">{p.name}</h5>
-                            <p className="card-text product-quantity">
+                            <div className="card-body-search">
+                            <div className="card-name-price-search ">
+                            <h5 className=" name-product-search ">{p.name}</h5>
+                            <p className="card-text product-quantity-search ">
                                 {p.quantity}
                             </p>
-                            <h5 className="card-title product-price">
+                            <h5 className="card-title product-price-search ">
                                 {p.price.toLocaleString("US", {
                                 style: "currency",
                                 currency: "USD",
                                 })}
                             </h5>
                             </div>
-                            <div className="card-name-price">
+                            <div className="card-name-price-search ">
                             <button
                                 className="btn-add"
                                 onClick={() => navigate(`/preproduct/${p.slug}`)}

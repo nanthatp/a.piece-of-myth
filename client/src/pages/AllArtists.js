@@ -16,7 +16,7 @@ const AllArtists = () => {
                         <div className="card-text">
                             <img 
                                 src={`/api/v1/artist/artist-photo/${c._id}`} 
-                                className="card-artist-img" alt={c.name} 
+                                className="card-artist-img-all" alt={c.name} 
                             />
                             <div className="1-overlay">
                                 <Link to={`/artist/${c.slug}`} className="btn name-artist-btn">
