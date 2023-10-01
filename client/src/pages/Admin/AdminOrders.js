@@ -3,7 +3,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import AdminMenu from "../../components/Layout/AdminMenu";
 import LayoutAdmin from "./../../components/Layout/LayoutAdmin";
-
+import { useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth";
 import moment from "moment";
 import { Select } from "antd";
@@ -11,8 +11,9 @@ import Pagination from "../../components/Pagination";
 const { Option } = Select;
 
 const AdminOrders = () => {
+    const params = useParams();
     const [status, setStatus] = useState([
-        "Not Process",
+        "Not_Process",
         "Processing",
         "Shipped",
         "deliverd",
@@ -30,8 +31,18 @@ const AdminOrders = () => {
         }
     };
 
+    // const getOrdersBystatus = async () => {
+    //     try {
+    //     const { data } = await axios.get(`/api/v1/auth/get-preorder-by-status/${params.status}`);
+    //     setOrders(data);
+    //     } catch (error) {
+    //     console.log(error);
+    //     }
+    // };
+
     useEffect(() => {
         if (auth?.token) getOrders();
+        // if (auth?.token) getOrdersBystatus();
     }, [auth?.token]);
 
     const handleChange = async (orderId, value) => {
@@ -60,6 +71,13 @@ const AdminOrders = () => {
             </div>
             <div className="col py-3">
             <h1 className="text-center">All Orders</h1>
+            {/* <div className="btn-group">
+                <a href="/dashboard/admin/orders/Not_Process" className="btn btn-primary">Not_Process</a>
+                <a href="/dashboard/admin/orders/Processing" className="btn btn-primary">Processing</a>
+                <a href="/dashboard/admin/orders/Shipped" className="btn btn-primary">Shipped</a>
+                <a href="/dashboard/admin/orders/deliverd" className="btn btn-primary">deliverd</a>
+                <a href="/dashboard/admin/orders/cancel" className="btn btn-primary">cancel</a>
+            </div> */}
             {orders?.map((o, i) => {
                 return (
                 <div className="border shadow">

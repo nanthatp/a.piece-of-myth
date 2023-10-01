@@ -16,6 +16,7 @@ import {
     realtedProductController,
     searchProductController,
     updateProductController,
+    productBystatusController
 } from "../controllers/productController.js";
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
 import formidable from "express-formidable";
@@ -74,6 +75,9 @@ router.get("/product-collection/:slug", productCollectionController);
 
 //-------artist wise product-------//
 router.get("/product-artist/:slug", productArtistController);
+
+//--------get Pre-order product by status-------------//
+router.get("/get-preorder-by-status/:status", requireSignIn,isAdmin,productBystatusController)
 
 // payments routes
 //token

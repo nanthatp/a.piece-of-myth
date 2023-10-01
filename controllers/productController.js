@@ -376,6 +376,25 @@ export const productArtistController = async (req, res) => {
     }
 };
 
+// get order product by status
+export const productBystatusController = async (req, res) => {
+    try {
+    const orders = await orderModel.find({ status: req.params.status });
+    // const preproducts = await preproductModel.find({ category }).populate("category");
+    res.status(200).send({
+        success: true,
+        orders,
+    });
+    } catch (error) {
+    console.log(error);
+    res.status(400).send({
+        success: false,
+        error,
+        message: "Error While Getting order by status",
+    });
+    }
+};
+
 //payment gateway api
 //token
 export const braintreeTokenController = async (req, res) => {

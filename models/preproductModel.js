@@ -31,14 +31,9 @@ const preproductSchema = new mongoose.Schema({
         ref: "Artist",
         required: true,
     },
-    member: {
-        type: mongoose.ObjectId,
-        ref: "Member",
-        required: true,
-    },
     collectiongroup: {
         type: mongoose.ObjectId,
-        ref: "Collection",
+        ref: "Collectiongroup",
         required: true,
     },
     until: {

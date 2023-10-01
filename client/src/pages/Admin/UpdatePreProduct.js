@@ -301,23 +301,7 @@ const UpdatePreProduct = () => {
                             ))}
                         </Select>
 
-                        <Select
-                            bordered={false}
-                            placeholder="Select a Member"
-                            size="medium"
-                            showSearch
-                            className="form-select mb-3"
-                            onChange={(value) => {
-                                setMember(value);
-                            }}
-                            value={member}
-                        >
-                            {members?.map((c) => (
-                                <Option key={c._id} value={c._id}>
-                                    {c.name}
-                                </Option>
-                            ))}
-                        </Select>
+                        
                         </div>
 
                         <div className="col-4">

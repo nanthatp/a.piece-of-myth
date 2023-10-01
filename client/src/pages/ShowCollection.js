@@ -13,14 +13,17 @@ const ShowCollection = () => {
     const [collection , setCollection] = useState("");
     const [collectname , setCollectName] = useState("");
     const navigate = useNavigate();
-    const [cart, setCart] = useCart();
     const params = useParams();
+
+    useEffect(() => {
+        if (params?.collectiongroup) getPreProductByCollection();
+    }, [params?.collectiongroup]);
 
     //getall Pre-order products
     const getPreProductByCollection = async () => {
         try {
             const { data } = await axios.get(
-                `/api/v1/preproduct/preproduct-collection/${params.slug}`
+                `/api/v1/preproduct/preproduct-collection/${params.collectiongroup}`
             );
             setPreproducts(data?.preproducts);
             } catch (error) {
@@ -28,16 +31,12 @@ const ShowCollection = () => {
             }
     };
 
-    useEffect(() => {
-        getPreProductByCollection();
-    }, []);
-
     return (
         <Layout title={"All Products"}>
             <div className="container">
             <div className="text-center">
             <div className="product-heading">
-                <h1>Pre-Order Products's Collection - {params.slug}</h1>
+                <h1>Pre-Order Products's Collection - {preproducts?.collectiongroup}</h1>
             </div>
             <div className="d-flex flex-wrap mt-4">
             {preproducts?.map((p) => (

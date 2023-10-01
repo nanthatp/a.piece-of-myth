@@ -236,22 +236,7 @@ export default function CreatePreProduct() {
                             ))}
                         </Select>
                         
-                        <Select
-                            bordered={false}
-                            placeholder="Select a Member"
-                            size="medium"
-                            showSearch
-                            className="form-select mb-3"
-                            onChange={(value) => {
-                                setMember(value);
-                            }}
-                        >
-                            {members?.map((c) => (
-                                <Option key={c._id} value={c._id}>
-                                    {c.name}
-                                </Option>
-                            ))}
-                        </Select>
+                        
                         </div>
                         {/* <div className='p-5'> <DateTimePicker onChange={setValue} value={value} /></div> */}
 

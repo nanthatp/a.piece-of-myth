@@ -266,7 +266,7 @@ const getSinglePreProduct = async () => {
                   <h1>{b.name}</h1>
                   <Link
                     // to={`/cat-products/${cat.name}`}
-                    to={`/ShowCollection/${b.slug}`}
+                    to={`/ShowCollection/${b.collectiongroup}`}
                     className="a"
                   >
                     Pre-Order Now

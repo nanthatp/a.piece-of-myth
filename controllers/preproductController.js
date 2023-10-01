@@ -1,5 +1,4 @@
 import categoryModel from "../models/categoryModel.js";
-import collectionModel from "../models/collectiongroupModel.js";
 import preproductModel from "../models/preproductModel.js";
 import artistModel from "../models/artistModel.js";
 
@@ -10,6 +9,7 @@ import dotenv from "dotenv";
 
 import braintree from "braintree";
 import preorderModel from "../models/preorder.Model.js";
+import collectiongroupModel from "../models/collectiongroupModel.js";
 
 dotenv.config();
 
@@ -38,8 +38,6 @@ var gateway = new braintree.BraintreeGateway({
                 return res.status(500).send({error:'Category is required'})
             case !artist:
                 return res.status(500).send({error:'Artist is required'})
-            case !member:
-                return res.status(500).send({error:'Member is required'})
             case !until:
                 return res.status(500).send({error:'Until time is required'})
             case !collectiongroup:
@@ -166,8 +164,6 @@ export const updatePreProductController = async (req, res) => {
                 return res.status(500).send({error:'Category is required'})
             case !artist:
                 return res.status(500).send({error:'Artist is required'})
-            case !member:
-                return res.status(500).send({error:'Member is required'})
             case !until:
                 return res.status(500).send({error:'Until is required'})
             case !collectiongroup:
@@ -375,14 +371,48 @@ export const preproductArtistController = async (req, res) => {
     }
 };
 
+// get pre-order product by status
+export const preproductBystatusController = async (req, res) => {
+    // try {
+    // const preorders = await preorderModel.find({ status: req.params.status });
+    // // const preproducts = await preproductModel.find({ category }).populate("category");
+    // res.status(200).send({
+    //     success: true,
+    //     preorders,
+    // });
+    // } catch (error) {
+    // console.log(error);
+    // res.status(400).send({
+    //     success: false,
+    //     error,
+    //     message: "Error While Getting pre-order products by status",
+    // });
+    // }
+    try{
+    const preorders = await preorderModel
+      .find({ status: req.params.status })
+      .populate("preproduct", "-photo")
+      .populate("buyer", "name")
+      .sort({ createdAt: "-1" });
+    res.json(preorders);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      error,
+      message: "Error While Getting Pre-order Products by preProduct id",
+    })
+  }
+};
+
 // get Pre-Order product by collection
 export const preProductCollectionController = async (req, res) => {
     try {
-    const collectiongroup = await collectionModel.findOne({ slug: req.params.slug });
-    const preproducts = await preproductModel.find({ collectiongroup }).populate("collectiongroup");
+    // const collectiongroup = await collectiongroupModel.findOne( { slug: req.params.slug } );
+    const preproducts = await preproductModel.find({ collectiongroup: req.params.collectiongroup }).populate("collectiongroup");
     res.status(200).send({
         success: true,
-        collectiongroup,
+        // collectiongroup,
         preproducts,
     });
     } catch (error) {
@@ -390,9 +420,24 @@ export const preProductCollectionController = async (req, res) => {
     res.status(400).send({
         success: false,
         error,
-        message: "Error While Getting products",
+        message: "Error While Getting collectiongroup Pre-Order products",
     });
     }
+//     try{
+//     const preproducts = await preproductModel
+//       .find({ collectiongroup: req.params.collectiongroup })
+//       .populate("preproduct", "-photo")
+//       .populate("collectiongroup", "name")
+//       .sort({ createdAt: "-1" });
+//     res.json(preproducts);
+//   } catch (error) {
+//     console.log(error);
+//     res.status(400).send({
+//       success: false,
+//       error,
+//       message: "Error While Getting Pre-order Products by collectiongroup id",
+//     })
+//   }
 };
 
 export const preorderExport = async (req, res) => {
