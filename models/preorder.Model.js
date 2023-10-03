@@ -12,6 +12,10 @@ const preorderSchema = new mongoose.Schema({
         type: mongoose.ObjectId,
         ref: "Users",
     },
+    email:{
+        type: String,
+        require: true,
+    },
     quantity: {
         type: Number,
         required: true,

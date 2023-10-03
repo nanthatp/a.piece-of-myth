@@ -345,12 +345,150 @@ export const preorderStatusController = async (req, res) => {
   try {
     const { preorderId } = req.params;
     const { status } = req.body;
+    const { email } = req.body;
     const preorders = await preorderModel.findByIdAndUpdate(
       preorderId,
       { status },
       { new: true }
     );
-    res.json(preorders);
+    
+    console.log("email =",email);
+    if(preorders.status === "cancel"){
+    
+    // const isPreOrder = await preorderModel.findOne({ email });
+    //   if (isPreOrder) {
+      const link = `https://forms.gle/b4BCrFzn9FuZYDHSA`;
+        const transport = nodemailer.createTransport({
+          host: "sandbox.smtp.mailtrap.io",
+          port: 2525,
+          auth: {
+            user: "91408bdf068844",
+            pass: "4edd605e4d2e2a"
+          }
+        });
+
+        const mailOptions = {
+          from: process.env.EMAIL,
+          to: email,
+          subject: `Your Pre-Order have canceled!!!!!`,
+          text: `
+            <!doctype html>
+            <html lang="en-US">
+            <head>
+              <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+              <title>Your Pre-Order have canceled!!!!!</title>
+              <meta name="description" content="Your Pre-Order have canceled!!!!!">
+              <style type="text/css">
+                  a:hover {text-decoration: underline !important;}
+              </style>
+            </head>
+            <body marginheight="0" topmargin="0" marginwidth="0" style="margin: 0px; background-color: #f2f3f8;" leftmargin="0">
+              <!--100% body table-->
+              <table cellspacing="0" border="0" cellpadding="0" width="100%" bgcolor="#f2f3f8"
+                  style="@import url(https://fonts.googleapis.com/css?family=Rubik:300,400,500,700|Open+Sans:300,400,600,700); font-family: 'Open Sans', sans-serif;">
+                  <tr>
+                      <td>
+                          <table style="background-color: #f2f3f8; max-width:670px;  margin:0 auto;" width="100%" border="0"
+                              align="center" cellpadding="0" cellspacing="0">
+                              
+                              <tr>
+                                  <td>
+                                      <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0"
+                                          style="max-width:670px;background:#fff; border-radius:3px; text-align:center;-webkit-box-shadow:0 6px 18px 0 rgba(0,0,0,.06);-moz-box-shadow:0 6px 18px 0 rgba(0,0,0,.06);box-shadow:0 6px 18px 0 rgba(0,0,0,.06);">
+                                          <tr>
+                                              <td style="height:40px;">&nbsp;</td>
+                                          </tr>
+                                          <tr>
+                                              <td style="padding:0 35px;">
+                                                  <h1 style="color:#1e1e2d; font-weight:500; margin:0;font-size:32px;font-family:'Rubik',sans-serif;">You have
+                                                    Your Pre-Order have canceled!!!!!</h1>
+                                                  <span
+                                                      style="display:inline-block; vertical-align:middle; margin:29px 0 26px; border-bottom:1px solid #cecece; width:100px;"></span>
+                                                  <p style="color:#455056; font-size:15px;line-height:24px; margin:0;">
+                                                      เนื่องจากสินค้าที่ท่านได้พรีออเดอร์มีปัญหา ทางทีมงานของ Happy Club รู้สึกเสียใจเป็นอย่างยิ่ง พวกเราจึงอยากจะขอความร่วมมือจากคุณลูกค้า กรุณากรอกแบบฟอร์มขอรับเงินคืน ได้ที่ลิงค์ด้านล่าง
+                                                  </p>
+                                                  <a href="${link}"
+                                                      style="background:#20e277;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">click here</a>
+                                              </td>
+                                          </tr>
+                                          <tr>
+                                              <td style="height:40px;">&nbsp;</td>
+                                          </tr>
+                                      </table>
+                                  </td>
+                            
+                          </table>
+                      </td>
+                  </tr>
+              </table>
+              <!--/100% body table-->
+            </body>
+            </html>`,
+                      html: `
+            <!doctype html>
+            <html lang="en-US">
+            <head>
+              <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+              <title>Your Pre-Order have canceled!!!!!</title>
+              <meta name="description" content="Your Pre-Order have canceled!!!!!">
+              <style type="text/css">
+                  a:hover {text-decoration: underline !important;}
+              </style>
+            </head>
+            <body marginheight="0" topmargin="0" marginwidth="0" style="margin: 0px; background-color: #f2f3f8;" leftmargin="0">
+              <!--100% body table-->
+              <table cellspacing="0" border="0" cellpadding="0" width="100%" bgcolor="#f2f3f8"
+                  style="@import url(https://fonts.googleapis.com/css?family=Rubik:300,400,500,700|Open+Sans:300,400,600,700); font-family: 'Open Sans', sans-serif;">
+                  <tr>
+                      <td>
+                          <table style="background-color: #f2f3f8; max-width:670px;  margin:0 auto;" width="100%" border="0"
+                              align="center" cellpadding="0" cellspacing="0">
+                              
+                              <tr>
+                                  <td>
+                                      <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0"
+                                          style="max-width:670px;background:#fff; border-radius:3px; text-align:center;-webkit-box-shadow:0 6px 18px 0 rgba(0,0,0,.06);-moz-box-shadow:0 6px 18px 0 rgba(0,0,0,.06);box-shadow:0 6px 18px 0 rgba(0,0,0,.06);">
+                                          <tr>
+                                              <td style="height:40px;">&nbsp;</td>
+                                          </tr>
+                                          <tr>
+                                              <td style="padding:0 35px;">
+                                                  <h1 style="color:#1e1e2d; font-weight:500; margin:0;font-size:32px;font-family:'Rubik',sans-serif;">You have
+                                                    Your Pre-Order have canceled!!!!!</h1>
+                                                  <span
+                                                      style="display:inline-block; vertical-align:middle; margin:29px 0 26px; border-bottom:1px solid #cecece; width:100px;"></span>
+                                                  <p style="color:#455056; font-size:15px;line-height:24px; margin:0;">
+                                                      เนื่องจากสินค้าที่ท่านได้พรีออเดอร์มีปัญหา ทางทีมงานของ Happy Club รู้สึกเสียใจเป็นอย่างยิ่ง พวกเราจึงอยากจะขอความร่วมมือจากคุณลูกค้า กรุณากรอกแบบฟอร์มขอรับเงินคืน ได้ที่ลิงค์ด้านล่าง
+                                                  </p>
+                                                  <a href="${link}"
+                                                      style="background:#20e277;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">click here</a>
+                                              </td>
+                                          </tr>
+                                          <tr>
+                                              <td style="height:40px;">&nbsp;</td>
+                                          </tr>
+                                      </table>
+                                  </td>
+                            
+                          </table>
+                      </td>
+                  </tr>
+              </table>
+              <!--/100% body table-->
+            </body>
+            </html>`,
+        };
+        transport.sendMail(mailOptions, (error, info) => {
+          if (error) {
+            return res.status(400).json({ message: error }, console.log(error));
+          } else {
+
+          return res.json(preorders);}
+        });
+      } else {
+        return res.status(204).json({ message: "Invalid Email" });
+      }
+    // }
   } catch (error) {
     console.log(error);
     res.status(500).send({
@@ -550,13 +688,13 @@ export const resetPassword = async (req, res) => {
             });
           }
         } else {
-          return res.status(400).json({
+          return res.status(204).json({
             message: "Link has been Expired",
           });
         }
       } else {
         return res
-          .status(400)
+          .status(210)
           .json({ message: "password and confirm password does not match" });
       }
     } else {

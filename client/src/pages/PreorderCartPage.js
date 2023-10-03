@@ -46,6 +46,7 @@ function PreorderCartPage() {
       const { data } = await axios.post("/api/v1/preproduct/braintreepreoder/payment", {
         nonce,
         preorderItem,
+        email: auth?.user?.email
       });
       setLoading(false);
       localStorage.removeItem("preorderItem");

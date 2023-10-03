@@ -39,10 +39,11 @@ function AdminPreorder() {
         if (auth?.token) getPreOrders();
     }, [auth?.token]);
 
-    const handleChange = async (preorderId, value) => {
+    const handleChange = async (preorderId, email, value) => {
         try {
         const { data } = await axios.put(`/api/v1/auth/preorder-status/${preorderId}`, {
             status: value,
+            email : email,
         });
         getPreOrders();
         } catch (error) {
@@ -97,7 +98,7 @@ function AdminPreorder() {
                         <td>
                             <Select
                             bordered={false}
-                            onChange={(value) => handleChange(o._id, value)}
+                            onChange={(value) => handleChange(o._id, o.email, value)}
                             defaultValue={o?.status}
                             >
                             {status.map((s, i) => (
