@@ -38,7 +38,7 @@ const Preproducts = () => {
                                     to={`/dashboard/admin/preproduct/${p.slug}`}
                                     className="product-link"
                                 >
-                                    <div className="card m-2" style={{ width: "18rem" }}>
+                                    <div className="card m-2" style={{ width: "15rem" ,height:"20rem"}} >
                                         <img
                                             src={`/api/v1/preproduct/preproduct-photo/${p._id}`}
                                             className="card-img-top"

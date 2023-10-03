@@ -394,6 +394,7 @@ const getSinglePreProduct = async () => {
                                     //   // ||disableButton ()
                                     // }
                                     className="btn-add"
+                                    disabled={auth?.user?.role === 1}
                                     onClick={() => navigate(`/preproduct/${p.slug}`)}
                                   >
                                   <BsFillBagHeartFill/> Pre-Order Now
@@ -437,7 +438,7 @@ const getSinglePreProduct = async () => {
                           <div className="card-name-price">
                             <strong className=" name-product">{p.name}</strong>
                             <p className="card-text product-quantity">
-                              {p.quantity} remain
+                              {p.quantity} in stock
                             </p>
                             <h6 className="card-title product-price">
                               {p.price.toLocaleString("US", {
@@ -449,7 +450,7 @@ const getSinglePreProduct = async () => {
                           <div className="card-name-price">
                             <button
                                 className="btn-add"
-                                disabled={p.quantity <1 }
+                                disabled={p.quantity < 1 || auth?.user?.role === 1}
                                 onClick={() => {
                                   setCart([...cart, p]);
                                   localStorage.setItem(

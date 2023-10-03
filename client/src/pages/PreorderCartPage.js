@@ -263,7 +263,7 @@ useEffect(() => {
                     />
 
                     <button
-                      className="btn-add-detail"
+                      className="btn-add-payment"
                       onClick={handlePayment}
                       disabled={loading   
                         ||!instance 
@@ -273,7 +273,7 @@ useEffect(() => {
                         || auth?.user?.role === 1
                         ||disableButton ()}
                     >
-                      <BsFillBagHeartFill/>{loading ? "Processing ...." : "PRE-ORDER"}
+                      {loading ? "Processing ...." : "PRE ORDER NOW"}
                     </button>
                   </>
                 )}

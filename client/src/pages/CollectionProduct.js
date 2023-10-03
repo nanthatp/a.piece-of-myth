@@ -1,24 +1,25 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout/Layout";
 import { useParams, useNavigate } from "react-router-dom";
-import { useCart } from "../context/cart";
 import axios from "axios";
 import toast from "react-hot-toast";
 import "../styles/CategoryProductStyles.css";
 import "../styles/Homepage.css";
 import {BsFillBagHeartFill } from "react-icons/bs";
+import useCollection from './../hooks/useCollection';
 
 const CollectionProduct = () => {
     const params = useParams();
     const navigate = useNavigate();
-    const [cart, setCart] = useCart();
+    const [cart, setCart] = useCollection();
     const [products, setProducts] = useState([]);
     const [collectiongroup, setCollectiongroup] = useState([]);
 
     useEffect(() => {
-        if (params?.slug) getPrductsByCat();
+        if (params?.slug) getProductsByCol();
     }, [params?.slug]);
-    const getPrductsByCat = async () => {
+    
+    const getProductsByCol = async () => {
         try {
         const { data } = await axios.get(
             `/api/v1/product/product-collection/${params.slug}`
@@ -37,7 +38,7 @@ const CollectionProduct = () => {
             <h6 className="text-center">{products?.length} result found </h6>
             <div className="row">
             <div className="col-md-9 offset-1">
-                <div className="d-flex flex-wrap">
+            <div className="d-flex flex-wrap">
                 {products?.map((p) => (
                     <div className="carousel-item active card m-2 product-box"  key={p._id}>
                         <img
@@ -82,6 +83,35 @@ const CollectionProduct = () => {
                         </div>
                     </div>
                 ))}
+
+                {/* {preproducts?.map((p) => (
+                    <div className="carousel-item active card m-2 product-box"  key={p._id}>
+                        <img
+                        src={`/api/v1/preproduct/preproduct-photo/${p._id}`}
+                        className=" card-img-top"
+                        alt={p.name}
+                        />
+                        <div className="card-body">
+                            <div className="card-name-price">
+                                <h5 className=" name-product">{p.name}</h5>
+                                <h5 className="card-title product-price">
+                                {p.price.toLocaleString("US", {
+                                    style: "currency",
+                                    currency: "USD",
+                                })}
+                                </h5>
+                            </div>
+                            <div className="card-name-price">
+                            <button
+                                className="btn-add"
+                                onClick={() => navigate(`/preproduct/${p.slug}`)}
+                            >
+                                <BsFillBagHeartFill/> Pre-Order Now
+                            </button>
+                            </div>
+                        </div>
+                    </div>
+                ))} */}
                 </div>
                 {/* <div className="m-2 p-3">
                 {products && products.length < total && (

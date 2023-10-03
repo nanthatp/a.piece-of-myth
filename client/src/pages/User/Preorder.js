@@ -30,7 +30,7 @@ function Preorder() {
           <UserMenu />
           </div>
           <div className="col py-3">
-          <h1 className="text-center">All Orders</h1>
+          <h1 className="text-center">All Pre Orders</h1>
           {preorder?.map((o, i) => {
               return (
                 <div className="border shadow">

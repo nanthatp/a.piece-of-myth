@@ -15,7 +15,7 @@ import { BsBell } from "react-icons/bs";
 
 const Header = () => {
   const categories = useCategory();
-  const collections = useCollection();
+  const collectiongroups = useCollection();
   const artists = useArtist();
   const [auth, setAuth] = useAuth();
   const [cart] = useCart();
@@ -78,10 +78,10 @@ const Header = () => {
                 </ul>
               </li>
 
-              {/* <li className="nav-item dropdown">
+              <li className="nav-item dropdown">
                 <Link
                   className="nav-link dropdown-toggle"
-                  to={"/collections"}
+                  to={"/collection"}
                   data-bs-toggle="dropdown"
                 >
                   Collection
@@ -92,18 +92,18 @@ const Header = () => {
                       All Collections
                     </Link>
                   </li>
-                  {collections?.map((c) => (
+                  {collectiongroups?.map((cl) => (
                     <li>
                       <Link
                         className="dropdown-item"
-                        to={`/collection/${c.slug}`}
+                        to={`/collections/${cl.slug}`}
                       >
-                        {c.name}
+                        {cl.name}
                       </Link>
                     </li>
                   ))}
                 </ul>
-              </li> */}
+              </li>
 
               <li className="nav-item dropdown">
                 <Link

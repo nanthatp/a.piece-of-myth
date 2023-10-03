@@ -19,7 +19,7 @@ var gateway = new braintree.BraintreeGateway({
     merchantId: process.env.BRAINTREE_MERCHANT_ID,
     publicKey: process.env.BRAINTREE_PUBLIC_KEY,
     privateKey: process.env.BRAINTREE_PRIVATE_KEY,
-  });
+});
 
 export const createProductController = async (req,res)  => {
     try {
@@ -204,25 +204,26 @@ export const updateProductController = async (req, res) => {
 // filters
 export const productFiltersController = async (req, res) => {
     try {
-        const { checked, radio } = req.body;
+        const { checked, checkbox, radio } = req.body;
         let args = {};
         if (checked.length > 0) args.category = checked;
-        if (checked.length > 0) args.artist = checked;
+        // if (checkbox.length > 0) args.artist = checkbox;
         if (radio.length) args.price = { $gte: radio[0], $lte: radio[1] };
         const products = await productModel.find(args);
         res.status(200).send({
-        success: true,
-        products,
-    });
+            success: true,
+            products,
+        });
     } catch (error) {
         console.log(error);
         res.status(400).send({
             success: false,
-            message: "Error WHile Filtering Products",
+            message: "Error While Filtering Products",
             error,
-    });
+        });
     }
 };
+
 
 // product count
 export const productCountController = async (req, res) => {

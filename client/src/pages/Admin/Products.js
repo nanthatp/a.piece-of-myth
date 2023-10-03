@@ -39,7 +39,7 @@ const Products = () => {
                                     to={`/dashboard/admin/product/${p.slug}`}
                                     className="product-link"
                                 >
-                                    <div className="card m-2 product-box" >
+                                    <div className="card m-2 product-box" style={{ width: "15rem" }}>
                                         <img
                                             src={`/api/v1/product/product-photo/${p._id}`}
                                             className="card-img-top"

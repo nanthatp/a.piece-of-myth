@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useParams, useNavigate } from "react-router-dom";
 import { useCart } from "../context/cart";
+import { useAuth } from "../context/auth";
 import Layout from "./../components/Layout/Layout";
 import {BsFillBagHeartFill } from "react-icons/bs";
 import axios from 'axios';
@@ -14,16 +15,20 @@ import Artist from './Admin/Artists';
 
 
 const ShowAllProduct = () => {
+    const [auth, setAuth] = useAuth();
     const [products, setProducts] = useState([]);
     const navigate = useNavigate();
     const [cart, setCart] = useCart();
     const [categories, setCategories] = useState([]);
     const [artists, setArtists] = useState([]);
     const [checked, setChecked] = useState([]);
+    const [checkbox, setCheckBox] = useState([]);
     const [radio, setRadio] = useState([]);
     const [total, setTotal] = useState(0);
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
+
+
 
     //======= load more =======//
     const loadMore = async () => {
@@ -101,38 +106,38 @@ const ShowAllProduct = () => {
     const handleFilter = (value, id) => {
         let all = [...checked];
         if (value) {
-        all.push(id);
+            all.push(id);
         } else {
-        all = all.filter((c) => c !== id);
+            all = all.filter((c) => c !== id);
         }
-        setChecked(all);
+        setChecked(all);  
     };
     useEffect(() => {
-        if (!checked.length || !radio.length) getAllProducts();
+        if (!checked.length|| !radio.length) getAllProducts();
     }, [checked.length, radio.length]);
 
     useEffect(() => {
         if (checked.length || radio.length) filterProduct();
-    }, [checked, radio]);
+    }, [checked,radio]);
 
 
     //======= filter by artist =======//
-    const handleFilterArtist = (value, id) => {
-        let all = [...checked];
-        if (value) {
-        all.push(id);
-        } else {
-        all = all.filter((c) => c !== id);
-        }
-        setChecked(all);
-    };
-    useEffect(() => {
-        if (!checked.length || !radio.length) getAllProducts();
-    }, [checked.length, radio.length]);
+    // const handleFilterArtist = (value, id) => {
+    //     let all = [...checkbox];
+    //     if (value) {
+    //     all.push(id);
+    //     } else {
+    //     all = all.filter((a) => a !== id);
+    //     }
+    //     setCheckBox(all);
+    // };
+    // useEffect(() => {
+    //     if (!checkbox.length ) getAllProducts();
+    // }, [checkbox.length]);
 
-    useEffect(() => {
-        if (checked.length || radio.length) filterProduct();
-    }, [checked, radio]);
+    // useEffect(() => {
+    //     if (checkbox.length) filterProduct();
+    // }, [checkbox]);
 
     //======= filter product =======//
     const filterProduct = async () => {
@@ -152,20 +157,10 @@ const ShowAllProduct = () => {
         <Layout title={"All Products"}>
             <div className="container-fluid row mt-3 ">
                 <div className="col-md-3 filters">
+                    {/* {JSON.stringify(checked, null, 4)} */}
                 <h4 className="text-center">Filter By Category</h4>
                 <div className="d-flex flex-column">
                     {categories?.map((c) => (
-                    <Checkbox
-                        key={c._id}
-                        onChange={(e) => handleFilterArtist(e.target.checked, c._id)}
-                    >
-                        {c.name}
-                    </Checkbox>
-                    ))}
-                </div>
-                <h4 className="text-center mt-4">Filter By Artist</h4>
-                <div className="d-flex flex-column">
-                    {artists?.map((c) => (
                     <Checkbox
                         key={c._id}
                         onChange={(e) => handleFilter(e.target.checked, c._id)}
@@ -174,6 +169,17 @@ const ShowAllProduct = () => {
                     </Checkbox>
                     ))}
                 </div>
+                {/* <h4 className="text-center mt-4">Filter By Artist</h4>
+                <div className="d-flex flex-column">
+                    {artists?.map((a) => (
+                    <Checkbox
+                        key={a._id}
+                        onChange={(e) => handleFilterArtist(e.target.check, a._id)}
+                    >
+                        {a.name}
+                    </Checkbox>
+                    ))}
+                </div> */}
             
                 <h4 className="text-center mt-4">Filter By Price</h4>
                 <div className="d-flex flex-column">
@@ -216,7 +222,7 @@ const ShowAllProduct = () => {
                                 <div className="card-name-price">
                                     <strong className=" name-product">{p.name}</strong>
                                     <p className="card-text product-quantity">
-                                        {p.quantity} remain
+                                        {p.quantity} in stock
                                     </p>
                                     <h6 className="card-title product-price">
                                         {p.price.toLocaleString("US", {
@@ -228,7 +234,7 @@ const ShowAllProduct = () => {
                                 <div className="card-name-price">
                                     <button
                                         className="btn-add"
-                                        disabled={p.quantity <1 }
+                                        disabled={p.quantity < 1 || auth?.user?.role === 1}
                                             onClick={() => {
                                                 setCart([...cart, p]);
                                                 localStorage.setItem(

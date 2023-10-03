@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { useParams, useNavigate } from "react-router-dom";
-import { useCart } from "../context/cart";
+import { useAuth } from "../context/auth";
 import Layout from "./../components/Layout/Layout";
 import {BsFillBagHeartFill } from "react-icons/bs";
 import axios from 'axios';
@@ -9,6 +9,8 @@ import { Link } from "react-router-dom";
 
 const ShowAllPre = () => {
     const navigate = useNavigate();
+    const [auth, setAuth] = useAuth();
+
     const [preproducts, setPreproducts] = useState([]);
 
     //get all pre-order preproducts
@@ -33,7 +35,7 @@ const ShowAllPre = () => {
         <div className="product-heading">
             <h1>All Pre Order</h1>
         </div>
-        <div className="d-flex flex-wrap mt-4">
+        <div className="d-flex flex-wrap">
         {preproducts?.map((p) => (
                         <div className="card m-2 product-box"  key={p._id}>
                             <img
@@ -57,6 +59,7 @@ const ShowAllPre = () => {
                             <div className="card-name-price-search ">
                             <button
                                 className="btn-add"
+                                disabled={auth?.user?.role === 1}
                                 onClick={() => navigate(`/preproduct/${p.slug}`)}
                                 >
                                 <BsFillBagHeartFill/> Pre-Order Now

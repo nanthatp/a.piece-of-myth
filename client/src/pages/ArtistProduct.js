@@ -50,11 +50,10 @@ const ArtistProduct = () => {
 
     return (
         <Layout>
-        <div className="container mt-3 category">
+        <div className="container category">
             <h4 className="text-center">Artist - {artist?.name}</h4>
             <h6 className="text-center">{products?.length + preproducts?.length} result found </h6>
             <div className="row">
-            <div className="col-md-9 offset-1">
                 <div className="d-flex flex-wrap">
                 {products?.map((p) => (
                     <div className="carousel-item active card m-2 product-box"  key={p._id}>
@@ -101,8 +100,7 @@ const ArtistProduct = () => {
                     </div>
                 ))}
 
-
-{preproducts?.map((p) => (
+                {preproducts?.map((p) => (
                     <div className="carousel-item active card m-2 product-box"  key={p._id}>
                         <img
                         src={`/api/v1/preproduct/preproduct-photo/${p._id}`}
@@ -121,31 +119,16 @@ const ArtistProduct = () => {
                             </div>
                             <div className="card-name-price">
                             <button
-                                    className="btn-add"
-                                    onClick={() => navigate(`/preproduct/${p.slug}`)}
-                                  >
-                                  <BsFillBagHeartFill/> Pre-Order Now
-                                  </button>
+                                className="btn-add"
+                                onClick={() => navigate(`/preproduct/${p.slug}`)}
+                            >
+                                <BsFillBagHeartFill/> Pre-Order Now
+                            </button>
                             </div>
                         </div>
                     </div>
                 ))}
                 </div>
-                
-                {/* <div className="m-2 p-3">
-                {products && products.length < total && (
-                <button
-                    className="btn btn-warning"
-                    onClick={(e) => {
-                    e.preventDefault();
-                    setPage(page + 1);
-                    }}
-                >
-                    {loading ? "Loading ..." : "Loadmore"}
-                </button>
-                )}
-            </div> */}
-            </div>
             </div>
         </div>
         </Layout>

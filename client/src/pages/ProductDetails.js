@@ -78,7 +78,7 @@ const ProductDetails = () => {
                     <h6>Category : {product?.category?.name}</h6>
                     <button
                         className="btn-add-detail"
-                        disabled={product.quantity < 0 || auth?.user?.role === 1}
+                        disabled={product.quantity < 1 || auth?.user?.role === 1}
                         onClick={() => {
                             console.log("cart =",cart)
                             console.log("product = ",product)
@@ -116,7 +116,7 @@ const ProductDetails = () => {
                     <div className="card-name-price">
                     <h5 className=" name-product">{p.name}</h5>
                     <p className="card-text product-quantity">
-                        {p.quantity} remain
+                        {p.quantity} in stock
                     </p>
                     <h5 className="card-title product-price">
                         {p.price.toLocaleString("US", {
@@ -128,7 +128,7 @@ const ProductDetails = () => {
                     <div className="card-name-price">
                     <button
                         className="btn-add"
-                        disabled={p.quantity < 0 || auth?.user?.role === 1}
+                        disabled={p.quantity < 1 || auth?.user?.role === 1}
                         onClick={() => {
                             console.log("cart =",cart)
                             console.log("product = ",product)

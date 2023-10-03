@@ -24,7 +24,7 @@ const Search = () => {
             </h6>
             <section className="product-list-Detail">
                 <div className="product-container ">
-                <div className="d-flex wrap mt-4">
+                <div className="d-flex flex-wrap">
                 {values?.results.map((p) => (
                 <div className="card m-2 product-box"  key={p._id}>
                     <img
@@ -36,7 +36,7 @@ const Search = () => {
                     <div className="card-name-price-search">
                     <h5 className=" name-product">{p.name}</h5>
                     <p className="card-text product-quantity">
-                        {p.quantity} sold
+                        {p.quantity} in stock
                     </p>
                     <h5 className="card-title product-price">
                         {p.price.toLocaleString("US", {

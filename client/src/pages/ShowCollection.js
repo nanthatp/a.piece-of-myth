@@ -36,9 +36,10 @@ const ShowCollection = () => {
             <div className="container">
             <div className="text-center">
             <div className="product-heading">
-                <h1>Pre-Order Products's Collection - {preproducts?.collectiongroup}</h1>
+                <h1>Pre-Order Products's Collection  {preproducts?.collectiongroup}</h1>
+                <h6 className="text-center">{preproducts?.length} result found </h6>
             </div>
-            <div className="d-flex flex-wrap mt-4">
+            <div className="d-flex flex-wrap ">
             {preproducts?.map((p) => (
                 <div className="card m-2 product-box"  key={p._id}>
                     <img
@@ -46,8 +47,8 @@ const ShowCollection = () => {
                         className=" card-img-top"
                         alt={p.name}
                     />
-                    <div className="card-body">
-                        <div className="card-name-price">
+                    <div className="card-body-search">
+                        <div className="card-name-price-search">
                             <h5 className=" name-product">{p.name}</h5>
                             <h5 className="card-title product-price">
                             {p.price.toLocaleString("US", {
@@ -56,13 +57,13 @@ const ShowCollection = () => {
                             })}
                             </h5>
                         </div>
-                        <div className="card-name-price">
-                        <button
-                                    className="btn-add"
-                                    onClick={() => navigate(`/preproduct/${p.slug}`)}
-                                  >
-                                  <BsFillBagHeartFill/> Pre-Order Now
-                                  </button>
+                        <div className="card-name-price-search">
+                            <button
+                                className="btn-add"
+                                onClick={() => navigate(`/preproduct/${p.slug}`)}
+                            >
+                                <BsFillBagHeartFill/> Pre-Order Now
+                            </button>
                         </div>
                     </div>
                 </div>
