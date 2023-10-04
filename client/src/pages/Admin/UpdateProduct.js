@@ -5,6 +5,7 @@ import { toast } from 'react-hot-toast';
 import axios from 'axios';
 import { Select } from 'antd';
 import { useNavigate, useParams } from "react-router-dom";
+import Swal from 'sweetalert2';
 
 const { Option } = Select;
 
@@ -137,7 +138,14 @@ const UpdateProduct = () => {
             if (data?.success) {
                 toast.error(data?.message);
             } else {
-                toast.success("Product Updated Successfully");
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'success',
+                    title: 'Updated!',
+                    text: 'Product information has been updated.',
+                    showConfirmButton: false,
+                    timer: 3500
+                })
                 navigate("/dashboard/admin/products");
                 window.location.reload();
             }
@@ -150,12 +158,19 @@ const UpdateProduct = () => {
     //delete a product
     const handleDelete = async () => {
         try {
-            let answer = window.prompt("Are You Sure want to delete this product ? ");
+            let answer = window.prompt("Are you sure?");
             if (!answer) return;
             const { data } = await axios.delete(
                 `/api/v1/product/delete-product/${id}`
             );
-            toast.success("Product DEleted Succfully");
+            Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: 'Deleted!',
+                text: 'Product has been deleted.',
+                showConfirmButton: false,
+                timer: 2500
+            })
             navigate("/dashboard/admin/products");
         } catch (error) {
             console.log(error);

@@ -6,6 +6,8 @@ import axios from 'axios';
 import { DatePicker, Select, TimePicker } from 'antd';
 import { useNavigate, useParams } from "react-router-dom";
 import moment from 'moment';
+import Swal from 'sweetalert2';
+
 // const date = New Date()
 const { Option } = Select;
 const UpdatePreProduct = () => {
@@ -141,7 +143,14 @@ const UpdatePreProduct = () => {
             if (data?.success) {
                 toast.error(data?.message);
             } else {
-                toast.success("Pre-order Product Updated Successfully");
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'success',
+                    title: 'Updated!',
+                    text: 'Pre-Order product information has been updated.',
+                    showConfirmButton: false,
+                    timer: 3500
+                })
                 navigate("/dashboard/admin/preproduct");
                 window.location.reload();
             }
@@ -184,7 +193,14 @@ const UpdatePreProduct = () => {
             const { data } = await axios.delete(
                 `/api/v1/preproduct/delete-preproduct/${id}`
             );
-            toast.success("Pre-Order Product Deleted Succfully");
+            Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: 'Deleted!',
+                text: 'Pre-Order product has been deleted.',
+                showConfirmButton: false,
+                timer: 2500
+            })
             navigate("/dashboard/admin/preproduct");
         } catch (error) {
             console.log(error);

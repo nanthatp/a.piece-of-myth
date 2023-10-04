@@ -45,7 +45,7 @@ export const createProductController = async (req,res)  => {
             // case !member:
             //     return res.status(500).send({error:'Member is required'})
             case photo && photo.size > 150000000000:
-                return res.status(500).send({error:'Photo is requiredand less than 1.5mb'})
+                return res.status(500).send({error:'Photo is required and less than 1.5mb'})
         }
         const products = new productModel({ ...req.fields, slug: slugify(name) });
         if (photo) {
@@ -53,7 +53,7 @@ export const createProductController = async (req,res)  => {
             products.photo.contentType = photo.type;
         }
         await products.save();
-        res.status(201).send({
+        res.status(204).send({
             success:true,
             message:'Product created successfully',
             products,
@@ -185,7 +185,7 @@ export const updateProductController = async (req, res) => {
             products.photo.contentType = photo.type
         }
         await products.save()
-        res.status(201).send({
+        res.status(211).send({
             success:true,
             message:'Product Updated Successfully',
             products,

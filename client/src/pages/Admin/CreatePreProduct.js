@@ -6,6 +6,8 @@ import axios from 'axios';
 import { DatePicker, TimePicker,Select } from 'antd';
 import { useNavigate } from "react-router-dom";
 import moment from 'moment';
+import Swal from 'sweetalert2';
+
 
 const { Option } = Select;
 export default function CreatePreProduct() {
@@ -104,7 +106,14 @@ export default function CreatePreProduct() {
             if (data?.success) {
                 toast.error(data?.message);
             } else {
-                toast.success("Pre-order Product Created Successfully");
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'success',
+                    title: 'Created!',
+                    text: 'Product has been created.',
+                    showConfirmButton: false,
+                    timer: 3500
+                })
                 navigate("/dashboard/admin/preproduct");
                 window.location.reload();
             }

@@ -7,6 +7,8 @@ import axios from 'axios';
 import { Select } from 'antd';
 import { useNavigate } from "react-router-dom";
 import "../../styles/CreateProduct.css"
+import Swal from 'sweetalert2';
+
 const { Option } = Select;
 
 const CreateProduct = () => {
@@ -107,7 +109,14 @@ const CreateProduct = () => {
             if (data?.success) {
                 toast.error(data?.message);
             } else {
-                toast.success("Product Created Successfully");
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'success',
+                    title: 'Created!',
+                    text: 'Product has been created.',
+                    showConfirmButton: false,
+                    timer: 3500
+                })
                 navigate("/dashboard/admin/products");
                 window.location.reload();
             }

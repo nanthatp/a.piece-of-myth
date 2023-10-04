@@ -7,9 +7,9 @@ import { Select } from 'antd';
 import { useNavigate } from "react-router-dom";
 import {BsCloudUploadFill} from "react-icons/bs";
 import "../../styles/CreateProduct.css"
+import Swal from 'sweetalert2';
+
 const { Option } = Select;
-
-
 const CreateProduct = () => {
     const navigate = useNavigate();
     const [name, setName] = useState("");
@@ -34,7 +34,14 @@ const CreateProduct = () => {
             if (data?.success) {
                 toast.error(data?.message);
             } else {
-                toast.success("Artist Created Successfully");
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'success',
+                    title: 'Created!',
+                    text: 'Artist has been created.',
+                    showConfirmButton: false,
+                    timer: 3000
+                })
                 navigate("/dashboard/admin/artists");
                 window.location.reload();
             }

@@ -5,6 +5,7 @@ import { toast } from 'react-hot-toast';
 import axios from 'axios';
 import { Select } from 'antd';
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2';
 import "../../styles/CreateBanner.css"
 
 const { Option } = Select;
@@ -68,7 +69,14 @@ const CreateBanner = () => {
             if (data?.success) {
                 toast.error(data?.message);
             } else {
-                toast.success("Banner Created Successfully");
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'success',
+                    title: 'Created!',
+                    text: 'Banner has been created.',
+                    showConfirmButton: false,
+                    timer: 3500
+                })
                 navigate("/dashboard/admin/banners");
                 
             }

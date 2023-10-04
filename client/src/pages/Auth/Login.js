@@ -5,6 +5,7 @@ import { useNavigate, useLocation, Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import "../../styles/AuthStyles.css";
 import { useAuth } from "../../context/auth";
+import Swal from 'sweetalert2';
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -29,9 +30,29 @@ const Login = () => {
           token: res.data.token,
         });
         localStorage.setItem("auth", JSON.stringify(res.data));
+        Swal.fire({
+          position: 'top-center',
+          icon: 'success',
+          title: 'Login Successful!',
+          showConfirmButton: false,
+          timer: 2500})
         navigate(location.state || "/");
       } else {
         toast.error(res.data.message);
+
+        if(res.status === 200){
+          Swal.fire({
+            position: 'top-center',
+            icon: 'warning',
+            title: 'Please correctly input your login email and password',
+            showConfirmButton: false,
+            timer: 2000
+          })
+        }
+
+        if(res.status === 204){
+          alert("Login failed, Please try again");
+        }
       }
     } catch (error) {
       console.log(error);

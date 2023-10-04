@@ -4,7 +4,7 @@ import AdminMenu from '../../components/Layout/AdminMenu'
 import { toast } from 'react-hot-toast';
 import axios from 'axios';
 import { Select } from 'antd';
-import {BsCloudUploadFill} from "react-icons/bs";
+import Swal from 'sweetalert2';
 import { useNavigate, useParams } from "react-router-dom";
 
 const { Option } = Select;
@@ -50,7 +50,14 @@ const UpdateArtist = () => {
             if (data?.success) {
                 toast.error(data?.message);
             } else {
-                toast.success("Artist Updated Successfully");
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'success',
+                    title: 'Updated!',
+                    text: 'Artist information has been updated.',
+                    showConfirmButton: false,
+                    timer: 3500
+                })
                 navigate("/dashboard/admin/artists");
                 window.location.reload();
             }
@@ -63,12 +70,19 @@ const UpdateArtist = () => {
     //delete a artist
     const handleDelete = async () => {
         try {
-            let answer = window.prompt("Are You Sure want to delete this artist ? ");
+            let answer = window.prompt("Are you sure?");
             if (!answer) return;
             const { data } = await axios.delete(
                 `/api/v1/artist/delete-artist/${id}`
             );
-            toast.success("Artist DEleted Succfully");
+            Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: 'Deleted!',
+                text: 'Artist has been deleted.',
+                showConfirmButton: false,
+                timer: 2500
+            })
             navigate("/dashboard/admin/artists");
         } catch (error) {
             console.log(error);

@@ -8,6 +8,8 @@ import {Modal} from 'antd';
 import "../../styles/CreateCategory.css";
 import{BsFillPencilFill} from 'react-icons/bs';
 import{BsFillTrashFill} from 'react-icons/bs';
+import Swal from 'sweetalert2';
+
 
 
 
@@ -66,7 +68,14 @@ const CreateCategory = () => {
             { name: updatedName }
         );
         if (data?.success) {
-            toast.success(`${updatedName} is updated`);
+            Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: 'Updated!',
+                text: 'Category has been updated.',
+                showConfirmButton: false,
+                timer: 3500
+            })
             setSelected(null);
             setUpdatedName("");
             setVisible(false);
@@ -86,7 +95,14 @@ const CreateCategory = () => {
             `/api/v1/category/delete-category/${pId}`
         );
         if (data.success) {
-            toast.success(`category is deleted`);
+            Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: 'Deleted!',
+                text: 'Category has been deleted.',
+                showConfirmButton: false,
+                timer: 2500
+            })
 
             getAllCategory();
         } else {

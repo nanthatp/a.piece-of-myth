@@ -5,6 +5,8 @@ import { toast } from 'react-hot-toast';
 import axios from 'axios';
 import { Select } from 'antd';
 import { useNavigate, useParams } from "react-router-dom";
+import Swal from 'sweetalert2';
+
 import "../../styles/CreateBanner.css"
 
 const { Option } = Select;
@@ -90,7 +92,14 @@ const CreateBanner = () => {
             if (data?.success) {
                 toast.error(data?.message);
             } else {
-                toast.success("Banner Updated Successfully");
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'success',
+                    title: 'Updated!',
+                    text: 'Banner information has been updated.',
+                    showConfirmButton: false,
+                    timer: 3500
+                })
                 navigate("/dashboard/admin/banners");
             }
         } catch (error) {
@@ -107,7 +116,14 @@ const CreateBanner = () => {
             const { data } = await axios.delete(
                 `/api/v1/banner/delete-banner/${id}`
             );
-            toast.success("Banner Deleted Successfully");
+            Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: 'Deleted!',
+                text: 'Banner has been deleted.',
+                showConfirmButton: false,
+                timer: 2500
+            })
             navigate("/dashboard/admin/banners");
         } catch (error) {
             console.log(error);
