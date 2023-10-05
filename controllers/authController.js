@@ -358,12 +358,20 @@ export const preorderStatusController = async (req, res) => {
     // const isPreOrder = await preorderModel.findOne({ email });
     //   if (isPreOrder) {
       const link = `https://forms.gle/b4BCrFzn9FuZYDHSA`;
+        // const transport = nodemailer.createTransport({
+        //   host: "sandbox.smtp.mailtrap.io",
+        //   port: 2525,
+        //   auth: {
+        //     user: "91408bdf068844",
+        //     pass: "4edd605e4d2e2a"
+        //   }
+        // });
         const transport = nodemailer.createTransport({
           host: "sandbox.smtp.mailtrap.io",
           port: 2525,
           auth: {
-            user: "91408bdf068844",
-            pass: "4edd605e4d2e2a"
+            user: "ce2176095ae199",
+            pass: "d8b97515890500"
           }
         });
 
@@ -523,7 +531,6 @@ export const forgetPassword = async (req, res) => {
         //     pass: "4edd605e4d2e2a"
         //   }
         // });
-        //
         const transport = nodemailer.createTransport({
           host: "sandbox.smtp.mailtrap.io",
           port: 2525,
