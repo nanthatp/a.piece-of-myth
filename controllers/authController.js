@@ -515,12 +515,21 @@ export const forgetPassword = async (req, res) => {
         const link = `http://localhost:3000/user/reset/${isUser._id}/${token}`;
 
         // email sending
+        // const transport = nodemailer.createTransport({
+        //   host: "sandbox.smtp.mailtrap.io",
+        //   port: 2525,
+        //   auth: {
+        //     user: "91408bdf068844",
+        //     pass: "4edd605e4d2e2a"
+        //   }
+        // });
+        //
         const transport = nodemailer.createTransport({
           host: "sandbox.smtp.mailtrap.io",
           port: 2525,
           auth: {
-            user: "91408bdf068844",
-            pass: "4edd605e4d2e2a"
+            user: "ce2176095ae199",
+            pass: "d8b97515890500"
           }
         });
 

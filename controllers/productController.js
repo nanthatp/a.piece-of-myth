@@ -437,7 +437,7 @@ export const braintreeTokenController = async (req, res) => {
       for(let key in category){
         let item = category[key]
         if(item.remain-item.amount<0){
-            res.status(500).send(item.name+" out of stock");
+            return res.status(500).send(item.name+" out of stock");
         }
       } 
       let newTransaction = gateway.transaction.sale(
@@ -469,9 +469,9 @@ export const braintreeTokenController = async (req, res) => {
                 }
             }
 
-            res.json({ ok: true });
+            return res.json({ ok: true });
           } else {
-            res.status(500).send(error);
+            return res.status(500).send(error);
           }
         }
       );
