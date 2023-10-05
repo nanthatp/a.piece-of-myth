@@ -16,7 +16,7 @@ const { Option } = Select;
 function AdminPreorder() {
     const params = useParams();
     const [status, setStatus] = useState([
-        "Not Process",
+        "Not_Process",
         "Processing",
         "Shipped",
         "deliverd",

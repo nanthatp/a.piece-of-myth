@@ -42,7 +42,7 @@ const productSchema = new mongoose.Schema({
     // },
     collectiongroup: {
         type: mongoose.ObjectId,
-        ref: "Collection",
+        ref: "Collectiongroup",
         required: true,
     },
     shipping: {

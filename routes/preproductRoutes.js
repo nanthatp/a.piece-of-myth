@@ -16,7 +16,8 @@ import { createPreProductController,
         preproductArtistController,
         preProductCollectionController,
         preorderExport,
-        preproductBystatusController} from "../controllers/preproductController.js";
+        preproductBystatusController,
+        preproductCollectionBySlugController} from "../controllers/preproductController.js";
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
 import formidable from "express-formidable";
 
@@ -75,6 +76,8 @@ router.get("/preproduct-artist/:slug", preproductArtistController);
 
 //-------collection wise product-------//
 router.get("/preproduct-collection/:collectiongroup", preProductCollectionController);
+
+router.get("/preproduct-collection-by-slug/:slug", preproductCollectionBySlugController);
 
 //-------export Pre-order product-------//
 router.get("/preorder-export/:preproduct", preorderExport)

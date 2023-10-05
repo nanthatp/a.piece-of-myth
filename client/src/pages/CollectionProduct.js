@@ -14,9 +14,11 @@ const CollectionProduct = () => {
     const [cart, setCart] = useCollection();
     const [products, setProducts] = useState([]);
     const [collectiongroup, setCollectiongroup] = useState([]);
+    const [preproducts, setPreproducts] = useState([]);
 
     useEffect(() => {
         if (params?.slug) getProductsByCol();
+        if (params?.slug) getPreProductsByCol();
     }, [params?.slug]);
     
     const getProductsByCol = async () => {
@@ -31,11 +33,23 @@ const CollectionProduct = () => {
         }
     };
 
+    const getPreProductsByCol = async () => {
+        try {
+        const { data } = await axios.get(
+            `/api/v1/preproduct/preproduct-collection-by-slug/${params.slug}`
+        );
+        setPreproducts(data?.preproducts);
+        setCollectiongroup(data?.collectiongroup);
+        } catch (error) {
+        console.log(error);
+        }
+    };
+
     return (
         <Layout>
         <div className="container mt-3 category">
             <h4 className="text-center">Collection - {collectiongroup?.name}</h4>
-            <h6 className="text-center">{products?.length} result found </h6>
+            <h6 className="text-center">{preproducts?.length + products?.length} result found </h6>
             <div className="row">
             <div className="col-md-9 offset-1">
             <div className="d-flex flex-wrap">
@@ -84,7 +98,7 @@ const CollectionProduct = () => {
                     </div>
                 ))}
 
-                {/* {preproducts?.map((p) => (
+                {preproducts?.map((p) => (
                     <div className="carousel-item active card m-2 product-box"  key={p._id}>
                         <img
                         src={`/api/v1/preproduct/preproduct-photo/${p._id}`}
@@ -111,7 +125,7 @@ const CollectionProduct = () => {
                             </div>
                         </div>
                     </div>
-                ))} */}
+                ))}
                 </div>
                 {/* <div className="m-2 p-3">
                 {products && products.length < total && (

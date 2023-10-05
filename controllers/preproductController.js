@@ -423,21 +423,26 @@ export const preProductCollectionController = async (req, res) => {
         message: "Error While Getting collectiongroup Pre-Order products",
     });
     }
-//     try{
-//     const preproducts = await preproductModel
-//       .find({ collectiongroup: req.params.collectiongroup })
-//       .populate("preproduct", "-photo")
-//       .populate("collectiongroup", "name")
-//       .sort({ createdAt: "-1" });
-//     res.json(preproducts);
-//   } catch (error) {
-//     console.log(error);
-//     res.status(400).send({
-//       success: false,
-//       error,
-//       message: "Error While Getting Pre-order Products by collectiongroup id",
-//     })
-//   }
+};
+
+//get preproduct by collection slug
+export const preproductCollectionBySlugController = async (req, res) => {
+    try {
+    const collectiongroup = await collectiongroupModel.findOne({ slug: req.params.slug });
+    const preproducts = await preproductModel.find({ collectiongroup }).populate("collectiongroup");
+    res.status(200).send({
+        success: true,
+        collectiongroup,
+        preproducts,
+    });
+    } catch (error) {
+    console.log(error);
+    res.status(400).send({
+        success: false,
+        error,
+        message: "Error While Getting products",
+    });
+    }
 };
 
 export const preorderExport = async (req, res) => {
