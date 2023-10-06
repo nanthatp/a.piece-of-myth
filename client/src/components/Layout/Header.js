@@ -195,14 +195,6 @@ const Header = () => {
               <li className="nav-item  cart">
                 <NavLink to="/cart" className="nav-link-cart" href="#">
                   <Badge color="#0DA574" count={cart?.length} showZero offset={[10, -5]}>
-                    <BsBell style={{ fontSize: '20px' }} /> {/* เพิ่มคุณสมบัติ font-size */}
-                  </Badge>
-                </NavLink>
-              </li>
-
-              <li className="nav-item  cart">
-                <NavLink to="/cart" className="nav-link-cart" href="#">
-                  <Badge color="#0DA574" count={cart?.length} showZero offset={[10, -5]}>
                     <BsBagHeart style={{ fontSize: '20px' }} /> {/* เพิ่มคุณสมบัติ font-size */}
                   </Badge>
                 </NavLink>

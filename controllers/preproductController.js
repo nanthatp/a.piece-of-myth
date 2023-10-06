@@ -149,7 +149,7 @@ export const deletePreProductController = async (req, res) => {
 //update Pre-order product
 export const updatePreProductController = async (req, res) => {
     try {
-        const {name, slug, description, price, category, artist, member, shipping, until,collectiongroup} = req.fields;
+        const {name, slug, description, price, category, artist, member, status, until,collectiongroup} = req.fields;
         const {photo} = req.files;
         
         //alidation

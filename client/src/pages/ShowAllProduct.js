@@ -257,7 +257,7 @@ const ShowAllProduct = () => {
                             </div>
                         ))}
                     </div>
-                    <div className="m-2 p-3">
+                    {/* <div className="m-2 p-3">
                         {products && products.length < total && (
                             <button
                                 className="btn loadmore"
@@ -276,7 +276,7 @@ const ShowAllProduct = () => {
                                 )}
                             </button>
                         )}
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </Layout>

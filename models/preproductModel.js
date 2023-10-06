@@ -40,6 +40,11 @@ const preproductSchema = new mongoose.Schema({
         type: Date,
         require: true,
     },
+    status: {
+        type: String,
+        default: "Visible",
+        enum: ["Visible", "Invisible"],
+    },
     
 },{ timestamps: true }
 )

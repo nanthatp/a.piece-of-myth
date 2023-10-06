@@ -45,8 +45,14 @@ const productSchema = new mongoose.Schema({
         ref: "Collectiongroup",
         required: true,
     },
-    shipping: {
-        type: Boolean,
+    // shipping: {
+    //     type: Boolean,
+    // },
+
+    status: {
+        type: String,
+        default: "Visible",
+        enum: ["Visible", "Invisible"],
     },
 },{ timestamps: true }
 );

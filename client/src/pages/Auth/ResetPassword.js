@@ -59,7 +59,7 @@ const ResetPassword = () => {
                         <input
                           type="password"
                           id=""
-                          placeholder="Enter New Password"
+                          placeholder="New Password"
                           className="form-control form-control-lg"
                           name="newPassword"
                           value={input.newPassword}
@@ -76,7 +76,7 @@ const ResetPassword = () => {
                         <input
                           type="password"
                           id=""
-                          placeholder="Enter Confirm Password"
+                          placeholder="Confirm Password"
                           className="form-control form-control-lg"
                           name="confirmPassword"
                           value={input.confirmPassword}
@@ -91,7 +91,7 @@ const ResetPassword = () => {
 
                       <div className="pt-1 mb-4">
                         <button
-                          className="btn btn-warning btn-lg btn-block"
+                          className="btn-register"
                           type="submit"
                         >
                           Change Password

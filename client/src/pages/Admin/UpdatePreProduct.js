@@ -32,6 +32,8 @@ const UpdatePreProduct = () => {
     const [date, setDate] = useState();
     const [timing, setTimings] = useState();
     const [isAvailable,setIsAvailable] = useState();
+    const [status, setStatus] = useState("");
+
 
     //get single product
     const getSinglePreProduct = async () => {
@@ -316,6 +318,23 @@ const UpdatePreProduct = () => {
                                 </op>
                             ))}
                         </Select>
+
+                    
+                            <Select
+                                bordered={false}
+                                placeholder="Select Status"
+                                size="medium"
+                                showSearch
+                                className="form-select mb-3"
+                                onChange={(value) => {
+                                    setStatus(value);
+                                }}
+                                value={status ? "Visible" : "Invisible"}
+                            >
+                                <Option value="Visible">Visible</Option>
+                                <Option value="Invisible">Invisible</Option>
+                            </Select>
+                        
 
                         
                         </div>

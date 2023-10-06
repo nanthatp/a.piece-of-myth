@@ -23,7 +23,7 @@ var gateway = new braintree.BraintreeGateway({
 
 export const createProductController = async (req,res)  => {
     try {
-        const {name, slug, description, price, category,  collectiongroup, quantity, artist, member, shipping} = req.fields;
+        const {name, slug, description, price, category,  collectiongroup, quantity, artist, member, status} = req.fields;
         const {photo} = req.files;
         
         //alidation
@@ -151,7 +151,7 @@ export const deleteProductController = async (req, res) => {
 //update product
 export const updateProductController = async (req, res) => {
     try {
-        const {name, slug, description, price, category,  collectiongroup, quantity, artist, member, shipping} = req.fields;
+        const {name, slug, description, price, category,  collectiongroup, quantity, artist, member, status} = req.fields;
         const {photo} = req.files;
         
         //alidation
@@ -173,7 +173,7 @@ export const updateProductController = async (req, res) => {
             // case !member:
             //     return res.status(500).send({error:'Member is required'})
             case photo && photo.size > 150000000000:
-                return res.status(500).send({error:'Photo is requiredand less than 1.5 mb'})
+                return res.status(500).send({error:'Photo is required and less than 1.5 mb'})
         }
         const products = await productModel.findByIdAndUpdate(
             req.params.pid,
@@ -223,6 +223,26 @@ export const productFiltersController = async (req, res) => {
         });
     }
 };
+
+export const productFilterStatusController = async (req, res) => {
+    try {
+        const { check } = req.body;
+        let args = {};
+        if (check.length > 0) args.product = check;
+        const products = await productModel.find(args);
+        res.status(200).send({
+            success: true,
+            products,
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(400).send({
+            success: false,
+            message: "Error While Filtering Products",
+            error,
+        });
+    }
+}
 
 
 // product count
@@ -434,10 +454,11 @@ export const braintreeTokenController = async (req, res) => {
         }
       }
       console.log("category =",category)
-      for(let key in category){
+      for(let key in category ){
         let item = category[key]
+        let index = 0
         if(item.remain-item.amount<0){
-            return res.status(500).send(item.name+" out of stock");
+            return res.status(500).send("You can buy  "+ item.name+ " only  " + item.remain  + " items");
         }
       } 
       let newTransaction = gateway.transaction.sale(

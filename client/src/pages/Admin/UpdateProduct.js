@@ -25,7 +25,7 @@ const UpdateProduct = () => {
     const [photo, setPhoto] = useState("");
     const [artist, setArtist] = useState("");
     // const [member, setMember] = useState("");
-    const [shipping, setShipping] = useState("");
+    const [status, setStatus] = useState("");
     const [id, setId] = useState("");
 
     //get single product
@@ -41,7 +41,7 @@ const UpdateProduct = () => {
             setCategory(data.product.category._id);
             setCollectiongroup(data.product.collectiongroup);
             setQuantity(data.product.quantity);
-            setShipping(data.product.shipping);
+            setStatus(data.product.status);
             setArtist(data.product.artist);
             // setMember(data.product.member);
             
@@ -343,22 +343,22 @@ const UpdateProduct = () => {
                                 </op>
                             ))}
                         </Select>
-                        {/* <div className="mb-3">
+                        <div className="mb-3">
                             <Select
                                 bordered={false}
-                                placeholder="Select Shipping "
+                                placeholder="Select Status"
                                 size="medium"
                                 showSearch
                                 className="form-select mb-3"
                                 onChange={(value) => {
-                                    setShipping(value);
+                                    setStatus(value);
                                 }}
-                                value={shipping ? "yes" : "No"}
+                                value={status ? "Visible" : "Invisible"}
                             >
-                                <Option value="0">No</Option>
-                                <Option value="1">Yes</Option>
+                                <Option value="Visible">Visible</Option>
+                                <Option value="Invisible">Invisible</Option>
                             </Select>
-                        </div> */}
+                        </div>
                         </div>
 
                         <div className="mb-3">
