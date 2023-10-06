@@ -1,6 +1,6 @@
 import memberModel from "../models/memberModel.js";
 import slugify from "slugify";
-
+//test ja
 export  const createMemberController = async(req, res) => {
     try {
         const {name} = req.body
