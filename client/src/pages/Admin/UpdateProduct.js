@@ -25,7 +25,10 @@ const UpdateProduct = () => {
     const [photo, setPhoto] = useState("");
     const [artist, setArtist] = useState("");
     // const [member, setMember] = useState("");
-    const [status, setStatus] = useState("");
+    const [status, setStatus] = useState([
+        "Visible",
+        "Invisible",
+    ]);
     const [id, setId] = useState("");
 
     //get single product
@@ -130,6 +133,7 @@ const UpdateProduct = () => {
             productData.append("quantity", quantity);
             photo && productData.append("photo", photo);
             productData.append("artist", artist);
+            productData.append("status", status);
             // productData.append("member", member);
             const { data } = axios.put(
                 `/api/v1/product/update-product/${id}`,
@@ -353,7 +357,8 @@ const UpdateProduct = () => {
                                 onChange={(value) => {
                                     setStatus(value);
                                 }}
-                                value={status ? "Visible" : "Invisible"}
+                                // value={status ? "Visible" : "Invisible"}
+                                value={status}
                             >
                                 <Option value="Visible">Visible</Option>
                                 <Option value="Invisible">Invisible</Option>

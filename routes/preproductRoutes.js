@@ -17,7 +17,10 @@ import { createPreProductController,
         preProductCollectionController,
         preorderExport,
         preproductBystatusController,
-        preproductCollectionBySlugController} from "../controllers/preproductController.js";
+        preproductCollectionBySlugController,
+        getPreProductVisibleController,
+        getPreProductInvisibleController,
+        deleteInvisiblePreProductController} from "../controllers/preproductController.js";
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
 import formidable from "express-formidable";
 
@@ -44,14 +47,23 @@ router.put(
 //get Pre-order products-------//
 router.get("/get-preproduct", getPreProductController);
 
+//get Visible Pre-order products-------//
+router.get("/get-visible-preproduct", getPreProductVisibleController);
+
+//get Invisible Pre-order products-------//
+router.get("/get-invisible-preproduct", getPreProductInvisibleController);
+
 //single product-------//
 router.get("/get-preproduct/:slug", getSinglePreProductController);
 
 //get photo-------//
 router.get("/preproduct-photo/:pid", PreproductPhotoController);
 
-//------delete product-------//
+//------delete Pre-Order product-------//
 router.delete("/delete-preproduct/:pid", deletePreProductController);
+
+//------delete all Invisible product-------//
+router.delete("/delete-all-invisible-preproduct", deleteInvisiblePreProductController);
 
 //-------filter product-------//
 router.post("/preproduct-filters", PreproductFiltersController);

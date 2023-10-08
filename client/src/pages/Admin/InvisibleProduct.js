@@ -3,18 +3,18 @@ import AdminMenu from '../../components/Layout/AdminMenu';
 import LayoutAdmin from "./../../components/Layout/LayoutAdmin";
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import Swal from 'sweetalert2';
 
-
-const Products = () => {
+function InvisibleProduct() {
     const navigate = useNavigate();
     const [products, setProducts] = useState([]);
 
-    //getall products
+    //get all invisible pre-order preproducts
     const getAllProducts = async () => {
         try {
-        const { data } = await axios.get("/api/v1/product/get-visible-product");
+        const { data } = await axios.get("/api/v1/product/get-invisible-product");
         setProducts(data.products);
         } catch (error) {
         console.log(error);
@@ -23,23 +23,51 @@ const Products = () => {
     };
 
     useEffect(() => {
-        getAllProducts();
-    }, []);
+      getAllProducts();
+  }, []);
+  
+  //delete all Invisible product
+  const handleDelete = async () => {
+    try {
+        let answer = window.prompt("Are You Sure want to delete all Invisible product ? ");
+        if (!answer) return;
+        const { data } = await axios.delete(
+            `/api/v1/product/delete-all-invisible-product`
+        );
+        Swal.fire({
+            position: 'top-center',
+            icon: 'success',
+            title: 'Deleted!',
+            text: 'All Invisible product has been deleted.',
+            showConfirmButton: false,
+            timer: 2500
+        })
+        navigate("/dashboard/admin/products");
+    } catch (error) {
+        console.log(error);
+        toast.error("Something went wrong");
+    }
+};
 
-    return (
-        <LayoutAdmin>
-            <div className="row dashboard">
+  return (
+    <LayoutAdmin>
+      <div className="row dashboard">
                 <div className="col-md-3">
                     <AdminMenu />
                 </div>
                     <div className="col-md-9 ">
-                        <h1 className="text-center">All Products List</h1>
+                        <h1 className="text-center">All Invisible Products List</h1>
                         <button
                             className="btn-add-Pre-Order-List"
-                            onClick={() => navigate(`/dashboard/admin/invisible-product`)}
+                            onClick={() => navigate(`/dashboard/admin/products`)}
                             >
-                             Invisible product
+                             Visible product
                         </button>
+                        <div className="mb-3">
+                            <button className="btn-delete-product" onClick={handleDelete}>
+                            DELETE All Invisible PRODUCT
+                            </button>
+                        </div>
                         <div className="d-flex flex-wrap">
                             {products?.map((p) => (
                                 <Link
@@ -59,12 +87,12 @@ const Products = () => {
                                 </div>
                             </Link>
                         ))}
-                    </div>
+                        </div>
+                        
                 </div>
             </div>
-        </LayoutAdmin>
-    );
-};
-    
+    </LayoutAdmin>
+  );
+}
 
-export default Products
+export default InvisibleProduct

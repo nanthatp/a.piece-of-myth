@@ -17,7 +17,10 @@ import {
     searchProductController,
     updateProductController,
     productBystatusController,
-    productFilterStatusController
+    productFilterStatusController,
+    getProductInvisibleController,
+    getProductVisibleController,
+    deleteInvisibleProductController
 } from "../controllers/productController.js";
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
 import formidable from "express-formidable";
@@ -44,6 +47,12 @@ router.put(
 //get products-------//
 router.get("/get-product", getProductController);
 
+//get product by visible status
+router.get("/get-visible-product", getProductVisibleController);
+
+//get product by invisible status
+router.get("/get-invisible-product", getProductInvisibleController);
+
 //single product-------//
 router.get("/get-product/:slug", getSingleProductController);
 
@@ -52,6 +61,9 @@ router.get("/product-photo/:pid", productPhotoController);
 
 //------delete product-------//
 router.delete("/delete-product/:pid", deleteProductController);
+
+//------delete all Invisible product-------//
+router.delete("/delete-all-invisible-product", deleteInvisibleProductController);
 
 //-------filter product-------//
 router.post("/product-filters", productFiltersController);

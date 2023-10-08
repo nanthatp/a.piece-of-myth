@@ -90,7 +90,7 @@ const ShowAllProduct = () => {
     //======= getall products =======//
     const getAllProducts = async () => {
         try {
-        const { data } = await axios.get("/api/v1/product/get-product");
+        const { data } = await axios.get("/api/v1/product/get-visible-product");
         setProducts(data.products);
         } catch (error) {
         console.log(error);

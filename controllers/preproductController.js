@@ -87,6 +87,46 @@ export const getPreProductController = async(req, res) => {
     }
 };
 
+//get all Pre-order product
+export const getPreProductVisibleController = async(req, res) => {
+    try {
+        const preproducts = await preproductModel.find({status: "Visible"}).select("-photo").limit(12).sort({createdAt:-1})
+        res.status(200).send({
+            success:true,
+            count_total : preproducts.length,
+            message:'AllVisiblePreProduct',
+            preproducts,
+        });
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({
+            success:false,
+            message:'Error in getting Visible Pre-order product',
+            error: error.message
+        });
+    }
+};
+
+//get all Pre-order product
+export const getPreProductInvisibleController = async(req, res) => {
+    try {
+        const preproducts = await preproductModel.find({status: "Invisible"}).select("-photo").limit(12).sort({createdAt:-1})
+        res.status(200).send({
+            success:true,
+            count_total : preproducts.length,
+            message:'AllInvisiblePreProduct',
+            preproducts,
+        });
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({
+            success:false,
+            message:'Error in getting Invisible Pre-order product',
+            error: error.message
+        });
+    }
+};
+
 //get single Pre-order product
 export const getSinglePreProductController = async (req, res) => {
     try {
@@ -141,6 +181,24 @@ export const deletePreProductController = async (req, res) => {
         res.status(500).send({
             success: false,
             message: "Error while deleting product",
+            error,
+        });
+    }
+};
+
+//delete Invisible Pre-order product 
+export const deleteInvisiblePreProductController = async (req, res) => {
+    try {
+        await preproductModel.deleteMany({status: "Invisible"}).select("-photo");
+        res.status(200).send({
+            success: true,
+            message: "Invisible Pre-Order Product Deleted successfully",
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            message: "Error while deleting Invisible PRE-Order product",
             error,
         });
     }
@@ -294,6 +352,7 @@ export const realtedPreProductController = async (req, res) => {
         category: cid,
         _id: { $ne: pid },
         })
+        .find({status: "Visible"})
         .select("-photo")
         .limit(3)
         .populate("category");
@@ -315,7 +374,7 @@ export const realtedPreProductController = async (req, res) => {
 export const PreproductCategoryController = async (req, res) => {
     try {
     const category = await categoryModel.findOne({ slug: req.params.slug });
-    const preproducts = await preproductModel.find({ category }).populate("category");
+    const preproducts = await preproductModel.find({ category }).find({status: "Visible"}).populate("category");
     res.status(200).send({
         success: true,
         category,
@@ -335,7 +394,7 @@ export const PreproductCategoryController = async (req, res) => {
 export const preproductCategoryController = async (req, res) => {
     try {
     const category = await categoryModel.findOne({ slug: req.params.slug });
-    const preproducts = await preproductModel.find({ category }).populate("category");
+    const preproducts = await preproductModel.find({ category }).find({status: "Visible"}).populate("category");
     res.status(200).send({
         success: true,
         category,
@@ -355,7 +414,7 @@ export const preproductCategoryController = async (req, res) => {
 export const preproductArtistController = async (req, res) => {
     try {
     const artist = await artistModel.findOne({ slug: req.params.slug });
-    const preproducts = await preproductModel.find({ artist }).populate("artist");
+    const preproducts = await preproductModel.find({ artist }).find({status: "Visible"}).populate("artist");
     res.status(200).send({
         success: true,
         artist,
@@ -409,7 +468,7 @@ export const preproductBystatusController = async (req, res) => {
 export const preProductCollectionController = async (req, res) => {
     try {
     // const collectiongroup = await collectiongroupModel.findOne( { slug: req.params.slug } );
-    const preproducts = await preproductModel.find({ collectiongroup: req.params.collectiongroup }).populate("collectiongroup");
+    const preproducts = await preproductModel.find({ collectiongroup: req.params.collectiongroup }).find({status: "Visible"}).populate("collectiongroup");
     res.status(200).send({
         success: true,
         // collectiongroup,

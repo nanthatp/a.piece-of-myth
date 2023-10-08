@@ -49,6 +49,7 @@ const UpdatePreProduct = () => {
             setArtist(data.preproduct.artist);
             setUntil(data.preproduct.until);
             setMember(data.preproduct.member);
+            setStatus(data.preproduct.status);
             setCollectiongroup(data.preproduct.collectiongroup);
             
         }catch (error) {
@@ -137,6 +138,7 @@ const UpdatePreProduct = () => {
             preproductData.append("artist", artist);
             preproductData.append("member", member);
             preproductData.append("until", until);
+            preproductData.append("status", status);
             preproductData.append("collectiongroup", collectiongroup);
             const { data } = axios.put(
                 `/api/v1/preproduct/update-preproduct/${id}`,
@@ -320,7 +322,7 @@ const UpdatePreProduct = () => {
                         </Select>
 
                     
-                            <Select
+                        <Select
                                 bordered={false}
                                 placeholder="Select Status"
                                 size="medium"
@@ -329,7 +331,8 @@ const UpdatePreProduct = () => {
                                 onChange={(value) => {
                                     setStatus(value);
                                 }}
-                                value={status ? "Visible" : "Invisible"}
+                                // value={status ? "Visible" : "Invisible"}
+                                value={status}
                             >
                                 <Option value="Visible">Visible</Option>
                                 <Option value="Invisible">Invisible</Option>

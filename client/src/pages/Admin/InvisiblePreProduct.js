@@ -5,15 +5,16 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import { Link } from "react-router-dom";
 import { useNavigate, useParams } from "react-router-dom";
+import Swal from 'sweetalert2';
 
-const Preproducts = () => {
+function InvisiblePreProduct() {
     const navigate = useNavigate();
     const [preproducts, setPreproducts] = useState([]);
 
-    //get all visible pre-order preproducts
+    //get all invisible pre-order preproducts
     const getAllPreProducts = async () => {
         try {
-        const { data } = await axios.get("/api/v1/preproduct/get-visible-preproduct");
+        const { data } = await axios.get("/api/v1/preproduct/get-invisible-preproduct");
         setPreproducts(data.preproducts);
         } catch (error) {
         console.log(error);
@@ -24,6 +25,29 @@ const Preproducts = () => {
     useEffect(() => {
       getAllPreProducts();
   }, []);
+  
+  //delete all Invisible product
+  const handleDelete = async () => {
+    try {
+        let answer = window.prompt("Are You Sure want to delete all Invisible Pre-order product ? ");
+        if (!answer) return;
+        const { data } = await axios.delete(
+            `/api/v1/preproduct/delete-all-invisible-preproduct`
+        );
+        Swal.fire({
+            position: 'top-center',
+            icon: 'success',
+            title: 'Deleted!',
+            text: 'All Invisible Pre-Order product has been deleted.',
+            showConfirmButton: false,
+            timer: 2500
+        })
+        navigate("/dashboard/admin/preproduct");
+    } catch (error) {
+        console.log(error);
+        toast.error("Something went wrong");
+    }
+};
 
   return (
     <LayoutAdmin>
@@ -32,13 +56,18 @@ const Preproducts = () => {
                     <AdminMenu />
                 </div>
                     <div className="col-md-9 ">
-                        <h1 className="text-center">All Pre-Order Products List</h1>
+                        <h1 className="text-center">All Invisible Pre-Order Products List</h1>
                         <button
                             className="btn-add-Pre-Order-List"
-                            onClick={() => navigate(`/dashboard/admin/invisible-preproduct`)}
+                            onClick={() => navigate(`/dashboard/admin/preproduct`)}
                             >
-                             Invisible Pre-order product
+                             Visible Pre-order product
                         </button>
+                        <div className="mb-3">
+                            <button className="btn-delete-product" onClick={handleDelete}>
+                            DELETE All Invisible PRE-ORDER PRODUCT
+                            </button>
+                        </div>
                         <div className="d-flex flex-wrap">
                         {preproducts?.map((p) => (
                                 <Link
@@ -64,7 +93,7 @@ const Preproducts = () => {
                 </div>
             </div>
     </LayoutAdmin>
-  )
+  );
 }
 
-export default Preproducts
+export default InvisiblePreProduct

@@ -49,6 +49,8 @@ import AdminPreorder from './pages/Admin/AdminPreorder';
 import AdminPreorderManage from './pages/Admin/AdminPreorderManage';
 import ShowCollection from './pages/ShowCollection';
 import Collections from './pages/Collections';
+import InvisiblePreProduct from './pages/Admin/InvisiblePreProduct';
+import InvisibleProduct from './pages/Admin/InvisibleProduct';
 
 
 function App() {
@@ -86,6 +88,8 @@ function App() {
         <Route path="admin/product/:slug" element={<UpdateProduct />} />
         <Route path="admin/preproduct/:slug" element={<UpdatePreProduct />} />
         <Route path="admin/products" element={<Products />} />
+        <Route path="admin/invisible-preproduct" element={<InvisiblePreProduct />} />
+        <Route path="admin/invisible-product" element={<InvisibleProduct />} />
         <Route path="admin/orders" element={<AdminOrders />} />
         <Route path="admin/banners" element={<Banners />} />
         <Route path="admin/artists" element={<Artists />} />

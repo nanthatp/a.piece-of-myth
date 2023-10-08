@@ -6,6 +6,7 @@ import {BsFillBagHeartFill } from "react-icons/bs";
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { Link } from "react-router-dom";
+import moment from 'moment';
 
 const ShowAllPre = () => {
     const navigate = useNavigate();
@@ -16,17 +17,28 @@ const ShowAllPre = () => {
     //get all pre-order preproducts
     const getAllPreProducts = async () => {
         try {
-        const { data } = await axios.get("/api/v1/preproduct/get-preproduct");
+        const { data } = await axios.get("/api/v1/preproduct/get-visible-preproduct");
         setPreproducts(data.preproducts);
         } catch (error) {
         console.log(error);
         toast.error("Something Went Wrong");
         }
     };
-
+  
     useEffect(() => {
         getAllPreProducts();
     }, []);
+
+    function disableButton (){
+        let currentDate = new Date()
+        let endDate = new Date(preproducts.until)
+        console.log("currentDate = ", currentDate)
+        console.log("endDate = ", endDate-currentDate)
+        if (endDate - currentDate < 0){
+          return true
+        }
+        return false;
+      }
 
     return (
         <Layout title={"All Products"}>
@@ -46,8 +58,8 @@ const ShowAllPre = () => {
                             <div className="card-body-search">
                             <div className="card-name-price-search ">
                             <h5 className=" name-product-search ">{p.name}</h5>
-                            <p className="card-text product-quantity-search ">
-                                {p.quantity}
+                            <p className="card-text product-quantity">
+                                Time Limit : {moment(preproducts.until).locale('th').format('YYYY-MM-DD hh:mm')}
                             </p>
                             <h5 className="card-title product-price-search ">
                                 {p.price.toLocaleString("US", {
@@ -59,10 +71,10 @@ const ShowAllPre = () => {
                             <div className="card-name-price-search ">
                             <button
                                 className="btn-add"
-                                disabled={auth?.user?.role === 1}
+                                disabled={auth?.user?.role === 1 ||disableButton ()}
                                 onClick={() => navigate(`/preproduct/${p.slug}`)}
                                 >
-                                <BsFillBagHeartFill/> Pre-Order Now
+                                <BsFillBagHeartFill/> Pre-Order Detail
                                 </button>
                             </div>
                         </div>

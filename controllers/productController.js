@@ -89,6 +89,46 @@ export const getProductController = async(req, res) => {
     }
 };
 
+//get all product by Visible status
+export const getProductVisibleController = async(req, res) => {
+    try {
+        const products = await productModel.find({status: "Visible"}).select("-photo").limit(12).sort({createdAt:-1})
+        res.status(200).send({
+            success:true,
+            count_total : products.length,
+            message:'AllVisibleProduct',
+            products,
+        });
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({
+            success:false,
+            message:'Error in getting Visible product',
+            error: error.message
+        });
+    }
+};
+
+//get all product by Invisible status
+export const getProductInvisibleController = async(req, res) => {
+    try {
+        const products = await productModel.find({status: "Invisible"}).select("-photo").limit(12).sort({createdAt:-1})
+        res.status(200).send({
+            success:true,
+            count_total : products.length,
+            message:'AllInvisibleProduct',
+            products,
+        });
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({
+            success:false,
+            message:'Error in getting Invisible product',
+            error: error.message
+        });
+    }
+};
+
 //get single product
 export const getSingleProductController = async (req, res) => {
     try {
@@ -143,6 +183,24 @@ export const deleteProductController = async (req, res) => {
         res.status(500).send({
             success: false,
             message: "Error while deleting product",
+            error,
+        });
+    }
+};
+
+//delete all Invisible product 
+export const deleteInvisibleProductController = async (req, res) => {
+    try {
+        await productModel.deleteMany({status: "Invisible"}).select("-photo");
+        res.status(200).send({
+            success: true,
+            message: "Invisible Product Deleted successfully",
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            message: "Error while deleting Invisible product",
             error,
         });
     }
@@ -209,7 +267,7 @@ export const productFiltersController = async (req, res) => {
         if (checked.length > 0) args.category = checked;
         // if (checkbox.length > 0) args.artist = checkbox;
         if (radio.length) args.price = { $gte: radio[0], $lte: radio[1] };
-        const products = await productModel.find(args);
+        const products = await productModel.find(args).find({status: "Visible"});
         res.status(200).send({
             success: true,
             products,
@@ -269,7 +327,7 @@ export const productListController = async (req, res) => {
     const perPage = 6;
     const page = req.params.page ? req.params.page : 1;
     const products = await productModel
-        .find({})
+        .find({status: "Visible"})
         .select("-photo")
         .skip((page - 1) * perPage)
         .limit(perPage)
@@ -299,6 +357,7 @@ export const searchProductController = async (req, res) => {
             { description: { $regex: keyword, $options: "i" } },
         ],
         })
+        .find({status: "Visible"})
         .select("-photo");
     res.json(resutls);
     } catch (error) {
@@ -320,6 +379,7 @@ export const realtedProductController = async (req, res) => {
         category: cid,
         _id: { $ne: pid },
         })
+        .find({status: "Visible"})
         .select("-photo")
         .limit(3)
         .populate("category");
@@ -341,7 +401,7 @@ export const realtedProductController = async (req, res) => {
 export const productCategoryController = async (req, res) => {
     try {
     const category = await categoryModel.findOne({ slug: req.params.slug });
-    const products = await productModel.find({ category }).populate("category");
+    const products = await productModel.find({ category }).find({status: "Visible"}).populate("category");
     res.status(200).send({
         success: true,
         category,
@@ -381,7 +441,7 @@ export const productCollectionController = async (req, res) => {
 export const productArtistController = async (req, res) => {
     try {
     const artist = await artistModel.findOne({ slug: req.params.slug });
-    const products = await productModel.find({ artist }).populate("artist");
+    const products = await productModel.find({ artist }).find({status: "Visible"}).populate("artist");
     res.status(200).send({
         success: true,
         artist,
