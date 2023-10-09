@@ -379,7 +379,7 @@ const getSinglePreProduct = async () => {
                               <div className="card-name-price">
                                 <h5 className=" name-product">{p.name}</h5>
                                 <p className="card-text product-quantity">
-                                Time Limit : {moment(preproducts.until).locale('th').format('YYYY-MM-DD hh:mm')}
+                                End: {moment(preproducts.until).locale('th').format('YYYY-MM-DD hh:mm')}
                                 </p>
                                 {/* <p className="card-text product-quantity">
                                   time limit: {moment(until).locale('th').format('YYYY-MM-DD hh:mm')}

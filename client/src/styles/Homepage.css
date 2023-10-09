@@ -186,11 +186,12 @@ filters
 .pre-list{
     background-color: beige;
     border-radius: 20px;
+    margin-bottom: 50px;
     
 }
 
 .pre-inner{
-    height: 480px;
+    height: 500px;
     margin-left: 5px;
 }
 

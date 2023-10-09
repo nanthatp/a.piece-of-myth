@@ -4,7 +4,7 @@ import { useAuth } from '../../context/auth'
 import toast from "react-hot-toast";
 import SearchInput from "../Form/SearchInput";
 import useCategory from "../../hooks/useCategory";
-import useCollection from "../../hooks/useCategory";
+import useCollection from "../../hooks/useCollection";
 import useArtist from '../../hooks/useArtist';
 import { Badge } from "antd";
 import { useCart } from "../../context/cart";

@@ -59,7 +59,7 @@ const ShowAllPre = () => {
                             <div className="card-name-price-search ">
                             <h5 className=" name-product-search ">{p.name}</h5>
                             <p className="card-text product-quantity">
-                                Time Limit : {moment(preproducts.until).locale('th').format('YYYY-MM-DD hh:mm')}
+                                End : {moment(preproducts.until).locale('th').format('YYYY-MM-DD hh:mm')}
                             </p>
                             <h5 className="card-title product-price-search ">
                                 {p.price.toLocaleString("US", {
