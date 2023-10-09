@@ -262,10 +262,11 @@ export const updateProductController = async (req, res) => {
 // filters
 export const productFiltersController = async (req, res) => {
     try {
-        const { checked, checkbox, radio } = req.body;
+        const { checkcate,checkart,checked, radio } = req.body;
         let args = {};
-        if (checked.length > 0) args.category = checked;
-        // if (checkbox.length > 0) args.artist = checkbox;
+        if (checkcate.length > 0) args.category = checkcate;
+        if (checkart.length > 0) args.artist = checkart;
+        if (checked.length > 0) args.collectiongroup = checked;
         if (radio.length) args.price = { $gte: radio[0], $lte: radio[1] };
         const products = await productModel.find(args).find({status: "Visible"});
         res.status(200).send({

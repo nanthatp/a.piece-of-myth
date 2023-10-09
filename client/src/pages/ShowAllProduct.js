@@ -20,9 +20,11 @@ const ShowAllProduct = () => {
     const navigate = useNavigate();
     const [cart, setCart] = useCart();
     const [categories, setCategories] = useState([]);
-    const [artists, setArtists] = useState([]);
+    const [collectiongroups, setCollectiongroups] = useState([]);
+    const [artist, setArtist] = useState([]);
     const [checked, setChecked] = useState([]);
-    const [checkbox, setCheckBox] = useState([]);
+    const [checkcate, setCheckcate] = useState([]);
+    const [checkart, setCheckart] = useState([]);
     const [radio, setRadio] = useState([]);
     const [total, setTotal] = useState(0);
     const [page, setPage] = useState(1);
@@ -72,14 +74,30 @@ const ShowAllProduct = () => {
     //======= get all artist ======//
     const getAllArtist = async () => {
         try {
-        const { data } = await axios.get("/api/v1/artist/get-artist");
+          const { data } = await axios.get("/api/v1/artist/get-artist");
+            setArtist(data.artists);
+          } catch (error) {
+            console.log(error);
+            toast.error("Something Went Wrong");
+          }
+      };
+
+   //get all Collections group
+   const getAllCollection = async () => {
+    try {
+        const { data } = await axios.get("/api/v1/collectiongroup/get-collectiongroup");
         if (data?.success) {
-            setArtists(data?.artists);
+        setCollectiongroups(data?.collectiongroup);
         }
-        } catch (error) {
+    } catch (error) {
         console.log(error);
-        }
-    };
+        toast.error("Something went wrong in getting catgeory");
+    }
+}; 
+
+useEffect(() => {
+    getAllCollection();
+}, []);
 
     useEffect(() => {
         getAllCategory();
@@ -103,7 +121,7 @@ const ShowAllProduct = () => {
     }, []);
 
     //======= filter by category =======//
-    const handleFilter = (value, id) => {
+    const handleFilterCollection = (value, id) => {
         let all = [...checked];
         if (value) {
             all.push(id);
@@ -112,13 +130,34 @@ const ShowAllProduct = () => {
         }
         setChecked(all);  
     };
-    useEffect(() => {
-        if (!checked.length|| !radio.length) getAllProducts();
-    }, [checked.length, radio.length]);
+
+    const handleFilterArtist = (value, id) => {
+        let all = [...checkart];
+        if (value) {
+            all.push(id);
+        } else {
+            all = all.filter((ar) => ar !== id);
+        }
+        setCheckart(all);  
+    };
+
+    const handleFilterCategory = (value, id) => {
+        let all = [...checkcate];
+        if (value) {
+            all.push(id);
+        } else {
+            all = all.filter((ca) => ca !== id);
+        }
+        setCheckcate(all);  
+    };
 
     useEffect(() => {
-        if (checked.length || radio.length) filterProduct();
-    }, [checked,radio]);
+        if (!checkcate.length || !checkart.length|| !checked.length|| !radio.length) getAllProducts();
+    }, [checkcate.length, checkart.length, checked.length, radio.length]);
+
+    useEffect(() => {
+        if (checkcate.length || checkart.length|| checked.length || radio.length) filterProduct();
+    }, [checkcate,checkart,checked,radio]);
 
 
     //======= filter by artist =======//
@@ -143,6 +182,8 @@ const ShowAllProduct = () => {
     const filterProduct = async () => {
         try {
         const { data } = await axios.post("/api/v1/product/product-filters", {
+            checkcate,
+            checkart,
             checked,
             radio,
         });
@@ -160,26 +201,37 @@ const ShowAllProduct = () => {
                     {/* {JSON.stringify(checked, null, 4)} */}
                 <h4 className="text-center">Filter By Category</h4>
                 <div className="d-flex flex-column">
-                    {categories?.map((c) => (
+                    {categories?.map((ca) => (
+                    <Checkbox
+                        key={ca._id}
+                        onChange={(e) => handleFilterCategory(e.target.checked, ca._id)}
+                    >
+                        {ca.name}
+                    </Checkbox>
+                    ))}
+                </div>
+                <h4 className="text-center mt-4">Filter By Artist</h4>
+                <div className="d-flex flex-column">
+                    {artist?.map((ar) => (
+                    <Checkbox
+                        key={ar._id}
+                        onChange={(e) => handleFilterArtist(e.target.checked, ar._id)}
+                    >
+                        {ar.name}
+                    </Checkbox>
+                    ))}
+                </div>
+                <h4 className="text-center mt-4">Filter By Collection</h4>
+                <div className="d-flex flex-column">
+                    {collectiongroups?.map((c) => (
                     <Checkbox
                         key={c._id}
-                        onChange={(e) => handleFilter(e.target.checked, c._id)}
+                        onChange={(e) => handleFilterCollection(e.target.checked, c._id)}
                     >
                         {c.name}
                     </Checkbox>
                     ))}
                 </div>
-                {/* <h4 className="text-center mt-4">Filter By Artist</h4>
-                <div className="d-flex flex-column">
-                    {artists?.map((a) => (
-                    <Checkbox
-                        key={a._id}
-                        onChange={(e) => handleFilterArtist(e.target.check, a._id)}
-                    >
-                        {a.name}
-                    </Checkbox>
-                    ))}
-                </div> */}
             
                 <h4 className="text-center mt-4">Filter By Price</h4>
                 <div className="d-flex flex-column">

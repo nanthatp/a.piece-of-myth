@@ -157,3 +157,43 @@ export const updateArtistController = async (req, res) => {
         });
     }
 };
+
+//get all artist
+export const getArtistNameController = async(req, res) => {
+    try {
+        const artist = await artistModel.find({});
+        res.status(200).send({
+            success: true,
+            message: "All artist name list",
+            artist,
+        });
+        
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({
+            success:false,
+            message:'Error in getting artist name',
+            error: error.message
+        });
+    }
+};
+
+//get single artist
+export const getSingleArtistNameController = async (req, res) => {
+    try {
+        const artist = await artistModel
+            .findOne({ slug: req.params.slug })
+        res.status(200).send({
+            success: true,
+            message: "Single Artist name",
+            artist,
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            message: "Error while getting Single Artist name",
+            error,
+        });
+    }
+};

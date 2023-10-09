@@ -1,6 +1,6 @@
 import express from 'express';
 import { isAdmin, requireSignIn } from '../middlewares/authMiddleware.js';
-import { createArtistController, getArtistController, getSingleArtistController, artistPhotoController, deleteArtistController, updateArtistController} from '../controllers/artistController.js';
+import { createArtistController, getArtistController, getSingleArtistController, artistPhotoController, deleteArtistController, updateArtistController, getArtistNameController,getSingleArtistNameController} from '../controllers/artistController.js';
 import formidable from "express-formidable";
 
 const router = express.Router()
@@ -31,6 +31,12 @@ router.get('/get-artist', getArtistController)
 
 //single artist
 router.get("/get-artist/:slug", getSingleArtistController);
+
+//getAll artist name
+router.get('/get-artist', getArtistNameController)
+
+//single artist name
+router.get("/get-artist/:slug", getSingleArtistNameController);
 
 //delete artist
 router.delete(
