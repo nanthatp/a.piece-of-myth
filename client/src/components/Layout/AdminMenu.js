@@ -52,12 +52,6 @@ const AdminMenu = () => {
                     <BsFillCartPlusFill/> Create Product
                 </NavLink>
                 <NavLink
-                    to="/dashboard/admin/create-artist"
-                    className="nav-link Menu"
-                >
-                    <BsFillPostcardHeartFill/> Create Artist
-                </NavLink>
-                <NavLink
                     to="/dashboard/admin/create-preproduct"
                     className="nav-link Menu"
                 >
@@ -70,10 +64,10 @@ const AdminMenu = () => {
                     <BsFillLaptopFill/> Create Banner
                 </NavLink>
                 <NavLink
-                    to="/dashboard/admin/products"
+                    to="/dashboard/admin/create-artist"
                     className="nav-link Menu"
                 >
-                    <BsBox2HeartFill /> All Products List
+                    <BsFillPostcardHeartFill/> Create Artist
                 </NavLink>
                 <NavLink
                     to="/dashboard/admin/orders"
@@ -88,6 +82,18 @@ const AdminMenu = () => {
                     <BsListUl/> Pre-Order List
                 </NavLink>
                 <NavLink
+                    to="/dashboard/admin/products"
+                    className="nav-link Menu"
+                >
+                    <BsBox2HeartFill /> All Products List
+                </NavLink>
+                <NavLink
+                    to="/dashboard/admin/preproduct"
+                    className="nav-link Menu"
+                >
+                    <BsBalloonFill/> Pre-Product List
+                </NavLink> 
+                <NavLink
                     to="/dashboard/admin/banners"
                     className="nav-link Menu"
                 >
@@ -99,14 +105,6 @@ const AdminMenu = () => {
                 >
                     <BsFillBalloonHeartFill/> Artist List
                 </NavLink> 
-                <NavLink
-                    to="/dashboard/admin/preproduct"
-                    className="nav-link Menu"
-                >
-                    <BsBalloonFill/> Pre-Product List
-                </NavLink> 
-              
-                
             </div>
         </div>       
     );

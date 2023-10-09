@@ -101,3 +101,27 @@
     width: 500px;
 }
 
+.btn-update-admin{
+    padding: 5px 5px;
+    width: 20%;
+    background: #FBD85D;
+    color: #000;
+    float: right;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 0;
+    font-weight: 600;
+    margin-top: 2%;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+}
+
+.btn-update-admin:hover{
+    background-color: #0DA574;
+    color: #fff;
+    transform: all ease 0.3s;
+}
+

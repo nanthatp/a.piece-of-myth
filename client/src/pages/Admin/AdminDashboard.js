@@ -2,6 +2,7 @@ import React from "react";
 import AdminMenu from "../../components/Layout/AdminMenu";
 import LayoutAdmin from "./../../components/Layout/LayoutAdmin";
 import { useAuth } from "../../context/auth";
+import {NavLink, Link} from 'react-router-dom'
 import {BsFillEmojiHeartEyesFill } from "react-icons/bs";
 import {BsFillEnvelopeOpenHeartFill } from "react-icons/bs";
 import {BsFillTelephoneFill } from "react-icons/bs";
@@ -28,10 +29,16 @@ const AdminDashboard = () => {
                         <div className="card">
                             <div className="card-body text-start"> {/* ใช้ text-start เพื่อจัดเรียงข้อความทางด้านซ้าย */}
                                 <div className="mb-3 text-center card-heard">
-                                    {auth?.user?.name} information
+                                  {auth?.user?.name} information
                                 </div>
-                                <div className="mb-3 card-information">
+                                <div className="mb-3 card-information d-flex align-items-center">
                                     <span> <BsFillEmojiHeartEyesFill/> </span>Name: {auth?.user?.name}
+                                    <Link
+                                      to="/dashboard/user/profile"
+                                      className="nav-link ms-auto edit-user"
+                                    >
+                                      Edit my profile
+                                    </Link>
                                 </div>
 
                                 <div className="mb-3 card-information">
@@ -40,10 +47,14 @@ const AdminDashboard = () => {
                                 <div className="mb-3 card-information">
                                     <span> <BsFillTelephoneFill/> </span>Contact: {auth?.user?.phone}
                                 </div>
-
                                 <div className="mb-3 card-information d-flex align-items-center">
                                     <span> <BsFillShieldLockFill/> </span> Password: ******* 
-                                    
+                                    <Link
+                                      to="/dashboard/user/update-password"
+                                      className="nav-link ms-auto edit-user"
+                                    >
+                                      Change Password
+                                    </Link>
                                 </div>
                             
                             </div>

@@ -5,6 +5,8 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import { Link } from "react-router-dom";
 import { useNavigate, useParams } from "react-router-dom";
+import{BsArrowLeftCircleFill} from 'react-icons/bs';
+
 import Swal from 'sweetalert2';
 
 function InvisiblePreProduct() {
@@ -57,7 +59,7 @@ function InvisiblePreProduct() {
                 </div>
                     <div className="col-md-9 ">
                         <h1 className="text-center">All Invisible Pre-Order Products List</h1>
-                        <button
+                        {/* <button
                             className="btn-add-Pre-Order-List"
                             onClick={() => navigate(`/dashboard/admin/preproduct`)}
                             >
@@ -67,7 +69,19 @@ function InvisiblePreProduct() {
                             <button className="btn-delete-product" onClick={handleDelete}>
                             DELETE All Invisible PRE-ORDER PRODUCT
                             </button>
+                        </div> */}
+                        <div className="col-md-3 d-flex ">
+                            <button
+                                className="btn"
+                                onClick={() => navigate(`/dashboard/admin/preproduct`)}
+                                >
+                                    <BsArrowLeftCircleFill color="#0DA574" style={{ fontSize: '50px' }}/>
+                            </button>
+                            <button className="btn-delete-product-all" onClick={handleDelete}>
+                                DELETE All 
+                            </button>
                         </div>
+
                         <div className="d-flex flex-wrap">
                         {preproducts?.map((p) => (
                                 <Link

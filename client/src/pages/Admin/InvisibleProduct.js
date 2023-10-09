@@ -5,6 +5,7 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import { Link } from "react-router-dom";
 import { useNavigate, useParams } from "react-router-dom";
+import{BsArrowLeftCircleFill} from 'react-icons/bs';
 import Swal from 'sweetalert2';
 
 function InvisibleProduct() {
@@ -38,7 +39,7 @@ function InvisibleProduct() {
             position: 'top-center',
             icon: 'success',
             title: 'Deleted!',
-            text: 'All Invisible product has been deleted.',
+            text: 'All invisible product has been deleted.',
             showConfirmButton: false,
             timer: 2500
         })
@@ -56,16 +57,31 @@ function InvisibleProduct() {
                     <AdminMenu />
                 </div>
                     <div className="col-md-9 ">
-                        <h1 className="text-center">All Invisible Products List</h1>
+                        {/* <h1 className="text-center">All Invisible Products List</h1>
+                        <div className="col-md-3">
                         <button
-                            className="btn-add-Pre-Order-List"
+                            className="btn-add-Pre-Order-List btn-"
                             onClick={() => navigate(`/dashboard/admin/products`)}
                             >
-                             Visible product
+                                Visible product
                         </button>
+                        </div>
+
                         <div className="mb-3">
                             <button className="btn-delete-product" onClick={handleDelete}>
-                            DELETE All Invisible PRODUCT
+                                DELETE All 
+                            </button>
+                        </div> */}
+                        <h1 className="text-center">All Invisible Products List</h1>
+                        <div className="col-md-3 d-flex ">
+                            <button
+                                className="btn"
+                                onClick={() => navigate(`/dashboard/admin/products`)}
+                                >
+                                    <BsArrowLeftCircleFill color="#0DA574" style={{ fontSize: '50px' }}/>
+                            </button>
+                            <button className="btn-delete-product-all" onClick={handleDelete}>
+                                DELETE All 
                             </button>
                         </div>
                         <div className="d-flex flex-wrap">
