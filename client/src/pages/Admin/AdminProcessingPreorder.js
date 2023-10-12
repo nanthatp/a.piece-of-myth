@@ -11,10 +11,9 @@ import LayoutAdmin from "./../../components/Layout/LayoutAdmin";
 import {commonrequest} from "../../Services/ApiCall";
 import {BASE_URL} from "../../Services/helper";
 import{BsArrowLeftCircleFill} from 'react-icons/bs';
-
 const { Option } = Select;
 
-function AdminPreorder() {
+function AdminProcessingPreorder() {
     const navigate = useNavigate();
     const params = useParams();
     const [status, setStatus] = useState([
@@ -30,7 +29,7 @@ function AdminPreorder() {
     const [auth, setAuth] = useAuth();
     const getPreOrders = async () => {
         try {
-        const { data } = await axios.get(`/api/v1/auth/preorder-preproduct-not_process/${params.preproduct}`);
+        const { data } = await axios.get(`/api/v1/auth/preorder-preproduct-processing/${params.preproduct}`);
         setPreorders(data);
         } catch (error) {
         console.log(error);
@@ -55,7 +54,7 @@ function AdminPreorder() {
 
     const exporttocsvfunc = async()=>{
         console.log("params =",params)
-        return await commonrequest("GET",`${BASE_URL}/api/v1/preproduct/preorder-export-not-process/${params.preproduct}`,"");
+        return await commonrequest("GET",`${BASE_URL}/api/v1/preproduct/preorder-export-processing/${params.preproduct}`,"");
     }
 
      // export Preorder
@@ -74,7 +73,7 @@ function AdminPreorder() {
             <AdminMenu />
             </div>
             <div className="col-md-9">
-                <div className="col-md-3 d-flex ">
+            <div className="col-md-3 d-flex ">
                     
                     <button
                         className="btn"
@@ -85,16 +84,16 @@ function AdminPreorder() {
                         </button>
                             
                 </div>
-            <h1 className="text-center">All Not_Process Pre-Orders - {preorders.length}</h1>
+            <h1 className="text-center">All Processing Pre-Orders - {preorder.length}</h1>
             <div className="btn-group mr-2" role="group">
                 <button className="btn btn-secondary" 
                 onClick={() => navigate(`/dashboard/admin/preorder/${params.preproduct}`)}
-                disabled
                 >
                     Not_Process
                 </button>
                 <button className="btn btn-secondary" 
                 onClick={() => navigate(`/dashboard/admin/preorder-processing/${params.preproduct}`)}
+                disabled
                 >
                     Processing
                 </button>
@@ -186,4 +185,4 @@ function AdminPreorder() {
     );
 }
 
-export default AdminPreorder
+export default AdminProcessingPreorder

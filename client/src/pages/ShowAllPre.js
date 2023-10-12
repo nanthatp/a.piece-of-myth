@@ -29,9 +29,9 @@ const ShowAllPre = () => {
         getAllPreProducts();
     }, []);
 
-    function disableButton (){
+    function disableButton (until){
         let currentDate = new Date()
-        let endDate = new Date(preproducts.until)
+        let endDate = new Date(until)
         console.log("currentDate = ", currentDate)
         console.log("endDate = ", endDate-currentDate)
         if (endDate - currentDate < 0){
@@ -59,7 +59,7 @@ const ShowAllPre = () => {
                             <div className="card-name-price-search ">
                             <h5 className=" name-product-search ">{p.name}</h5>
                             <p className="card-text product-quantity">
-                                End : {moment(preproducts.until).locale('th').format('YYYY-MM-DD hh:mm')}
+                                End : {moment(p.until).locale('th').format('YYYY-MM-DD hh:mm')}
                             </p>
                             <h5 className="card-title product-price-search ">
                                 {p.price.toLocaleString("US", {
@@ -71,7 +71,7 @@ const ShowAllPre = () => {
                             <div className="card-name-price-search ">
                             <button
                                 className="btn-add"
-                                disabled={auth?.user?.role === 1 ||disableButton ()}
+                                disabled={auth?.user?.role === 1 ||disableButton (p.until)}
                                 onClick={() => navigate(`/preproduct/${p.slug}`)}
                                 >
                                 <BsFillBagHeartFill/> Pre-Order Detail

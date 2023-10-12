@@ -228,11 +228,108 @@ export const getOrdersController = async (req, res) => {
     });
   }
 };
+
+//Getttttt Orderrrrrrrrr แบบต่างๆๆๆๆๆๆๆ
 //orders
 export const getAllOrdersController = async (req, res) => {
   try {
     const orders = await orderModel
       .find({})
+      .populate("products", "-photo")
+      .populate("buyer", "name")
+      .sort({ createdAt: "-1" });
+    res.json(orders);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error WHile Geting Orders",
+      error,
+    });
+  }
+};
+
+//get all orders by "Not_Process"
+export const getAllOrdersConByNot_ProccessStatustroller = async (req, res) => {
+  try {
+    const orders = await orderModel
+      .find({ status: "Not_Process" })
+      .populate("products", "-photo")
+      .populate("buyer", "name")
+      .sort({ createdAt: "-1" });
+    res.json(orders);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error WHile Geting Orders",
+      error,
+    });
+  }
+};
+
+//get all orders by "Processing"
+export const getAllOrdersConByProccessingStatustroller = async (req, res) => {
+  try {
+    const orders = await orderModel
+      .find({ status: "Processing" })
+      .populate("products", "-photo")
+      .populate("buyer", "name")
+      .sort({ createdAt: "-1" });
+    res.json(orders);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error WHile Geting Orders",
+      error,
+    });
+  }
+};
+
+//get all orders by "Shipped"
+export const getAllOrdersConByShippedStatustroller = async (req, res) => {
+  try {
+    const orders = await orderModel
+      .find({ status: "Shipped" })
+      .populate("products", "-photo")
+      .populate("buyer", "name")
+      .sort({ createdAt: "-1" });
+    res.json(orders);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error WHile Geting Orders",
+      error,
+    });
+  }
+};
+
+//get all orders by "Deliverd"
+export const getAllOrdersConByDeliverdStatustroller = async (req, res) => {
+  try {
+    const orders = await orderModel
+      .find({ status: "deliverd" })
+      .populate("products", "-photo")
+      .populate("buyer", "name")
+      .sort({ createdAt: "-1" });
+    res.json(orders);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error WHile Geting Orders",
+      error,
+    });
+  }
+};
+
+//get all orders by "cancel"
+export const getAllOrdersConByCancelStatustroller = async (req, res) => {
+  try {
+    const orders = await orderModel
+      .find({ status: "cancel" })
       .populate("products", "-photo")
       .populate("buyer", "name")
       .sort({ createdAt: "-1" });
@@ -286,26 +383,111 @@ export const getPreorderController = async (req,res) => {
   }
 };
 
+//getttttt Pre-Orders หลายๆสถานะแยกกันจ้าๆๆๆ
 //get all Pre-order by preproduct preproductid
 export const getAllPreOrdersByPreProductIdController = async (req, res) => {
   try {
-    // const preproduct = await preproductModel.findOne({ preproduct: req.params.slug });
-    // const preorder = await preorderModel.findById( req.params.preproduct )
-    // .populate("products", "-photo")
-    // .populate("buyer", "name")
-    // .sort({ createdAt: "-1" });
-    // res.json(preorder);
-    // res.status(200).send({
-    //   success: true,
-    //   preorder,
-    // });
-    // const preorders = await preorderModel
-    //   .find({ preproduct: req.params.preproduct})
-    //   .populate("preproduct", "-photo")
-    //   .populate("buyer", "name");
-    // res.json(preorders);
     const preorders = await preorderModel
       .find({ preproduct: req.params.preproduct })
+      .populate("preproduct", "-photo")
+      .populate("buyer", "name")
+      .sort({ createdAt: "-1" });
+    res.json(preorders);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      error,
+      message: "Error While Getting Pre-order Products by preProduct id",
+    })
+  }
+};
+//get all Pre-order by preproduct preproductid "Not_Process"
+export const getAllPreOrdersByPreProductIdNot_ProcessController = async (req, res) => {
+  try {
+    const preorders = await preorderModel
+      .find({ preproduct: req.params.preproduct })
+      .find({ status: "Not_Process"})
+      .populate("preproduct", "-photo")
+      .populate("buyer", "name")
+      .sort({ createdAt: "-1" });
+    res.json(preorders);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      error,
+      message: "Error While Getting Pre-order Products by preProduct id",
+    })
+  }
+};
+
+//get all Pre-order by preproduct preproductid "Processing"
+export const getAllPreOrdersByPreProductIdProcessingController = async (req, res) => {
+  try {
+    const preorders = await preorderModel
+      .find({ preproduct: req.params.preproduct })
+      .find({status: "Processing"})
+      .populate("preproduct", "-photo")
+      .populate("buyer", "name")
+      .sort({ createdAt: "-1" });
+    res.json(preorders);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      error,
+      message: "Error While Getting Pre-order Products by preProduct id",
+    })
+  }
+};
+
+//get all Pre-order by preproduct preproductid "Shipped"
+export const getAllPreOrdersByPreProductIdShippedController = async (req, res) => {
+  try {
+    const preorders = await preorderModel
+      .find({ preproduct: req.params.preproduct })
+      .find({ status: "Shipped"})
+      .populate("preproduct", "-photo")
+      .populate("buyer", "name")
+      .sort({ createdAt: "-1" });
+    res.json(preorders);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      error,
+      message: "Error While Getting Pre-order Products by preProduct id",
+    })
+  }
+};
+
+//get all Pre-order by preproduct preproductid "Deliverd"
+export const getAllPreOrdersByPreProductIdDeliverdController = async (req, res) => {
+  try {
+    const preorders = await preorderModel
+      .find({ preproduct: req.params.preproduct })
+      .find({ status: "deliverd"})
+      .populate("preproduct", "-photo")
+      .populate("buyer", "name")
+      .sort({ createdAt: "-1" });
+    res.json(preorders);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      error,
+      message: "Error While Getting Pre-order Products by preProduct id",
+    })
+  }
+};
+
+//get all Pre-order by preproduct preproductid "cancel"
+export const getAllPreOrdersByPreProductIdCancelController = async (req, res) => {
+  try {
+    const preorders = await preorderModel
+      .find({ preproduct: req.params.preproduct })
+      .find({ status: "cancel"})
       .populate("preproduct", "-photo")
       .populate("buyer", "name")
       .sort({ createdAt: "-1" });

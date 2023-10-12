@@ -115,9 +115,13 @@ const ProductDetails = () => {
                 <div className="card-body">
                     <div className="card-name-price">
                     <h5 className=" name-product">{p.name}</h5>
-                    <p className="card-text product-quantity">
-                        {p.quantity} in stock
-                    </p>
+                    { !p.quantity <=0 ?(
+                        <p className="card-text product-quantity">
+                            {p.quantity} in stock
+                        </p>) : (
+                        <p className="card-text product-quantity">
+                            out of stock
+                        </p>)}
                     <h5 className="card-title product-price">
                         {p.price.toLocaleString("US", {
                         style: "currency",

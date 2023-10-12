@@ -273,9 +273,13 @@ useEffect(() => {
                                 <div className="card-body">
                                 <div className="card-name-price">
                                     <strong className=" name-product">{p.name}</strong>
+                                    { !p.quantity <=0 ?(
                                     <p className="card-text product-quantity">
-                                        {p.quantity} in stock
-                                    </p>
+                                    {p.quantity} in stock
+                                    </p>) : (
+                                    <p className="card-text product-quantity">
+                                        out of stock
+                                    </p>)}
                                     <h6 className="card-title product-price">
                                         {p.price.toLocaleString("US", {
                                             style: "currency",

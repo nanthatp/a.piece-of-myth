@@ -11,7 +11,17 @@ import {registerController,
     getPreorderController,
     getAllPreOrdersByPreProductIdController,
     preorderStatusController,
-    getAllPreOrdersController} from '../controllers/authController.js'
+    getAllPreOrdersController,
+    getAllOrdersConByNot_ProccessStatustroller,
+    getAllOrdersConByProccessingStatustroller,
+    getAllOrdersConByShippedStatustroller,
+    getAllOrdersConByDeliverdStatustroller,
+    getAllOrdersConByCancelStatustroller,
+    getAllPreOrdersByPreProductIdNot_ProcessController,
+    getAllPreOrdersByPreProductIdProcessingController,
+    getAllPreOrdersByPreProductIdShippedController,
+    getAllPreOrdersByPreProductIdDeliverdController,
+    getAllPreOrdersByPreProductIdCancelController} from '../controllers/authController.js'
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
 //route object
 const router = express.Router();
@@ -46,6 +56,21 @@ router.get("/orders", requireSignIn, getOrdersController);
 //all orders
 router.get("/all-orders", requireSignIn, isAdmin, getAllOrdersController);
 
+//all orders By "Not_Process"
+router.get("/all-not_process-orders", requireSignIn, isAdmin, getAllOrdersConByNot_ProccessStatustroller);
+
+//all orders By "Processing"
+router.get("/all-processing-orders", requireSignIn, isAdmin, getAllOrdersConByProccessingStatustroller);
+
+//all orders By "shipped"
+router.get("/all-shipped-orders", requireSignIn, isAdmin, getAllOrdersConByShippedStatustroller);
+
+//all orders By "Deliverd"
+router.get("/all-deliverd-orders", requireSignIn, isAdmin, getAllOrdersConByDeliverdStatustroller);
+
+//all orders By "cancel"
+router.get("/all-cancel-orders", requireSignIn, isAdmin, getAllOrdersConByCancelStatustroller);
+
 // order status update
 router.put(
     "/order-status/:orderId",
@@ -59,6 +84,21 @@ router.get("/preorders", requireSignIn, getPreorderController)
 
 //get all pre-order by Preproduct id
 router.get("/preorder-preproduct/:preproduct", requireSignIn,isAdmin,getAllPreOrdersByPreProductIdController)
+
+//get all pre-order by Preproduct id "Not_Process"
+router.get("/preorder-preproduct-not_process/:preproduct", requireSignIn,isAdmin,getAllPreOrdersByPreProductIdNot_ProcessController)
+
+//get all pre-order by Preproduct id "Processing"
+router.get("/preorder-preproduct-processing/:preproduct", requireSignIn,isAdmin,getAllPreOrdersByPreProductIdProcessingController)
+
+//get all pre-order by Preproduct id "Shipped"
+router.get("/preorder-preproduct-shipped/:preproduct", requireSignIn,isAdmin,getAllPreOrdersByPreProductIdShippedController)
+
+//get all pre-order by Preproduct id "deliverd"
+router.get("/preorder-preproduct-deliverd/:preproduct", requireSignIn,isAdmin,getAllPreOrdersByPreProductIdDeliverdController)
+
+//get all pre-order by Preproduct id "cancel"
+router.get("/preorder-preproduct-cancel/:preproduct", requireSignIn,isAdmin,getAllPreOrdersByPreProductIdCancelController)
 
 
 //all Pre-orders

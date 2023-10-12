@@ -1,20 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 import AdminMenu from "../../components/Layout/AdminMenu";
-import Layout from "../../components/Layout/Layout";
+import LayoutAdmin from "./../../components/Layout/LayoutAdmin";
+import { useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth";
 import moment from "moment";
 import { Select } from "antd";
-import LayoutAdmin from "./../../components/Layout/LayoutAdmin";
-import {commonrequest} from "../../Services/ApiCall";
-import {BASE_URL} from "../../Services/helper";
-import{BsArrowLeftCircleFill} from 'react-icons/bs';
-
+import Pagination from "../../components/Pagination";
 const { Option } = Select;
 
-function AdminPreorder() {
+function AdminDeliverdOrder() {
     const navigate = useNavigate();
     const params = useParams();
     const [status, setStatus] = useState([
@@ -25,102 +21,93 @@ function AdminPreorder() {
         "cancel",
     ]);
     const [changeStatus, setCHangeStatus] = useState("");
-    const [preorders, setPreorders] = useState([]);
-    const [ preorder, setPreorder ] = useState("");
+    const [orders, setOrders] = useState([]);
     const [auth, setAuth] = useAuth();
-    const getPreOrders = async () => {
+    const getOrders = async () => {
         try {
-        const { data } = await axios.get(`/api/v1/auth/preorder-preproduct-not_process/${params.preproduct}`);
-        setPreorders(data);
+        const { data } = await axios.get("/api/v1/auth/all-deliverd-orders");
+        setOrders(data);
         } catch (error) {
         console.log(error);
         }
     };
 
+    // const getOrdersBystatus = async () => {
+    //     try {
+    //     const { data } = await axios.get(`/api/v1/auth/get-preorder-by-status/${params.status}`);
+    //     setOrders(data);
+    //     } catch (error) {
+    //     console.log(error);
+    //     }
+    // };
+
     useEffect(() => {
-        if (auth?.token) getPreOrders();
+        if (auth?.token) getOrders();
+        // if (auth?.token) getOrdersBystatus();
     }, [auth?.token]);
 
-    const handleChange = async (preorderId, email, value) => {
+    const handleChange = async (orderId, value) => {
         try {
-        const { data } = await axios.put(`/api/v1/auth/preorder-status/${preorderId}`, {
+        const { data } = await axios.put(`/api/v1/auth/order-status/${orderId}`, {
             status: value,
-            email : email,
         });
-        getPreOrders();
+        getOrders();
         } catch (error) {
-            console.log(error);
+        console.log(error);
         }
     };
 
-    const exporttocsvfunc = async()=>{
-        console.log("params =",params)
-        return await commonrequest("GET",`${BASE_URL}/api/v1/preproduct/preorder-export-not-process/${params.preproduct}`,"");
-    }
+    // ======= Pagination ======//
+    
 
-     // export Preorder
-    const exportPreorder = async()=>{
-    const response = await exporttocsvfunc();
-    if(response.status === 200){
-      window.open(response.data.downloadUrl,"blank")
-    }else{
-      toast.error("error !")
-    }
-  }
+
+
+    // ======= Pagination ======//
     return (
-        <LayoutAdmin title={"All Orders Data"}>
+        <>
+            <LayoutAdmin title={"All Orders Data"}>
         <div className="row dashboard">
             <div className="col-md-3">
             <AdminMenu />
             </div>
-            <div className="col-md-9">
-                <div className="col-md-3 d-flex ">
-                    
-                    <button
-                        className="btn"
-                        onClick={() => navigate(`/dashboard/admin/preorder`)}
-                        >
-                            pre-oreder Management page
-                            <BsArrowLeftCircleFill color="#0DA574" style={{ fontSize: '50px' }}/>
-                        </button>
-                            
-                </div>
-            <h1 className="text-center">All Not_Process Pre-Orders - {preorders.length}</h1>
+            <div className="col py-3">
+            <h1 className="text-center">All Deliverd Orders - {orders.length}</h1>
             <div className="btn-group mr-2" role="group">
                 <button className="btn btn-secondary" 
-                onClick={() => navigate(`/dashboard/admin/preorder/${params.preproduct}`)}
-                disabled
+                onClick={() => navigate(`/dashboard/admin/orders`)}
                 >
                     Not_Process
                 </button>
                 <button className="btn btn-secondary" 
-                onClick={() => navigate(`/dashboard/admin/preorder-processing/${params.preproduct}`)}
+                onClick={() => navigate(`/dashboard/admin/orders-process`)}
                 >
                     Processing
                 </button>
                 <button className="btn btn-secondary" 
-                onClick={() => navigate(`/dashboard/admin/preorder-shipped/${params.preproduct}`)}
+                onClick={() => navigate(`/dashboard/admin/orders-shipped`)}
                 >
                     Shipped
                 </button>
                 <button className="btn btn-secondary" 
-                onClick={() => navigate(`/dashboard/admin/preorder-deliverd/${params.preproduct}`)}
+                onClick={() => navigate(`/dashboard/admin/orders-deliverd`)}
+                disabled
                 >
                     Deliverd
                 </button>
                 <button className="btn btn-secondary" 
-                onClick={() => navigate(`/dashboard/admin/preorder-cancel/${params.preproduct}`)}
+                onClick={() => navigate(`/dashboard/admin/orders-cancel`)}
                 >
                     Cancel
                 </button>
             </div>
-            <div className="col-md-3">
-                <button className="btn-csv" onClick={exportPreorder}
-                disabled = {preorders.length <= 0}>
-                    export to CSV
-                </button>
-            </div>
-            {preorders?.map((o, i) => {
+            {/* <div className="btn-group">
+                <a href="/dashboard/admin/orders/Not_Process" className="btn btn-primary">Not_Process</a>
+                <a href="/dashboard/admin/orders/Processing" className="btn btn-primary">Processing</a>
+                <a href="/dashboard/admin/orders/Shipped" className="btn btn-primary">Shipped</a>
+                <a href="/dashboard/admin/orders/deliverd" className="btn btn-primary">deliverd</a>
+                <a href="/dashboard/admin/orders/cancel" className="btn btn-primary">cancel</a>
+            </div> */}
+            {orders?.map((o, i) => {
                 return (
                 <div className="border shadow">
                     <table className="table">
@@ -140,7 +127,7 @@ function AdminPreorder() {
                         <td>
                             <Select
                             bordered={false}
-                            onChange={(value) => handleChange(o._id, o.email, value)}
+                            onChange={(value) => handleChange(o._id, value)}
                             defaultValue={o?.status}
                             >
                             {status.map((s, i) => (
@@ -151,22 +138,21 @@ function AdminPreorder() {
                             </Select>
                         </td>
                         <td>{o?.buyer?.name}</td>
-                        <td>{moment(o?.createdAt).format('YYYY-MM-DD hh:mm:ss')}</td>
+                        <td>{moment(o?.createAt).format('YYYY-MM-DD hh:mm:ss')}</td>
                         <td>{o?.payment.success ? "Success" : "Failed"}</td>
-                        <td>{o?.quantity}</td>
+                        <td>{o?.products?.length}</td>
                         </tr>
                     </tbody>
                     </table>
                     <div className="container">
-                    {o?.preproduct?.map((p, i) => (
+                    {o?.products?.map((p, i) => (
                         <div className="row mb-2 p-3 card flex-row" key={p._id}>
                         <div className="col-md-4">
                             <img
-                            src={`/api/v1/preproduct/preproduct-photo/${p._id}`}
+                            src={`/api/v1/product/product-photo/${p._id}`}
                             className="card-img-top"
                             alt={p.name}
-                            // width="100px"
-                            // height={"100px"}
+                            
                             />
                         </div>
                         <div className="col-md-8">
@@ -181,9 +167,13 @@ function AdminPreorder() {
                 );
             })}
             </div>
+
         </div>
         </LayoutAdmin>
+        <Pagination/>
+        </>
+        
     );
 }
 
-export default AdminPreorder
+export default AdminDeliverdOrder

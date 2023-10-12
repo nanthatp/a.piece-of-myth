@@ -123,7 +123,7 @@ const getSinglePreProduct = async () => {
   }
 };
 
-function disableButton (){
+function disableButton (until){
   let currentDate = new Date()
   let endDate = new Date(until)
   console.log("currentDate = ", currentDate)
@@ -272,7 +272,7 @@ useEffect(() => {
                         ||!auth?.user?.postalcode 
                         || !auth?.user?.province 
                         || auth?.user?.role === 1
-                        ||disableButton ()}
+                        ||disableButton (preproduct.until)}
                     >
                       {loading ? "Processing ...." : "PRE ORDER NOW"}
                     </button>
@@ -307,6 +307,9 @@ useEffect(() => {
                 <div className="card-body">
                     <div className="card-name-price">
                     <h5 className=" name-product">{p.name}</h5>
+                    <p className="card-text product-quantity">
+                      End : {moment(p.until).locale('th').format('YYYY-MM-DD hh:mm')}
+                    </p>
                     <h5 className="card-title product-price">
                         {p.price.toLocaleString("US", {
                         style: "currency",
@@ -317,6 +320,7 @@ useEffect(() => {
                     <div className="card-name-price">
                     <button
                         className="btn-add"
+                        disabled={auth?.user?.role === 1 ||disableButton (p.until)}
                         onClick={() => navigate(`/preproduct/${p.slug}`)}
                         >
                         <BsFillBagHeartFill/> Pre-Order Now

@@ -217,16 +217,16 @@ useEffect(() => {
     }
   };
 
-  // function disableButton (){
-  //   let currentDate = new Date()
-  //   let endDate = new Date(until)
-  //   console.log("currentDate = ", currentDate)
-  //   console.log("endDate = ", endDate-currentDate)
-  //   if (endDate - currentDate < 0){
-  //     return true
-  //   }
-  //   return false;
-  // }
+  function disableButton (until){
+    let currentDate = new Date()
+    let endDate = new Date(until)
+    console.log("currentDate = ", currentDate)
+    console.log("endDate = ", endDate-currentDate)
+    if (endDate - currentDate < 0){
+      return true
+    }
+    return false;
+  }
 
   //get single product
 const getSinglePreProduct = async () => {
@@ -379,7 +379,7 @@ const getSinglePreProduct = async () => {
                               <div className="card-name-price">
                                 <h5 className=" name-product">{p.name}</h5>
                                 <p className="card-text product-quantity">
-                                End: {moment(preproducts.until).locale('th').format('YYYY-MM-DD hh:mm')}
+                                End: {moment(p.until).locale('th').format('YYYY-MM-DD hh:mm')}
                                 </p>
                                 {/* <p className="card-text product-quantity">
                                   time limit: {moment(until).locale('th').format('YYYY-MM-DD hh:mm')}
@@ -393,11 +393,8 @@ const getSinglePreProduct = async () => {
                               </div>
                               <div className="card-name-price">
                                 <button
-                                    // disabled={ 
-                                    //   // ||disableButton ()
-                                    // }
                                     className="btn-add"
-                                    disabled={auth?.user?.role === 1}
+                                    disabled={auth?.user?.role === 1 || disableButton (p.until)}
                                     onClick={() => navigate(`/preproduct/${p.slug}`)}
                                   >
                                   <BsFillBagHeartFill/> Pre-Order Now
@@ -440,9 +437,13 @@ const getSinglePreProduct = async () => {
                         <div className="card-body">
                           <div className="card-name-price">
                             <strong className=" name-product">{p.name}</strong>
+                            { !p.quantity <=0 ?(
                             <p className="card-text product-quantity">
                               {p.quantity} in stock
-                            </p>
+                            </p>) : (
+                              <p className="card-text product-quantity">
+                                out of stock
+                              </p>)}
                             <h6 className="card-title product-price">
                               {p.price.toLocaleString("US", {
                                 style: "currency",

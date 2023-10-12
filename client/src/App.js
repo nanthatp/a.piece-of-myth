@@ -51,6 +51,15 @@ import ShowCollection from './pages/ShowCollection';
 import Collections from './pages/Collections';
 import InvisiblePreProduct from './pages/Admin/InvisiblePreProduct';
 import InvisibleProduct from './pages/Admin/InvisibleProduct';
+import AdminProcessingOrders from './pages/Admin/AdminProcessingOrders';
+import AdminShippedOrder from './pages/Admin/AdminShippedOrder';
+import AdminDeliverdOrder from './pages/Admin/AdminDeliverdOrder';
+import AdminCancelOrders from './pages/Admin/AdminCancelOrders';
+import AdminProcessingPreorder from './pages/Admin/AdminProcessingPreorder';
+import AdminShippedPreOrder from './pages/Admin/AdminShippedPreOrder';
+import AdminDeliverdPreorder from './pages/Admin/AdminDeliverdPreorder';
+import AdminCancelPreorder from './pages/Admin/AdminCancelPreorder';
+import DownloadedCsvPage from './pages/DownloadedCsvPage';
 
 
 function App() {
@@ -91,6 +100,10 @@ function App() {
         <Route path="admin/invisible-preproduct" element={<InvisiblePreProduct />} />
         <Route path="admin/invisible-product" element={<InvisibleProduct />} />
         <Route path="admin/orders" element={<AdminOrders />} />
+        <Route path="admin/orders-process" element={<AdminProcessingOrders />} />
+        <Route path="admin/orders-shipped" element={<AdminShippedOrder />} />
+        <Route path="admin/orders-deliverd" element={<AdminDeliverdOrder />} />
+        <Route path="admin/orders-cancel" element={<AdminCancelOrders />} />
         <Route path="admin/banners" element={<Banners />} />
         <Route path="admin/artists" element={<Artists />} />
         <Route path="admin/banner/:slug" element={<UpdateBanner />} />
@@ -99,6 +112,10 @@ function App() {
         <Route path="admin/preproduct" element={<Preproducts />} />
         <Route path="admin/preorder" element={<AdminPreorderManage />} />
         <Route path="admin/preorder/:preproduct" element={<AdminPreorder />} />
+        <Route path="admin/preorder-processing/:preproduct" element={<AdminProcessingPreorder />} />
+        <Route path="admin/preorder-shipped/:preproduct" element={<AdminShippedPreOrder />} />
+        <Route path="admin/preorder-deliverd/:preproduct" element={<AdminDeliverdPreorder />} />
+        <Route path="admin/preorder-cancel/:preproduct" element={<AdminCancelPreorder />} />
         
         
       </Route>
@@ -106,6 +123,7 @@ function App() {
       <Route path='/about' element={<About/>} />
       <Route path='/contact' element={<Contact/>} />
       <Route path='/policy' element={<Policy/>} />
+      <Route path='/preorders.csv' element={<DownloadedCsvPage/>} />
       <Route path='*' element={<Pagenotfound/>} />
       <Route path="/login" element={<Login />} />
       <Route path='/forgot-password' element={<ForgotPassword/>} />

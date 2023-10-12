@@ -11,6 +11,7 @@ import Pagination from "../../components/Pagination";
 const { Option } = Select;
 
 const AdminOrders = () => {
+    const navigate = useNavigate();
     const params = useParams();
     const [status, setStatus] = useState([
         "Not_Process",
@@ -24,7 +25,7 @@ const AdminOrders = () => {
     const [auth, setAuth] = useAuth();
     const getOrders = async () => {
         try {
-        const { data } = await axios.get("/api/v1/auth/all-orders");
+        const { data } = await axios.get("/api/v1/auth/all-not_process-orders");
         setOrders(data);
         } catch (error) {
         console.log(error);
@@ -70,7 +71,35 @@ const AdminOrders = () => {
             <AdminMenu />
             </div>
             <div className="col py-3">
-            <h1 className="text-center">All Orders</h1>
+            <h1 className="text-center">All Not_Process Orders - {orders.length}</h1>
+            <div className="btn-group mr-2" role="group">
+            <button className="btn btn-secondary" 
+                onClick={() => navigate(`/dashboard/admin/orders`)}
+                disabled
+                >
+                    Not_Process
+                </button>
+                <button className="btn btn-secondary" 
+                onClick={() => navigate(`/dashboard/admin/orders-process`)}
+                >
+                    Processing
+                </button>
+                <button className="btn btn-secondary" 
+                onClick={() => navigate(`/dashboard/admin/orders-shipped`)}
+                >
+                    Shipped
+                </button>
+                <button className="btn btn-secondary" 
+                onClick={() => navigate(`/dashboard/admin/orders-deliverd`)}
+                >
+                    Deliverd
+                </button>
+                <button className="btn btn-secondary" 
+                onClick={() => navigate(`/dashboard/admin/orders-cancel`)}
+                >
+                    Cancel
+                </button>
+            </div>
             {/* <div className="btn-group">
                 <a href="/dashboard/admin/orders/Not_Process" className="btn btn-primary">Not_Process</a>
                 <a href="/dashboard/admin/orders/Processing" className="btn btn-primary">Processing</a>

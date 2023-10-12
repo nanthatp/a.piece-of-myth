@@ -20,7 +20,12 @@ import { createPreProductController,
         preproductCollectionBySlugController,
         getPreProductVisibleController,
         getPreProductInvisibleController,
-        deleteInvisiblePreProductController} from "../controllers/preproductController.js";
+        deleteInvisiblePreProductController,
+        preorderNot_ProcessStatusExport,
+        preorderProcessingStatusExport,
+        preorderShippedStatusExport,
+        preorderDeliverdStatusExport,
+        preorderCancelStatusExport} from "../controllers/preproductController.js";
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
 import formidable from "express-formidable";
 
@@ -93,6 +98,21 @@ router.get("/preproduct-collection-by-slug/:slug", preproductCollectionBySlugCon
 
 //-------export Pre-order product-------//
 router.get("/preorder-export/:preproduct", preorderExport)
+
+//-------export Pre-order product-------//
+router.get("/preorder-export-not-process/:preproduct", preorderNot_ProcessStatusExport)
+
+//-------export Pre-order product-------//
+router.get("/preorder-export-processing/:preproduct", preorderProcessingStatusExport)
+
+//-------export Pre-order product-------//
+router.get("/preorder-export-shipped/:preproduct", preorderShippedStatusExport)
+
+//-------export Pre-order product-------//
+router.get("/preorder-export-deliverd/:preproduct", preorderDeliverdStatusExport)
+
+//-------export Pre-order product-------//
+router.get("/preorder-export-cancel/:preproduct", preorderCancelStatusExport)
 
 //--------get Pre-order product by status-------------//
 router.get("/get-preorder-by-status/:status", requireSignIn,isAdmin,preproductBystatusController)

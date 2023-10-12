@@ -504,6 +504,7 @@ export const preproductCollectionBySlugController = async (req, res) => {
     }
 };
 
+//download csv
 export const preorderExport = async (req, res) => {
     try {
         const preorderdata = await preorderModel.find({ preproduct: req.params.preproduct })
@@ -513,17 +514,273 @@ export const preorderExport = async (req, res) => {
 
         const csvStream = csv.format({ headers: true });
 
-        if (!fs.existsSync("Desktop/")) {
-            if (!fs.existsSync("Desktop")) {
-                fs.mkdirSync("Desktop/");
+        if (!fs.existsSync("csv_PreOrder_Data/")) {
+            if (!fs.existsSync("csv_PreOrder_Data")) {
+                fs.mkdirSync("csv_PreOrder_Data/");
             }
-            if (!fs.existsSync("Desktop")) {
-                fs.mkdirSync("./Desktop/");
+            if (!fs.existsSync("csv_PreOrder_Data")) {
+                fs.mkdirSync("./csv_PreOrder_Data/");
             }
         }
         console.log("req.params=" ,req.params )
         const writablestream = fs.createWriteStream(
-            `Desktop/preorders_${req.params.preproduct}.csv`
+            `csv_PreOrder_Data/preorders_${req.params.preproduct}.csv`
+        );
+
+        csvStream.pipe(writablestream);
+
+        writablestream.on("finish", function () {
+            res.json({
+                downloadUrl: "http://localhost:3000/preorders.csv",
+            });
+        });
+        if (preorderdata.length > 0) {
+            preorderdata.map((preorders) => {
+                csvStream.write({
+                    id: preorders.id ? preorders.id : "-",
+                    preproduct: preorders.preproduct ? preorders.preproduct : "-",
+                    buyer: preorders.buyer ? preorders.buyer  : "-",
+                    quantity: preorders.quantity ? preorders.quantity : "-",
+                    status: preorders.status ? preorders.status : "-",
+                    DateCreated: preorders.createdAt ? preorders.createdAt : "-",
+                })
+            })
+        }
+        csvStream.end();
+        writablestream.end();
+
+    } catch (error) {
+        res.status(401).json(error)
+    }
+};
+
+//download csv By not process status
+export const preorderNot_ProcessStatusExport = async (req, res) => {
+    try {
+        const preorderdata = await preorderModel.find({ preproduct: req.params.preproduct })
+        .find({ status: "Not_Process"})
+        .populate("buyer", ["name", "address", "postalcode", "province", "province", "phone", "email"])
+        .populate("preproduct", ["name", "price"]);
+        
+
+        const csvStream = csv.format({ headers: true });
+
+        if (!fs.existsSync("csv_PreOrder_Data/")) {
+            if (!fs.existsSync("csv_PreOrder_Data")) {
+                fs.mkdirSync("csv_PreOrder_Data/");
+            }
+            if (!fs.existsSync("csv_PreOrder_Data")) {
+                fs.mkdirSync("./csv_PreOrder_Data/");
+            }
+        }
+        console.log("req.params=" ,req.params )
+        const writablestream = fs.createWriteStream(
+            `csv_PreOrder_Data/preorders_${req.params.preproduct}_Not_Process.csv`
+        );
+
+        csvStream.pipe(writablestream);
+
+        writablestream.on("finish", function () {
+            res.json({
+                downloadUrl: "http://localhost:3000/preorders.csv",
+            });
+        });
+        if (preorderdata.length > 0) {
+            preorderdata.map((preorders) => {
+                csvStream.write({
+                    id: preorders.id ? preorders.id : "-",
+                    preproduct: preorders.preproduct ? preorders.preproduct : "-",
+                    buyer: preorders.buyer ? preorders.buyer  : "-",
+                    quantity: preorders.quantity ? preorders.quantity : "-",
+                    status: preorders.status ? preorders.status : "-",
+                    DateCreated: preorders.createdAt ? preorders.createdAt : "-",
+                })
+            })
+        }
+        csvStream.end();
+        writablestream.end();
+
+    } catch (error) {
+        res.status(401).json(error)
+    }
+};
+
+//download csv By processing status
+export const preorderProcessingStatusExport = async (req, res) => {
+    try {
+        const preorderdata = await preorderModel.find({ preproduct: req.params.preproduct })
+        .find({ status: "Processing"})
+        .populate("buyer", ["name", "address", "postalcode", "province", "province", "phone", "email"])
+        .populate("preproduct", ["name", "price"]);
+        
+
+        const csvStream = csv.format({ headers: true });
+
+        if (!fs.existsSync("csv_PreOrder_Data/")) {
+            if (!fs.existsSync("csv_PreOrder_Data")) {
+                fs.mkdirSync("csv_PreOrder_Data/");
+            }
+            if (!fs.existsSync("csv_PreOrder_Data")) {
+                fs.mkdirSync("./csv_PreOrder_Data/");
+            }
+        }
+        console.log("req.params=" ,req.params )
+        const writablestream = fs.createWriteStream(
+            `csv_PreOrder_Data/preorders_${req.params.preproduct}_Processing.csv`
+        );
+
+        csvStream.pipe(writablestream);
+
+        writablestream.on("finish", function () {
+            res.json({
+                downloadUrl: "http://localhost:3000/preorders.csv",
+            });
+        });
+        if (preorderdata.length > 0) {
+            preorderdata.map((preorders) => {
+                csvStream.write({
+                    id: preorders.id ? preorders.id : "-",
+                    preproduct: preorders.preproduct ? preorders.preproduct : "-",
+                    buyer: preorders.buyer ? preorders.buyer  : "-",
+                    quantity: preorders.quantity ? preorders.quantity : "-",
+                    status: preorders.status ? preorders.status : "-",
+                    DateCreated: preorders.createdAt ? preorders.createdAt : "-",
+                })
+            })
+        }
+        csvStream.end();
+        writablestream.end();
+
+    } catch (error) {
+        res.status(401).json(error)
+    }
+};
+
+
+//download csv By shipped status
+export const preorderShippedStatusExport = async (req, res) => {
+    try {
+        const preorderdata = await preorderModel.find({ preproduct: req.params.preproduct })
+        .find({ status: "Shipped"})
+        .populate("buyer", ["name", "address", "postalcode", "province", "province", "phone", "email"])
+        .populate("preproduct", ["name", "price"]);
+        
+
+        const csvStream = csv.format({ headers: true });
+
+        if (!fs.existsSync("csv_PreOrder_Data/")) {
+            if (!fs.existsSync("csv_PreOrder_Data")) {
+                fs.mkdirSync("csv_PreOrder_Data/");
+            }
+            if (!fs.existsSync("csv_PreOrder_Data")) {
+                fs.mkdirSync("./csv_PreOrder_Data/");
+            }
+        }
+        console.log("req.params=" ,req.params )
+        const writablestream = fs.createWriteStream(
+            `csv_PreOrder_Data/preorders_${req.params.preproduct}_Shipped.csv`
+        );
+
+        csvStream.pipe(writablestream);
+
+        writablestream.on("finish", function () {
+            res.json({
+                downloadUrl: "http://localhost:3000/preorders.csv",
+            });
+        });
+        if (preorderdata.length > 0) {
+            preorderdata.map((preorders) => {
+                csvStream.write({
+                    id: preorders.id ? preorders.id : "-",
+                    preproduct: preorders.preproduct ? preorders.preproduct : "-",
+                    buyer: preorders.buyer ? preorders.buyer  : "-",
+                    quantity: preorders.quantity ? preorders.quantity : "-",
+                    status: preorders.status ? preorders.status : "-",
+                    DateCreated: preorders.createdAt ? preorders.createdAt : "-",
+                })
+            })
+        }
+        csvStream.end();
+        writablestream.end();
+
+    } catch (error) {
+        res.status(401).json(error)
+    }
+};
+
+//download csv By deliverd status
+export const preorderDeliverdStatusExport = async (req, res) => {
+    try {
+        const preorderdata = await preorderModel.find({ preproduct: req.params.preproduct })
+        .find({ status: "deliverd"})
+        .populate("buyer", ["name", "address", "postalcode", "province", "province", "phone", "email"])
+        .populate("preproduct", ["name", "price"]);
+        
+
+        const csvStream = csv.format({ headers: true });
+
+        if (!fs.existsSync("csv_PreOrder_Data/")) {
+            if (!fs.existsSync("csv_PreOrder_Data")) {
+                fs.mkdirSync("csv_PreOrder_Data/");
+            }
+            if (!fs.existsSync("csv_PreOrder_Data")) {
+                fs.mkdirSync("./csv_PreOrder_Data/");
+            }
+        }
+        console.log("req.params=" ,req.params )
+        const writablestream = fs.createWriteStream(
+            `csv_PreOrder_Data/preorders_${req.params.preproduct}_Deliverd.csv`
+        );
+
+        csvStream.pipe(writablestream);
+
+        writablestream.on("finish", function () {
+            res.json({
+                downloadUrl: "http://localhost:3000/preorders.csv",
+            });
+        });
+        if (preorderdata.length > 0) {
+            preorderdata.map((preorders) => {
+                csvStream.write({
+                    id: preorders.id ? preorders.id : "-",
+                    preproduct: preorders.preproduct ? preorders.preproduct : "-",
+                    buyer: preorders.buyer ? preorders.buyer  : "-",
+                    quantity: preorders.quantity ? preorders.quantity : "-",
+                    status: preorders.status ? preorders.status : "-",
+                    DateCreated: preorders.createdAt ? preorders.createdAt : "-",
+                })
+            })
+        }
+        csvStream.end();
+        writablestream.end();
+
+    } catch (error) {
+        res.status(401).json(error)
+    }
+};
+
+//download csv By cancel status
+export const preorderCancelStatusExport = async (req, res) => {
+    try {
+        const preorderdata = await preorderModel.find({ preproduct: req.params.preproduct })
+        .find({ status: "cancel"})
+        .populate("buyer", ["name", "address", "postalcode", "province", "province", "phone", "email"])
+        .populate("preproduct", ["name", "price"]);
+        
+
+        const csvStream = csv.format({ headers: true });
+
+        if (!fs.existsSync("csv_PreOrder_Data/")) {
+            if (!fs.existsSync("csv_PreOrder_Data")) {
+                fs.mkdirSync("csv_PreOrder_Data/");
+            }
+            if (!fs.existsSync("csv_PreOrder_Data")) {
+                fs.mkdirSync("./csv_PreOrder_Data/");
+            }
+        }
+        console.log("req.params=" ,req.params )
+        const writablestream = fs.createWriteStream(
+            `csv_PreOrder_Data/preorders_${req.params.preproduct}_Cancel.csv`
         );
 
         csvStream.pipe(writablestream);
