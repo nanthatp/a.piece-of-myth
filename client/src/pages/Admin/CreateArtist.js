@@ -22,12 +22,25 @@ const CreateProduct = () => {
     //create artist function
     const handleCreate = async (e) => {
         e.preventDefault();
+        if (name.trim() === "") {
+            // กรณีชื่อศิลปินเป็นค่าว่าง
+            Swal.fire({
+                position: 'top-center',
+                icon: ' ',
+                title: 'Created!',
+                text: 'Please enter a name for the artist',
+                showConfirmButton: false,
+                timer: 3000
+            });
+            return;
+        }
+        
         try {
             const artistData = new FormData();
             artistData.append("name", name);
             artistData.append("photo", photo);
             artistData.append("member", member);
-            const { data } = axios.post(
+            const { data } = await axios.post(
                 "/api/v1/artist/create-artist",
                 artistData
             );
@@ -41,16 +54,16 @@ const CreateProduct = () => {
                     text: 'Artist has been created.',
                     showConfirmButton: false,
                     timer: 3000
-                })
-                navigate("/dashboard/admin/artists");
-                window.location.reload();
+                });
+                // navigate("/dashboard/admin/artists");
+                // window.location.reload();
             }
         } catch (error) {
-        console.log(error);
-        toast.error("something went wrong");
+            console.log(error);
+            toast.error("Something went wrong");
         }
     };
-
+    
     return (
     <LayoutAdmin title={"Dashboard - Create Category"}>
         <div className="row dashboard">
@@ -65,71 +78,60 @@ const CreateProduct = () => {
                 </div>
                 
             </div>
-                <div className="container text-center  create-product">
-                    <div className="row justify-content-evenly">
-                    <div className="col-4 add-photo">
-                        <div className="mb-3">
-                            <label className="btn-upload-photo col-md-12">
-                                
-                                {photo ? photo.name : "Upload Loco"}
-                                <input
-                                    type="file"
-                                    name="photo"
-                                    accept="image/*"
-                                    onChange={(e) => setPhoto(e.target.files[0])}
-                                    hidden
-                                />
-                            </label>
-                        </div>
-                        <div className="mb-3">
-                            {photo && (
-                                <div className="text-center">
-                                    <img
-                                        src={URL.createObjectURL(photo)}
-                                        alt="loco_photo"
-                                        height={"200px"}
-                                        className="img img-responsive"
-                                    />
-                                </div>
-                            )}
-                        </div>
-                        </div>
-                    <div className="col-4">
-                        <div className="mb-3">
-                                <textarea
-                                    type="text"
-                                    value={name}
-                                    placeholder="write a name artist"
-                                    className="form-control"
-                                    onChange={(e) => setName(e.target.value)}
-                                />
-                        </div>
-
-                        {/* <div className="mb-3">
-                            <textarea
-                                type="text"
-                                value={member}
-                                placeholder="write a name member"
-                                className="form-control"
-                                onChange={(e) => setMember(e.target.value)}
+            <form class="row g-3 needs-validation" >
+            <div className="container text-center  create-product">
+                <div className="row justify-content-evenly">
+                <div className="col-4 add-photo">
+                    <div className="mb-3">
+                        <label className="btn-upload-photo col-md-12">
+                            
+                            {photo ? photo.name : "Upload Loco"}
+                            <input
+                                type="file"
+                                name="photo"
+                                accept="image/*"
+                                onChange={(e) => setPhoto(e.target.files[0])}
+                                hidden
                             />
-                        </div> */}
-                    </div>
+                        </label>
                     </div>
                     <div className="mb-3">
-                            <button className="btn-create-product" onClick={handleCreate}>
-                            CREATE ARTIST
-                            </button>
-                    </div>
+                        {photo && (
+                            <div className="text-center">
+                                <img
+                                    src={URL.createObjectURL(photo)}
+                                    alt="loco_photo"
+                                    height={"200px"}
+                                    className="img img-responsive"
+                                />
+                            </div>
+                        )}
                     </div>
                 </div>
+                <div className="col-4">
+                    <div className="mb-3">
+                    <input
+    type="text"
+    value={name}
+    placeholder="write a name artist"
+    className="form-control"
+    onChange={(e) => setName(e.target.value)}
+    required
+/>
+                    </div>
+                </div>
+                </div>
+                <div className="mb-3">
+                    <button className="btn-create-product" onClick={handleCreate}>
+                        CREATE ARTIST
+                    </button>
+                </div>
+                </div>
+                </form>
+
             </div>
-
-        
-        
+        </div>
     </LayoutAdmin>
-
-
 );
 };
 

@@ -72,29 +72,29 @@ function AdminDeliverdOrder() {
             </div>
             <div className="col py-3">
             <h1 className="text-center">All Deliverd Orders - {orders.length}</h1>
-            <div className="btn-group mr-2" role="group">
-                <button className="btn btn-secondary" 
+            <div className="d-flex justify-content-center btn-group mr-2" role="group">
+                <button className="btn-process" 
                 onClick={() => navigate(`/dashboard/admin/orders`)}
                 >
-                    Not_Process
+                    Not Process
                 </button>
-                <button className="btn btn-secondary" 
+                <button className="btn-process" 
                 onClick={() => navigate(`/dashboard/admin/orders-process`)}
                 >
                     Processing
                 </button>
-                <button className="btn btn-secondary" 
+                <button className="btn-process" 
                 onClick={() => navigate(`/dashboard/admin/orders-shipped`)}
                 >
                     Shipped
                 </button>
-                <button className="btn btn-secondary" 
+                <button className="btn-process" 
                 onClick={() => navigate(`/dashboard/admin/orders-deliverd`)}
                 disabled
                 >
-                    Deliverd
+                    Delivered
                 </button>
-                <button className="btn btn-secondary" 
+                <button className="btn-process" 
                 onClick={() => navigate(`/dashboard/admin/orders-cancel`)}
                 >
                     Cancel

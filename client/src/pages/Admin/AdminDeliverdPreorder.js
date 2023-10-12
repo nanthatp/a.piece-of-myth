@@ -79,41 +79,40 @@ function AdminDeliverdPreorder() {
                         className="btn"
                         onClick={() => navigate(`/dashboard/admin/preorder`)}
                         >
-                            pre-oreder Management page
                             <BsArrowLeftCircleFill color="#0DA574" style={{ fontSize: '50px' }}/>
                         </button>
                             
                 </div>
             <h1 className="text-center">All Deliverd Pre-Orders - {preorders.length}</h1>
-            <div className="btn-group mr-2" role="group">
-                <button className="btn btn-secondary" 
+            <div className="d-flex justify-content-center btn-group mr-2" role="group">
+                <button className="btn-process" 
                 onClick={() => navigate(`/dashboard/admin/preorder/${params.preproduct}`)}
                 >
-                    Not_Process
+                    Not Process
                 </button>
-                <button className="btn btn-secondary" 
+                <button className="btn-process" 
                 onClick={() => navigate(`/dashboard/admin/preorder-processing/${params.preproduct}`)}
                 >
                     Processing
                 </button>
-                <button className="btn btn-secondary" 
+                <button className="btn-process" 
                 onClick={() => navigate(`/dashboard/admin/preorder-shipped/${params.preproduct}`)}
                 >
                     Shipped
                 </button>
-                <button className="btn btn-secondary" 
+                <button className="btn-process" 
                 onClick={() => navigate(`/dashboard/admin/preorder-deliverd/${params.preproduct}`)}
                 disabled
                 >
-                    Deliverd
+                    Delivered
                 </button>
-                <button className="btn btn-secondary" 
+                <button className="btn-process" 
                 onClick={() => navigate(`/dashboard/admin/preorder-cancel/${params.preproduct}`)}
                 >
                     Cancel
                 </button>
             </div>
-            <div className="col-md-3">
+            <div className="col-md-3 ">
                 <button className="btn-csv" onClick={exportPreorder}
                 disabled = {preorders.length <= 0}>
                     export to CSV

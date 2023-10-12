@@ -71,30 +71,30 @@ const AdminOrders = () => {
             <AdminMenu />
             </div>
             <div className="col py-3">
-            <h1 className="text-center">All Not_Process Orders - {orders.length}</h1>
-            <div className="btn-group mr-2" role="group">
-            <button className="btn btn-secondary" 
+            <h1 className="text-center">All Not Process Orders - {orders.length}</h1>
+            <div className="d-flex justify-content-center btn-group mr-2" role="group">
+            <button className="btn-process" 
                 onClick={() => navigate(`/dashboard/admin/orders`)}
                 disabled
                 >
-                    Not_Process
+                    Not Process
                 </button>
-                <button className="btn btn-secondary" 
+                <button className="btn-process" 
                 onClick={() => navigate(`/dashboard/admin/orders-process`)}
                 >
                     Processing
                 </button>
-                <button className="btn btn-secondary" 
+                <button className="btn-process" 
                 onClick={() => navigate(`/dashboard/admin/orders-shipped`)}
                 >
                     Shipped
                 </button>
-                <button className="btn btn-secondary" 
+                <button className="btn-process" 
                 onClick={() => navigate(`/dashboard/admin/orders-deliverd`)}
                 >
-                    Deliverd
+                    Delivered
                 </button>
-                <button className="btn btn-secondary" 
+                <button className="btn-process" 
                 onClick={() => navigate(`/dashboard/admin/orders-cancel`)}
                 >
                     Cancel
