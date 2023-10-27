@@ -60,7 +60,7 @@ const ProfileAdmin= () => {
         ls.user = data.updatedUser;
         localStorage.setItem("auth", JSON.stringify(ls));
         toast.success("Profile Updated Successfully");
-        navigate("/dashboard/user");
+        navigate("/dashboard/admin");
         window.location.reload();
       }
     } catch (error) {
@@ -117,7 +117,7 @@ const ProfileAdmin= () => {
                           />
                         </div>
 
-                        <div className="mb-3">
+                        {/* <div className="mb-3">
                             <Select
                                 bordered={false}
                                 placeholder="Select Status"
@@ -132,7 +132,7 @@ const ProfileAdmin= () => {
                                 <Option value="o">user</Option>
                                 <Option value="1">admin</Option>
                             </Select>
-                          </div>
+                          </div> */}
                       </div>
 
                         <div className="col-6">

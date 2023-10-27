@@ -41,7 +41,7 @@ const ShowAllPre = () => {
       }
 
     return (
-        <Layout title={"All Products"}>
+        <Layout title={"All Pre-Products"}>
         <div className="container">
         <div className="text-center">
         <div className="product-heading">

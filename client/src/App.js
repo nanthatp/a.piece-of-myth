@@ -60,6 +60,7 @@ import AdminShippedPreOrder from './pages/Admin/AdminShippedPreOrder';
 import AdminDeliverdPreorder from './pages/Admin/AdminDeliverdPreorder';
 import AdminCancelPreorder from './pages/Admin/AdminCancelPreorder';
 import DownloadedCsvPage from './pages/DownloadedCsvPage';
+import ProfileAdmin from './pages/Admin/ProfileAdmin';
 
 
 function App() {
@@ -90,6 +91,7 @@ function App() {
       <Route path="/dashboard" element={<AdminRoute />}>
         <Route path="admin" element={<AdminDashboard />}/>
         <Route path="admin/create-category" element={<CreateCategory />} />
+        <Route path="admin/profile" element={<ProfileAdmin />} />
         <Route path="admin/create-collection" element={<CreateCollection />} />
         <Route path="admin/create-product" element={<CreateProduct />} />
         <Route path="admin/create-banner" element={<CreateBanner/>} />

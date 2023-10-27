@@ -96,9 +96,9 @@ const Header = () => {
                     <li>
                       <Link
                         className="dropdown-item"
-                        to={`/collections/${cl.slug}`}
+                        to={`/collection/${cl.slug}`}
                       >
-                        {cl.name}
+                        {cl.name.substring(0, 12)}...
                       </Link>
                     </li>
                   ))}

@@ -30,9 +30,9 @@ const Layout = ({children,title,description,keywords,author}) => {
 }
 
 Layout.defaultProps = {
-  title: "a.piece-of-myth - shop now",
+  title: "Happiness Club - shop now",
   description: "CPE final Project",
-  keywords: "a.piece-of-myth",
+  keywords: "Happiness Club",
   author: "Two of the most beautiful girls of the world"
 }
 export default Layout

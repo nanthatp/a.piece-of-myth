@@ -40,7 +40,7 @@ const CreateProduct = () => {
             artistData.append("name", name);
             artistData.append("photo", photo);
             artistData.append("member", member);
-            const { data } = await axios.post(
+            const { data } = axios.post(
                 "/api/v1/artist/create-artist",
                 artistData
             );
@@ -55,8 +55,8 @@ const CreateProduct = () => {
                     showConfirmButton: false,
                     timer: 3000
                 });
-                // navigate("/dashboard/admin/artists");
-                // window.location.reload();
+                navigate("/dashboard/admin/artists");
+                window.location.reload();
             }
         } catch (error) {
             console.log(error);
@@ -78,7 +78,6 @@ const CreateProduct = () => {
                 </div>
                 
             </div>
-            <form class="row g-3 needs-validation" >
             <div className="container text-center  create-product">
                 <div className="row justify-content-evenly">
                 <div className="col-4 add-photo">
@@ -127,7 +126,6 @@ const CreateProduct = () => {
                     </button>
                 </div>
                 </div>
-                </form>
 
             </div>
         </div>

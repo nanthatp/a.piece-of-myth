@@ -4,7 +4,7 @@ import UserMenu from "../../components/Layout/UserMenu";
 import LayoutAdmin from "./../../components/Layout/LayoutAdmin";
 import {NavLink, Link} from 'react-router-dom'
 import { useAuth } from "../../context/auth";
-import {BsFillEmojiHeartEyesFill } from "react-icons/bs";
+import {BsFillPersonFill} from "react-icons/bs";
 import {BsFillEnvelopeOpenHeartFill } from "react-icons/bs";
 import {BsFillTelephoneFill } from "react-icons/bs";
 import {BsFillShieldLockFill } from "react-icons/bs";
@@ -47,7 +47,7 @@ const Dashboard = () => {
                                   {auth?.user?.name} information
                                 </div>
                                 <div className="mb-3 card-information d-flex align-items-center">
-                                    <span> <BsFillEmojiHeartEyesFill/> </span>Name: {auth?.user?.name}
+                                    <span> <BsFillPersonFill/> </span>Name: {auth?.user?.name}
                                     <Link
                                       to="/dashboard/user/profile"
                                       className="nav-link ms-auto edit-user"

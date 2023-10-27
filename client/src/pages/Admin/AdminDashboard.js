@@ -6,7 +6,7 @@ import {NavLink, Link} from 'react-router-dom'
 import {BsFillEmojiHeartEyesFill } from "react-icons/bs";
 import {BsFillEnvelopeOpenHeartFill } from "react-icons/bs";
 import {BsFillTelephoneFill } from "react-icons/bs";
-import {BsFillShieldLockFill } from "react-icons/bs";
+import {BsFillPersonFill} from "react-icons/bs";
 
 const AdminDashboard = () => {
     const [auth] = useAuth();
@@ -32,13 +32,13 @@ const AdminDashboard = () => {
                                   {auth?.user?.name} information
                                 </div>
                                 <div className="mb-3 card-information d-flex align-items-center">
-                                    <span> <BsFillEmojiHeartEyesFill/> </span>Name: {auth?.user?.name}
-                                    <Link
-                                      to="/dashboard/user/profile"
+                                    <span> <BsFillPersonFill/> </span>Name: {auth?.user?.name}
+                                    {/* <Link
+                                      to="/dashboard/admin/profile"
                                       className="nav-link ms-auto edit-user"
                                     >
                                       Edit my profile
-                                    </Link>
+                                    </Link> */}
                                 </div>
 
                                 <div className="mb-3 card-information">
@@ -47,15 +47,15 @@ const AdminDashboard = () => {
                                 <div className="mb-3 card-information">
                                     <span> <BsFillTelephoneFill/> </span>Contact: {auth?.user?.phone}
                                 </div>
-                                <div className="mb-3 card-information d-flex align-items-center">
+                                {/* <div className="mb-3 card-information d-flex align-items-center">
                                     <span> <BsFillShieldLockFill/> </span> Password: ******* 
                                     <Link
-                                      to="/dashboard/user/update-password"
+                                      to="/dashboard/admin/update-password"
                                       className="nav-link ms-auto edit-user"
                                     >
                                       Change Password
                                     </Link>
-                                </div>
+                                </div> */}
                             
                             </div>
                         </div>

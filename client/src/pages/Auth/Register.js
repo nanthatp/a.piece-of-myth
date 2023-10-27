@@ -37,7 +37,7 @@ const Register= () => {
     };
     console.log(process.env.REACT_APP_API);
     return (
-        <Layout title = "Register - a.piece-of-myth">
+        <Layout title = "Register - Happiness Club">
             <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
         <div className="col col-xl-10">
