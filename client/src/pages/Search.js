@@ -6,10 +6,12 @@ import toast from "react-hot-toast";
 import { useCart } from "../context/cart";
 import {BsFillBagHeartFill } from "react-icons/bs";
 import "../styles/Search.css";
+import { useAuth } from "../context/auth";
 
 const Search = () => {
     const [values, setValues] = useSearch();
     const navigate = useNavigate();
+    const [auth, setAuth] = useAuth();
     const [cart, setCart] = useCart();
 
     return (
@@ -48,6 +50,7 @@ const Search = () => {
                     <div className="card-name-price-search">
                     <button
                         className="btn-add"
+                        disabled={p.quantity < 1 || auth?.user?.role === 1}
                         onClick={() => {
                             setCart([...cart, p]);
                             localStorage.setItem(
