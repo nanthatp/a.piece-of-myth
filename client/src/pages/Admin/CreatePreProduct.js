@@ -162,7 +162,7 @@ export default function CreatePreProduct() {
             });
             return;
         }
-        if (until === "") {
+        if (!until) {
             // กรณีชื่อศิลปินเป็นค่าว่าง
             Swal.fire({
                 position: 'top-center',
