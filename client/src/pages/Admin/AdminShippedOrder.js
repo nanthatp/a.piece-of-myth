@@ -8,7 +8,7 @@ import { useAuth } from "../../context/auth";
 import moment from "moment";
 import { Select } from "antd";
 import Pagination from "../../components/Pagination";
-import{BsFillPencilFill, BsBagHeart} from 'react-icons/bs';
+import{BsFillPencilFill, BsCheckCircleFill} from 'react-icons/bs';
 import {Modal} from 'antd';
 import TrackingForm from "../../components/Form/TrackingForm";
 import Swal from 'sweetalert2';
@@ -165,7 +165,7 @@ function AdminShippedOrder() {
                         <th scope="col">#</th>
                         <th scope="col">Status</th>
                         <th scope="col">Buyer</th>
-                        <th scope="col"> date</th>
+                        <th scope="col">date</th>
                         <th scope="col">Payment</th>
                         <th scope="col">Quantity</th>
                         <th scope="col">tracking</th>
@@ -193,14 +193,14 @@ function AdminShippedOrder() {
                         <td>{o?.products?.length}</td>
                         <td>
                         <button 
-                            className='btn-edit ms-2' 
+                            className='btn-edit-tack ms-2' 
                                 onClick={() => {
                                     setVisible(true);
                                     setUpdatedTracking(o.tracking);
                                     setSelected(o);
                                 }}
 >
-                                {o.tracking === "No Tracking" ? <BsFillPencilFill /> : <BsBagHeart/> }
+                                {o.tracking === "No Tracking" ? <BsFillPencilFill style={{ fontSize: '25px' }} /> : <BsCheckCircleFill color="#0DA574" style={{  fontSize: '25px' }}/> }
                         </button>
                         </td>
                         </tr>

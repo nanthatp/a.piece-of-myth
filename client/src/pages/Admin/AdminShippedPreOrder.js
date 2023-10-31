@@ -11,7 +11,7 @@ import LayoutAdmin from "./../../components/Layout/LayoutAdmin";
 import {commonrequest} from "../../Services/ApiCall";
 import {BASE_URL} from "../../Services/helper";
 import{BsArrowLeftCircleFill} from 'react-icons/bs';
-import{BsFillPencilFill, BsBagHeart} from 'react-icons/bs';
+import{BsFillPencilFill, BsCheckCircleFill} from 'react-icons/bs';
 import {Modal} from 'antd';
 import TrackingForm from "../../components/Form/TrackingForm";
 import Swal from 'sweetalert2';
@@ -204,14 +204,14 @@ function AdminShippedPreOrder() {
                         <td>{o?.quantity}</td>
                         <td>
                             <button 
-                                className='btn-edit ms-2' 
+                                className='btn-edit-tack ms-2' 
                                     onClick={() => {
                                         setVisible(true);
                                         setUpdatedTracking(o.tracking);
                                         setSelected(o);
                                     }}
     >
-                                    {o.tracking === "No Tracking" ? <BsFillPencilFill /> : <BsBagHeart/> }
+                                    {o.tracking === "No Tracking" ? <BsFillPencilFill style={{ fontSize: '25px' }}/> : <BsCheckCircleFill color="#0DA574" style={{  fontSize: '25px' }}/> }
                             </button>
                         </td>
                         </tr>

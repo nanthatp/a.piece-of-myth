@@ -44,6 +44,30 @@ th:first-child, td:first-child {
     transform: all ease 0.3s;
 }
 
+.btn-edit-tack{
+    padding: 5px 5px;
+    width: 20%;
+    background-color: #fff;
+    color: #000;
+    float: left;
+    text-align: center;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
+    outline: none;
+    border-radius: 20px;
+    font-weight: 600;
+    
+}
+
+.btn-edit-tack:hover{
+    background-color: #fff;
+    color: #FFD717;
+    transform: all ease 0.3s;
+}
+
 .btn-delete{
     padding: 5px 5px;
     width: 20%;
