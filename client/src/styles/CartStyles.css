@@ -58,3 +58,9 @@
     color: #fff;
     transform: all ease 0.3s;
 }
+
+.add-cart-btn{
+    margin-right: 7px;
+    padding: 10px 12px;
+    font-weight: 700;
+}

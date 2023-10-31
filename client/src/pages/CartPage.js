@@ -3,7 +3,8 @@ import Layout from "./../components/Layout/Layout";
 import { useCart } from "../context/cart";
 import { useAuth } from "../context/auth";
 import { Link,useNavigate } from "react-router-dom";
-import { AiFillWarning } from "react-icons/ai";
+import { IoMdAdd } from "react-icons/io";
+import { IoMdRemove } from "react-icons/io";
 import axios from "axios";
 import toast from "react-hot-toast";
 import "../styles/CartStyles.css";
@@ -137,7 +138,7 @@ const CartPage = () => {
                     </div>
                     <div className="col-md-4 cart-remove-btn">
                         <button
-                        className="btn btn-success"
+                        className="btn btn-success add-cart-btn"
                         onClick={() => {
                           setCart([...cart, p]);
                           localStorage.setItem(
@@ -147,13 +148,13 @@ const CartPage = () => {
                           toast.success("Item Added to cart");
                         }}
                         >
-                        add
+                        <IoMdAdd style={{ fontSize: '20px' }}/>
                         </button>
                         <button
-                        className="btn btn-danger"
+                        className="btn btn-danger add-cart-btn"
                         onClick={() => removeCartItem(p._id)}
                         >
-                        Remove
+                        <IoMdRemove style={{ fontSize: '20px' }}/>
                         </button>
                     </div>
                     </div>

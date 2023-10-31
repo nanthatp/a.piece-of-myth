@@ -232,7 +232,7 @@ function AdminShippedOrder() {
                             </div>
                             <div className="col-md-8">
                             <p>{p.name}</p>
-                            <p>Price : ${p.price}</p>
+                            <p>Price : ${p.price * p.count}</p>
                             <p>Quantity: {p.count}</p>
                             </div>
                         </div>
