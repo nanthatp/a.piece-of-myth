@@ -856,7 +856,6 @@ export const braintreeTokenForPreOrederController = async (req, res) => {
               quantity: preorderItem.quantity,
               buyer: req.user._id,
               email: req.body.email,
-              tracking
             });
             await preorder.save();
             res.json({ ok: true });
