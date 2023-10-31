@@ -21,7 +21,9 @@ import {registerController,
     getAllPreOrdersByPreProductIdProcessingController,
     getAllPreOrdersByPreProductIdShippedController,
     getAllPreOrdersByPreProductIdDeliverdController,
-    getAllPreOrdersByPreProductIdCancelController} from '../controllers/authController.js'
+    getAllPreOrdersByPreProductIdCancelController,
+    updateOrderController,
+    updatePreorderController} from '../controllers/authController.js'
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
 //route object
 const router = express.Router();
@@ -103,6 +105,22 @@ router.get("/preorder-preproduct-cancel/:preproduct", requireSignIn,isAdmin,getA
 
 //all Pre-orders
 router.get("/all-preorders", requireSignIn, isAdmin, getAllPreOrdersController);
+
+//update Order
+router.put(
+    "/update-order/:id",
+    requireSignIn,
+    isAdmin,
+    updateOrderController
+);
+
+//update Pre-order
+router.put(
+    "/update-preorder/:id",
+    requireSignIn,
+    isAdmin,
+    updatePreorderController
+);
 
 // Pre-order status update
 router.put(

@@ -8,6 +8,10 @@ import { useAuth } from "../../context/auth";
 import moment from "moment";
 import { Select } from "antd";
 import Pagination from "../../components/Pagination";
+import{BsFillPencilFill, BsBagHeart} from 'react-icons/bs';
+import {Modal} from 'antd';
+import TrackingForm from "../../components/Form/TrackingForm";
+import Swal from 'sweetalert2';
 const { Option } = Select;
 
 function AdminShippedOrder() {
@@ -23,6 +27,10 @@ function AdminShippedOrder() {
     const [changeStatus, setCHangeStatus] = useState("");
     const [orders, setOrders] = useState([]);
     const [auth, setAuth] = useAuth();
+    const [tracking, setTracking] = useState("");
+    const [visible, setVisible] = useState(false)
+    const [selected, setSelected] = useState(null);
+    const [updatedTracking, setUpdatedTracking] = useState("");
     const getOrders = async () => {
         try {
         const { data } = await axios.get("/api/v1/auth/all-shipped-orders");
@@ -31,6 +39,47 @@ function AdminShippedOrder() {
         console.log(error);
         }
     };
+
+        //update order
+        const handleUpdate = async (e) => {
+            e.preventDefault();
+            // if (tracking === "") {
+            //     Swal.fire({
+            //         position: 'top-center',
+            //         icon: 'warning',
+            //         title: 'Warning!',
+            //         text: 'Please enter Tracking',
+            //         showConfirmButton: false,
+            //         timer: 3000
+            //     });
+            //     return;
+            // }
+            
+            try {
+            const { data } = await axios.put(
+                `/api/v1/auth/update-order/${selected._id}`,
+                { tracking: updatedTracking }
+            );
+            if (data?.success) {
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'success',
+                    title: 'Updated!',
+                    text: 'Tracking has been updated.',
+                    showConfirmButton: false,
+                    timer: 3500
+                })
+                setSelected(null);
+                setUpdatedTracking("");
+                setVisible(false);
+                getOrders();
+            } else {
+                toast.error(data.message);
+            }
+            } catch (error) {
+            console.log(error);
+            }
+        };
 
     // const getOrdersBystatus = async () => {
     //     try {
@@ -119,6 +168,7 @@ function AdminShippedOrder() {
                         <th scope="col"> date</th>
                         <th scope="col">Payment</th>
                         <th scope="col">Quantity</th>
+                        <th scope="col">tracking</th>
                         </tr>
                     </thead>
                     <tbody className="order-admin">
@@ -141,6 +191,18 @@ function AdminShippedOrder() {
                         <td>{moment(o?.createAt).format('YYYY-MM-DD hh:mm:ss')}</td>
                         <td>{o?.payment.success ? "Success" : "Failed"}</td>
                         <td>{o?.products?.length}</td>
+                        <td>
+                        <button 
+                            className='btn-edit ms-2' 
+                                onClick={() => {
+                                    setVisible(true);
+                                    setUpdatedTracking(o.tracking);
+                                    setSelected(o);
+                                }}
+>
+                                {o.tracking === "No Tracking" ? <BsFillPencilFill /> : <BsBagHeart/> }
+                        </button>
+                        </td>
                         </tr>
                     </tbody>
                     </table>
@@ -169,7 +231,17 @@ function AdminShippedOrder() {
                 );
             })}
             </div>
-
+            <Modal 
+                onCancel={() => setVisible(false)}
+                footer={null}
+                visible={visible}
+            > 
+                <TrackingForm
+                    value={updatedTracking}
+                    setValue={setUpdatedTracking}
+                    handleSubmit={handleUpdate}
+                />
+            </Modal>
         </div>
         </LayoutAdmin>
         <Pagination/>

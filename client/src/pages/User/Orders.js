@@ -41,6 +41,7 @@ const Orders = () => {
                         <th scope="col"> date</th>
                         <th scope="col">Payment</th>
                         <th scope="col">Quantity</th>
+                        <th scope="col">Tracking</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -51,6 +52,7 @@ const Orders = () => {
                         <td>{moment(o?.createAt).format('YYYY-MM-DD hh:mm:ss')}</td>
                         <td>{o?.payment.success ? "Success" : "Failed"}</td>
                         <td>{o?.products?.length}</td>
+                        <td>{o?.tracking}</td>
                       </tr>
                     </tbody>
                   </table>

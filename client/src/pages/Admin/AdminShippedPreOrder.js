@@ -11,6 +11,10 @@ import LayoutAdmin from "./../../components/Layout/LayoutAdmin";
 import {commonrequest} from "../../Services/ApiCall";
 import {BASE_URL} from "../../Services/helper";
 import{BsArrowLeftCircleFill} from 'react-icons/bs';
+import{BsFillPencilFill, BsBagHeart} from 'react-icons/bs';
+import {Modal} from 'antd';
+import TrackingForm from "../../components/Form/TrackingForm";
+import Swal from 'sweetalert2';
 const { Option } = Select;
 
 function AdminShippedPreOrder() {
@@ -27,6 +31,10 @@ function AdminShippedPreOrder() {
     const [preorders, setPreorders] = useState([]);
     const [ preorder, setPreorder ] = useState("");
     const [auth, setAuth] = useAuth();
+    const [tracking, setTracking] = useState("");
+    const [visible, setVisible] = useState(false)
+    const [selected, setSelected] = useState(null);
+    const [updatedTracking, setUpdatedTracking] = useState("");
     const getPreOrders = async () => {
         try {
         const { data } = await axios.get(`/api/v1/auth/preorder-preproduct-shipped/${params.preproduct}`);
@@ -39,6 +47,47 @@ function AdminShippedPreOrder() {
     useEffect(() => {
         if (auth?.token) getPreOrders();
     }, [auth?.token]);
+
+    //update Pre-order
+    const handleUpdate = async (e) => {
+        e.preventDefault();
+        // if (tracking === "") {
+        //     Swal.fire({
+        //         position: 'top-center',
+        //         icon: 'warning',
+        //         title: 'Warning!',
+        //         text: 'Please enter Tracking',
+        //         showConfirmButton: false,
+        //         timer: 3000
+        //     });
+        //     return;
+        // }
+        
+        try {
+        const { data } = await axios.put(
+            `/api/v1/auth/update-preorder/${selected._id}`,
+            { tracking: updatedTracking }
+        );
+        if (data?.success) {
+            Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: 'Updated!',
+                text: 'Tracking has been updated.',
+                showConfirmButton: false,
+                timer: 3500
+            })
+            setSelected(null);
+            setUpdatedTracking("");
+            setVisible(false);
+            getPreOrders();
+        } else {
+            toast.error(data.message);
+        }
+        } catch (error) {
+        console.log(error);
+        }
+    };
 
     const handleChange = async (preorderId, email, value) => {
         try {
@@ -130,6 +179,7 @@ function AdminShippedPreOrder() {
                         <th scope="col"> date</th>
                         <th scope="col">Payment</th>
                         <th scope="col">Quantity</th>
+                        <th scope="col">tracking</th>
                         </tr>
                     </thead>
                     <tbody className="order-admin">
@@ -152,6 +202,18 @@ function AdminShippedPreOrder() {
                         <td>{moment(o?.createdAt).format('YYYY-MM-DD hh:mm:ss')}</td>
                         <td>{o?.payment.success ? "Success" : "Failed"}</td>
                         <td>{o?.quantity}</td>
+                        <td>
+                            <button 
+                                className='btn-edit ms-2' 
+                                    onClick={() => {
+                                        setVisible(true);
+                                        setUpdatedTracking(o.tracking);
+                                        setSelected(o);
+                                    }}
+    >
+                                    {o.tracking === "No Tracking" ? <BsFillPencilFill /> : <BsBagHeart/> }
+                            </button>
+                        </td>
                         </tr>
                     </tbody>
                     </table>
@@ -179,6 +241,17 @@ function AdminShippedPreOrder() {
                 );
             })}
             </div>
+            <Modal 
+                onCancel={() => setVisible(false)}
+                footer={null}
+                visible={visible}
+            > 
+                <TrackingForm
+                    value={updatedTracking}
+                    setValue={setUpdatedTracking}
+                    handleSubmit={handleUpdate}
+                />
+            </Modal>
         </div>
         </LayoutAdmin>
     );

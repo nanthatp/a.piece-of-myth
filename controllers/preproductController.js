@@ -543,6 +543,7 @@ export const preorderExport = async (req, res) => {
                     quantity: preorders.quantity ? preorders.quantity : "-",
                     status: preorders.status ? preorders.status : "-",
                     DateCreated: preorders.createdAt ? preorders.createdAt : "-",
+                    tracking: preorders.tracking ? preorders.tracking : "-",
                 })
             })
         }
@@ -594,6 +595,7 @@ export const preorderNot_ProcessStatusExport = async (req, res) => {
                     quantity: preorders.quantity ? preorders.quantity : "-",
                     status: preorders.status ? preorders.status : "-",
                     DateCreated: preorders.createdAt ? preorders.createdAt : "-",
+                    tracking: preorders.tracking ? preorders.tracking : "-",
                 })
             })
         }
@@ -645,6 +647,7 @@ export const preorderProcessingStatusExport = async (req, res) => {
                     quantity: preorders.quantity ? preorders.quantity : "-",
                     status: preorders.status ? preorders.status : "-",
                     DateCreated: preorders.createdAt ? preorders.createdAt : "-",
+                    tracking: preorders.tracking ? preorders.tracking : "-",
                 })
             })
         }
@@ -697,6 +700,7 @@ export const preorderShippedStatusExport = async (req, res) => {
                     quantity: preorders.quantity ? preorders.quantity : "-",
                     status: preorders.status ? preorders.status : "-",
                     DateCreated: preorders.createdAt ? preorders.createdAt : "-",
+                    tracking: preorders.tracking ? preorders.tracking : "-",
                 })
             })
         }
@@ -748,6 +752,7 @@ export const preorderDeliverdStatusExport = async (req, res) => {
                     quantity: preorders.quantity ? preorders.quantity : "-",
                     status: preorders.status ? preorders.status : "-",
                     DateCreated: preorders.createdAt ? preorders.createdAt : "-",
+                    tracking: preorders.tracking ? preorders.tracking : "-",
                 })
             })
         }
@@ -799,6 +804,7 @@ export const preorderCancelStatusExport = async (req, res) => {
                     quantity: preorders.quantity ? preorders.quantity : "-",
                     status: preorders.status ? preorders.status : "-",
                     DateCreated: preorders.createdAt ? preorders.createdAt : "-",
+                    tracking: preorders.tracking ? preorders.tracking : "-",
                 })
             })
         }
@@ -849,7 +855,8 @@ export const braintreeTokenForPreOrederController = async (req, res) => {
               payment: result,
               quantity: preorderItem.quantity,
               buyer: req.user._id,
-              email: req.body.email
+              email: req.body.email,
+              tracking
             });
             await preorder.save();
             res.json({ ok: true });

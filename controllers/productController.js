@@ -538,6 +538,7 @@ export const braintreeTokenController = async (req, res) => {
               products: cart,
               payment: result,
               buyer: req.user._id,
+              tracking
             });
             await order.save();
 

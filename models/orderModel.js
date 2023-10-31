@@ -18,6 +18,10 @@ const orderSchema = new mongoose.Schema(
             default: "Not_Process",
             enum: ["Not_Process", "Processing", "Shipped", "deliverd", "cancel"],
         },
+        tracking:{ 
+            type : String,
+            default : "No Tracking",
+        }
     },
     { timestamps: true }
 );

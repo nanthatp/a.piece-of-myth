@@ -344,6 +344,31 @@ export const getAllOrdersConByCancelStatustroller = async (req, res) => {
   }
 };
 
+//update order
+export const updateOrderController = async (req, res) => {
+  try {
+      const { tracking } = req.body;
+      const { id } = req.params;
+      const order = await orderModel.findByIdAndUpdate(
+          id,
+          { tracking },
+          { new: true }
+      );
+      res.status(200).send({
+          success: true,
+          message: "order Updated Successfully",
+          order,
+      });
+  } catch (error) {
+      console.log(error);
+      res.status(500).send({
+          success: false,
+          error,
+          message: "Error while updating order",
+      });
+  }
+};
+
 //order status
 export const orderStatusController = async (req, res) => {
   try {
@@ -519,6 +544,31 @@ export const getAllPreOrdersController = async (req, res) => {
       message: "Error WHile Geting Pre-Orders",
       error,
     });
+  }
+};
+
+//update Pre-order
+export const updatePreorderController = async (req, res) => {
+  try {
+      const { tracking } = req.body;
+      const { id } = req.params;
+      const preorder = await preorderModel.findByIdAndUpdate(
+          id,
+          { tracking },
+          { new: true }
+      );
+      res.status(200).send({
+          success: true,
+          message: "Pre-order Tracking Updated Successfully",
+          preorder,
+      });
+  } catch (error) {
+      console.log(error);
+      res.status(500).send({
+          success: false,
+          error,
+          message: "Error while updating Pre-order tracking",
+      });
   }
 };
 
