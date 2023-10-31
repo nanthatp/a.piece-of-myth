@@ -7,6 +7,8 @@ import "../styles/CategoryProductStyles.css";
 import "../styles/Homepage.css";
 import {BsFillBagHeartFill } from "react-icons/bs";
 import useCollection from './../hooks/useCollection';
+import { useAuth } from "../context/auth";
+import moment from "moment";
 
 const CollectionProduct = () => {
     const params = useParams();
@@ -15,6 +17,9 @@ const CollectionProduct = () => {
     const [products, setProducts] = useState([]);
     const [collectiongroup, setCollectiongroup] = useState([]);
     const [preproducts, setPreproducts] = useState([]);
+    const [auth, setAuth] = useAuth();
+    const [until , setUntil] = useState("");
+
 
     useEffect(() => {
         if (params?.slug) getProductsByCol();
@@ -44,6 +49,17 @@ const CollectionProduct = () => {
         console.log(error);
         }
     };
+    
+    function disableButton (until){
+        let currentDate = new Date()
+        let endDate = new Date(until)
+        console.log("currentDate = ", currentDate)
+        console.log("endDate = ", endDate-currentDate)
+        if (endDate - currentDate < 0){
+          return true
+        }
+        return false;
+      }
 
     return (
         <Layout>
@@ -76,6 +92,7 @@ const CollectionProduct = () => {
                             <div className="card-name-price">
                                 <button
                                     className="btn-add"
+                                    disabled={auth?.user?.role === 1}
                                     onClick={() => {
                                     setCart([...cart, p]);
                                     localStorage.setItem(
@@ -108,6 +125,9 @@ const CollectionProduct = () => {
                         <div className="card-body">
                             <div className="card-name-price">
                                 <h5 className=" name-product">{p.name}</h5>
+                                <p className="card-text product-quantity">
+                                End: {moment(p.until).locale('th').format('YYYY-MM-DD hh:mm')}
+                                </p>
                                 <h5 className="card-title product-price">
                                 {p.price.toLocaleString("US", {
                                     style: "currency",
@@ -118,6 +138,7 @@ const CollectionProduct = () => {
                             <div className="card-name-price">
                             <button
                                 className="btn-add"
+                                disabled={auth?.user?.role === 1 || disableButton (p.until)}
                                 onClick={() => navigate(`/preproduct/${p.slug}`)}
                             >
                                 <BsFillBagHeartFill/> Pre-Order Now

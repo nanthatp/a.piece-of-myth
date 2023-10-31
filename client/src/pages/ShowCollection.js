@@ -5,13 +5,16 @@ import Layout from "./../components/Layout/Layout";
 import {BsFillBagHeartFill } from "react-icons/bs";
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import { Link } from "react-router-dom";
+import moment from "moment";
+import { useAuth } from "../context/auth";
 
 
 const ShowCollection = () => {
     const [preproducts, setPreproducts] = useState([]);
     const [collection , setCollection] = useState("");
     const [collectname , setCollectName] = useState("");
+    const [auth, setAuth] = useAuth();
+    const [until , setUntil] = useState("");
     const navigate = useNavigate();
     const params = useParams();
 
@@ -30,6 +33,16 @@ const ShowCollection = () => {
             console.log(error);
             }
     };
+    function disableButton (until){
+        let currentDate = new Date()
+        let endDate = new Date(until)
+        console.log("currentDate = ", currentDate)
+        console.log("endDate = ", endDate-currentDate)
+        if (endDate - currentDate < 0){
+          return true
+        }
+        return false;
+      }
 
     return (
         <Layout title={"All Products"}>
@@ -50,6 +63,9 @@ const ShowCollection = () => {
                     <div className="card-body-search">
                         <div className="card-name-price-search">
                             <h5 className=" name-product">{p.name}</h5>
+                            <p className="card-text product-quantity">
+                            End: {moment(p.until).locale('th').format('YYYY-MM-DD hh:mm')}
+                            </p>
                             <h5 className="card-title product-price">
                             {p.price.toLocaleString("US", {
                                 style: "currency",
@@ -60,6 +76,7 @@ const ShowCollection = () => {
                         <div className="card-name-price-search">
                             <button
                                 className="btn-add"
+                                disabled={auth?.user?.role === 1 || disableButton (p.until)}
                                 onClick={() => navigate(`/preproduct/${p.slug}`)}
                             >
                                 <BsFillBagHeartFill/> Pre-Order Now

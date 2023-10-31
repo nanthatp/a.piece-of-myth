@@ -2,13 +2,12 @@ import React, { useState, useEffect } from "react";
 import Layout from "./../components/Layout/Layout";
 import { useCart } from "../context/cart";
 import { useAuth } from "../context/auth";
-import { useNavigate } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { AiFillWarning } from "react-icons/ai";
 import axios from "axios";
 import toast from "react-hot-toast";
 import "../styles/CartStyles.css";
 import DropIn from "braintree-web-drop-in-react";
-import {BsFillCreditCardFill } from "react-icons/bs";
 
 const CartPage = () => {
     const [auth, setAuth] = useAuth();
@@ -33,6 +32,7 @@ const CartPage = () => {
         console.log(error);
         }
     };
+
     //detele item
     const removeCartItem = (pid) => {
         try {
@@ -81,6 +81,21 @@ const CartPage = () => {
     }
   };
 
+  // Create a function to group and count similar items
+  const groupAndCountItems = (cart) => {
+    const groupedItems = cart.reduce((result, item) => {
+      if (!result[item._id]) {
+        result[item._id] = { ...item, count: 0 };
+      }
+      result[item._id].count++;
+      return result;
+    }, {});
+
+    return Object.values(groupedItems);
+  };
+
+  const groupedCartItems = groupAndCountItems(cart);
+
     return (
         <Layout>
         <div className=" cart-page">
@@ -103,7 +118,7 @@ const CartPage = () => {
             <div className="container ">
             <div className="row ">
                 <div className="col-md-7  p-0 m-0">
-                {cart?.map((p) => (
+                {groupedCartItems?.map((p) => (
                     <div className="row card flex-row" key={p._id}>
                     <div className="col-md-4">
                         <img
@@ -118,8 +133,22 @@ const CartPage = () => {
                         <p>{p.name}</p>
                         {/* <p>{p.description.substring(0, 30)}</p> */}
                         <p>Price : ${p.price}</p>
+                        <p>Quantity: {p.count}</p>
                     </div>
                     <div className="col-md-4 cart-remove-btn">
+                        <button
+                        className="btn btn-success"
+                        onClick={() => {
+                          setCart([...cart, p]);
+                          localStorage.setItem(
+                            "cart",
+                            JSON.stringify([...cart, p])
+                          );
+                          toast.success("Item Added to cart");
+                        }}
+                        >
+                        add
+                        </button>
                         <button
                         className="btn btn-danger"
                         onClick={() => removeCartItem(p._id)}
