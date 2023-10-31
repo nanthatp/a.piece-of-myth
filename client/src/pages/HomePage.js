@@ -20,6 +20,7 @@ const HomePage = () => {
   const [products, setProducts] = useState([]);
   const [preproducts, setPreproducts] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [collectiongroups, setCollectiongroups] = useState([]);
   const [category, setCategory] = useState([]);
   const [artists, setArtists] = useState([]);
   const [artist, setArtist] = useState([]);
@@ -63,8 +64,21 @@ useEffect(() => {
     getAllBanner();
     getSingleBanner();
 }, []);
+
+   //-------get all col-------//
+  const getAllCollectiongroup = async () => {
+    try {
+      const { data } = await axios.get("/api/v1/collectiongroup/get-collectiongroup");
+      if (data?.success) {
+        setCollectiongroups(data?.collectiongroup);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
    //-------get all cat-------//
-  const getAllCategory = async () => {
+   const getAllCategory = async () => {
     try {
       const { data } = await axios.get("/api/v1/category/get-category");
       if (data?.success) {
@@ -74,6 +88,7 @@ useEffect(() => {
       console.log(error);
     }
   };
+
 
    //-------get single cat-------//
   const getSingleCategory = async () => {
@@ -105,6 +120,7 @@ useEffect(() => {
    //-------get all cat-------//
   useEffect(() => {
     getAllCategory();
+    getAllCollectiongroup();
     getTotal();
   }, []);
 
@@ -134,23 +150,23 @@ useEffect(() => {
     }
 };
 
-  useEffect(() => {
-    if (page === 1) return;
-    loadMore();
-  }, [page]);
+  // useEffect(() => {
+  //   if (page === 1) return;
+  //   loadMore();
+  // }, [page]);
 
    //-------load more-------//
-  const loadMore = async () => {
-    try {
-      setLoading(true);
-      const { data } = await axios.get(`/api/v1/product/product-list/${page}`);
-      setLoading(false);
-      setProducts([...products, ...data?.products]);
-    } catch (error) {
-      console.log(error);
-      setLoading(false);
-    }
-  };
+  // const loadMore = async () => {
+  //   try {
+  //     setLoading(true);
+  //     const { data } = await axios.get(`/api/v1/product/product-list/${page}`);
+  //     setLoading(false);
+  //     setProducts([...products, ...data?.products]);
+  //   } catch (error) {
+  //     console.log(error);
+  //     setLoading(false);
+  //   }
+  // };
 
    //-------filter by cat-------//
   const handleFilter = (value, id) => {
@@ -316,6 +332,34 @@ const getSinglePreProduct = async () => {
                         </Link>
                       </div> 
                     ))} */}
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+
+      <div className="container">
+        <div className="row">
+          <div className="column-33">
+            <section className="category-list">
+              <div className="home-heading">
+                <h1>Collection</h1>
+                <span>All</span>
+              </div>
+              <div className="category-container">
+                <div className="container" >
+                  <div className="row container">
+                    {collectiongroups.map((cl) => (
+                      <div className="col-md-2 mt-2 mb-4 gx-6 gy-6" key={cl._id}>
+                        <div className="card-col">
+                          <Link  to={`/collection/${cl.slug}`} className="btn col-btn">
+                            {cl.name}
+                          </Link>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>

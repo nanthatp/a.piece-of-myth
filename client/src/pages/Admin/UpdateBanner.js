@@ -6,6 +6,7 @@ import axios from 'axios';
 import { Select } from 'antd';
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from 'sweetalert2';
+import {AiOutlineCloudUpload} from "react-icons/ai";
 
 import "../../styles/CreateBanner.css"
 
@@ -79,6 +80,54 @@ const CreateBanner = () => {
     //update banner function
     const handleUpdate = async (e) => {
         e.preventDefault();
+        if (name === "") {
+            // กรณีชื่อศิลปินเป็นค่าว่าง
+            Swal.fire({
+                position: 'top-center',
+                icon: 'warning',
+                title: 'Warning!',
+                text: 'Please enter a name',
+                showConfirmButton: false,
+                timer: 3000
+            });
+            return;
+        }
+        if (collectiongroup === "") {
+            // กรณีชื่อศิลปินเป็นค่าว่าง
+            Swal.fire({
+                position: 'top-center',
+                icon: 'warning',
+                title: 'Warning!',
+                text: 'Please select collection',
+                showConfirmButton: false,
+                timer: 3000
+            });
+            return;
+        }
+        if (artist === "") {
+            // กรณีชื่อศิลปินเป็นค่าว่าง
+            Swal.fire({
+                position: 'top-center',
+                icon: 'warning',
+                title: 'Warning!',
+                text: 'Please select artist',
+                showConfirmButton: false,
+                timer: 3000
+            });
+            return;
+        }
+        if (file === "") {
+            // กรณีชื่อศิลปินเป็นค่าว่าง
+            Swal.fire({
+                position: 'top-center',
+                icon: 'warning',
+                title: 'Warning!',
+                text: 'Please enter video',
+                showConfirmButton: false,
+                timer: 3000
+            });
+            return;
+        }
         try {
             const bannerData = new FormData();
             bannerData.append("name", name);
@@ -196,7 +245,7 @@ const CreateBanner = () => {
 
                         <div className="mb-3">
                             <label className="btn-upload-photo col-md-12">
-                                {file ? file.name : "Upload Banner"}
+                            <AiOutlineCloudUpload style={{ fontSize: '25px' ,marginRight:'5px'}}/>{file ? file.name : "Upload Banner"}
                                 <input
                                     type="file"
                                     name="file"

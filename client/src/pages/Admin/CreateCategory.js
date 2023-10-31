@@ -24,6 +24,7 @@ const CreateCategory = () => {
     //handle form
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         try {
         const { data } = await axios.post("/api/v1/category/create-category", {
             name,
@@ -62,6 +63,18 @@ const CreateCategory = () => {
     //update category
     const handleUpdate = async (e) => {
         e.preventDefault();
+        if (name === "") {
+            Swal.fire({
+                position: 'top-center',
+                icon: 'warning',
+                title: 'Warning!',
+                text: 'Please enter category name',
+                showConfirmButton: false,
+                timer: 3000
+            });
+            return;
+        }
+        
         try {
         const { data } = await axios.put(
             `/api/v1/category/update-category/${selected._id}`,

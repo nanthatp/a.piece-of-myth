@@ -163,8 +163,8 @@ function AdminShippedPreOrder() {
                             src={`/api/v1/preproduct/preproduct-photo/${p._id}`}
                             className="card-img-top"
                             alt={p.name}
-                            // width="100px"
-                            // height={"100px"}
+                            width="100%"
+                            height="200px"
                             />
                         </div>
                         <div className="col-md-8">

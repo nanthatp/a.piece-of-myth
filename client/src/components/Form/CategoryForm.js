@@ -9,10 +9,10 @@ const CategoryForm = ({ handleSubmit, value, setValue }) => {
             <div className="container categoryform">
                 <div className="row justify-content-center">
                 <h2>My Category</h2>
-                    <div className="col-4">
+                    <div className="col-8">
                         <input
                             type="text"
-                            className="form-control"
+                            className="form-control form-control-category"
                             placeholder="Enter new category"
                             value={value}
                             onChange={(e) => setValue(e.target.value)}

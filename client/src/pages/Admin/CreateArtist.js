@@ -5,7 +5,7 @@ import { toast } from 'react-hot-toast';
 import axios from 'axios';
 import { Select } from 'antd';
 import { useNavigate } from "react-router-dom";
-import {BsCloudUploadFill} from "react-icons/bs";
+import {AiOutlineCloudUpload} from "react-icons/ai";
 import "../../styles/CreateProduct.css"
 import Swal from 'sweetalert2';
 
@@ -22,13 +22,25 @@ const CreateProduct = () => {
     //create artist function
     const handleCreate = async (e) => {
         e.preventDefault();
-        if (name.trim() === "") {
+        if (name === "") {
             // กรณีชื่อศิลปินเป็นค่าว่าง
             Swal.fire({
                 position: 'top-center',
-                icon: ' ',
-                title: 'Created!',
+                icon: 'warning',
+                title: 'Warning!',
                 text: 'Please enter a name for the artist',
+                showConfirmButton: false,
+                timer: 3000
+            });
+            return;
+        }
+        if (photo === "") {
+            // กรณีชื่อศิลปินเป็นค่าว่าง
+            Swal.fire({
+                position: 'top-center',
+                icon: 'warning',
+                title: 'Warning!',
+                text: 'Please enter a logo image',
                 showConfirmButton: false,
                 timer: 3000
             });
@@ -82,12 +94,12 @@ const CreateProduct = () => {
                 <div className="row justify-content-evenly">
                 <div className="col-4 add-photo">
                     <div className="mb-3">
-                        <label className="btn-upload-photo col-md-12">
-                            
-                            {photo ? photo.name : "Upload Loco"}
+                        <label className="btn-upload-photo col-md-12">  
+                        <AiOutlineCloudUpload style={{ fontSize: '25px' ,marginRight:'5px'}}/>{photo ? photo.name : "Upload Loco"}
                             <input
                                 type="file"
                                 name="photo"
+                                placeholder="write a name artist"
                                 accept="image/*"
                                 onChange={(e) => setPhoto(e.target.files[0])}
                                 hidden
@@ -109,14 +121,14 @@ const CreateProduct = () => {
                 </div>
                 <div className="col-4">
                     <div className="mb-3">
-                    <input
-    type="text"
-    value={name}
-    placeholder="write a name artist"
-    className="form-control"
-    onChange={(e) => setName(e.target.value)}
-    required
-/>
+                        <input
+                            type="text"
+                            value={name}
+                            placeholder="write a name artist"
+                            className="form-control"
+                            onChange={(e) => setName(e.target.value)}
+                            required
+                        />
                     </div>
                 </div>
                 </div>

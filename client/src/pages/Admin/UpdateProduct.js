@@ -6,6 +6,7 @@ import axios from 'axios';
 import { Select } from 'antd';
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from 'sweetalert2';
+import {AiOutlineCloudUpload} from "react-icons/ai";
 
 const { Option } = Select;
 
@@ -123,6 +124,103 @@ const UpdateProduct = () => {
     //update product function
     const handleUpdate = async (e) => {
         e.preventDefault();
+        if (name === "") {
+            // กรณีชื่อศิลปินเป็นค่าว่าง
+            Swal.fire({
+                position: 'top-center',
+                icon: 'warning',
+                title: 'Warning!',
+                text: 'Please enter a name',
+                showConfirmButton: false,
+                timer: 3000
+            });
+            return;
+        }
+        if (photo === "") {
+            // กรณีชื่อศิลปินเป็นค่าว่าง
+            Swal.fire({
+                position: 'top-center',
+                icon: 'warning',
+                title: 'Warning!',
+                text: 'Please enter product image',
+                showConfirmButton: false,
+                timer: 3000
+            });
+            return;
+        } 
+        if (description === "") {
+            // กรณีชื่อศิลปินเป็นค่าว่าง
+            Swal.fire({
+                position: 'top-center',
+                icon: 'warning',
+                title: 'Warning!',
+                text: 'Please enter description',
+                showConfirmButton: false,
+                timer: 3000
+            });
+            return;
+        }
+        if (price === "") {
+            // กรณีชื่อศิลปินเป็นค่าว่าง
+            Swal.fire({
+                position: 'top-center',
+                icon: 'warning',
+                title: 'Warning!',
+                text: 'Please enter price',
+                showConfirmButton: false,
+                timer: 3000
+            });
+            return;
+        }
+        if (category === "") {
+            // กรณีชื่อศิลปินเป็นค่าว่าง
+            Swal.fire({
+                position: 'top-center',
+                icon: 'warning',
+                title: 'Warning!',
+                text: 'Please select category',
+                showConfirmButton: false,
+                timer: 3000
+            });
+            return;
+        }
+        if (collectiongroup === "") {
+            // กรณีชื่อศิลปินเป็นค่าว่าง
+            Swal.fire({
+                position: 'top-center',
+                icon: 'warning',
+                title: 'Warning!',
+                text: 'Please select collection',
+                showConfirmButton: false,
+                timer: 3000
+            });
+            return;
+        }
+        if (quantity === "") {
+            // กรณีชื่อศิลปินเป็นค่าว่าง
+            Swal.fire({
+                position: 'top-center',
+                icon: 'warning',
+                title: 'Warning!',
+                text: 'Please enter quantity',
+                showConfirmButton: false,
+                timer: 3000
+            });
+            return;
+        }
+        if (artist === "") {
+            // กรณีชื่อศิลปินเป็นค่าว่าง
+            Swal.fire({
+                position: 'top-center',
+                icon: 'warning',
+                title: 'Warning!',
+                text: 'Please select artist',
+                showConfirmButton: false,
+                timer: 3000
+            });
+            return;
+        }
+        
         try {
             const productData = new FormData();
             productData.append("name", name);
@@ -201,7 +299,7 @@ const UpdateProduct = () => {
                     <div className="col-4 add-photo">
                         <div className="mb-3">
                             <label className="btn-upload-photo col-md-12">
-                                {photo ? photo.name : "Upload Photo"}
+                            <AiOutlineCloudUpload style={{ fontSize: '25px' ,marginRight:'5px'}}/>{photo ? photo.name : "Upload Photo"}
                                 <input
                                     type="file"
                                     name="photo"

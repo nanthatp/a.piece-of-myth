@@ -5,6 +5,7 @@ import { toast } from 'react-hot-toast';
 import axios from 'axios';
 import { Select } from 'antd';
 import Swal from 'sweetalert2';
+import {AiOutlineCloudUpload} from "react-icons/ai";
 import { useNavigate, useParams } from "react-router-dom";
 
 const { Option } = Select;
@@ -38,6 +39,31 @@ const UpdateArtist = () => {
     //update artist function
     const handleUpdate = async (e) => {
         e.preventDefault();
+        if (name === "") {
+            // กรณีชื่อศิลปินเป็นค่าว่าง
+            Swal.fire({
+                position: 'top-center',
+                icon: 'warning',
+                title: 'Warning!',
+                text: 'Please enter a name for the artist',
+                showConfirmButton: false,
+                timer: 3000
+            });
+            return;
+        }
+        if (photo === "") {
+            // กรณีชื่อศิลปินเป็นค่าว่าง
+            Swal.fire({
+                position: 'top-center',
+                icon: 'warning',
+                title: 'Warning!',
+                text: 'Please enter a logo image',
+                showConfirmButton: false,
+                timer: 3000
+            });
+            return;
+        }
+        
         try {
             const artistData = new FormData();
             artistData.append("name", name);
@@ -110,7 +136,7 @@ const UpdateArtist = () => {
                             <div className="mb-3">
                                 <label className="btn-upload-photo col-md-12">
                                     
-                                    {photo ? photo.name : "Upload Loco"}
+                                <AiOutlineCloudUpload style={{ fontSize: '25px' ,marginRight:'5px'}}/>{photo ? photo.name : "Upload Loco"}
                                     <input
                                         type="file"
                                         name="photo"

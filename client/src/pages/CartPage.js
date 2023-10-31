@@ -110,14 +110,14 @@ const CartPage = () => {
                         src={`/api/v1/product/product-photo/${p._id}`}
                         className="card-img-top"
                         alt={p.name}
-                        width="100%"
-                        height={"130px"}
+                        width="140px"
+                        height={"140px"}
                         />
                     </div>
                     <div className="col-md-4">
                         <p>{p.name}</p>
                         {/* <p>{p.description.substring(0, 30)}</p> */}
-                        <p>Price : {p.price}</p>
+                        <p>Price : ${p.price}</p>
                     </div>
                     <div className="col-md-4 cart-remove-btn">
                         <button

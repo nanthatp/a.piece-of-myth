@@ -372,7 +372,7 @@ filters
     width: 100%;
     height: 40px;
     background-color: #ecf7ee;
-    color: #0DA574;
+    /* color: #0DA574; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -405,7 +405,7 @@ filters
     width: 80%;
     height: 80px;
     background-color: #ecf7ee;
-    color: #0DA574;
+    /* color: #0DA574; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -436,6 +436,40 @@ filters
 }
 
 /* ======= Category Section ====== */
+
+/* ======= Collection Section ====== */
+.card-col{
+    width: 100%;
+    height: 40px;
+    background-color: beige;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+}
+
+.card-col:hover{
+    width: 40px;
+    height: 40px;
+    background-color: #0DA574;
+    color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+}
+.col-btn{
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* ======= Collection Section ====== */
 
 /* ======= Artist Section ====== */
 .card-artist-img {
