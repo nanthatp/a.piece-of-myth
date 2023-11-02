@@ -250,15 +250,15 @@ useEffect(() => {
                 <div className="col-md-6 mb-4">
                 <div className="mt-3">
                 {!clientToken || !auth?.token ? (
-                  <div>test</div>
+                  <div>payment loading...</div>
                 ) : (
                   <>
                     <DropIn
                       options={{
                         authorization: clientToken,
-                        paypal: {
-                          flow: "vault",
-                        },
+                        // paypal: {
+                        //   flow: "vault",
+                        // },
                       }}
                       onInstance={(instance) => setInstance(instance)}
                     />
