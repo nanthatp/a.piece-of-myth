@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth";
 import toast from "react-hot-toast";
 import axios from "axios";
+import Swal from 'sweetalert2';
 const Profile = () => {
   //context
   const [auth, setAuth] = useAuth();
@@ -35,6 +36,66 @@ const Profile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      if (name === "") {
+        // กรณีชื่อเป็นค่าว่าง
+        Swal.fire({
+            position: 'top-center',
+            icon: 'warning',
+            title: 'Warning!',
+            text: 'Please enter name ',
+            showConfirmButton: false,
+            timer: 3000
+        });
+        return;
+    }
+    if (phone === "") {
+        // กรณีเบอร์โทรเป็นค่าว่าง
+        Swal.fire({
+            position: 'top-center',
+            icon: 'warning',
+            title: 'Warning!',
+            text: 'Please enter phone number',
+            showConfirmButton: false,
+            timer: 3000
+        });
+        return;
+    }
+    if (address === "") {
+      // กรณีที่อยู่เป็นค่าว่าง
+      Swal.fire({
+          position: 'top-center',
+          icon: 'warning',
+          title: 'Warning!',
+          text: 'Please enter address ',
+          showConfirmButton: false,
+          timer: 3000
+      });
+      return;
+  }
+  if (province === "") {
+      // กรณีจังหวัดเป็นค่าว่าง
+      Swal.fire({
+          position: 'top-center',
+          icon: 'warning',
+          title: 'Warning!',
+          text: 'Please enter province',
+          showConfirmButton: false,
+          timer: 3000
+      });
+      return;
+  }
+  if (postalcode === "") {
+    // กรณีรหัสไปรษณีย์เป็นค่าว่าง
+    Swal.fire({
+        position: 'top-center',
+        icon: 'warning',
+        title: 'Warning!',
+        text: 'Please enter postalcode ',
+        showConfirmButton: false,
+        timer: 3000
+    });
+    return;
+}
       const { data } = await axios.put("/api/v1/auth/profile", {
         name,
         email,
@@ -53,6 +114,14 @@ const Profile = () => {
         ls.user = data.updatedUser;
         localStorage.setItem("auth", JSON.stringify(ls));
         toast.success("Profile Updated Successfully");
+      //   Swal.fire({
+      //     position: 'top-center',
+      //     icon: 'success',
+      //     title: 'Updated!',
+      //     text: 'Profile Updated Successfully.',
+      //     showConfirmButton: false,
+      //     timer: 3000
+      // });
         navigate("/dashboard/user");
         window.location.reload();
       }

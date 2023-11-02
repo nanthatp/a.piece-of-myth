@@ -56,9 +56,7 @@ const CreateProduct = () => {
                 "/api/v1/artist/create-artist",
                 artistData
             );
-            if (data?.success) {
-                toast.error(data?.message);
-            } else {
+            toast.success("Artist has been created.");
                 Swal.fire({
                     position: 'top-center',
                     icon: 'success',
@@ -69,10 +67,17 @@ const CreateProduct = () => {
                 });
                 navigate("/dashboard/admin/artists");
                 window.location.reload();
-            }
         } catch (error) {
             console.log(error);
-            toast.error("Something went wrong");
+            // toast.error("Something went wrong");
+            Swal.fire({
+                position: 'top-center',
+                icon: 'warning',
+                title: 'Warning!',
+                text: 'Something went wrong',
+                showConfirmButton: false,
+                timer: 3000
+            });
         }
     };
     

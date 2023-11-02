@@ -4,6 +4,7 @@ import Layout from "./../../components/Layout/Layout";
 import { useAuth } from "../../context/auth";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2';
 
 import axios from "axios";
 const UpdatePassword = () => {
@@ -24,10 +25,22 @@ const UpdatePassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      if (password === "") {
+        // กรณีรหัสเป็นค่าว่าง
+        Swal.fire({
+            position: 'top-center',
+            icon: 'warning',
+            title: 'Warning!',
+            text: 'Please enter Password!',
+            showConfirmButton: false,
+            timer: 3000
+        });
+        return;
+    }
       const { data } = await axios.put("/api/v1/auth/profile", {
         password
       });
-      if (data?.errro) {
+      if (data?.error) {
         toast.error(data?.error);
       } else {
         setAuth({ ...auth, user: data?.updatedUser });
@@ -35,12 +48,29 @@ const UpdatePassword = () => {
         ls = JSON.parse(ls);
         ls.user = data.updatedUser;
         localStorage.setItem("auth", JSON.stringify(ls));
-        toast.success("Profile Updated Successfully");
+        // toast.success("Profile Updated Successfully");
+        Swal.fire({
+          position: 'top-center',
+          icon: 'success',
+          title: 'Updated!',
+          text: 'Password has been Updated.',
+          showConfirmButton: false,
+          timer: 3000
+      });
         navigate("/dashboard/user");
       }
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong");
+      Swal.fire({
+        position: 'top-center',
+        icon: 'warning',
+        title: 'Warning!',
+        text: 'Something went wrong',
+        showConfirmButton: false,
+        timer: 3000
+    });
+    return;
     }
   };
   return (
