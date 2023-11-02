@@ -24,6 +24,17 @@ const CreateCategory = () => {
     //handle form
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (name === "") {
+            Swal.fire({
+                position: 'top-center',
+                icon: 'warning',
+                title: 'Warning!',
+                text: 'Please enter category',
+                showConfirmButton: false,
+                timer: 3000
+            });
+            return;
+        }
 
         try {
         const { data } = await axios.post("/api/v1/category/create-category", {
