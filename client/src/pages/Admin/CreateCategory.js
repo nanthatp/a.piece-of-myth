@@ -63,12 +63,12 @@ const CreateCategory = () => {
     //update category
     const handleUpdate = async (e) => {
         e.preventDefault();
-        if (name === "") {
+        if (updatedName === "" ) {
             Swal.fire({
                 position: 'top-center',
                 icon: 'warning',
                 title: 'Warning!',
-                text: 'Please enter category name',
+                text: 'Please enter category',
                 showConfirmButton: false,
                 timer: 3000
             });

@@ -28,7 +28,7 @@ const CreateProduct = () => {
                 position: 'top-center',
                 icon: 'warning',
                 title: 'Warning!',
-                text: 'Please enter a name for the artist',
+                text: 'Please enter name ',
                 showConfirmButton: false,
                 timer: 3000
             });
@@ -40,7 +40,7 @@ const CreateProduct = () => {
                 position: 'top-center',
                 icon: 'warning',
                 title: 'Warning!',
-                text: 'Please enter a logo image',
+                text: 'Please enter logo image',
                 showConfirmButton: false,
                 timer: 3000
             });
@@ -95,7 +95,7 @@ const CreateProduct = () => {
                 <div className="col-4 add-photo">
                     <div className="mb-3">
                         <label className="btn-upload-photo col-md-12">  
-                        <AiOutlineCloudUpload style={{ fontSize: '25px' ,marginRight:'5px'}}/>{photo ? photo.name : "Upload Loco"}
+                        <AiOutlineCloudUpload style={{ fontSize: '25px' ,marginRight:'5px'}}/>{photo ? photo.name : "Upload loco"}
                             <input
                                 type="file"
                                 name="photo"
@@ -121,10 +121,10 @@ const CreateProduct = () => {
                 </div>
                 <div className="col-4">
                     <div className="mb-3">
-                        <input
+                        <textarea
                             type="text"
                             value={name}
-                            placeholder="write a name artist"
+                            placeholder="Enter name"
                             className="form-control"
                             onChange={(e) => setName(e.target.value)}
                             required

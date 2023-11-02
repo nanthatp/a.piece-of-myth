@@ -64,7 +64,7 @@ const CreateBanner = () => {
                 position: 'top-center',
                 icon: 'warning',
                 title: 'Warning!',
-                text: 'Please enter a name',
+                text: 'Please enter name',
                 showConfirmButton: false,
                 timer: 3000
             });
@@ -157,14 +157,14 @@ const CreateBanner = () => {
                                 <textarea
                                     type="text"
                                     value={name}
-                                    placeholder="write a name"
+                                    placeholder="Enter name"
                                     className="form-control"
                                     onChange={(e) => setName(e.target.value)}
                                 />
                         </div>
                         <Select
                                 bordered={false}
-                                placeholder="Select a Artist"
+                                placeholder="Select artist"
                                 size="medium"
                                 showSearch
                                 className="form-select mb-3"
@@ -181,7 +181,7 @@ const CreateBanner = () => {
 
                         <Select
                             bordered={false}
-                            placeholder="Select a Collection group"
+                            placeholder="Select collection"
                             size="medium"
                             showSearch
                             className="form-select mb-3"
@@ -198,7 +198,7 @@ const CreateBanner = () => {
 
                         <div className="mb-3">
                             <label className="btn-upload-file col-md-12">
-                            <AiOutlineCloudUpload style={{ fontSize: '25px' ,marginRight:'5px'}}/>{file ? file.name : "Upload Banner"}
+                            <AiOutlineCloudUpload style={{ fontSize: '25px' ,marginRight:'5px'}}/>{file ? file.name : "Upload banner"}
                                 <input
                                     type="file"
                                     name="file"

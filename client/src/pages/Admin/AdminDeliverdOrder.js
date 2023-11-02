@@ -130,6 +130,7 @@ function AdminDeliverdOrder() {
                             <th scope="col">date</th>
                             <th scope="col">Payment</th>
                             <th scope="col">Quantity</th>
+                            <th scope="col">tracking</th>
                         </tr>
                         </thead>
                         <tbody className="order-admin">
@@ -152,6 +153,7 @@ function AdminDeliverdOrder() {
                             <td>{moment(o?.createdAt).format('YYYY-MM-DD hh:mm:ss')}</td>
                             <td>{o?.payment.success ? "Success" : "Failed"}</td>
                             <td>{o?.products?.length}</td>
+                            <td>{o?.tracking}</td>
                         </tr>
                         </tbody>
                     </table>

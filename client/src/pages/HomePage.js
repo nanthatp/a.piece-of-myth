@@ -285,7 +285,7 @@ const getSinglePreProduct = async () => {
                     to={`/ShowCollection/${b.collectiongroup}`}
                     className="a"
                   >
-                    Pre-Order Detail
+                    SHOP NOW
                   </Link>
                   </div>  
                   </div>

@@ -5,7 +5,7 @@ import { toast } from 'react-hot-toast';
 import axios from 'axios';
 import { Select } from 'antd';
 import Swal from 'sweetalert2';
-import {AiOutlineCloudUpload} from "react-icons/ai";
+import {BiSolidEdit} from "react-icons/bi";
 import { useNavigate, useParams } from "react-router-dom";
 
 const { Option } = Select;
@@ -45,24 +45,24 @@ const UpdateArtist = () => {
                 position: 'top-center',
                 icon: 'warning',
                 title: 'Warning!',
-                text: 'Please enter a name for the artist',
+                text: 'Please enter name',
                 showConfirmButton: false,
                 timer: 3000
             });
             return;
         }
-        if (photo === "") {
-            // กรณีชื่อศิลปินเป็นค่าว่าง
-            Swal.fire({
-                position: 'top-center',
-                icon: 'warning',
-                title: 'Warning!',
-                text: 'Please enter a logo image',
-                showConfirmButton: false,
-                timer: 3000
-            });
-            return;
-        }
+        // if (photo === "") {
+        //     // กรณีชื่อศิลปินเป็นค่าว่าง
+        //     Swal.fire({
+        //         position: 'top-center',
+        //         icon: 'warning',
+        //         title: 'Warning!',
+        //         text: 'Please enter a logo image',
+        //         showConfirmButton: false,
+        //         timer: 3000
+        //     });
+        //     return;
+        // }
         
         try {
             const artistData = new FormData();
@@ -136,7 +136,7 @@ const UpdateArtist = () => {
                             <div className="mb-3">
                                 <label className="btn-upload-photo col-md-12">
                                     
-                                <AiOutlineCloudUpload style={{ fontSize: '25px' ,marginRight:'5px'}}/>{photo ? photo.name : "Upload Loco"}
+                                <BiSolidEdit style={{ fontSize: '25px' ,marginRight:'5px'}}/>{photo ? photo.name : "Edit loco"}
                                     <input
                                         type="file"
                                         name="photo"
@@ -174,7 +174,7 @@ const UpdateArtist = () => {
                                 <textarea
                                     type="text"
                                     value={name}
-                                    placeholder="write a name artist"
+                                    placeholder="Enter name"
                                     className="form-control"
                                     onChange={(e) => setName(e.target.value)}
                                 />

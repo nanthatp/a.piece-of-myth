@@ -7,7 +7,7 @@ import { DatePicker, Select, TimePicker } from 'antd';
 import { useNavigate, useParams } from "react-router-dom";
 import moment from 'moment';
 import Swal from 'sweetalert2';
-import {AiOutlineCloudUpload} from "react-icons/ai";
+import {BiSolidEdit} from "react-icons/bi";
 
 // const date = New Date()
 const { Option } = Select;
@@ -74,7 +74,7 @@ const UpdatePreProduct = () => {
                 }
         }catch(error){
             console.log(error);
-            toast.error("Something went wrong in getting collecton groups");
+            toast.error("Something went wrong in getting collection groups");
         }
     }
 
@@ -135,24 +135,24 @@ const UpdatePreProduct = () => {
                 position: 'top-center',
                 icon: 'warning',
                 title: 'Warning!',
-                text: 'Please enter a name',
+                text: 'Please enter name',
                 showConfirmButton: false,
                 timer: 3000
             });
             return;
         }
-        if (photo === "") {
-            // กรณีชื่อศิลปินเป็นค่าว่าง
-            Swal.fire({
-                position: 'top-center',
-                icon: 'warning',
-                title: 'Warning!',
-                text: 'Please enter product image',
-                showConfirmButton: false,
-                timer: 3000
-            });
-            return;
-        } 
+        // if (photo === "") {
+        //     // กรณีชื่อศิลปินเป็นค่าว่าง
+        //     Swal.fire({
+        //         position: 'top-center',
+        //         icon: 'warning',
+        //         title: 'Warning!',
+        //         text: 'Please enter product image',
+        //         showConfirmButton: false,
+        //         timer: 3000
+        //     });
+        //     return;
+        // } 
         if (description === "") {
             // กรณีชื่อศิลปินเป็นค่าว่าง
             Swal.fire({
@@ -201,13 +201,13 @@ const UpdatePreProduct = () => {
             });
             return;
         }
-        if (until === "") {
+        if (!until) {
             // กรณีชื่อศิลปินเป็นค่าว่าง
             Swal.fire({
                 position: 'top-center',
                 icon: 'warning',
                 title: 'Warning!',
-                text: 'Please selet date and time',
+                text: 'Please select date and time',
                 showConfirmButton: false,
                 timer: 3000
             });
@@ -328,7 +328,7 @@ const UpdatePreProduct = () => {
                     <div className="col-4 add-photo">
                         <div className="mb-3">
                             <label className="btn-upload-photo col-md-12">
-                            <AiOutlineCloudUpload style={{ fontSize: '25px' ,marginRight:'5px'}}/>{photo ? photo.name : "Upload Photo"}
+                            <BiSolidEdit style={{ fontSize: '25px' ,marginRight:'5px'}}/>{photo ? photo.name : "Edit photo"}
                                 <input
                                     type="file"
                                     name="photo"
@@ -366,7 +366,7 @@ const UpdatePreProduct = () => {
                                 <textarea
                                     type="text"
                                     value={name}
-                                    placeholder="write a name"
+                                    placeholder="Enter name"
                                     className="form-control"
                                     onChange={(e) => setName(e.target.value)}
                                 />
@@ -376,7 +376,7 @@ const UpdatePreProduct = () => {
                             <input
                                 type="number"
                                 value={price}
-                                placeholder="write a Price"
+                                placeholder="Enter price"
                                 className="form-control"
                                 onChange={(e) => setPrice(e.target.value)}
                             />
@@ -384,7 +384,7 @@ const UpdatePreProduct = () => {
 
                         <Select
                             bordered={false}
-                            placeholder="Select a Artist"
+                            placeholder="Select artist"
                             size="medium"
                             showSearch
                             className="form-select mb-3"
@@ -402,7 +402,7 @@ const UpdatePreProduct = () => {
 
                         <Select
                             bordered={false}
-                            placeholder="Select a Category"
+                            placeholder="Select category"
                             size="medium"
                             showSearch
                             className="form-select mb-3"
@@ -421,7 +421,7 @@ const UpdatePreProduct = () => {
                     
                         <Select
                                 bordered={false}
-                                placeholder="Select Status"
+                                placeholder="Select status"
                                 size="medium"
                                 showSearch
                                 className="form-select mb-3"
@@ -444,15 +444,15 @@ const UpdatePreProduct = () => {
                             <textarea
                                 type="text"
                                 value={description}
-                                placeholder="write a description"
+                                placeholder="Enter description"
                                 className="form-control"
-                                onChange={(e) => setDescription(e)}
+                                onChange={(e) => setDescription(e.target.value)}
                             />
                         </div>
                         
                         <Select
                             bordered={false}
-                            placeholder="Select a Collection"
+                            placeholder="Select collection"
                             size="medium"
                             showSearch
                             className="form-select mb-3"

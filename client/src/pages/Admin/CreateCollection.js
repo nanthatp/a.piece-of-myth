@@ -72,7 +72,17 @@ const CreateCollection = () => {
     //update collection group
     const handleUpdate = async (e) => {
         e.preventDefault();
-        
+        if (updatedName === "" ) {
+            Swal.fire({
+                position: 'top-center',
+                icon: 'warning',
+                title: 'Warning!',
+                text: 'Please enter collection name',
+                showConfirmButton: false,
+                timer: 3000
+            });
+            return;
+        }
         try {
         const { data } = await axios.put(
             `/api/v1/collectiongroup/update-collectiongroup/${selected._id}`,

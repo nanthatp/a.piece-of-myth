@@ -6,7 +6,7 @@ import axios from 'axios';
 import { Select } from 'antd';
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from 'sweetalert2';
-import {AiOutlineCloudUpload} from "react-icons/ai";
+import {BiSolidEdit} from "react-icons/bi";
 
 import "../../styles/CreateBanner.css"
 
@@ -86,7 +86,7 @@ const CreateBanner = () => {
                 position: 'top-center',
                 icon: 'warning',
                 title: 'Warning!',
-                text: 'Please enter a name',
+                text: 'Please enter name',
                 showConfirmButton: false,
                 timer: 3000
             });
@@ -116,18 +116,18 @@ const CreateBanner = () => {
             });
             return;
         }
-        if (file === "") {
-            // กรณีชื่อศิลปินเป็นค่าว่าง
-            Swal.fire({
-                position: 'top-center',
-                icon: 'warning',
-                title: 'Warning!',
-                text: 'Please enter video',
-                showConfirmButton: false,
-                timer: 3000
-            });
-            return;
-        }
+        // if (file === "") {
+        //     // กรณีชื่อศิลปินเป็นค่าว่าง
+        //     Swal.fire({
+        //         position: 'top-center',
+        //         icon: 'warning',
+        //         title: 'Warning!',
+        //         text: 'Please enter video',
+        //         showConfirmButton: false,
+        //         timer: 3000
+        //     });
+        //     return;
+        // }
         try {
             const bannerData = new FormData();
             bannerData.append("name", name);
@@ -202,14 +202,14 @@ const CreateBanner = () => {
                                 <textarea
                                     type="text"
                                     value={name}
-                                    placeholder="write a name"
+                                    placeholder="Enter name"
                                     className="form-control"
                                     onChange={(e) => setName(e.target.value)}
                                 />
                         </div>
                         <Select
                             bordered={false}
-                            placeholder="Select a Artist"
+                            placeholder="Select artist"
                             size="medium"
                             showSearch
                             className="form-select mb-3"
@@ -227,7 +227,7 @@ const CreateBanner = () => {
 
                         <Select
                             bordered={false}
-                            placeholder="Select a Collection"
+                            placeholder="Select collection"
                             size="medium"
                             showSearch
                             className="form-select mb-3"
@@ -245,7 +245,7 @@ const CreateBanner = () => {
 
                         <div className="mb-3">
                             <label className="btn-upload-photo col-md-12">
-                            <AiOutlineCloudUpload style={{ fontSize: '25px' ,marginRight:'5px'}}/>{file ? file.name : "Upload Banner"}
+                            <BiSolidEdit style={{ fontSize: '25px' ,marginRight:'5px'}}/>{file ? file.name : "Edit banner"}
                                 <input
                                     type="file"
                                     name="file"

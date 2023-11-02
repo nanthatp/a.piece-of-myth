@@ -84,7 +84,7 @@ const CreateProduct = () => {
                 position: 'top-center',
                 icon: 'warning',
                 title: 'Warning!',
-                text: 'Please enter a name',
+                text: 'Please enter name',
                 showConfirmButton: false,
                 timer: 3000
             });
@@ -229,7 +229,7 @@ const CreateProduct = () => {
                     <div className="col-4 add-photo">
                         <div className="mb-3">
                             <label className="btn-upload-photo col-md-12">
-                            <AiOutlineCloudUpload style={{ fontSize: '25px' ,marginRight:'5px'}}/>{photo ? photo.name : "Upload Photo"}
+                            <AiOutlineCloudUpload style={{ fontSize: '25px' ,marginRight:'5px'}}/>{photo ? photo.name : "Upload photo"}
                                 <input
                                     type="file"
                                     name="photo"
@@ -257,7 +257,7 @@ const CreateProduct = () => {
                                 <textarea
                                     type="text"
                                     value={name}
-                                    placeholder="write a name"
+                                    placeholder="Enter name"
                                     className="form-control"
                                     onChange={(e) => setName(e.target.value)}
                                 />
@@ -267,7 +267,7 @@ const CreateProduct = () => {
                             <input
                                 type="number"
                                 value={price}
-                                placeholder="write a Price"
+                                placeholder="Enter price"
                                 className="form-control"
                                 onChange={(e) => setPrice(e.target.value)}
                             />
@@ -275,7 +275,7 @@ const CreateProduct = () => {
 
                         <Select
                             bordered={false}
-                            placeholder="Select a Artist"
+                            placeholder="Select artist"
                             size="medium"
                             showSearch
                             className="form-select mb-3"
@@ -292,7 +292,7 @@ const CreateProduct = () => {
 
                         <Select
                             bordered={false}
-                            placeholder="Select a Category"
+                            placeholder="Select category"
                             size="medium"
                             showSearch
                             className="form-select mb-3"
@@ -313,7 +313,7 @@ const CreateProduct = () => {
                             <textarea
                                 type="text"
                                 value={description}
-                                placeholder="write a description"
+                                placeholder="Enter description"
                                 className="form-control"
                                 onChange={(e) => setDescription(e.target.value)}
                             />
@@ -323,7 +323,7 @@ const CreateProduct = () => {
                             <input
                                 type="number"
                                 value={quantity}
-                                placeholder="write a quantity"
+                                placeholder="Enter quantity"
                                 className="form-control"
                                 onChange={(e) => setQuantity(e.target.value)}
                             />
@@ -347,7 +347,7 @@ const CreateProduct = () => {
 
                         <Select
                             bordered={false}
-                            placeholder="Select a Collection group"
+                            placeholder="Select collection"
                             size="medium"
                             showSearch
                             className="form-select mb-3"

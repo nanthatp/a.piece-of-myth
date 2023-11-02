@@ -43,17 +43,17 @@ function AdminShippedOrder() {
         //update order
         const handleUpdate = async (e) => {
             e.preventDefault();
-            // if (tracking === "") {
-            //     Swal.fire({
-            //         position: 'top-center',
-            //         icon: 'warning',
-            //         title: 'Warning!',
-            //         text: 'Please enter Tracking',
-            //         showConfirmButton: false,
-            //         timer: 3000
-            //     });
-            //     return;
-            // }
+            if ( updatedTracking === "" || updatedTracking === "No Tracking") {
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'warning',
+                    title: 'Warning!',
+                    text: 'Please enter tracking',
+                    showConfirmButton: false,
+                    timer: 3000
+                }); 
+                return;
+            }
             
             try {
             const { data } = await axios.put(
